@@ -28,7 +28,7 @@ Future<void> launchURL() async {
 
   var resp = await client.get('https://discordapp.com/api/v6/users/@me');
 
-  print(resp.body);
+  print(convert.jsonDecode(resp.body));
 }
 
 Future<void> joinNow() async {
