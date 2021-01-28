@@ -37,8 +37,30 @@ class _CreateProfile extends State<CreateProfile> {
             padding: EdgeInsets.all(10.0),
             child: Text(
               'Profiles',
-              style: TextStyle(color: Colors.white, fontSize: 20.0),
+              style: TextStyle(color: Colors.white, fontSize: 30.0),
             ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'First Name',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.grey, width: 1.0)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.blue, width: 1.0)),
+                  ),
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -16,12 +16,21 @@ class SpoofBrowser extends StatefulWidget {
 //Spoof Browser Widget State
 class _SpoofBrowser extends State<SpoofBrowser> {
   int navIndex = 1;
+  List<String> tasks = [];
   String appBarTitle = "Spoof Browser";
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
 
   void handleTask() {
-    print(browserURL.text);
+    tasks.add(browserURL.text);
+    print(tasks);
+  }
+
+  @override
+  void dispose() {
+    browserURL.clear();
+    taskCount.clear();
+    super.dispose();
   }
 
   //Create Tasks Dialog
@@ -197,6 +206,43 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         ],
       ),
       body: Center(
+        child: Container(
+          margin: EdgeInsets.only(left: 5.0, right: 5.0),
+          height: 200.0,
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: tasks == null ? 0 : tasks.length,
+            itemBuilder: (BuildContext context, int index) {
+              String urlString = tasks[index];
+
+              return Column(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(right: 5.0),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(36, 37, 38, 1),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                    width: 160.0,
+                    height: 190.0,
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            'Google',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
         // child: Container(
         //   margin:
         //       EdgeInsets.only(left: 5.0, right: 5.0, top: 30.0, bottom: 10.0),
@@ -204,8 +250,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         //     initialUrl: "https://www.supremenewyork.com/shop/all",
         //   ),
         // ),
-        child: Text('No Tasks',
-            style: TextStyle(color: Colors.grey, fontSize: 30.0)),
+        // child: Text('No Tasks',
+        //     style: TextStyle(color: Colors.grey, fontSize: 30.0)),
       ),
       floatingActionButton: SpeedDial(
         overlayColor: Colors.grey,
