@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/home.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/spoofBrowser.dart';

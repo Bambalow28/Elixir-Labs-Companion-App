@@ -25,10 +25,6 @@ Future<void> launchURL() async {
       clientId: '799140079494496276',
       clientSecret: '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd',
       scopes: ['identify', 'email', 'guilds']);
-
-  var resp = await client.get('https://discordapp.com/api/v6/users/@me');
-
-  print(convert.jsonDecode(resp.body));
 }
 
 Future<void> joinNow() async {
@@ -87,7 +83,7 @@ class _LoginState extends State<LoginPage> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () => {launchURL()},
+        onPressed: () => {navigateToHome()},
         child: Text("Login",
             textAlign: TextAlign.center,
             style: style.copyWith(
@@ -100,19 +96,19 @@ class _LoginState extends State<LoginPage> {
       home: Scaffold(
         body: Stack(
           children: [
-            ParticleBackground(
-              backgroundColor: const Color.fromRGBO(21, 21, 21, 1.0),
-              multiColor: false,
-              particleColor: Colors.cyan,
-              numberOfParticles: 200,
-              biggestSize: 6,
-              smallestSize: 4,
-              blur: true,
-              allFilled: true,
-              highestSpeed: 1.1,
-              slowestSpeed: 0.2,
-              blurIntensity: 8,
-            ),
+            // ParticleBackground(
+            //   backgroundColor: const Color.fromRGBO(21, 21, 21, 1.0),
+            //   multiColor: false,
+            //   particleColor: Colors.cyan,
+            //   numberOfParticles: 200,
+            //   biggestSize: 6,
+            //   smallestSize: 4,
+            //   blur: true,
+            //   allFilled: true,
+            //   highestSpeed: 1.1,
+            //   slowestSpeed: 0.2,
+            //   blurIntensity: 8,
+            // ),
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width,

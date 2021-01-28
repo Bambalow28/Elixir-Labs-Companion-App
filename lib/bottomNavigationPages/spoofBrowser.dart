@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -13,17 +14,18 @@ class SpoofBrowser extends StatefulWidget {
 }
 
 //Spoof Browser Widget State
-class _SpoofBrowser extends State<SpoofBrowser>
-    with SingleTickerProviderStateMixin {
+class _SpoofBrowser extends State<SpoofBrowser> {
   int navIndex = 1;
   String appBarTitle = "Spoof Browser";
+  TextEditingController browserURL = new TextEditingController();
+  TextEditingController taskCount = new TextEditingController();
+
+  void handleTask() {
+    print(browserURL.text);
+  }
 
   //Create Tasks Dialog
   Future createTask(BuildContext context) async {
-    //Declare variable for URL
-    TextEditingController browserURL = new TextEditingController();
-    TextEditingController taskCount = new TextEditingController();
-
     Alert(
         context: context,
         title: "Create Task",
@@ -90,7 +92,7 @@ class _SpoofBrowser extends State<SpoofBrowser>
               "Create Task",
               style: TextStyle(color: Colors.white, fontSize: 20.0),
             ),
-            onPressed: () => {print("Task Created")},
+            onPressed: () => {handleTask()},
           ),
         ]).show();
   }
@@ -225,7 +227,13 @@ class _SpoofBrowser extends State<SpoofBrowser>
           SpeedDialChild(
               child: Icon(Icons.person),
               label: "Profiles",
-              backgroundColor: Colors.blue),
+              backgroundColor: Colors.blue,
+              onTap: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreateProfile())),
+                  }),
         ],
       ),
     );
