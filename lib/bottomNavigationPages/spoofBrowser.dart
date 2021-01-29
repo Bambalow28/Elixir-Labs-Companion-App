@@ -16,13 +16,15 @@ class SpoofBrowser extends StatefulWidget {
 //Spoof Browser Widget State
 class _SpoofBrowser extends State<SpoofBrowser> {
   int navIndex = 1;
-  List<String> tasks = [];
+  List<String> tasks = new List<String>();
   String appBarTitle = "Spoof Browser";
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
 
   void handleTask() {
-    tasks.add(browserURL.text);
+    setState(() {
+      tasks.add(browserURL.text);
+    });
     print(tasks);
   }
 
@@ -207,51 +209,79 @@ class _SpoofBrowser extends State<SpoofBrowser> {
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.only(left: 5.0, right: 5.0),
-          height: 200.0,
+          margin: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
           child: ListView.builder(
             scrollDirection: Axis.vertical,
-            itemCount: tasks == null ? 0 : tasks.length,
+            itemCount: tasks.length,
             itemBuilder: (BuildContext context, int index) {
-              String urlString = tasks[index];
-
-              return Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(right: 5.0),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(36, 37, 38, 1),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
+              return GestureDetector(
+                onTap: () => {print('Tap Detected')},
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin:
+                          EdgeInsets.only(left: 5.0, right: 5.0, bottom: 10.0),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(36, 37, 38, 1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      height: 80.0,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'URL: ' + tasks[index],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 10.0, right: 5.0, bottom: 10.0),
+                            padding: EdgeInsets.only(top: 30.0),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Task Count: ' + '1',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 10.0, right: 5.0, bottom: 10.0),
+                            padding: EdgeInsets.only(top: 50.0),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Profile: ' + 'SUPREMO',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            width: 100.0,
+                            height: 60.0,
+                            margin: EdgeInsets.only(
+                                left: 330.0,
+                                right: 5.0,
+                                top: 30.0,
+                                bottom: 10.0),
+                            child: Text('ACTIVE',
+                                style: TextStyle(color: Colors.green)),
+                          ),
+                          // Text('No Tasks',
+                          //     style:
+                          //         TextStyle(color: Colors.grey, fontSize: 30.0)),
+                        ],
                       ),
                     ),
-                    width: 160.0,
-                    height: 190.0,
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          child: Text(
-                            'Google',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ),
         ),
-        // child: Container(
-        //   margin:
-        //       EdgeInsets.only(left: 5.0, right: 5.0, top: 30.0, bottom: 10.0),
-        //   child: InAppWebView(
-        //     initialUrl: "https://www.supremenewyork.com/shop/all",
-        //   ),
-        // ),
-        // child: Text('No Tasks',
-        //     style: TextStyle(color: Colors.grey, fontSize: 30.0)),
       ),
       floatingActionButton: SpeedDial(
         overlayColor: Colors.grey,
