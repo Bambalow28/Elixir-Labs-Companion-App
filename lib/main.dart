@@ -1,7 +1,8 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:elixirlabs_mobileapp/discordLogin/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_particle_background/flutter_particle_background.dart';
+import 'package:wave/wave.dart';
+import 'package:wave/config.dart';
 import 'dart:async';
 import 'dart:io';
 import 'dart:convert' as convert;
@@ -66,6 +67,7 @@ class LoginPage extends StatefulWidget {
 class _LoginState extends State<LoginPage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool isLoggedIn = false;
+  bool checkPressed = false;
 
   void navigateToHome() {
     Navigator.pushAndRemoveUntil(
@@ -80,17 +82,25 @@ class _LoginState extends State<LoginPage> {
     final loginButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: const Color.fromRGBO(70, 130, 191, 1.0),
+      color:
+          checkPressed ? Colors.white : const Color.fromRGBO(18, 18, 18, 1.0),
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () => {navigateToHome()},
+        onPressed: () => {
+          setState(() {
+            checkPressed = !checkPressed;
+            navigateToHome();
+          })
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(
               CustomIcons.discord,
-              color: Colors.white,
+              color: checkPressed
+                  ? const Color.fromRGBO(18, 18, 18, 1.0)
+                  : Colors.white,
             ),
             Padding(
               padding: EdgeInsets.only(right: 10.0),
@@ -98,7 +108,10 @@ class _LoginState extends State<LoginPage> {
             Text("Login via Discord",
                 textAlign: TextAlign.center,
                 style: style.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold)),
+                    color: checkPressed
+                        ? const Color.fromRGBO(18, 18, 18, 1.0)
+                        : Colors.white,
+                    fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -108,20 +121,26 @@ class _LoginState extends State<LoginPage> {
     return MaterialApp(
       home: Scaffold(
         body: Stack(
-          children: [
-            // ParticleBackground(
-            //   backgroundColor: const Color.fromRGBO(21, 21, 21, 1.0),
-            //   multiColor: false,
-            //   particleColor: Colors.cyan,
-            //   numberOfParticles: 200,
-            //   biggestSize: 6,
-            //   smallestSize: 4,
-            //   blur: true,
-            //   allFilled: true,
-            //   highestSpeed: 1.1,
-            //   slowestSpeed: 0.2,
-            //   blurIntensity: 8,
-            // ),
+          children: <Widget>[
+            WaveWidget(
+              config: CustomConfig(
+                gradients: [
+                  [Colors.cyanAccent, Color(0x66FF9800)],
+                  [Colors.cyan, Color(0x55FFEB3B)]
+                ],
+                durations: [10800, 6000],
+                heightPercentages: [0.50, 0.52],
+                blur: MaskFilter.blur(BlurStyle.solid, 10),
+                gradientBegin: Alignment.bottomLeft,
+                gradientEnd: Alignment.topRight,
+              ),
+              waveAmplitude: 0,
+              backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+              size: Size(
+                double.infinity,
+                double.infinity,
+              ),
+            ),
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -129,7 +148,7 @@ class _LoginState extends State<LoginPage> {
                 color: Colors.transparent,
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      left: 40.0, right: 40.0, bottom: 20.0, top: 230.0),
+                      left: 40.0, right: 40.0, bottom: 20.0, top: 170.0),
                   child: Column(
                     children: <Widget>[
                       //Logo Photo PNG
@@ -152,39 +171,39 @@ class _LoginState extends State<LoginPage> {
                           textAlign: TextAlign.start,
                         ),
                       ),
-                      Padding(padding: const EdgeInsets.all(50.0)),
+                      Padding(padding: const EdgeInsets.all(100.0)),
                       loginButton,
                       SizedBox(
                         height: 8.0,
                       ),
-                      Container(
-                        width: 500.0,
-                        child: OutlineButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          borderSide: BorderSide(
-                              color: Colors.white,
-                              style: BorderStyle.solid,
-                              width: 1),
-                          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          onPressed: () => {joinNow()},
-                          child: Text("Join Now",
-                              textAlign: TextAlign.center,
-                              style: style.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Align(
-                          alignment: FractionalOffset.bottomCenter,
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 10.0),
-                            child: Text('Version 1.0',
-                                style: TextStyle(color: Colors.grey)),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   width: 500.0,
+                      //   child: OutlineButton(
+                      //     shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(30.0)),
+                      //     borderSide: BorderSide(
+                      //         color: Colors.white,
+                      //         style: BorderStyle.solid,
+                      //         width: 1),
+                      //     padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                      //     onPressed: () => {joinNow()},
+                      //     child: Text("Join Now",
+                      //         textAlign: TextAlign.center,
+                      //         style: style.copyWith(
+                      //             color: Colors.white,
+                      //             fontWeight: FontWeight.bold)),
+                      //   ),
+                      // ),
+                      // Expanded(
+                      //   child: Align(
+                      //     alignment: FractionalOffset.bottomCenter,
+                      //     child: Padding(
+                      //       padding: EdgeInsets.only(bottom: 10.0),
+                      //       child: Text('Version 1.0',
+                      //           style: TextStyle(color: Colors.grey)),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

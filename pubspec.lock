@@ -83,13 +83,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.1"
-  flutter_particle_background:
-    dependency: "direct main"
-    description:
-      name: flutter_particle_background
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.7"
   flutter_secure_storage:
     dependency: transitive
     description:
@@ -310,6 +303,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
+  wave:
+    dependency: "direct main"
+    description:
+      name: wave
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   xml:
     dependency: transitive
     description:
