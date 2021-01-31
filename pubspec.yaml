@@ -32,6 +32,7 @@ dependencies:
   rflutter_alert: ^1.1.0
   flutter_speed_dial: ^1.2.5
   flutter_inappwebview: ^4.0.0+4
+  # firebase_core: ^0.7.0
 
   flutter:
     sdk: flutter
@@ -62,3 +63,7 @@ flutter:
         - family: Montserrat
           fonts:
             - asset: assets/Montserrat-Regular.ttf
+
+        - family: CustomIcons
+          fonts:
+            - asset: assets/images/CustomIcons.ttf

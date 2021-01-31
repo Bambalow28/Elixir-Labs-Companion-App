@@ -1,9 +1,12 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
+import 'package:elixirlabs_mobileapp/Pages/spoofBrowserTask.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter/foundation.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -15,6 +18,8 @@ class SpoofBrowser extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _SpoofBrowser extends State<SpoofBrowser> {
+  // final Future<FirebaseApp> firebaseInit = Firebase.initializeApp();
+
   int navIndex = 1;
   List<String> tasks = new List<String>();
   String appBarTitle = "Spoof Browser";
@@ -214,69 +219,115 @@ class _SpoofBrowser extends State<SpoofBrowser> {
             scrollDirection: Axis.vertical,
             itemCount: tasks.length,
             itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () => {print('Tap Detected')},
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      margin:
-                          EdgeInsets.only(left: 5.0, right: 5.0, bottom: 10.0),
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(36, 37, 38, 1),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+              return Dismissible(
+                key: Key(tasks[index]),
+                direction: DismissDirection.endToStart,
+                onDismissed: (direction) {
+                  setState(() {
+                    tasks.removeAt(index);
+                  });
+
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                    "Task Deleted",
+                    style: TextStyle(fontSize: 16.0),
+                    textAlign: TextAlign.center,
+                  )));
+                },
+                background: Container(
+                  alignment: Alignment.centerRight,
+                  color: Colors.red,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Text(
+                      'Delete',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ),
+                child: GestureDetector(
+                  onTap: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => BrowserTask())),
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(
+                            left: 5.0, right: 5.0, bottom: 10.0),
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(36, 37, 38, 1),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        height: 80.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(left: 13.0),
+                              alignment: Alignment.centerLeft,
+                              child: SizedBox(
+                                width: 5.0,
+                                height: 60.0,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                      color: Colors.cyan,
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  top: 10.0, bottom: 10.0, left: 30.0),
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'URL: ' + tasks[index],
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: 30.0, right: 5.0, bottom: 10.0),
+                              padding: EdgeInsets.only(top: 30.0),
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'Task Count: ' + '1',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: 30.0, right: 5.0, bottom: 10.0),
+                              padding: EdgeInsets.only(top: 50.0),
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'Profile: ' + 'SUPREMO',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            Container(
+                              width: 100.0,
+                              height: 60.0,
+                              margin: EdgeInsets.only(
+                                  left: 330.0,
+                                  right: 5.0,
+                                  top: 30.0,
+                                  bottom: 10.0),
+                              child: Text('ACTIVE',
+                                  style: TextStyle(color: Colors.green)),
+                            ),
+                            // Text('No Tasks',
+                            //     style:
+                            //         TextStyle(color: Colors.grey, fontSize: 30.0)),
+                          ],
                         ),
                       ),
-                      width: MediaQuery.of(context).size.width,
-                      height: 80.0,
-                      child: Stack(
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.all(10.0),
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'URL: ' + tasks[index],
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: 10.0, right: 5.0, bottom: 10.0),
-                            padding: EdgeInsets.only(top: 30.0),
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Task Count: ' + '1',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: 10.0, right: 5.0, bottom: 10.0),
-                            padding: EdgeInsets.only(top: 50.0),
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Profile: ' + 'SUPREMO',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          Container(
-                            width: 100.0,
-                            height: 60.0,
-                            margin: EdgeInsets.only(
-                                left: 330.0,
-                                right: 5.0,
-                                top: 30.0,
-                                bottom: 10.0),
-                            child: Text('ACTIVE',
-                                style: TextStyle(color: Colors.green)),
-                          ),
-                          // Text('No Tasks',
-                          //     style:
-                          //         TextStyle(color: Colors.grey, fontSize: 30.0)),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },

@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:elixirlabs_mobileapp/discordLogin/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_particle_background/flutter_particle_background.dart';
@@ -11,6 +12,7 @@ import 'package:oauth2_client/oauth2_helper.dart';
 import 'package:oauth2_client/google_oauth2_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 
 void main() => runApp(MyApp());
 
@@ -84,10 +86,22 @@ class _LoginState extends State<LoginPage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () => {navigateToHome()},
-        child: Text("Login",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              CustomIcons.discord,
+              color: Colors.white,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 10.0),
+            ),
+            Text("Login via Discord",
+                textAlign: TextAlign.center,
+                style: style.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.bold)),
+          ],
+        ),
       ),
     );
 
