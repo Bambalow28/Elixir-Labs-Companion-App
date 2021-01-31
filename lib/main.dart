@@ -176,34 +176,6 @@ class _LoginState extends State<LoginPage> {
                       SizedBox(
                         height: 8.0,
                       ),
-                      // Container(
-                      //   width: 500.0,
-                      //   child: OutlineButton(
-                      //     shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(30.0)),
-                      //     borderSide: BorderSide(
-                      //         color: Colors.white,
-                      //         style: BorderStyle.solid,
-                      //         width: 1),
-                      //     padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      //     onPressed: () => {joinNow()},
-                      //     child: Text("Join Now",
-                      //         textAlign: TextAlign.center,
-                      //         style: style.copyWith(
-                      //             color: Colors.white,
-                      //             fontWeight: FontWeight.bold)),
-                      //   ),
-                      // ),
-                      // Expanded(
-                      //   child: Align(
-                      //     alignment: FractionalOffset.bottomCenter,
-                      //     child: Padding(
-                      //       padding: EdgeInsets.only(bottom: 10.0),
-                      //       child: Text('Version 1.0',
-                      //           style: TextStyle(color: Colors.grey)),
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
