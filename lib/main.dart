@@ -12,7 +12,6 @@ import 'package:oauth2_client/oauth2_helper.dart';
 import 'package:oauth2_client/google_oauth2_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 
 void main() => runApp(MyApp());
 

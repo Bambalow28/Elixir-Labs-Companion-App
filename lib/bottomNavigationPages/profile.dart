@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 
@@ -69,7 +70,7 @@ class _ProfilePage extends State<ProfilePage> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
-              icon: Icon(Icons.chat_bubble_outline),
+              icon: Icon(CustomIcons.chat),
               itemBuilder: (BuildContext context) {
                 return Constants.options.map((String choice) {
                   return PopupMenuItem<String>(

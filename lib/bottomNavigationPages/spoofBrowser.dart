@@ -6,7 +6,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/foundation.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -168,7 +168,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
-              icon: Icon(Icons.chat_bubble_outline),
+              icon: Icon(CustomIcons.chat),
               itemBuilder: (BuildContext context) {
                 return Constants.options.map((String choice) {
                   return PopupMenuItem<String>(
@@ -239,11 +239,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   color: Colors.red,
                   child: Padding(
                     padding: EdgeInsets.only(right: 10.0),
-                    child: Text(
-                      'Delete',
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.right,
-                    ),
+                    child: Icon(Icons.delete, size: 20.0),
                   ),
                 ),
                 child: GestureDetector(
@@ -313,16 +309,15 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                               width: 100.0,
                               height: 60.0,
                               margin: EdgeInsets.only(
-                                  left: 330.0,
+                                  left: 310.0,
                                   right: 5.0,
-                                  top: 30.0,
+                                  top: 9.0,
                                   bottom: 10.0),
-                              child: Text('ACTIVE',
-                                  style: TextStyle(color: Colors.green)),
+                              child: Icon(Icons.circle, color: Colors.green),
+                              // Text('No Tasks',
+                              //     style:
+                              //         TextStyle(color: Colors.grey, fontSize: 30.0)),
                             ),
-                            // Text('No Tasks',
-                            //     style:
-                            //         TextStyle(color: Colors.grey, fontSize: 30.0)),
                           ],
                         ),
                       ),
@@ -348,13 +343,13 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     createTask(context),
                   }),
           SpeedDialChild(
-              child: Icon(Icons.bolt),
-              label: "Autofill",
-              backgroundColor: Colors.green),
+              child: Icon(CustomIcons.google),
+              label: "Google Sign-In",
+              backgroundColor: Colors.blue),
           SpeedDialChild(
               child: Icon(Icons.person),
               label: "Profiles",
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.green,
               onTap: () => {
                     Navigator.push(
                         context,
