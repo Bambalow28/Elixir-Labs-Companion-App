@@ -18,8 +18,11 @@ class BarcodeScanner extends StatefulWidget {
 class _BarcodeScan extends State<BarcodeScanner> {
   int navIndex = 2;
   String appBarTitle = "Barcode Scanner";
+  bool progressStatus = true;
   String barcodeData = '';
-  String barcodeKey = 'y65xwlx48d5v98os3dej0s9oqma8ik';
+  String itemName = '';
+  String itemDescr = '';
+  String itemImage = '';
   Map<String, dynamic> barcodeItem;
 
   getScannedBarcode() async {
@@ -29,8 +32,11 @@ class _BarcodeScan extends State<BarcodeScanner> {
     var res = await http.get(barcodeAPIURL);
 
     this.setState(() {
+      progressStatus = false;
       barcodeItem = convert.jsonDecode(res.body);
-      print(barcodeItem);
+      itemName = barcodeItem['products'][0]['product_name'];
+      itemDescr = barcodeItem['products'][0]['description'];
+      itemImage = barcodeItem['products'][0]['images'][0];
     });
   }
 
@@ -125,24 +131,57 @@ class _BarcodeScan extends State<BarcodeScanner> {
               label: (''))
         ],
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Item Barcode: " + barcodeData,
-              style: TextStyle(color: Colors.white, fontSize: 30.0),
-              textAlign: TextAlign.center,
+      body: progressStatus
+          ? Center(
+              child: Text(
+                'Scan A Barcode',
+                style: TextStyle(color: Colors.grey, fontSize: 20.0),
+              ),
+            )
+          : Center(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.topCenter,
+                    padding: EdgeInsets.all(10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Image.network(
+                        itemImage,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height - 600.0,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      "Item Barcode: " + barcodeData,
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Text(
+                      "Item Name: " + itemName,
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Text(
+                      "Item Description: " + itemDescr,
+                      style: TextStyle(color: Colors.white, fontSize: 12.0),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            // Text(
-            //   "Item Name: ",
-            //   style: TextStyle(color: Colors.white, fontSize: 30.0),
-            //   textAlign: TextAlign.center,
-            // ),
-          ],
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           backgroundColor: Colors.cyan,
