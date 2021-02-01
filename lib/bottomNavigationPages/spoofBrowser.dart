@@ -7,6 +7,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
+import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -117,6 +118,9 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   void choiceAction(String choice) {
     if (choice == Constants.LogOut) {
       Navigator.of(context).pushReplacementNamed('/');
+    } else if (choice == Constants.Barcode) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BarcodeScanner()));
     }
   }
 

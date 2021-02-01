@@ -2,6 +2,9 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -15,6 +18,28 @@ class BarcodeScanner extends StatefulWidget {
 class _BarcodeScan extends State<BarcodeScanner> {
   int navIndex = 2;
   String appBarTitle = "Barcode Scanner";
+  String barcodeData = '';
+  String barcodeKey = 'y65xwlx48d5v98os3dej0s9oqma8ik';
+  Map<String, dynamic> barcodeItem;
+
+  getScannedBarcode() async {
+    String barcodeAPIURL =
+        'https://api.barcodelookup.com/v2/products?barcode=$barcodeData&formatted=y&key=y65xwlx48d5v98os3dej0s9oqma8ik';
+
+    var res = await http.get(barcodeAPIURL);
+
+    this.setState(() {
+      barcodeItem = convert.jsonDecode(res.body);
+      print(barcodeItem);
+    });
+  }
+
+  scannedBarcode() async {
+    await FlutterBarcodeScanner.scanBarcode(
+            '#FF0000', 'Cancel', true, ScanMode.BARCODE)
+        .then((value) => setState(() => barcodeData = value));
+    return getScannedBarcode();
+  }
 
   //Option Menu Action
   void choiceAction(String choice) {
@@ -106,20 +131,22 @@ class _BarcodeScan extends State<BarcodeScanner> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Coming Soon",
-              style: TextStyle(color: Colors.grey, fontSize: 30.0),
+              "Item Barcode: " + barcodeData,
+              style: TextStyle(color: Colors.white, fontSize: 30.0),
               textAlign: TextAlign.center,
             ),
+            // Text(
+            //   "Item Name: ",
+            //   style: TextStyle(color: Colors.white, fontSize: 30.0),
+            //   textAlign: TextAlign.center,
+            // ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.cyan,
-        onPressed: () => {
-          print('Barcode Scanner Opened'),
-        },
-      ),
+          child: Icon(Icons.add),
+          backgroundColor: Colors.cyan,
+          onPressed: () async => {scannedBarcode()}),
     );
   }
 }

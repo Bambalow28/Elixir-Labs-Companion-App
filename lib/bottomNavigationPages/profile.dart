@@ -1,6 +1,7 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
+import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -19,6 +20,9 @@ class _ProfilePage extends State<ProfilePage> {
   void choiceAction(String choice) {
     if (choice == Constants.LogOut) {
       Navigator.of(context).pushReplacementNamed('/');
+    } else if (choice == Constants.Barcode) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BarcodeScanner()));
     }
   }
 
