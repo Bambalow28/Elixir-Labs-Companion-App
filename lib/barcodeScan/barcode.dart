@@ -33,10 +33,16 @@ class _BarcodeScan extends State<BarcodeScanner> {
 
     this.setState(() {
       progressStatus = false;
-      barcodeItem = convert.jsonDecode(res.body);
-      itemName = barcodeItem['products'][0]['product_name'];
-      itemDescr = barcodeItem['products'][0]['description'];
-      itemImage = barcodeItem['products'][0]['images'][0];
+
+      try {
+        barcodeItem = convert.jsonDecode(res.body);
+        itemName = barcodeItem['products'][0]['product_name'];
+        itemDescr = barcodeItem['products'][0]['description'];
+        itemImage = barcodeItem['products'][0]['images'][0];
+      } catch (e) {
+        itemName = 'Not Available';
+        itemDescr = 'Not Avilable';
+      }
     });
   }
 
@@ -87,7 +93,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
-              icon: Icon(CustomIcons.chat),
+              icon: Icon(Icons.save),
               itemBuilder: (BuildContext context) {
                 return Constants.options.map((String choice) {
                   return PopupMenuItem<String>(
@@ -150,13 +156,16 @@ class _BarcodeScan extends State<BarcodeScanner> {
                         itemImage,
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height - 600.0,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                   ),
                   Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.only(left: 10.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blue, width: 1.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(10.0),
                     child: Text(
                       "Item Barcode: " + barcodeData,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),

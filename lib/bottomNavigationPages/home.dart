@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context) {
             return PopupMenuButton<String>(
                 offset: Offset(5, 50),
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.menu_rounded),
                 onSelected: choiceAction,
                 itemBuilder: (BuildContext context) {
                   return Constants.options.map((String choice) {

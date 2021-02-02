@@ -156,7 +156,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         leading: Builder(
           builder: (BuildContext context) {
             return PopupMenuButton<String>(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.menu_rounded),
                 onSelected: choiceAction,
                 itemBuilder: (BuildContext context) {
                   return Constants.options.map((String choice) {
