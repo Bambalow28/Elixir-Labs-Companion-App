@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
         type: BottomNavigationBarType.fixed,
-        iconSize: 30.0,
+        iconSize: 25.0,
         currentIndex: pageIndex,
         onTap: navigationBarTapped,
         elevation: 5,

@@ -188,7 +188,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
         type: BottomNavigationBarType.fixed,
         elevation: 5,
-        iconSize: 30.0,
+        iconSize: 25.0,
         items: [
           BottomNavigationBarItem(
               icon: Icon(
