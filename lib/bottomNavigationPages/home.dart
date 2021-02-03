@@ -101,7 +101,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
-              icon: Icon(CustomIcons.chat),
+              icon: Icon(
+                CustomIcons.chat,
+                size: 20.0,
+              ),
               onSelected: choiceAction,
               itemBuilder: (BuildContext context) {
                 return Constants.options.map((String choice) {

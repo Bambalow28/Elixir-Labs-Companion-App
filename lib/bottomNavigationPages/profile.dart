@@ -74,7 +74,7 @@ class _ProfilePage extends State<ProfilePage> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
-              icon: Icon(CustomIcons.chat),
+              icon: Icon(CustomIcons.chat, size: 20.0),
               itemBuilder: (BuildContext context) {
                 return Constants.options.map((String choice) {
                   return PopupMenuItem<String>(
