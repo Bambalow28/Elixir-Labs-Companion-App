@@ -157,7 +157,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
           children: <Widget>[
             DrawerHeader(
               child: Text(
-                'Welcome,',
+                'Elixir Labs HQ',
                 style: TextStyle(color: Colors.white, fontSize: 25),
               ),
               decoration: BoxDecoration(

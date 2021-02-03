@@ -58,11 +58,11 @@ class _ProfilePage extends State<ProfilePage> {
           children: <Widget>[
             DrawerHeader(
               child: Text(
-                'Welcome,',
+                'Elixir Labs HQ',
                 style: TextStyle(color: Colors.white, fontSize: 25),
               ),
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Color.fromRGBO(18, 18, 18, 1),
                 // image: DecorationImage(
                 //     fit: BoxFit.fill,
                 //     image: AssetImage('assets/images/cover.jpg'))
