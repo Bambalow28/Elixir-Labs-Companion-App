@@ -20,7 +20,7 @@ class _ShowDrawer extends State<ShowDrawer> {
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             decoration: BoxDecoration(
-              color: Colors.orange,
+              color: Color.fromRGBO(21, 21, 21, 1),
               // image: DecorationImage(
               //     fit: BoxFit.fill,
               //     image: AssetImage('assets/images/cover.jpg'))
