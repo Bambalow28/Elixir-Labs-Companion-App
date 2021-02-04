@@ -2,6 +2,7 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -53,73 +54,9 @@ class _ProfilePage extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Elixir Labs HQ',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(18, 18, 18, 1),
-                // image: DecorationImage(
-                //     fit: BoxFit.fill,
-                //     image: AssetImage('assets/images/cover.jpg'))
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.scanner),
-              title: Text('Barcode Scanner'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Support'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.power),
-              title: Text('Log Out'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: ShowDrawer(),
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
       appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return PopupMenuButton<String>(
-                icon: Icon(Icons.menu_rounded),
-                onSelected: choiceAction,
-                itemBuilder: (BuildContext context) {
-                  return Constants.options.map((String choice) {
-                    return PopupMenuItem<String>(
-                      value: choice,
-                      child: Text(choice),
-                    );
-                  }).toList();
-                });
-          },
-        ),
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[

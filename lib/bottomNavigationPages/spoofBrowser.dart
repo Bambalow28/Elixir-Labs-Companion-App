@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
@@ -152,72 +152,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Elixir Labs HQ',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.green,
-                // image: DecorationImage(
-                //     fit: BoxFit.fill,
-                //     image: AssetImage('assets/images/cover.jpg'))
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.scanner),
-              title: Text('Barcode Scanner'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Support'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.power),
-              title: Text('Log Out'),
-              onTap: () => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BarcodeScanner()))
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: ShowDrawer(),
       appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return PopupMenuButton<String>(
-                icon: Icon(Icons.menu_rounded),
-                onSelected: choiceAction,
-                itemBuilder: (BuildContext context) {
-                  return Constants.options.map((String choice) {
-                    return PopupMenuItem<String>(
-                      value: choice,
-                      child: Text(choice),
-                    );
-                  }).toList();
-                });
-          },
-        ),
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
