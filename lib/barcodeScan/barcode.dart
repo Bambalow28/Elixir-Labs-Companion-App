@@ -191,10 +191,25 @@ class _BarcodeScan extends State<BarcodeScanner> {
                 ],
               ),
             ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.cyan,
-          onPressed: () async => {scannedBarcode()}),
+      floatingActionButton: SpeedDial(
+        overlayColor: Colors.grey,
+        overlayOpacity: 0.0,
+        backgroundColor: Colors.cyan,
+        animatedIcon: AnimatedIcons.menu_close,
+        children: [
+          SpeedDialChild(
+              child: Icon(Icons.scanner),
+              label: "Scan",
+              backgroundColor: Colors.amber,
+              onTap: () async => {
+                    scannedBarcode(),
+                  }),
+          SpeedDialChild(
+              child: Icon(Icons.save),
+              label: "Saved Barcodes",
+              backgroundColor: Colors.blue),
+        ],
+      ),
     );
   }
 }
