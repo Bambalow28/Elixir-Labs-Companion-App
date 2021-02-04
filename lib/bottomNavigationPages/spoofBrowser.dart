@@ -296,13 +296,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                               ),
                             ),
                             Container(
-                              width: 100.0,
-                              height: 60.0,
-                              margin: EdgeInsets.only(
-                                  left: 310.0,
-                                  right: 5.0,
-                                  top: 9.0,
-                                  bottom: 10.0),
+                              alignment: Alignment.centerRight,
+                              padding: EdgeInsets.only(right: 20.0),
                               child: Icon(Icons.circle, color: Colors.green),
                               // Text('No Tasks',
                               //     style:
