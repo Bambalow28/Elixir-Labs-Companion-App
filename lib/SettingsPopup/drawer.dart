@@ -54,8 +54,7 @@ class _ShowDrawer extends State<ShowDrawer> {
             leading: Icon(Icons.power),
             title: Text('Log Out'),
             onTap: () => {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => BarcodeScanner()))
+              Navigator.of(context).pushReplacementNamed('/'),
             },
           ),
         ],
