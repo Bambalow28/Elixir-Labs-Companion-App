@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+import 'package:elixirlabs_mobileapp/Pages/upcomingInfo.dart';
 
 //Home Page Widget
 class HomePage extends StatefulWidget {
@@ -161,7 +162,12 @@ class _HomePageState extends State<HomePage> {
                     margin: EdgeInsets.only(left: 5.0, right: 5.0),
                     height: 200.0,
                     child: GestureDetector(
-                      onTap: () => {print('Tapped')},
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UpcomingReleaseInfo()))
+                      },
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: data == null ? 0 : data.length,
