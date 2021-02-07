@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> importantNotif = ['Urgent', 'Test'];
+    List<String> importantNotif = ['Urgent'];
 
     //Option Menu Action
     void choiceAction(String choice) {
@@ -88,8 +88,8 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           PopupMenuButton<String>(
               icon: Icon(
-                CustomIcons.chat,
-                size: 20.0,
+                Icons.notifications_none_outlined,
+                size: 25.0,
               ),
               onSelected: choiceAction,
               itemBuilder: (BuildContext context) {
@@ -143,207 +143,7 @@ class _HomePageState extends State<HomePage> {
           : Center(
               child: Column(
                 children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Important Notifications",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-                    height: 90.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: importantNotif.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: 5.0, right: 5.0, bottom: 10.0),
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(36, 37, 38, 1),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                              ),
-                              width: MediaQuery.of(context).size.width - 50,
-                              height: 80.0,
-                              child: Stack(
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.only(left: 13.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: SizedBox(
-                                      width: 5.0,
-                                      height: 60.0,
-                                      child: DecoratedBox(
-                                        decoration: BoxDecoration(
-                                            color: Colors.orange,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.topRight,
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Text(
-                                      '00:00 AM',
-                                      style: TextStyle(
-                                          color: Colors.grey, fontSize: 12.0),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        top: 10.0, bottom: 10.0, left: 30.0),
-                                    alignment: Alignment.topLeft,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Container(
-                                          alignment: Alignment.topLeft,
-                                          padding: EdgeInsets.only(bottom: 5.0),
-                                          child: Text('URGENT',
-                                              style:
-                                                  TextStyle(color: Colors.red)),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.only(bottom: 5.0),
-                                          child: Text('Yeezy Now Live!',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16.0)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                  // Container(
-                  //   margin: EdgeInsets.only(top: 20.0, left: 5.0, right: 5.0),
-                  //   child: ListView.builder(
-                  //     scrollDirection: Axis.vertical,
-                  //     itemCount: 1,
-                  //     itemBuilder: (BuildContext context, int index) {
-                  //       return Dismissible(
-                  //         key: Key(importantNotif[index]),
-                  //         direction: DismissDirection.endToStart,
-                  //         onDismissed: (direction) {
-                  //           setState(() {
-                  //             importantNotif.removeAt(index);
-                  //           });
-
-                  //           Scaffold.of(context).showSnackBar(SnackBar(
-                  //               content: Text(
-                  //             "Task Deleted",
-                  //             style: TextStyle(fontSize: 16.0),
-                  //             textAlign: TextAlign.center,
-                  //           )));
-                  //         },
-                  //         background: Container(
-                  //           alignment: Alignment.centerRight,
-                  //           color: Colors.red,
-                  //           child: Padding(
-                  //             padding: EdgeInsets.only(right: 10.0),
-                  //             child: Text(
-                  //               'Delete',
-                  //               style: TextStyle(color: Colors.white),
-                  //               textAlign: TextAlign.right,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         child: GestureDetector(
-                  //           onTap: () => {
-                  //             //News Clicked
-                  //           },
-                  //           child: Column(
-                  //             children: <Widget>[
-                  //               Container(
-                  //                 margin: EdgeInsets.only(
-                  //                     left: 5.0, right: 5.0, bottom: 10.0),
-                  //                 decoration: BoxDecoration(
-                  //                   color: Color.fromRGBO(36, 37, 38, 1),
-                  //                   borderRadius: BorderRadius.all(
-                  //                     Radius.circular(10),
-                  //                   ),
-                  //                 ),
-                  //                 width: MediaQuery.of(context).size.width,
-                  //                 height: 80.0,
-                  //                 child: Stack(
-                  //                   children: <Widget>[
-                  //                     Container(
-                  //                       padding: EdgeInsets.only(left: 13.0),
-                  //                       alignment: Alignment.centerLeft,
-                  //                       child: SizedBox(
-                  //                         width: 5.0,
-                  //                         height: 60.0,
-                  //                         child: DecoratedBox(
-                  //                           decoration: BoxDecoration(
-                  //                               color: Colors.cyan,
-                  //                               borderRadius:
-                  //                                   BorderRadius.circular(
-                  //                                       10.0)),
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //                     Container(
-                  //                       padding: EdgeInsets.only(
-                  //                           top: 10.0,
-                  //                           bottom: 10.0,
-                  //                           left: 30.0),
-                  //                       alignment: Alignment.topLeft,
-                  //                       child: Text(
-                  //                         'URGENT',
-                  //                         style: TextStyle(color: Colors.red),
-                  //                       ),
-                  //                     ),
-                  //                     Container(
-                  //                       margin: EdgeInsets.only(
-                  //                           left: 30.0,
-                  //                           right: 5.0,
-                  //                           bottom: 10.0),
-                  //                       padding: EdgeInsets.only(top: 30.0),
-                  //                       alignment: Alignment.topLeft,
-                  //                       child: Text(
-                  //                         'Task Count: ' + '1',
-                  //                         style: TextStyle(color: Colors.white),
-                  //                       ),
-                  //                     ),
-                  //                     Container(
-                  //                       margin: EdgeInsets.only(
-                  //                           left: 30.0,
-                  //                           right: 5.0,
-                  //                           bottom: 10.0),
-                  //                       padding: EdgeInsets.only(top: 50.0),
-                  //                       alignment: Alignment.topLeft,
-                  //                       child: Text(
-                  //                         'Profile: ' + 'SUPREMO',
-                  //                         style: TextStyle(color: Colors.white),
-                  //                       ),
-                  //                     ),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
+                  //Upcoming Releases Widget
                   Container(
                     padding: EdgeInsets.all(10.0),
                     child: Align(
@@ -386,9 +186,9 @@ class _HomePageState extends State<HomePage> {
                                 child: Stack(
                                   children: <Widget>[
                                     Container(
-                                      alignment: Alignment.bottomCenter,
+                                      alignment: Alignment.center,
                                       padding: EdgeInsets.only(
-                                          top: 10.0, bottom: 10.0),
+                                          top: 30.0, bottom: 10.0),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
@@ -417,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           Container(
                                             padding: EdgeInsets.only(
-                                                top: 60.0, left: 7.0),
+                                                top: 150.0, left: 7.0),
                                             child: Text(
                                               "Price: " + itemPrice,
                                               textAlign: TextAlign.center,
@@ -429,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           Container(
                                             padding: EdgeInsets.only(
-                                                top: 75.0, left: 7.0),
+                                                top: 165.0, left: 7.0),
                                             child: Text(
                                               "Release Date: " +
                                                   itemReleaseDate,
@@ -450,6 +250,99 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                       ),
+                    ),
+                  ),
+
+                  //News Section Widget
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "News",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
+                    height: MediaQuery.of(context).size.height - 500,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: importantNotif.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: 5.0, right: 5.0, bottom: 10.0),
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(36, 37, 38, 1),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              width: MediaQuery.of(context).size.width - 10,
+                              height: 123.0,
+                              child: Stack(
+                                children: <Widget>[
+                                  Container(
+                                    padding: EdgeInsets.all(5.0),
+                                    alignment: Alignment.topLeft,
+                                    child: SizedBox(
+                                      width: 28.0,
+                                      height: 25.0,
+                                      child: Image.asset(
+                                        "assets/images/logo.png",
+                                        fit: BoxFit.cover,
+                                        width: 200.0,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    padding: EdgeInsets.all(10.0),
+                                    child: SizedBox(
+                                      width: 133.0,
+                                      height: 90.0,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        child: Image.asset(
+                                          "assets/images/jordanss.png",
+                                          fit: BoxFit.cover,
+                                          width: 200.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        top: 8.0, bottom: 10.0, left: 35.0),
+                                    alignment: Alignment.topLeft,
+                                    child: Column(
+                                      children: <Widget>[
+                                        Container(
+                                          alignment: Alignment.topLeft,
+                                          padding: EdgeInsets.only(bottom: 5.0),
+                                          child: Text('Air Jordan 1 Pollen',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ],

@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 
@@ -29,6 +30,17 @@ class _ShowDrawer extends State<ShowDrawer> {
           ListTile(
             leading: Icon(Icons.scanner),
             title: Text('Barcode Scanner'),
+            onTap: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BarcodeScanner()))
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              CustomIcons.chat,
+              size: 18.0,
+            ),
+            title: Text('Chat Room'),
             onTap: () => {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => BarcodeScanner()))
