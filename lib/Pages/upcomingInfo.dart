@@ -4,6 +4,8 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 //Create Profile Widget
 class UpcomingReleaseInfo extends StatefulWidget {
   @override
+  String itemName;
+  UpcomingReleaseInfo({Key key, this.itemName}) : super(key: key);
   _UpcomingReleaseInfo createState() => _UpcomingReleaseInfo();
 }
 
@@ -17,7 +19,10 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
         title: Text('Upcoming Release Info'),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
       ),
-      body: Text('Item Info'),
+      body: Text(
+        widget.itemName,
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 }

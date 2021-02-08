@@ -18,6 +18,14 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+//Class for sending data to new page
+class UpcomingInfo {
+  final String itemName;
+  final String price;
+
+  UpcomingInfo(this.itemName, this.price);
+}
+
 //Home Page Widget State
 class _HomePageState extends State<HomePage> {
   bool progressStatus = true;
@@ -161,101 +169,111 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     margin: EdgeInsets.only(left: 5.0, right: 5.0),
                     height: 200.0,
-                    child: GestureDetector(
-                      onTap: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UpcomingReleaseInfo()))
-                      },
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: data == null ? 0 : data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          String itemName = data[index]["name"];
-                          String itemImage = data[index]["image"];
-                          String itemPrice = data[index]["price"];
-                          String itemReleaseDate = data[index]["releaseDate"];
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: data == null ? 0 : data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        String itemName = data[index]["name"];
+                        String itemImage = data[index]["image"];
+                        String itemPrice = data[index]["price"];
+                        String itemReleaseDate = data[index]["releaseDate"];
 
-                          return Column(
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(right: 5.0),
-                                decoration: BoxDecoration(
-                                  color: Color.fromRGBO(36, 37, 38, 1),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                ),
-                                width: 160.0,
-                                height: 190.0,
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      alignment: Alignment.center,
-                                      padding: EdgeInsets.only(
-                                          top: 30.0, bottom: 10.0),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        child: Image.network(
-                                          itemImage,
-                                          width: 130.0,
-                                          height: 80.0,
-                                          fit: BoxFit.fill,
+                        return Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () => {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            UpcomingReleaseInfo(
+                                              itemName: itemName,
+                                            ))),
+                              },
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(right: 5.0),
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(35, 39, 42, 1),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    width: 160.0,
+                                    height: 190.0,
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Container(
+                                          alignment: Alignment.center,
+                                          padding: EdgeInsets.only(
+                                              top: 30.0, bottom: 10.0),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            child: Image.network(
+                                              itemImage,
+                                              width: 130.0,
+                                              height: 80.0,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          top: 5.0, left: 12.0, right: 12.0),
-                                      child: Stack(
-                                        children: <Widget>[
-                                          Container(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              itemName,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.only(
-                                                top: 150.0, left: 7.0),
-                                            child: Text(
-                                              "Price: " + itemPrice,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: Colors.grey,
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              top: 5.0,
+                                              left: 12.0,
+                                              right: 12.0),
+                                          child: Stack(
+                                            children: <Widget>[
+                                              Container(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  itemName,
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 12.0,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.only(
-                                                top: 165.0, left: 7.0),
-                                            child: Text(
-                                              "Release Date: " +
-                                                  itemReleaseDate,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: Colors.grey,
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    top: 150.0, left: 7.0),
+                                                child: Text(
+                                                  "Price: " + itemPrice,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 12.0,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
                                               ),
-                                            ),
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    top: 165.0, left: 7.0),
+                                                child: Text(
+                                                  "Release Date: " +
+                                                      itemReleaseDate,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 12.0,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          );
-                        },
-                      ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
 
@@ -327,7 +345,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Container(
                                     padding: EdgeInsets.only(
-                                        top: 8.0, bottom: 10.0, left: 35.0),
+                                        top: 8.5, bottom: 10.0, left: 35.0),
                                     alignment: Alignment.topLeft,
                                     child: Column(
                                       children: <Widget>[
