@@ -188,6 +188,9 @@ class _HomePageState extends State<HomePage> {
                                         builder: (context) =>
                                             UpcomingReleaseInfo(
                                               itemName: itemName,
+                                              itemPrice: itemPrice,
+                                              itemReleaseDate: itemReleaseDate,
+                                              itemImage: itemImage,
                                             ))),
                               },
                               child: Column(

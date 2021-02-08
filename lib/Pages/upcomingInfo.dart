@@ -3,9 +3,19 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 
 //Create Profile Widget
 class UpcomingReleaseInfo extends StatefulWidget {
-  @override
   String itemName;
-  UpcomingReleaseInfo({Key key, this.itemName}) : super(key: key);
+  String itemPrice;
+  String itemReleaseDate;
+  String itemImage;
+  UpcomingReleaseInfo(
+      {Key key,
+      this.itemName,
+      this.itemPrice,
+      this.itemReleaseDate,
+      this.itemImage})
+      : super(key: key);
+
+  @override
   _UpcomingReleaseInfo createState() => _UpcomingReleaseInfo();
 }
 
@@ -19,9 +29,224 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
         title: Text('Upcoming Release Info'),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
       ),
-      body: Text(
-        widget.itemName,
-        style: TextStyle(color: Colors.white),
+      body: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.only(
+                top: 20.0, bottom: 10.0, left: 20.0, right: 20.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: Image.network(
+                widget.itemImage,
+                width: MediaQuery.of(context).size.width,
+                height: 220.0,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
+            alignment: Alignment.topLeft,
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text('NAME: ' + widget.itemName,
+                  style: TextStyle(color: Colors.white)),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
+            alignment: Alignment.topLeft,
+            child: Text('PRICE: ' + widget.itemPrice,
+                style: TextStyle(color: Colors.white)),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
+            alignment: Alignment.topLeft,
+            child: Text('RELEASE DATE: ' + widget.itemReleaseDate,
+                style: TextStyle(color: Colors.white)),
+          ),
+          SizedBox(
+            height: 40.0,
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 10.0, bottom: 15.0),
+            alignment: Alignment.topLeft,
+            child: Text('Resell Predictions',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.0)),
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(left: 10.0, right: 13.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(36, 37, 38, 1),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                width: 197.0,
+                height: 127.0,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        'N/A',
+                        style: TextStyle(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 36.0),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      padding: EdgeInsets.only(bottom: 10.0),
+                      child: Text(
+                        'Lowest Price',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(right: 5.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(36, 37, 38, 1),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                width: 197.0,
+                height: 127.0,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        'N/A',
+                        style: TextStyle(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 36.0),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      padding: EdgeInsets.only(bottom: 10.0),
+                      child: Text(
+                        'Highest Price',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Container(
+            child: Text(
+              'Hype Status',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.0),
+            ),
+          ),
+          SizedBox(
+            height: 15.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(left: 10.0, right: 13.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(39, 165, 96, 1),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                width: 140.0,
+                height: 52.0,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Icon(
+                        Icons.thumb_up,
+                        color: Colors.white,
+                        size: 25.0,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        '0',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(right: 5.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(231, 76, 60, 1),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                width: 140.0,
+                height: 52.0,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Icon(
+                        Icons.thumb_down,
+                        color: Colors.white,
+                        size: 25.0,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        '0',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
