@@ -21,6 +21,19 @@ class UpcomingReleaseInfo extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
+  //Function to Check Whether Price is Available
+  void checkPrice() {
+    if (widget.itemPrice.isEmpty) {
+      widget.itemPrice = 'N/A';
+    }
+  }
+
+  @override
+  void initState() {
+    this.checkPrice();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,21 +63,63 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
             alignment: Alignment.topLeft,
             child: FittedBox(
               fit: BoxFit.fitWidth,
-              child: Text('NAME: ' + widget.itemName,
-                  style: TextStyle(color: Colors.white)),
+              child: RichText(
+                text: TextSpan(
+                  text: 'NAME: ',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: widget.itemName,
+                      style: TextStyle(color: Colors.white, fontSize: 14.0),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
+            padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
             alignment: Alignment.topLeft,
-            child: Text('PRICE: ' + widget.itemPrice,
-                style: TextStyle(color: Colors.white)),
+            child: RichText(
+              text: TextSpan(
+                text: 'PRICE: ',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: widget.itemPrice,
+                    style: TextStyle(color: Colors.white, fontSize: 14.0),
+                  ),
+                ],
+              ),
+            ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
+            padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
             alignment: Alignment.topLeft,
-            child: Text('RELEASE DATE: ' + widget.itemReleaseDate,
-                style: TextStyle(color: Colors.white)),
+            child: RichText(
+              text: TextSpan(
+                text: 'RELEASE DATE: ',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: widget.itemReleaseDate,
+                    style: TextStyle(color: Colors.white, fontSize: 14.0),
+                  ),
+                ],
+              ),
+            ),
           ),
           SizedBox(
             height: 40.0,

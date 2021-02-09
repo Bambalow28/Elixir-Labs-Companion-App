@@ -60,6 +60,7 @@ flutter:
   assets:
   - assets/images/logo.png
   - assets/images/jordanss.png
+  - assets/images/lights.gif
 
   fonts:
         - family: Montserrat
