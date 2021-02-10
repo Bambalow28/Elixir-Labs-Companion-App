@@ -61,23 +61,20 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
           Container(
             padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
             alignment: Alignment.topLeft,
-            child: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: RichText(
-                text: TextSpan(
-                  text: 'NAME: ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: widget.itemName,
-                      style: TextStyle(color: Colors.white, fontSize: 14.0),
-                    ),
-                  ],
+            child: RichText(
+              text: TextSpan(
+                text: 'NAME: ',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
                 ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: widget.itemName,
+                    style: TextStyle(color: Colors.white, fontSize: 14.0),
+                  ),
+                ],
               ),
             ),
           ),
@@ -139,6 +136,12 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
                 margin: EdgeInsets.only(left: 10.0, right: 13.0),
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(36, 37, 38, 1),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 4),
+                  ],
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
@@ -176,6 +179,12 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
                 margin: EdgeInsets.only(right: 5.0),
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(36, 37, 38, 1),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 4),
+                  ],
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),

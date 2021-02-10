@@ -114,18 +114,7 @@ class _ProfilePage extends State<ProfilePage> {
               height: 60.0,
               width: 300.0,
               //Button To Open Chat Room
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                color: const Color.fromRGBO(114, 137, 217, 1.0),
-                minWidth: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                child: Text('Profile', style: TextStyle(color: Colors.white)),
-                onPressed: () {
-                  // Navigate to second route when tapped.
-                },
-              ),
+              child: CircleAvatar(),
             ),
           ],
         ),

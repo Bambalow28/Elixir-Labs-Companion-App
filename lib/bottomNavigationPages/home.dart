@@ -196,9 +196,16 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 children: <Widget>[
                                   Container(
-                                    margin: EdgeInsets.only(right: 5.0),
+                                    margin: EdgeInsets.only(right: 10.0),
                                     decoration: BoxDecoration(
                                       color: Color.fromRGBO(35, 39, 42, 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Color.fromRGBO(0, 0, 0, 1)
+                                                .withOpacity(0.5),
+                                            spreadRadius: 2,
+                                            blurRadius: 4),
+                                      ],
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(10),
                                       ),
@@ -308,6 +315,13 @@ class _HomePageState extends State<HomePage> {
                                   left: 5.0, right: 5.0, bottom: 10.0),
                               decoration: BoxDecoration(
                                 color: Color.fromRGBO(36, 37, 38, 1),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 1)
+                                          .withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 4),
+                                ],
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
                                 ),
@@ -317,7 +331,8 @@ class _HomePageState extends State<HomePage> {
                               child: Stack(
                                 children: <Widget>[
                                   Container(
-                                    padding: EdgeInsets.all(5.0),
+                                    padding: EdgeInsets.only(
+                                        top: 10.0, left: 5.0, right: 5.0),
                                     alignment: Alignment.topLeft,
                                     child: SizedBox(
                                       width: 28.0,
@@ -348,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Container(
                                     padding: EdgeInsets.only(
-                                        top: 8.5, bottom: 10.0, left: 35.0),
+                                        top: 13.5, bottom: 10.0, left: 35.0),
                                     alignment: Alignment.topLeft,
                                     child: Column(
                                       children: <Widget>[
