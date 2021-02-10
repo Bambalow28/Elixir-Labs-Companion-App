@@ -132,90 +132,95 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
           ),
           Row(
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(left: 10.0, right: 13.0),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(36, 37, 38, 1),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 4),
-                  ],
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(left: 10.0),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(36, 37, 38, 1),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 4),
+                    ],
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
                   ),
-                ),
-                width: 197.0,
-                height: 127.0,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        'N/A',
-                        style: TextStyle(
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 36.0),
+                  height: 127.0,
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(bottom: 20.0),
+                        child: Text(
+                          'N/A',
+                          style: TextStyle(
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 36.0),
+                        ),
                       ),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      child: Text(
-                        'Lowest Price',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
+                      Container(
+                        alignment: Alignment.bottomCenter,
+                        padding: EdgeInsets.only(bottom: 10.0),
+                        child: Text(
+                          'Lowest Price',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(right: 5.0),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(36, 37, 38, 1),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 4),
-                  ],
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
+              SizedBox(
+                width: 10.0,
+              ),
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(right: 10.0),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(36, 37, 38, 1),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 4),
+                    ],
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
                   ),
-                ),
-                width: 197.0,
-                height: 127.0,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        'N/A',
-                        style: TextStyle(
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 36.0),
+                  height: 127.0,
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(bottom: 20.0),
+                        child: Text(
+                          'N/A',
+                          style: TextStyle(
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 36.0),
+                        ),
                       ),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      child: Text(
-                        'Highest Price',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
+                      Container(
+                        alignment: Alignment.bottomCenter,
+                        padding: EdgeInsets.only(bottom: 10.0),
+                        child: Text(
+                          'Highest Price',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
