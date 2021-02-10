@@ -1,6 +1,7 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
+import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
 
 //Create Profile Widget
 class ShowDrawer extends StatefulWidget {
@@ -67,10 +68,8 @@ class _ShowDrawer extends State<ShowDrawer> {
                     ),
                   ),
                   onTap: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BarcodeScanner()))
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ChatRoom()))
                   },
                 ),
                 ListTile(
