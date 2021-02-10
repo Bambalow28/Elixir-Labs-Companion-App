@@ -1,7 +1,6 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
-import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
+import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 //Create Profile Widget
 class ShowDrawer extends StatefulWidget {
@@ -48,12 +47,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                     'Barcode Scanner',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onTap: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BarcodeScanner()))
-                  },
+                  onTap: () => {Navigator.of(context).push(barcodeRoute())},
                 ),
                 ListTile(
                   leading: Icon(
@@ -67,10 +61,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                       color: Colors.white,
                     ),
                   ),
-                  onTap: () => {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ChatRoom()))
-                  },
+                  onTap: () => {Navigator.of(context).push(chatRoute())},
                 ),
                 ListTile(
                   leading: Icon(Icons.person, color: Colors.white),
@@ -78,12 +69,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                     'Support',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onTap: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BarcodeScanner()))
-                  },
+                  onTap: () => {Navigator.of(context).push(profileRoute())},
                 ),
                 ListTile(
                   leading: Icon(Icons.settings, color: Colors.white),
@@ -91,12 +77,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                     'Settings',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onTap: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BarcodeScanner()))
-                  },
+                  onTap: () => {Navigator.of(context).push(profileRoute())},
                 ),
                 ListTile(
                   leading: Icon(Icons.power, color: Colors.white),

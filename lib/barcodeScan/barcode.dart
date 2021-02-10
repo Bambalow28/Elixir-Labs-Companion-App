@@ -1,4 +1,5 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -87,6 +88,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: ShowDrawer(),
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
       appBar: AppBar(
         title: Text(appBarTitle),

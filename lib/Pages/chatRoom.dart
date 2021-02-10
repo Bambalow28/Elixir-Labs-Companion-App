@@ -15,17 +15,7 @@ class ChatRoom extends StatefulWidget {
 //Spoof Browser Widget State
 class _ChatRoom extends State<ChatRoom> {
   int navIndex;
-  String appBarTitle = '';
-
-  //Option Menu Action
-  void choiceAction(String choice) {
-    if (choice == Constants.LogOut) {
-      Navigator.of(context).pushReplacementNamed('/');
-    } else if (choice == Constants.Barcode) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BarcodeScanner()));
-    }
-  }
+  String appBarTitle = 'Chat Room';
 
   void navigationBarTapped(int index) {
     setState(() {
@@ -59,18 +49,6 @@ class _ChatRoom extends State<ChatRoom> {
       appBar: AppBar(
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
-        actions: <Widget>[
-          PopupMenuButton<String>(
-              icon: Icon(CustomIcons.chat, size: 20.0),
-              itemBuilder: (BuildContext context) {
-                return Constants.options.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              }),
-        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: navigationBarTapped,

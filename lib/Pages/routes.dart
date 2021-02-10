@@ -4,6 +4,8 @@ import 'package:elixirlabs_mobileapp/bottomNavigationPages/home.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/spoofBrowser.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/supremeBot.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/profile.dart';
+import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
+import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
 
 //Transition To Home Page
 Route homeRoute() {
@@ -39,6 +41,26 @@ Route supremeBotRoute() {
 Route profileRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => ProfilePage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Barcode Scanner
+Route barcodeRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => BarcodeScanner(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Chat Room
+Route chatRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => ChatRoom(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },
