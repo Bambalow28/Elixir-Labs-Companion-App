@@ -1,4 +1,6 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
+import 'package:elixirlabs_mobileapp/Pages/support.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/zendesk.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/home.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/spoofBrowser.dart';
@@ -6,6 +8,7 @@ import 'package:elixirlabs_mobileapp/bottomNavigationPages/supremeBot.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/profile.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/zendesk.dart';
 
 //Transition To Home Page
 Route homeRoute() {
@@ -61,6 +64,16 @@ Route barcodeRoute() {
 Route chatRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => ChatRoom(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Support
+Route supportRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Supprt(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

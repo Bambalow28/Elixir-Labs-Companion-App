@@ -330,35 +330,66 @@ class _HomePageState extends State<HomePage> {
                               height: 123.0,
                               child: Stack(
                                 children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        top: 10.0, left: 5.0, right: 5.0),
-                                    alignment: Alignment.topLeft,
-                                    child: SizedBox(
-                                      width: 28.0,
-                                      height: 25.0,
-                                      child: Image.asset(
-                                        "assets/images/logo.png",
-                                        fit: BoxFit.cover,
-                                        width: 200.0,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            top: 10.0, left: 5.0, right: 5.0),
+                                        alignment: Alignment.topLeft,
+                                        child: SizedBox(
+                                          width: 28.0,
+                                          height: 25.0,
+                                          child: Image.asset(
+                                            "assets/images/logo.png",
+                                            fit: BoxFit.cover,
+                                            width: 200.0,
+                                          ),
+                                        ),
                                       ),
+                                    ],
+                                  ),
+                                  Container(
+                                    alignment: Alignment.topRight,
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Text(
+                                      '0:00AM',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 10.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                   Container(
-                                    alignment: Alignment.centerRight,
+                                    alignment: Alignment.bottomRight,
                                     padding: EdgeInsets.all(10.0),
                                     child: SizedBox(
-                                      width: 133.0,
-                                      height: 90.0,
+                                      width: 120.0,
+                                      height: 80.0,
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
                                         child: Image.asset(
                                           "assets/images/jordanss.png",
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.fill,
                                           width: 200.0,
                                         ),
                                       ),
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    width: 300.0,
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Text('Yeezys are out!',
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold)),
                                     ),
                                   ),
                                   Container(

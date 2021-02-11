@@ -69,7 +69,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                     'Support',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onTap: () => {Navigator.of(context).push(profileRoute())},
+                  onTap: () => {Navigator.of(context).push(supportRoute())},
                 ),
                 ListTile(
                   leading: Icon(Icons.settings, color: Colors.white),
