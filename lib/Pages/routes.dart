@@ -73,7 +73,7 @@ Route chatRoute() {
 //Transition To Support
 Route supportRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => Supprt(),
+    pageBuilder: (context, animation, secondaryAnimation) => SupportPage(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

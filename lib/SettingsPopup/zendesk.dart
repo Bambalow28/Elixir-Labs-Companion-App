@@ -41,34 +41,19 @@ class _Supprt extends State<Supprt> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Plugin example app'),
+          title: Text('Support Center'),
         ),
         body: Center(
           child: Column(
             children: <Widget>[
-              RaisedButton(
-                child: Text('Set User Info'),
-                onPressed: () async {
-                  zendesk
-                      .setVisitorInfo(
-                    name: 'My Name',
-                    phoneNumber: '323-555-1212',
-                  )
-                      .then((r) {
-                    print('setVisitorInfo finished');
-                  }).catchError((e) {
-                    print('error $e');
-                  });
-                },
-              ),
               if (Platform.isIOS)
                 RaisedButton(
-                  child: Text('Start Chat (styled)'),
+                  child: Text('Start Chat'),
                   onPressed: () async {
                     zendesk
                         .startChat(
-                      iosNavigationBarColor: Colors.red,
-                      iosNavigationTitleColor: Colors.yellow,
+                      iosNavigationBarColor: Colors.cyan,
+                      iosNavigationTitleColor: Colors.black,
                     )
                         .then((r) {
                       print('startChat finished');
@@ -77,36 +62,6 @@ class _Supprt extends State<Supprt> {
                     });
                   },
                 ),
-              RaisedButton(
-                child: Text('Add Tags [a,b,c]'),
-                onPressed: () async {
-                  zendesk.addVisitorTags(['a', 'b', 'c']).then((_) {
-                    print('addTags Finished');
-                  }).catchError((e) {
-                    print('error $e');
-                  });
-                },
-              ),
-              RaisedButton(
-                child: Text('Remove Tags [b,c]'),
-                onPressed: () async {
-                  zendesk.removeVisitorTags(['b', 'c']).then((_) {
-                    print('removeTags Finished');
-                  }).catchError((e) {
-                    print('error $e');
-                  });
-                },
-              ),
-              RaisedButton(
-                child: Text('Start Chat'),
-                onPressed: () async {
-                  zendesk.startChat().then((r) {
-                    print('startChat finished');
-                  }).catchError((e) {
-                    print('error $e');
-                  });
-                },
-              ),
             ],
           ),
         ),

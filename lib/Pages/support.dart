@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:zendesk/zendesk.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+
+const ZendeskAccountKey = 'SM1FWmfqgGJYK0Sy8oUKZQ2oMfBw0Zum';
+const ZendeskAppId = 'b5acdf70e07c1871527007a7639edbe8e9715934f6c91704';
 
 //Supreme Bot Widget
 class SupportPage extends StatefulWidget {
@@ -12,7 +18,31 @@ class SupportPage extends StatefulWidget {
 //Spoof Browser Widget State
 class _SupportPage extends State<SupportPage> {
   int navIndex;
-  String appBarTitle = "Support";
+  String appBarTitle = "Support Center";
+
+  final Zendesk zendesk = Zendesk();
+
+  @override
+  void initState() {
+    super.initState();
+    initZendesk();
+  }
+
+  // Zendesk is asynchronous, so we initialize in an async method.
+  Future<void> initZendesk() async {
+    zendesk.init(ZendeskAccountKey).then((r) {
+      print('init finished');
+    }).catchError((e) {
+      print('failed with error $e');
+    });
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    // But we aren't calling setState, so the above point is rather moot now.
+  }
 
   void navigationBarTapped(int index) {
     setState(() {
@@ -82,15 +112,29 @@ class _SupportPage extends State<SupportPage> {
       ),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
-              height: 60.0,
-              width: 300.0,
-              //Button To Open Chat Room
-              child: CircleAvatar(),
-            ),
+            if (Platform.isIOS)
+              Material(
+                elevation: 5.0,
+                borderRadius: BorderRadius.circular(20.0),
+                child: MaterialButton(
+                  minWidth: MediaQuery.of(context).size.width - 200,
+                  child: Text('Start Chat'),
+                  onPressed: () async {
+                    zendesk
+                        .startChat(
+                            messagingName: "Elixir Support",
+                            iosNavigationBarColor: Colors.cyan,
+                            iosNavigationTitleColor: Colors.white,
+                            isAgentAvailabilityEnabled: false)
+                        .then((r) {
+                      print('startChat finished');
+                    }).catchError((e) {
+                      print('error $e');
+                    });
+                  },
+                ),
+              ),
           ],
         ),
       ),
