@@ -5,6 +5,9 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 
 //Create Profile Widget
 class BrowserTask extends StatefulWidget {
+  String taskName;
+  BrowserTask({Key key, this.taskName}) : super(key: key);
+
   @override
   _BrowserTask createState() => _BrowserTask();
 }
@@ -18,7 +21,7 @@ class _BrowserTask extends State<BrowserTask> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
       appBar: AppBar(
-        title: Text('Browser Task'),
+        title: Text(widget.taskName),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(

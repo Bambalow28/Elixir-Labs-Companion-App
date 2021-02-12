@@ -24,6 +24,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   int navIndex = 1;
   List<String> tasks = new List<String>();
   String appBarTitle = "Spoof Browser";
+  TextEditingController taskName = new TextEditingController();
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
 
@@ -37,6 +38,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   @override
   void dispose() {
     browserURL.clear();
+    taskName.clear();
     taskCount.clear();
     super.dispose();
   }
@@ -48,6 +50,15 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         title: "Create Task",
         content: Column(
           children: [
+            TextField(
+              controller: taskName,
+              decoration: InputDecoration(
+                labelText: "Task Name...",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),
             TextField(
               controller: browserURL,
               decoration: InputDecoration(
@@ -365,7 +376,9 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BrowserTask())),
+                                  builder: (context) => BrowserTask(
+                                        taskName: taskName.text,
+                                      ))),
                         },
                         child: Column(
                           children: <Widget>[
@@ -418,7 +431,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                         ),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: 'My First Task',
+                                            text: taskName.text,
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 14.0,
