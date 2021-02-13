@@ -171,7 +171,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
           PopupMenuButton<String>(
               icon: Icon(Icons.add),
               itemBuilder: (BuildContext context) {
-                return BarcodeSelection.options.map((String choice) {
+                return SpoofBrowserAdd.options.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),

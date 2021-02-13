@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onSelected: choiceAction,
               itemBuilder: (BuildContext context) {
-                return BarcodeSelection.options.map((String choice) {
+                return NotificationArea.options.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),
