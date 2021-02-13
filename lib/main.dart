@@ -84,7 +84,8 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       borderRadius: BorderRadius.circular(30.0),
       color:
           checkPressed ? Colors.white : const Color.fromRGBO(18, 18, 18, 1.0),
-      child: MaterialButton(
+      child: FlatButton(
+        focusColor: Colors.transparent,
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () => {

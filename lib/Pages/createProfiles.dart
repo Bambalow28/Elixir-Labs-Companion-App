@@ -10,6 +10,7 @@ class CreateProfile extends StatefulWidget {
 class _CreateProfile extends State<CreateProfile> {
   int navIndex = 1;
   String appBarTitle = "Spoof Browser";
+  bool billingInfo = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,7 @@ class _CreateProfile extends State<CreateProfile> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
-              icon: Icon(Icons.chat_bubble_outline),
-              itemBuilder: (BuildContext context) {}),
+              icon: Icon(Icons.person), itemBuilder: (BuildContext context) {}),
         ],
       ),
       body: GestureDetector(
@@ -37,14 +37,14 @@ class _CreateProfile extends State<CreateProfile> {
                 child: TextField(
                   textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Color.fromRGBO(45, 45, 45, 1),
                     hintText: 'Profile Name',
                     hintStyle: TextStyle(color: Colors.grey),
                     enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.grey, width: 1.0)),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.cyan, width: 1.0)),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   ),
                   style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
@@ -54,7 +54,7 @@ class _CreateProfile extends State<CreateProfile> {
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.only(left: 10.0, top: 20.0),
                 child: Text(
-                  'Personal Info',
+                  'Shipping Information',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,
@@ -72,18 +72,16 @@ class _CreateProfile extends State<CreateProfile> {
                       child: TextField(
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color.fromRGBO(45, 45, 45, 1),
                           hintText: 'First Name',
                           hintStyle: TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 1.0)),
+                                  BorderRadius.all(Radius.circular(10.0))),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.cyan, width: 1.0)),
+                                  BorderRadius.all(Radius.circular(10.0))),
                         ),
                         style: TextStyle(color: Colors.white),
                       ),
@@ -98,18 +96,16 @@ class _CreateProfile extends State<CreateProfile> {
                       child: TextField(
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color.fromRGBO(45, 45, 45, 1),
                           hintText: 'Last Name',
                           hintStyle: TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 1.0)),
+                                  BorderRadius.all(Radius.circular(10.0))),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.cyan, width: 1.0)),
+                                  BorderRadius.all(Radius.circular(10.0))),
                         ),
                         style: TextStyle(color: Colors.white),
                       ),
@@ -131,18 +127,16 @@ class _CreateProfile extends State<CreateProfile> {
                           child: TextField(
                             textCapitalization: TextCapitalization.words,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromRGBO(45, 45, 45, 1),
                               hintText: 'Address',
                               hintStyle: TextStyle(color: Colors.grey),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.cyan, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                             ),
                             style: TextStyle(color: Colors.white),
                           ),
@@ -157,18 +151,16 @@ class _CreateProfile extends State<CreateProfile> {
                           child: TextField(
                             textCapitalization: TextCapitalization.words,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromRGBO(45, 45, 45, 1),
                               hintText: 'Zip Code',
                               hintStyle: TextStyle(color: Colors.grey),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.cyan, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                             ),
                             style: TextStyle(color: Colors.white),
                           ),
@@ -187,18 +179,16 @@ class _CreateProfile extends State<CreateProfile> {
                           child: TextField(
                             textCapitalization: TextCapitalization.words,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromRGBO(45, 45, 45, 1),
                               hintText: 'State',
                               hintStyle: TextStyle(color: Colors.grey),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.cyan, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                             ),
                             style: TextStyle(color: Colors.white),
                           ),
@@ -213,18 +203,16 @@ class _CreateProfile extends State<CreateProfile> {
                           child: TextField(
                             textCapitalization: TextCapitalization.words,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromRGBO(45, 45, 45, 1),
                               hintText: 'Country',
                               hintStyle: TextStyle(color: Colors.grey),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.cyan, width: 1.0)),
+                                      BorderRadius.all(Radius.circular(10.0))),
                             ),
                             style: TextStyle(color: Colors.white),
                           ),
@@ -232,9 +220,27 @@ class _CreateProfile extends State<CreateProfile> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 5.0,
-                  ),
+                  Container(
+                      alignment: Alignment.topLeft,
+                      child: Theme(
+                        data: ThemeData(unselectedWidgetColor: Colors.grey),
+                        child: CheckboxListTile(
+                          activeColor: Colors.grey,
+                          title: Text(
+                            "Billing same as Shipping Information",
+                            style:
+                                TextStyle(color: Colors.grey, fontSize: 14.0),
+                          ),
+                          value: billingInfo,
+                          onChanged: (newValue) {
+                            setState(() {
+                              billingInfo = newValue;
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity
+                              .leading, //  <-- leading Checkbox
+                        ),
+                      )),
                   Container(
                     padding: EdgeInsets.only(left: 5.0, right: 5.0),
                     child: Divider(
@@ -262,18 +268,16 @@ class _CreateProfile extends State<CreateProfile> {
                     padding: EdgeInsets.only(left: 10, right: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color.fromRGBO(45, 45, 45, 1),
                         hintText: 'Card Number',
                         hintStyle: TextStyle(color: Colors.grey),
                         enabledBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0)),
+                                BorderRadius.all(Radius.circular(10.0))),
                         focusedBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide:
-                                BorderSide(color: Colors.cyan, width: 1.0)),
+                                BorderRadius.all(Radius.circular(10.0))),
                       ),
                       style: TextStyle(color: Colors.white),
                     ),
@@ -288,18 +292,16 @@ class _CreateProfile extends State<CreateProfile> {
                         child: TextField(
                           textCapitalization: TextCapitalization.words,
                           decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(45, 45, 45, 1),
                             hintText: 'Name on Card',
                             hintStyle: TextStyle(color: Colors.grey),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 1.0)),
+                                    BorderRadius.all(Radius.circular(10.0))),
                             focusedBorder: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.cyan, width: 1.0)),
+                                    BorderRadius.all(Radius.circular(10.0))),
                           ),
                           style: TextStyle(color: Colors.white),
                         ),
@@ -314,18 +316,16 @@ class _CreateProfile extends State<CreateProfile> {
                               padding: EdgeInsets.only(left: 10.0),
                               child: TextField(
                                 decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color.fromRGBO(45, 45, 45, 1),
                                   hintText: 'Exp Date (MM/YY)',
                                   hintStyle: TextStyle(color: Colors.grey),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                      borderSide: BorderSide(
-                                          color: Colors.grey, width: 1.0)),
+                                          Radius.circular(10.0))),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                      borderSide: BorderSide(
-                                          color: Colors.cyan, width: 1.0)),
+                                          Radius.circular(10.0))),
                                 ),
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -339,18 +339,16 @@ class _CreateProfile extends State<CreateProfile> {
                               padding: EdgeInsets.only(right: 10.0),
                               child: TextField(
                                 decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color.fromRGBO(45, 45, 45, 1),
                                   hintText: 'Security Code',
                                   hintStyle: TextStyle(color: Colors.grey),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                      borderSide: BorderSide(
-                                          color: Colors.grey, width: 1.0)),
+                                          Radius.circular(10.0))),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                      borderSide: BorderSide(
-                                          color: Colors.cyan, width: 1.0)),
+                                          Radius.circular(10.0))),
                                 ),
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -361,6 +359,31 @@ class _CreateProfile extends State<CreateProfile> {
                     ],
                   ),
                 ],
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                padding: EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
+                child: Material(
+                  elevation: 5.0,
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: Color.fromRGBO(0, 169, 191, 1),
+                  child: FlatButton(
+                    focusColor: Colors.transparent,
+                    minWidth: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                    onPressed: () => {
+                      setState(() {
+                        print('Saved');
+                      })
+                    },
+                    child: Text("Save Profile",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0)),
+                  ),
+                ),
               ),
             ],
           ),
