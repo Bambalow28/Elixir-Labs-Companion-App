@@ -1,8 +1,6 @@
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -193,25 +191,6 @@ class _BarcodeScan extends State<BarcodeScanner> {
                 ],
               ),
             ),
-      floatingActionButton: SpeedDial(
-        overlayColor: Colors.grey,
-        overlayOpacity: 0.0,
-        backgroundColor: Colors.cyan,
-        animatedIcon: AnimatedIcons.menu_close,
-        children: [
-          SpeedDialChild(
-              child: Icon(Icons.scanner),
-              label: "Scan",
-              backgroundColor: Colors.amber,
-              onTap: () async => {
-                    scannedBarcode(),
-                  }),
-          SpeedDialChild(
-              child: Icon(Icons.save),
-              label: "Saved Barcodes",
-              backgroundColor: Colors.blue),
-        ],
-      ),
     );
   }
 }
