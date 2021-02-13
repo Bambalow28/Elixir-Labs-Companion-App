@@ -3,11 +3,8 @@ import 'package:elixirlabs_mobileapp/Pages/spoofBrowserTask.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/foundation.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
-import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -518,35 +515,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: SpeedDial(
-        overlayColor: Colors.grey,
-        overlayOpacity: 0.0,
-        backgroundColor: Colors.cyan,
-        animatedIcon: AnimatedIcons.menu_close,
-        children: [
-          SpeedDialChild(
-              child: Icon(Icons.add),
-              label: "Create Task",
-              backgroundColor: Colors.amber,
-              onTap: () => {
-                    createTask(context),
-                  }),
-          SpeedDialChild(
-              child: Icon(CustomIcons.google),
-              label: "Google Sign-In",
-              backgroundColor: Colors.blue),
-          SpeedDialChild(
-              child: Icon(Icons.person),
-              label: "Profiles",
-              backgroundColor: Colors.green,
-              onTap: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CreateProfile())),
-                  }),
-        ],
       ),
     );
   }

@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
-import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
