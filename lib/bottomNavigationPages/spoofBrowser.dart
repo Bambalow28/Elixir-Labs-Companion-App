@@ -127,11 +127,11 @@ class _SpoofBrowser extends State<SpoofBrowser> {
 
   //Option Menu Action
   void choiceAction(String choice) {
-    if (choice == Constants.LogOut) {
-      Navigator.of(context).pushReplacementNamed('/');
-    } else if (choice == Constants.Barcode) {
+    if (choice == SpoofBrowserAdd.CreateTask) {
+      createTask(context);
+    } else if (choice == SpoofBrowserAdd.Profiles) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BarcodeScanner()));
+          context, MaterialPageRoute(builder: (context) => CreateProfile()));
     }
   }
 
@@ -171,7 +171,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
           PopupMenuButton<String>(
               icon: Icon(Icons.add),
               itemBuilder: (BuildContext context) {
-                return Constants.options.map((String choice) {
+                return BarcodeSelection.options.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),

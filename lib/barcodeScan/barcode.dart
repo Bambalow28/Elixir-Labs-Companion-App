@@ -56,8 +56,8 @@ class _BarcodeScan extends State<BarcodeScanner> {
 
   //Option Menu Action
   void choiceAction(String choice) {
-    if (choice == Constants.LogOut) {
-      Navigator.of(context).pushReplacementNamed('/');
+    if (choice == BarcodeSelection.ScanBarcode) {
+      scannedBarcode();
     }
   }
 
@@ -97,7 +97,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
           PopupMenuButton<String>(
               icon: Icon(Icons.save),
               itemBuilder: (BuildContext context) {
-                return Constants.options.map((String choice) {
+                return BarcodeSelection.options.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),

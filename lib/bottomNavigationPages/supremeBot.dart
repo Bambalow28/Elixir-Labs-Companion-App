@@ -19,12 +19,7 @@ class _SupremeBot extends State<SupremeBot> {
 
   //Option Menu Action
   void choiceAction(String choice) {
-    if (choice == Constants.LogOut) {
-      Navigator.of(context).pushReplacementNamed('/');
-    } else if (choice == Constants.Barcode) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BarcodeScanner()));
-    }
+    //SupremeBot
   }
 
   void navigationBarTapped(int index) {
@@ -63,7 +58,7 @@ class _SupremeBot extends State<SupremeBot> {
           PopupMenuButton<String>(
               icon: Icon(CustomIcons.chat, size: 20.0),
               itemBuilder: (BuildContext context) {
-                return Constants.options.map((String choice) {
+                return BarcodeSelection.options.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),
