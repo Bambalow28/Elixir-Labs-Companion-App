@@ -257,7 +257,7 @@ class _CreateProfile extends State<CreateProfile> {
                           alignment: Alignment.topLeft,
                           padding: EdgeInsets.only(left: 10.0, top: 20.0),
                           child: Text(
-                            'Billing Information',
+                            'Billing Address',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,
@@ -440,7 +440,7 @@ class _CreateProfile extends State<CreateProfile> {
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.only(left: 10.0),
                     child: Text(
-                      'Payment Information',
+                      'Payment Details',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
