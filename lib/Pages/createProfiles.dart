@@ -77,11 +77,11 @@ class _CreateProfile extends State<CreateProfile> {
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                           borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0)),
+                              BorderSide(color: Colors.white, width: 1.0)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                           borderSide:
-                              BorderSide(color: Colors.blue, width: 1.0)),
+                              BorderSide(color: Colors.cyan, width: 1.0)),
                     ),
                     style: TextStyle(color: Colors.white),
                   ),
@@ -100,11 +100,11 @@ class _CreateProfile extends State<CreateProfile> {
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                           borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0)),
+                              BorderSide(color: Colors.white, width: 1.0)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
                           borderSide:
-                              BorderSide(color: Colors.blue, width: 1.0)),
+                              BorderSide(color: Colors.cyan, width: 1.0)),
                     ),
                     style: TextStyle(color: Colors.white),
                   ),
@@ -117,21 +117,57 @@ class _CreateProfile extends State<CreateProfile> {
           ),
           Column(
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(left: 10, right: 10.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Address',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.grey, width: 1.0)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.blue, width: 1.0)),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Address',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 1.0)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.cyan, width: 1.0)),
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
-                  style: TextStyle(color: Colors.white),
-                ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(right: 10.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Zip Code',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 1.0)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.cyan, width: 1.0)),
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 10.0,
@@ -149,12 +185,12 @@ class _CreateProfile extends State<CreateProfile> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 1.0)),
+                                  BorderSide(color: Colors.white, width: 1.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
                               borderSide:
-                                  BorderSide(color: Colors.blue, width: 1.0)),
+                                  BorderSide(color: Colors.cyan, width: 1.0)),
                         ),
                         style: TextStyle(color: Colors.white),
                       ),
@@ -174,12 +210,12 @@ class _CreateProfile extends State<CreateProfile> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
                               borderSide:
-                                  BorderSide(color: Colors.grey, width: 1.0)),
+                                  BorderSide(color: Colors.white, width: 1.0)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
                               borderSide:
-                                  BorderSide(color: Colors.blue, width: 1.0)),
+                                  BorderSide(color: Colors.cyan, width: 1.0)),
                         ),
                         style: TextStyle(color: Colors.white),
                       ),
@@ -221,10 +257,11 @@ class _CreateProfile extends State<CreateProfile> {
                     hintStyle: TextStyle(color: Colors.grey),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.grey, width: 1.0)),
+                        borderSide:
+                            BorderSide(color: Colors.white, width: 1.0)),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(color: Colors.blue, width: 1.0)),
+                        borderSide: BorderSide(color: Colors.cyan, width: 1.0)),
                   ),
                   style: TextStyle(color: Colors.white),
                 ),
@@ -244,12 +281,12 @@ class _CreateProfile extends State<CreateProfile> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)),
                             borderSide:
-                                BorderSide(color: Colors.grey, width: 1.0)),
+                                BorderSide(color: Colors.white, width: 1.0)),
                         focusedBorder: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)),
                             borderSide:
-                                BorderSide(color: Colors.blue, width: 1.0)),
+                                BorderSide(color: Colors.cyan, width: 1.0)),
                       ),
                       style: TextStyle(color: Colors.white),
                     ),
@@ -270,12 +307,12 @@ class _CreateProfile extends State<CreateProfile> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0)),
+                                      color: Colors.white, width: 1.0)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
-                                      color: Colors.blue, width: 1.0)),
+                                      color: Colors.cyan, width: 1.0)),
                             ),
                             style: TextStyle(color: Colors.white),
                           ),
@@ -295,12 +332,12 @@ class _CreateProfile extends State<CreateProfile> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.0)),
+                                      color: Colors.white, width: 1.0)),
                               focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
-                                      color: Colors.blue, width: 1.0)),
+                                      color: Colors.cyan, width: 1.0)),
                             ),
                             style: TextStyle(color: Colors.white),
                           ),
