@@ -15,7 +15,7 @@ class BarcodeScanner extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _BarcodeScan extends State<BarcodeScanner> {
-  int navIndex = 2;
+  int navIndex;
   String appBarTitle = "Barcode Scanner";
   bool progressStatus = true;
   String barcodeData = '';
@@ -93,6 +93,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
+              onSelected: choiceAction,
               icon: Icon(Icons.qr_code_scanner),
               itemBuilder: (BuildContext context) {
                 return BarcodeSelection.options.map((String choice) {

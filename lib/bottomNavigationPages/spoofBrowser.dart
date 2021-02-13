@@ -169,6 +169,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
+              onSelected: choiceAction,
               icon: Icon(Icons.add),
               itemBuilder: (BuildContext context) {
                 return SpoofBrowserAdd.options.map((String choice) {
