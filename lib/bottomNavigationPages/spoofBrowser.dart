@@ -53,7 +53,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
             TextField(
               controller: taskName,
               decoration: InputDecoration(
-                labelText: "Task Name...",
+                labelText: "Task Name",
               ),
             ),
             Padding(
@@ -368,7 +368,11 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         color: Colors.red,
                         child: Padding(
                           padding: EdgeInsets.only(right: 10.0),
-                          child: Icon(Icons.delete, size: 20.0),
+                          child: Icon(
+                            Icons.delete,
+                            size: 20.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       child: GestureDetector(

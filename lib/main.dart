@@ -64,7 +64,7 @@ class LoginPage extends StatefulWidget {
 }
 
 //Login Page Widget State
-class _LoginState extends State<LoginPage> {
+class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool isLoggedIn = false;
   bool checkPressed = false;
