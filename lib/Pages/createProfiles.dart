@@ -10,7 +10,8 @@ class CreateProfile extends StatefulWidget {
 class _CreateProfile extends State<CreateProfile> {
   int navIndex = 1;
   String appBarTitle = "Spoof Browser";
-  bool billingInfo = false;
+  bool billingInfo = true;
+  bool billingVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -235,12 +236,197 @@ class _CreateProfile extends State<CreateProfile> {
                           onChanged: (newValue) {
                             setState(() {
                               billingInfo = newValue;
+                              billingVisible = true;
+
+                              if (billingInfo && billingVisible == true) {
+                                billingInfo = false;
+                                billingInfo = newValue;
+                                billingVisible = false;
+                              }
                             });
                           },
                           controlAffinity: ListTileControlAffinity
                               .leading, //  <-- leading Checkbox
                         ),
                       )),
+                  Visibility(
+                    visible: billingVisible,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 10.0, top: 20.0),
+                          child: Text(
+                            'Billing Information',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(left: 10.0),
+                                child: TextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                    hintText: 'First Name',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(right: 10.0),
+                                child: TextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                    hintText: 'Last Name',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                padding: EdgeInsets.only(left: 10.0),
+                                child: TextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                    hintText: 'Address',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(right: 10.0),
+                                child: TextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                    hintText: 'Zip Code',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(left: 10.0),
+                                child: TextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                    hintText: 'State',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(right: 10.0),
+                                child: TextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                    hintText: 'Country',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
                   Container(
                     padding: EdgeInsets.only(left: 5.0, right: 5.0),
                     child: Divider(
@@ -254,7 +440,7 @@ class _CreateProfile extends State<CreateProfile> {
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.only(left: 10.0),
                     child: Text(
-                      'Card Information',
+                      'Payment Information',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
