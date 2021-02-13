@@ -27,7 +27,7 @@ class _BrowserTask extends State<BrowserTask> {
           PopupMenuButton<String>(
               icon: Icon(CustomIcons.google),
               itemBuilder: (BuildContext context) {
-                return Constants.options.map((String choice) {
+                return BarcodeSelection.options.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),

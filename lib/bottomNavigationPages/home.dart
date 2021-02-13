@@ -59,12 +59,7 @@ class _HomePageState extends State<HomePage> {
 
     //Option Menu Action
     void choiceAction(String choice) {
-      if (choice == Constants.LogOut) {
-        Navigator.of(context).pushReplacementNamed('/');
-      } else if (choice == Constants.Barcode) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => BarcodeScanner()));
-      }
+      //NotificationArea
     }
 
     void navigationBarTapped(int index) {
@@ -102,7 +97,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onSelected: choiceAction,
               itemBuilder: (BuildContext context) {
-                return Constants.options.map((String choice) {
+                return BarcodeSelection.options.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),
