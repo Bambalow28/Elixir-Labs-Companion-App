@@ -75,7 +75,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
           break;
 
         case 2:
-          appBarTitle = "Supreme";
+          Navigator.of(context).push(supremeBotRoute());
           break;
 
         case 3:
@@ -95,7 +95,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
-              icon: Icon(Icons.save),
+              icon: Icon(Icons.qr_code_scanner),
               itemBuilder: (BuildContext context) {
                 return BarcodeSelection.options.map((String choice) {
                   return PopupMenuItem<String>(
