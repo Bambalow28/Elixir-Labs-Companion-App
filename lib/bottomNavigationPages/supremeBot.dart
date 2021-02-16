@@ -87,7 +87,7 @@ class _SupremeBot extends State<SupremeBot> {
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.shopping_bag_outlined,
-                color: Colors.white,
+                color: Colors.cyan,
               ),
               label: ('')),
           BottomNavigationBarItem(

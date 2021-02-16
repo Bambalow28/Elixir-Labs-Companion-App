@@ -194,7 +194,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.public,
-                color: Colors.white,
+                color: Colors.cyan,
               ),
               label: ('')),
           BottomNavigationBarItem(

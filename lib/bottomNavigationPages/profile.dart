@@ -94,7 +94,7 @@ class _ProfilePage extends State<ProfilePage> {
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person_outline,
-                color: Colors.white,
+                color: Colors.cyan,
               ),
               label: (''))
         ],

@@ -1,6 +1,7 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:elixirlabs_mobileapp/discordLogin/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:uni_links/uni_links.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
 import 'dart:async';
@@ -16,27 +17,49 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 void main() => runApp(MyApp());
 
-Future<void> launchURL() async {
-  var client = OAuth2Helper(DiscordOAuth2Client(
-      customUriScheme: 'elixirlabs_mobileapp',
-      redirectUri:
-          'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds'));
+// Future<void> launchURL() async {
+//   var client = OAuth2Helper(DiscordOAuth2Client(
+//       customUriScheme: 'elixirlabs_mobileapp',
+//       redirectUri:
+//           'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds'));
 
-  client.setAuthorizationParams(
-      grantType: OAuth2Helper.AUTHORIZATION_CODE,
-      clientId: '799140079494496276',
-      clientSecret: '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd',
-      scopes: ['identify', 'email', 'guilds']);
-}
+//   client.setAuthorizationParams(
+//       grantType: OAuth2Helper.AUTHORIZATION_CODE,
+//       clientId: '799140079494496276',
+//       clientSecret: '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd',
+//       scopes: ['identify', 'email', 'guilds']);
+// }
 
-Future<void> joinNow() async {
-  const joinURL = 'https://elixirlabs.xyz';
+// Future<void> joinNow() async {
+//   const joinURL = 'https://elixirlabs.xyz';
 
-  if (await canLaunch(joinURL)) {
-    await launch(joinURL);
-  } else {
-    throw 'Error Launching $joinURL';
+//   if (await canLaunch(joinURL)) {
+//     await launch(joinURL);
+//   } else {
+//     throw 'Error Launching $joinURL';
+//   }
+// }
+
+final authEndpoint = Uri.parse(
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds');
+final tokenEndpoint = Uri.parse('https://discord.com/api/oauth2/token');
+final clientID = '799140079494496276';
+final secret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
+final redirectUrl = Uri.parse('https://www.google.ca');
+final scopes = ['identify', 'email', 'guilds'];
+
+Future<oauth2.Client> launchURL() async {
+  var grant = oauth2.AuthorizationCodeGrant(
+      clientID, authEndpoint, tokenEndpoint,
+      secret: secret);
+
+  var authUrl = grant.getAuthorizationUrl(redirectUrl);
+
+  if (await canLaunch(authUrl.toString())) {
+    await launch(authUrl.toString());
+    return await grant.handleAuthorizationResponse(authUrl.queryParameters);
   }
+  // return await grant.handleAuthorizationResponse();
 }
 
 //Widget that defines app title, app theme and home page
@@ -91,7 +114,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         onPressed: () => {
           setState(() {
             checkPressed = !checkPressed;
-            navigateToHome();
+            launchURL();
           })
         },
         child: Row(
