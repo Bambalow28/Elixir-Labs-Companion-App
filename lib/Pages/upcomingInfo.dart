@@ -119,7 +119,7 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
             ),
           ),
           SizedBox(
-            height: 40.0,
+            height: 20.0,
           ),
           Container(
             padding: EdgeInsets.only(left: 10.0, bottom: 15.0),
@@ -226,7 +226,7 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
             ],
           ),
           SizedBox(
-            height: 20.0,
+            height: 30.0,
           ),
           Container(
             child: Text(

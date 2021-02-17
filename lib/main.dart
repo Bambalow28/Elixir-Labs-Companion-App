@@ -51,13 +51,15 @@ final scopes = ['identify', 'email', 'guilds'];
 Future<oauth2.Client> launchURL() async {
   var grant = oauth2.AuthorizationCodeGrant(
       clientID, authEndpoint, tokenEndpoint,
-      secret: secret);
+      secret: secret, codeVerifier: '');
 
   var authUrl = grant.getAuthorizationUrl(redirectUrl);
 
   if (await canLaunch(authUrl.toString())) {
-    await launch(authUrl.toString());
-    return await grant.handleAuthorizationResponse(authUrl.queryParameters);
+    await launch(authUrl.toString()).then((result) async {
+      var test = await http.get(redirectUrl);
+      print(test.body);
+    });
   }
   // return await grant.handleAuthorizationResponse();
 }
@@ -114,7 +116,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         onPressed: () => {
           setState(() {
             checkPressed = !checkPressed;
-            launchURL();
+            navigateToHome();
           })
         },
         child: Row(

@@ -143,275 +143,281 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             )
           : Center(
-              child: Column(
-                children: <Widget>[
-                  //Upcoming Releases Widget
-                  Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Upcoming Releases",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    //Upcoming Releases Widget
+                    Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Upcoming Releases",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 200.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: data == null ? 0 : data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        String itemName = data[index]["name"];
-                        String itemImage = data[index]["image"];
-                        String itemPrice = data[index]["price"];
-                        String itemReleaseDate = data[index]["releaseDate"];
+                    Container(
+                      margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 200.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: data == null ? 0 : data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          String itemName = data[index]["name"];
+                          String itemImage = data[index]["image"];
+                          String itemPrice = data[index]["price"];
+                          String itemReleaseDate = data[index]["releaseDate"];
 
-                        return Column(
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () => {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            UpcomingReleaseInfo(
-                                              itemName: itemName,
-                                              itemPrice: itemPrice,
-                                              itemReleaseDate: itemReleaseDate,
-                                              itemImage: itemImage,
-                                            ))),
-                              },
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    margin: EdgeInsets.only(right: 10.0),
-                                    decoration: BoxDecoration(
-                                      color: Color.fromRGBO(35, 39, 42, 1),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Color.fromRGBO(0, 0, 0, 1)
-                                                .withOpacity(0.5),
-                                            spreadRadius: 2,
-                                            blurRadius: 4),
-                                      ],
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
+                          return Column(
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () => {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              UpcomingReleaseInfo(
+                                                itemName: itemName,
+                                                itemPrice: itemPrice,
+                                                itemReleaseDate:
+                                                    itemReleaseDate,
+                                                itemImage: itemImage,
+                                              ))),
+                                },
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      margin: EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(35, 39, 42, 1),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Color.fromRGBO(0, 0, 0, 1)
+                                                  .withOpacity(0.5),
+                                              spreadRadius: 2,
+                                              blurRadius: 4),
+                                        ],
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                      width: 160.0,
+                                      height: 190.0,
+                                      child: Stack(
+                                        children: <Widget>[
+                                          Container(
+                                            alignment: Alignment.center,
+                                            padding: EdgeInsets.only(
+                                                top: 30.0, bottom: 10.0),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10)),
+                                              child: Image.network(
+                                                itemImage,
+                                                width: 130.0,
+                                                height: 80.0,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 5.0,
+                                                left: 12.0,
+                                                right: 12.0),
+                                            child: Stack(
+                                              children: <Widget>[
+                                                Container(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Text(
+                                                    itemName,
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      top: 150.0, left: 7.0),
+                                                  child: Text(
+                                                    "Price: " + itemPrice,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 12.0,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      top: 165.0, left: 7.0),
+                                                  child: Text(
+                                                    "Release Date: " +
+                                                        itemReleaseDate,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 12.0,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    width: 160.0,
-                                    height: 190.0,
-                                    child: Stack(
+                                  ],
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+
+                    //News Section Widget
+                    Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "News",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
+                      height: MediaQuery.of(context).size.height - 500,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: importantNotif.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(
+                                    left: 5.0, right: 5.0, bottom: 10.0),
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(36, 37, 38, 1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Color.fromRGBO(0, 0, 0, 1)
+                                            .withOpacity(0.5),
+                                        spreadRadius: 2,
+                                        blurRadius: 4),
+                                  ],
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                                width: MediaQuery.of(context).size.width - 10,
+                                height: 123.0,
+                                child: Stack(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: <Widget>[
                                         Container(
-                                          alignment: Alignment.center,
                                           padding: EdgeInsets.only(
-                                              top: 30.0, bottom: 10.0),
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10)),
-                                            child: Image.network(
-                                              itemImage,
-                                              width: 130.0,
-                                              height: 80.0,
-                                              fit: BoxFit.fill,
+                                              top: 10.0, left: 5.0, right: 5.0),
+                                          alignment: Alignment.topLeft,
+                                          child: SizedBox(
+                                            width: 28.0,
+                                            height: 25.0,
+                                            child: Image.asset(
+                                              "assets/images/logo.png",
+                                              fit: BoxFit.cover,
+                                              width: 200.0,
                                             ),
                                           ),
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              top: 5.0,
-                                              left: 12.0,
-                                              right: 12.0),
-                                          child: Stack(
-                                            children: <Widget>[
-                                              Container(
-                                                alignment: Alignment.topLeft,
-                                                child: Text(
-                                                  itemName,
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 12.0,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    top: 150.0, left: 7.0),
-                                                child: Text(
-                                                  "Price: " + itemPrice,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    fontSize: 12.0,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    top: 165.0, left: 7.0),
-                                                child: Text(
-                                                  "Release Date: " +
-                                                      itemReleaseDate,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    fontSize: 12.0,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-
-                  //News Section Widget
-                  Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "News",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-                    height: MediaQuery.of(context).size.height - 500,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: importantNotif.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: 5.0, right: 5.0, bottom: 10.0),
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(36, 37, 38, 1),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(0, 0, 0, 1)
-                                          .withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 4),
-                                ],
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                              ),
-                              width: MediaQuery.of(context).size.width - 10,
-                              height: 123.0,
-                              child: Stack(
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      Container(
-                                        padding: EdgeInsets.only(
-                                            top: 10.0, left: 5.0, right: 5.0),
-                                        alignment: Alignment.topLeft,
-                                        child: SizedBox(
-                                          width: 28.0,
-                                          height: 25.0,
+                                    Container(
+                                      alignment: Alignment.topRight,
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Text(
+                                        '0:00AM',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 10.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    Container(
+                                      alignment: Alignment.bottomRight,
+                                      padding: EdgeInsets.all(10.0),
+                                      child: SizedBox(
+                                        width: 120.0,
+                                        height: 80.0,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
                                           child: Image.asset(
-                                            "assets/images/logo.png",
-                                            fit: BoxFit.cover,
+                                            "assets/images/jordanss.png",
+                                            fit: BoxFit.fill,
                                             width: 200.0,
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                  Container(
-                                    alignment: Alignment.topRight,
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Text(
-                                      '0:00AM',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 10.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
                                     ),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.bottomRight,
-                                    padding: EdgeInsets.all(10.0),
-                                    child: SizedBox(
-                                      width: 120.0,
-                                      height: 80.0,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        child: Image.asset(
-                                          "assets/images/jordanss.png",
-                                          fit: BoxFit.fill,
-                                          width: 200.0,
-                                        ),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      width: 300.0,
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: Text('Yeezys are out!',
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold)),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 300.0,
-                                    padding: EdgeInsets.only(left: 10.0),
-                                    child: FittedBox(
-                                      fit: BoxFit.fitWidth,
-                                      child: Text('Yeezys are out!',
-                                          style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 20.0,
-                                              fontWeight: FontWeight.bold)),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          top: 13.5, bottom: 10.0, left: 35.0),
+                                      alignment: Alignment.topLeft,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            alignment: Alignment.topLeft,
+                                            padding:
+                                                EdgeInsets.only(bottom: 5.0),
+                                            child: Text('Air Jordan 1 Pollen',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18.0,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        top: 13.5, bottom: 10.0, left: 35.0),
-                                    alignment: Alignment.topLeft,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Container(
-                                          alignment: Alignment.topLeft,
-                                          padding: EdgeInsets.only(bottom: 5.0),
-                                          child: Text('Air Jordan 1 Pollen',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18.0,
-                                                  fontWeight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        );
-                      },
+                            ],
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
     );

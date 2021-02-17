@@ -112,29 +112,154 @@ class _SupportPage extends State<SupportPage> {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            if (Platform.isIOS)
-              Material(
-                elevation: 5.0,
-                borderRadius: BorderRadius.circular(20.0),
-                child: MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width - 200,
-                  child: Text('Start Chat'),
-                  onPressed: () async {
-                    zendesk
-                        .startChat(
-                            messagingName: "Elixir Support",
-                            iosNavigationBarColor: Colors.cyan,
-                            iosNavigationTitleColor: Colors.white,
-                            isAgentAvailabilityEnabled: false)
-                        .then((r) {
-                      print('startChat finished');
-                    }).catchError((e) {
-                      print('error $e');
-                    });
-                  },
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: FlatButton(
+                    onPressed: () async {
+                      zendesk
+                          .startChat(
+                              messagingName: "Elixir Support",
+                              iosNavigationBarColor: Colors.cyan,
+                              iosNavigationTitleColor: Colors.white,
+                              isAgentAvailabilityEnabled: false)
+                          .then((r) {
+                        print('startChat finished');
+                      }).catchError((e) {
+                        print('error $e');
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.cyan.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 4),
+                          ],
+                          color: Colors.cyan),
+                      height: 80.0,
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              Icons.person,
+                              size: 50.0,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              "Start Chat",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: FlatButton(
+                        onPressed: () async {
+                          zendesk
+                              .startChat(
+                                  messagingName: "Elixir Support",
+                                  iosNavigationBarColor: Colors.cyan,
+                                  iosNavigationTitleColor: Colors.white,
+                                  isAgentAvailabilityEnabled: false)
+                              .then((r) {
+                            print('startChat finished');
+                          }).catchError((e) {
+                            print('error $e');
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.purple.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 4),
+                              ],
+                              color: Colors.purple[300]),
+                          height: 90.0,
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.contact_support_outlined,
+                                  size: 50.0,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  "Documentation",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: FlatButton(
+                        onPressed: () async {
+                          print('Documentation Clicked');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.orange.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 4),
+                              ],
+                              color: Colors.orange[400]),
+                          height: 90.0,
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.assignment_rounded,
+                                  size: 50.0,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  "Policy",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),
