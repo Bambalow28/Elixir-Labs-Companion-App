@@ -150,6 +150,14 @@ class _BarcodeScan extends State<BarcodeScanner> {
                 children: <Widget>[
                   Container(
                     alignment: Alignment.topCenter,
+                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Text(
+                      itemName,
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
                     padding: EdgeInsets.all(10.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -161,33 +169,89 @@ class _BarcodeScan extends State<BarcodeScanner> {
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blue, width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      "Item Barcode: " + barcodeData,
-                      style: TextStyle(color: Colors.white, fontSize: 20.0),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: Text(
-                      "Item Name: " + itemName,
-                      style: TextStyle(color: Colors.white, fontSize: 20.0),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: Text(
-                      "Item Description: " + itemDescr,
-                      style: TextStyle(color: Colors.white, fontSize: 12.0),
-                    ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 30.0),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.cyan.withOpacity(0.5),
+                                        spreadRadius: 2,
+                                        blurRadius: 4),
+                                  ],
+                                  color: Colors.cyan),
+                              height: 110.0,
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.add,
+                                      size: 70.0,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      "Add Item",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(right: 30.0),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.orange.withOpacity(0.5),
+                                        spreadRadius: 2,
+                                        blurRadius: 4),
+                                  ],
+                                  color: Colors.orange[400]),
+                              height: 110.0,
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.info_outline,
+                                      size: 70.0,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      "Info",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

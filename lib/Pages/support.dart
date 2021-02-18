@@ -165,7 +165,7 @@ class _SupportPage extends State<SupportPage> {
               ],
             ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -175,17 +175,7 @@ class _SupportPage extends State<SupportPage> {
                     Expanded(
                       child: FlatButton(
                         onPressed: () async {
-                          zendesk
-                              .startChat(
-                                  messagingName: "Elixir Support",
-                                  iosNavigationBarColor: Colors.cyan,
-                                  iosNavigationTitleColor: Colors.white,
-                                  isAgentAvailabilityEnabled: false)
-                              .then((r) {
-                            print('startChat finished');
-                          }).catchError((e) {
-                            print('error $e');
-                          });
+                          print('Documentation Clicked');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -222,7 +212,7 @@ class _SupportPage extends State<SupportPage> {
                     Expanded(
                       child: FlatButton(
                         onPressed: () async {
-                          print('Documentation Clicked');
+                          print('Policy Clicked');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -259,6 +249,9 @@ class _SupportPage extends State<SupportPage> {
                   ],
                 ),
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10.0),
             ),
           ],
         ),

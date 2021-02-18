@@ -172,6 +172,29 @@ class _CreateProfile extends State<CreateProfile> {
                   SizedBox(
                     height: 10.0,
                   ),
+                  Container(
+                    padding: EdgeInsets.only(left: 10, right: 10.0),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      textCapitalization: TextCapitalization.words,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color.fromRGBO(45, 45, 45, 1),
+                        hintText: 'Phone Number',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Row(
                     children: <Widget>[
                       Expanded(
@@ -453,6 +476,7 @@ class _CreateProfile extends State<CreateProfile> {
                   Container(
                     padding: EdgeInsets.only(left: 10, right: 10.0),
                     child: TextField(
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -501,6 +525,7 @@ class _CreateProfile extends State<CreateProfile> {
                             child: Container(
                               padding: EdgeInsets.only(left: 10.0),
                               child: TextField(
+                                keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -524,6 +549,7 @@ class _CreateProfile extends State<CreateProfile> {
                             child: Container(
                               padding: EdgeInsets.only(right: 10.0),
                               child: TextField(
+                                keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -548,7 +574,8 @@ class _CreateProfile extends State<CreateProfile> {
               ),
               Container(
                 alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
+                padding: EdgeInsets.only(
+                    top: 20.0, bottom: 40.0, left: 30.0, right: 30.0),
                 child: Material(
                   elevation: 5.0,
                   borderRadius: BorderRadius.circular(30.0),
