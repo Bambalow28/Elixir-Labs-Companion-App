@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
       drawer: ShowDrawer(),
       appBar: AppBar(
         title: Text(appBarTitle),
-        backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+        backgroundColor: const Color.fromRGBO(20, 20, 20, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
               icon: Icon(
@@ -105,9 +105,9 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
+        backgroundColor: const Color.fromRGBO(16, 16, 16, 1.0),
         type: BottomNavigationBarType.fixed,
-        iconSize: 25.0,
+        iconSize: 27.0,
         currentIndex: pageIndex,
         onTap: navigationBarTapped,
         elevation: 5,
@@ -144,25 +144,36 @@ class _HomePageState extends State<HomePage> {
             )
           : Center(
               child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(23, 23, 23, 1),
+                      Color.fromRGBO(13, 13, 13, 1)
+                    ],
+                  ),
+                ),
                 child: Column(
                   children: <Widget>[
                     //Upcoming Releases Widget
                     Container(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.only(
+                          top: 10.0, left: 10.0, right: 10.0, bottom: 5.0),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
                           "Upcoming Releases",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 25.0,
+                              fontSize: 28.0,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                      height: 200.0,
+                      height: 205.0,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: data == null ? 0 : data.length,
@@ -191,7 +202,8 @@ class _HomePageState extends State<HomePage> {
                                 child: Column(
                                   children: <Widget>[
                                     Container(
-                                      margin: EdgeInsets.only(right: 10.0),
+                                      margin: EdgeInsets.only(
+                                          left: 5.0, right: 5.0, top: 6.0),
                                       decoration: BoxDecoration(
                                         color: Color.fromRGBO(35, 39, 42, 1),
                                         boxShadow: [
@@ -291,7 +303,7 @@ class _HomePageState extends State<HomePage> {
                           "News",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 25.0,
+                              fontSize: 28.0,
                               fontWeight: FontWeight.bold),
                         ),
                       ),

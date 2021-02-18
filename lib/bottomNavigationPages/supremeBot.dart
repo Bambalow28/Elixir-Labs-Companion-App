@@ -70,7 +70,7 @@ class _SupremeBot extends State<SupremeBot> {
         backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
         type: BottomNavigationBarType.fixed,
         elevation: 5,
-        iconSize: 25.0,
+        iconSize: 27.0,
         items: [
           BottomNavigationBarItem(
               icon: Icon(

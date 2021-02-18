@@ -87,10 +87,10 @@ class _BarcodeScan extends State<BarcodeScanner> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: ShowDrawer(),
-      backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text(appBarTitle),
-        backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+        backgroundColor: const Color.fromRGBO(20, 20, 20, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
               onSelected: choiceAction,
@@ -107,7 +107,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: navigationBarTapped,
-        backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
+        backgroundColor: const Color.fromRGBO(16, 16, 16, 1.0),
         type: BottomNavigationBarType.fixed,
         elevation: 5,
         iconSize: 25.0,
@@ -139,121 +139,178 @@ class _BarcodeScan extends State<BarcodeScanner> {
         ],
       ),
       body: progressStatus
-          ? Center(
-              child: Text(
-                'Scan A Barcode',
-                style: TextStyle(color: Colors.grey, fontSize: 20.0),
+          ? Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color.fromRGBO(23, 23, 23, 1),
+                    Color.fromRGBO(13, 13, 13, 1)
+                  ],
+                ),
               ),
-            )
+              child: Center(
+                child: Text(
+                  'Scan A Barcode',
+                  style: TextStyle(color: Colors.grey, fontSize: 20.0),
+                ),
+              ))
           : Center(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.topCenter,
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: Text(
-                      itemName,
-                      style: TextStyle(color: Colors.white, fontSize: 20.0),
-                    ),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(23, 23, 23, 1),
+                      Color.fromRGBO(13, 13, 13, 1)
+                    ],
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      child: Image.network(
-                        itemImage,
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height - 600.0,
-                        fit: BoxFit.fitHeight,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.topCenter,
+                      padding:
+                          EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
+                      child: Text(
+                        itemName,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Row(
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          child: Image.network(
+                            itemImage,
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height - 600.0,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Expanded(
+                      child: Column(
                         children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(left: 30.0),
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.cyan.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 4),
-                                  ],
-                                  color: Colors.cyan),
-                              height: 110.0,
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.add,
-                                      size: 70.0,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "Add Item",
-                                      style: TextStyle(
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 30.0),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                      color: Colors.cyan),
+                                  height: 110.0,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.add,
+                                          size: 70.0,
                                           color: Colors.white,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "Add Item",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 30.0),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                      color: Colors.orange[400]),
+                                  height: 110.0,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.info_outline,
+                                          size: 70.0,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          "Info",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(
-                            width: 10.0,
+                            height: 10.0,
                           ),
                           Expanded(
                             child: Container(
-                              margin: EdgeInsets.only(right: 30.0),
+                              margin: EdgeInsets.only(left: 30.0, right: 30.0),
                               decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.orange.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 4),
-                                  ],
-                                  color: Colors.orange[400]),
-                              height: 110.0,
+                                  color: Colors.green[400]),
                               child: Container(
                                 alignment: Alignment.center,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Icon(
-                                      Icons.info_outline,
+                                      Icons.save_alt_outlined,
                                       size: 70.0,
                                       color: Colors.white,
                                     ),
                                     Text(
-                                      "Info",
+                                      "Save",
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 16.0,
+                                          fontSize: 20.0,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 20.0),
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
     );

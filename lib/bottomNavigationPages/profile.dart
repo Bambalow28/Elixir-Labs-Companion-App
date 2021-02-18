@@ -49,7 +49,7 @@ class _ProfilePage extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: ShowDrawer(),
-      backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
@@ -71,7 +71,7 @@ class _ProfilePage extends State<ProfilePage> {
         backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
         type: BottomNavigationBarType.fixed,
         elevation: 5,
-        iconSize: 25.0,
+        iconSize: 27.0,
         items: [
           BottomNavigationBarItem(
               icon: Icon(
@@ -99,18 +99,16 @@ class _ProfilePage extends State<ProfilePage> {
               label: (''))
         ],
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 60.0,
-              width: 300.0,
-              //Button To Open Chat Room
-              child: CircleAvatar(),
-            ),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromRGBO(23, 23, 23, 1),
+              Color.fromRGBO(13, 13, 13, 1)
+            ],
+          ),
         ),
       ),
     );
