@@ -128,8 +128,8 @@ class _SupportPage extends State<SupportPage> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: FlatButton(
-                      onPressed: () async {
+                    child: GestureDetector(
+                      onTap: () async => {
                         zendesk
                             .startChat(
                                 messagingName: "Elixir Support",
@@ -140,9 +140,10 @@ class _SupportPage extends State<SupportPage> {
                           print('startChat finished');
                         }).catchError((e) {
                           print('error $e');
-                        });
+                        })
                       },
                       child: Container(
+                        margin: EdgeInsets.only(left: 10.0, right: 10.0),
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)),
@@ -185,11 +186,10 @@ class _SupportPage extends State<SupportPage> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: FlatButton(
-                          onPressed: () async {
-                            print('Documentation Clicked');
-                          },
+                        child: GestureDetector(
+                          onTap: () async => {print('Documentation Clicked')},
                           child: Container(
+                            margin: EdgeInsets.only(left: 10.0),
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)),
@@ -199,7 +199,7 @@ class _SupportPage extends State<SupportPage> {
                                       spreadRadius: 2,
                                       blurRadius: 4),
                                 ],
-                                color: Colors.purple[300]),
+                                color: Colors.purple[400]),
                             height: 90.0,
                             child: Container(
                               alignment: Alignment.center,
@@ -221,12 +221,14 @@ class _SupportPage extends State<SupportPage> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
                       Expanded(
-                        child: FlatButton(
-                          onPressed: () async {
-                            print('Policy Clicked');
-                          },
+                        child: GestureDetector(
+                          onTap: () async => {print('Policy Clicked')},
                           child: Container(
+                            margin: EdgeInsets.only(right: 10.0),
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)),
@@ -244,7 +246,7 @@ class _SupportPage extends State<SupportPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Icon(
-                                    Icons.assignment_rounded,
+                                    Icons.contact_support_outlined,
                                     size: 50.0,
                                     color: Colors.white,
                                   ),

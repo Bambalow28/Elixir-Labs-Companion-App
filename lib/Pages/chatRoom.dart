@@ -88,11 +88,13 @@ class _ChatRoom extends State<ChatRoom> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
-              height: 60.0,
-              width: 300.0,
-              //Button To Open Chat Room
-              child: CircleAvatar(),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(50.0),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
