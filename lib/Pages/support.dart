@@ -6,6 +6,8 @@ import 'package:zendesk/zendesk.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
+//Zendesk Support Info
+//Must Be Hidden/Encrypted
 const ZendeskAccountKey = 'SM1FWmfqgGJYK0Sy8oUKZQ2oMfBw0Zum';
 const ZendeskAppId = 'b5acdf70e07c1871527007a7639edbe8e9715934f6c91704';
 
@@ -22,6 +24,7 @@ class _SupportPage extends State<SupportPage> {
 
   final Zendesk zendesk = Zendesk();
 
+  //Execute initZendesk Function On Load
   @override
   void initState() {
     super.initState();
@@ -44,6 +47,7 @@ class _SupportPage extends State<SupportPage> {
     // But we aren't calling setState, so the above point is rather moot now.
   }
 
+  //Navigation Function for Bottom Nav Bar
   void navigationBarTapped(int index) {
     setState(() {
       navIndex = index;
@@ -125,6 +129,19 @@ class _SupportPage extends State<SupportPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Meet The Team',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
               Row(
                 children: <Widget>[
                   Expanded(
@@ -207,7 +224,7 @@ class _SupportPage extends State<SupportPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Icon(
-                                    Icons.contact_support_outlined,
+                                    Icons.book,
                                     size: 50.0,
                                     color: Colors.white,
                                   ),
