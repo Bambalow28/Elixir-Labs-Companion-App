@@ -130,16 +130,46 @@ class _SupportPage extends State<SupportPage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      'Meet The Team',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                child: Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(bottom: 5.0),
+                        child: Text(
+                          'Frequently Asked Questions',
+                          style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            color: Colors.blueGrey,
+                          ),
+                          padding: EdgeInsets.all(10.0),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                color: Colors.blueGrey[400],
+                                child: Text(
+                                  'How To Access Elixir Help Center',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Row(
@@ -229,7 +259,7 @@ class _SupportPage extends State<SupportPage> {
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    "Documentation",
+                                    "Browse Help Center",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
