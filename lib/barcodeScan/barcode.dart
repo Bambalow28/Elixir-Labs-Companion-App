@@ -110,7 +110,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
         backgroundColor: const Color.fromRGBO(16, 16, 16, 1.0),
         type: BottomNavigationBarType.fixed,
         elevation: 5,
-        iconSize: 25.0,
+        iconSize: 27.0,
         items: [
           BottomNavigationBarItem(
               icon: Icon(

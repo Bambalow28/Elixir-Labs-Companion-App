@@ -87,7 +87,7 @@ class _SupportPage extends State<SupportPage> {
         backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
         type: BottomNavigationBarType.fixed,
         elevation: 5,
-        iconSize: 25.0,
+        iconSize: 27.0,
         items: [
           BottomNavigationBarItem(
               icon: Icon(
@@ -204,9 +204,10 @@ class _SupportPage extends State<SupportPage> {
                               Container(
                                 alignment: Alignment.topLeft,
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10.0)),
-                                    color: Colors.blueGrey[700]),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  color: Colors.blueGrey[700],
+                                ),
                                 child: Container(
                                   padding: EdgeInsets.all(10.0),
                                   child: Column(
@@ -225,7 +226,7 @@ class _SupportPage extends State<SupportPage> {
                                         height: 5.0,
                                       ),
                                       Text(
-                                        'To access, Click on the button bellow which will redirect you to login on Discord for Authorization.',
+                                        'Simply open the app drawer and select Barcode Scanner. Then, click on the qr icon on the top right and scan right away!',
                                         style: TextStyle(
                                             color: Colors.white70,
                                             fontSize: 12.0),
