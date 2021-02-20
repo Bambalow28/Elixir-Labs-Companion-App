@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:http/http.dart';
 import 'package:zendesk/zendesk.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
@@ -131,36 +132,149 @@ class _SupportPage extends State<SupportPage> {
             children: <Widget>[
               Expanded(
                 child: Container(
+                  margin: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      color: Colors.blueGrey[900]),
+                  // width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.all(10.0),
                   child: Column(
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.only(bottom: 5.0),
-                        child: Text(
-                          'Frequently Asked Questions',
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold),
+                        padding: EdgeInsets.only(
+                            left: 15.0, right: 15.0, bottom: 5.0),
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            'Frequently Asked Questions',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                       Expanded(
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                            color: Colors.blueGrey,
-                          ),
                           padding: EdgeInsets.all(10.0),
                           child: Column(
                             children: <Widget>[
                               Container(
-                                color: Colors.blueGrey[400],
-                                child: Text(
-                                  'How To Access Elixir Help Center',
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                alignment: Alignment.topLeft,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    color: Colors.blueGrey[700]),
+                                child: Container(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: <Widget>[
+                                      FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: Text(
+                                          'Q: How do you access Elixir Help Center?',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16.0),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5.0,
+                                      ),
+                                      Text(
+                                        'To access, Click on the button bellow which will redirect you to login on Discord for Authorization.',
+                                        style: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 12.0),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(
+                                        height: 5.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    color: Colors.blueGrey[700]),
+                                child: Container(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: <Widget>[
+                                      FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: Text(
+                                          'Q: How do use Barcode Scanner?',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16.0),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5.0,
+                                      ),
+                                      Text(
+                                        'To access, Click on the button bellow which will redirect you to login on Discord for Authorization.',
+                                        style: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 12.0),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(
+                                        height: 5.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    color: Colors.blueGrey[700]),
+                                child: Container(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: <Widget>[
+                                      FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: Text(
+                                          'Q: How do you the Spoof Browser?',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16.0),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5.0,
+                                      ),
+                                      Text(
+                                        'To access, Click on the button bellow which will redirect you to login on Discord for Authorization.',
+                                        style: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 12.0),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(
+                                        height: 5.0,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -192,29 +306,32 @@ class _SupportPage extends State<SupportPage> {
                       child: Container(
                         margin: EdgeInsets.only(left: 10.0, right: 10.0),
                         decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.cyan.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 4),
-                            ],
-                            color: Colors.cyan),
-                        height: 80.0,
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          color: Colors.cyan,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(1.0),
+                                spreadRadius: 2,
+                                blurRadius: 4),
+                          ],
+                        ),
+                        height: 60.0,
                         child: Container(
-                          alignment: Alignment.center,
-                          child: Column(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(
-                                Icons.person,
-                                size: 50.0,
-                                color: Colors.white,
-                              ),
+                              // Icon(
+                              //   Icons.person,
+                              //   size: 30.0,
+                              //   color: Colors.white,
+                              // ),
                               Text(
-                                "Start Chat",
-                                style: TextStyle(color: Colors.white),
+                                "Contact Support",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
@@ -242,7 +359,7 @@ class _SupportPage extends State<SupportPage> {
                                     BorderRadius.all(Radius.circular(10.0)),
                                 boxShadow: [
                                   BoxShadow(
-                                      color: Colors.purple.withOpacity(0.5),
+                                      color: Colors.black.withOpacity(1.0),
                                       spreadRadius: 2,
                                       blurRadius: 4),
                                 ],
@@ -258,8 +375,11 @@ class _SupportPage extends State<SupportPage> {
                                     size: 50.0,
                                     color: Colors.white,
                                   ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
                                   Text(
-                                    "Browse Help Center",
+                                    "Help Center",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
@@ -281,7 +401,7 @@ class _SupportPage extends State<SupportPage> {
                                     BorderRadius.all(Radius.circular(10.0)),
                                 boxShadow: [
                                   BoxShadow(
-                                      color: Colors.orange.withOpacity(0.5),
+                                      color: Colors.black.withOpacity(1.0),
                                       spreadRadius: 2,
                                       blurRadius: 4),
                                 ],
@@ -296,6 +416,9 @@ class _SupportPage extends State<SupportPage> {
                                     Icons.contact_support_outlined,
                                     size: 50.0,
                                     color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
                                   ),
                                   Text(
                                     "Policy",

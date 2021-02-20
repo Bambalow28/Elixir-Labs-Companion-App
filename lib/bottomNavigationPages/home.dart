@@ -321,7 +321,7 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(
                                     left: 5.0, right: 5.0, bottom: 10.0),
                                 decoration: BoxDecoration(
-                                  color: Color.fromRGBO(36, 37, 38, 1),
+                                  color: Colors.blueGrey[900],
                                   boxShadow: [
                                     BoxShadow(
                                         color: Color.fromRGBO(0, 0, 0, 1)
