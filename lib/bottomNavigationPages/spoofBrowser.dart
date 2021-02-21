@@ -1,5 +1,7 @@
+import 'package:elixirlabs_mobileapp/Pages/createProfilePage.dart';
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:elixirlabs_mobileapp/Pages/spoofBrowserTask.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -30,6 +32,154 @@ class _SpoofBrowser extends State<SpoofBrowser> {
       tasks.add(browserURL.text);
     });
     print(tasks);
+  }
+
+  void addClicked() {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 250.0,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30.0),
+                  topRight: const Radius.circular(30.0),
+                ),
+                color: Colors.blueGrey[800]),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        height: 90.0,
+                        margin: EdgeInsets.only(top: 20.0, left: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          color: Colors.green[400],
+                        ),
+                        child: GestureDetector(
+                          onTap: () => {
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => CreateProfilePage())),
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.create,
+                                      color: Colors.white,
+                                      size: 50.0,
+                                    ),
+                                    Text(
+                                      'Create Tasks',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 90.0,
+                        margin: EdgeInsets.only(top: 20.0, right: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          color: Colors.blue[400],
+                        ),
+                        child: GestureDetector(
+                          onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CreateProfile())),
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.person,
+                                      color: Colors.white,
+                                      size: 50.0,
+                                    ),
+                                    Text(
+                                      'Profiles',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 90.0,
+                        margin: EdgeInsets.only(top: 20.0, right: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          color: Colors.blue[400],
+                        ),
+                        child: GestureDetector(
+                          onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CreateProfilePage())),
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Icon(
+                                      CustomIcons.google,
+                                      color: Colors.white,
+                                      size: 40.0,
+                                    ),
+                                    SizedBox(
+                                      height: 5.0,
+                                    ),
+                                    Text(
+                                      'Google Login',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   @override
@@ -165,17 +315,11 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
-          PopupMenuButton<String>(
-              onSelected: choiceAction,
-              icon: Icon(Icons.add),
-              itemBuilder: (BuildContext context) {
-                return SpoofBrowserAdd.options.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              }),
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: GestureDetector(
+                onTap: () => {addClicked()}, child: Icon(Icons.add)),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

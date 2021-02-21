@@ -14,25 +14,9 @@ class _CreateProfile extends State<CreateProfile> {
   bool billingInfo = true;
   bool billingVisible = false;
 
-  void profilePressed() {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Column(
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.person_add),
-                title: Text('Create Profile'),
-                onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreateProfilePage())),
-                },
-              ),
-            ],
-          );
-        });
+  void createProfilePressed() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CreateProfilePage()));
   }
 
   @override
@@ -43,11 +27,12 @@ class _CreateProfile extends State<CreateProfile> {
         title: Text('Profiles'),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
-          PopupMenuButton<String>(
-              icon: Icon(Icons.person),
-              itemBuilder: (BuildContext context) {
-                profilePressed();
-              }),
+          Container(
+            padding: EdgeInsets.only(right: 10.0),
+            child: GestureDetector(
+                onTap: () => {createProfilePressed()},
+                child: Icon(Icons.person_add_alt_1)),
+          ),
         ],
       ),
       body: Column(
