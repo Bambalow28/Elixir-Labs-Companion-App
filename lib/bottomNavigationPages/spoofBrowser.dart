@@ -94,20 +94,21 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       width: 10.0,
                     ),
                     Expanded(
-                      child: Container(
-                        height: 90.0,
-                        margin: EdgeInsets.only(top: 20.0, right: 10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          color: Colors.purple[400],
-                        ),
-                        child: GestureDetector(
-                          onTap: () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CreateProfile())),
-                          },
+                      child: GestureDetector(
+                        onTap: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateProfile())),
+                        },
+                        child: Container(
+                          height: 90.0,
+                          margin: EdgeInsets.only(top: 20.0, right: 10.0),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            color: Colors.purple[400],
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[

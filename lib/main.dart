@@ -6,6 +6,7 @@ import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
 import 'dart:async';
 import 'dart:io';
+import 'dart:core';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import "bottomNavigationPages/home.dart";
@@ -14,6 +15,7 @@ import 'package:oauth2_client/oauth2_helper.dart';
 import 'package:oauth2_client/google_oauth2_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,10 +50,10 @@ final secret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
 final redirectUrl = Uri.parse('https://www.google.ca');
 final scopes = ['identify', 'email', 'guilds'];
 
-Future<oauth2.Client> launchURL() async {
+Future<String> launchURL() async {
   var grant = oauth2.AuthorizationCodeGrant(
       clientID, authEndpoint, tokenEndpoint,
-      secret: secret, codeVerifier: '');
+      secret: secret);
 
   var authUrl = grant.getAuthorizationUrl(redirectUrl);
 
