@@ -40,7 +40,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         context: context,
         builder: (context) {
           return Container(
-            height: 250.0,
+            height: 150.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(30.0),
@@ -99,7 +99,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         margin: EdgeInsets.only(top: 20.0, right: 10.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          color: Colors.blue[400],
+                          color: Colors.purple[400],
                         ),
                         child: GestureDetector(
                           onTap: () => {
