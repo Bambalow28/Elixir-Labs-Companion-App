@@ -50,18 +50,16 @@ final secret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
 final redirectUrl = Uri.parse('https://www.google.ca');
 final scopes = ['identify', 'email', 'guilds'];
 
-Future<String> launchURL() async {
+Future<void> launchURL() async {
   var grant = oauth2.AuthorizationCodeGrant(
       clientID, authEndpoint, tokenEndpoint,
       secret: secret);
 
-  var authUrl = grant.getAuthorizationUrl(redirectUrl);
+  var authUrl = grant.getAuthorizationUrl(redirectUrl, scopes: scopes);
+  Uri responseUri;
 
   if (await canLaunch(authUrl.toString())) {
-    await launch(authUrl.toString()).then((result) async {
-      var test = await http.get(redirectUrl);
-      print(test.body);
-    });
+    await launch(authUrl.toString()).then((result) async => {});
   }
   // return await grant.handleAuthorizationResponse();
 }
@@ -118,7 +116,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         onPressed: () => {
           setState(() {
             checkPressed = !checkPressed;
-            navigateToHome();
+            launchURL();
           })
         },
         child: Row(
