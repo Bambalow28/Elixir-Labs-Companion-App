@@ -12,6 +12,8 @@ PODS:
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
+  - webview_flutter (0.0.1):
+    - Flutter
   - zendesk (0.0.1):
     - Flutter
     - ZendeskChatSDK
@@ -35,6 +37,7 @@ DEPENDENCIES:
   - flutter_web_auth (from `.symlinks/plugins/flutter_web_auth/ios`)
   - uni_links (from `.symlinks/plugins/uni_links/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
   - zendesk (from `.symlinks/plugins/zendesk/ios`)
 
 SPEC REPOS:
@@ -61,6 +64,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/uni_links/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
   zendesk:
     :path: ".symlinks/plugins/zendesk/ios"
 
@@ -72,6 +77,7 @@ SPEC CHECKSUMS:
   flutter_web_auth: b7465086188ce4413d7e8b23622583784b9007a7
   uni_links: d97da20c7701486ba192624d99bffaaffcfc298a
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
   zendesk: 5e2053d220907e9c2857b9547f40ff3a3a1b3998
   ZendeskChatProvidersSDK: dcda37575fba7ae503f3dc03313424ef1b2e729d
   ZendeskChatSDK: 389196ae1688de1104ac05a40c5f89a9e76db838
