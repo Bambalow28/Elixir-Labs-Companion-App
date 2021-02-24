@@ -99,11 +99,12 @@ class _BarcodeScan extends State<BarcodeScanner> {
             child: Column(
               children: <Widget>[
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
                       child: Container(
                         height: 90.0,
-                        margin: EdgeInsets.only(top: 20.0, left: 10.0),
+                        margin: EdgeInsets.only(top: 20.0, left: 20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           color: Colors.green[400],
@@ -149,11 +150,11 @@ class _BarcodeScan extends State<BarcodeScanner> {
                         },
                         child: Container(
                           height: 90.0,
-                          margin: EdgeInsets.only(top: 20.0, right: 10.0),
+                          margin: EdgeInsets.only(top: 20.0, right: 20.0),
                           decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
-                            color: Colors.purple[400],
+                            color: Colors.cyan[400],
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

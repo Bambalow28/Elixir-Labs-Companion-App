@@ -73,7 +73,10 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                 Icon(
                                   Icons.create,
                                   color: Colors.white,
-                                  size: 50.0,
+                                  size: 30.0,
+                                ),
+                                SizedBox(
+                                  width: 10.0,
                                 ),
                                 Text(
                                   'Create Tasks',
@@ -99,7 +102,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                   builder: (context) => CreateProfile())),
                         },
                         child: Container(
-                          height: 90.0,
+                          height: 80.0,
                           margin: EdgeInsets.only(
                               top: 20.0, left: 20.0, right: 10.0),
                           decoration: BoxDecoration(
@@ -117,7 +120,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                     Icon(
                                       Icons.person,
                                       color: Colors.white,
-                                      size: 50.0,
+                                      size: 40.0,
                                     ),
                                     Text(
                                       'Profiles',
@@ -133,7 +136,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     ),
                     Expanded(
                       child: Container(
-                        height: 90.0,
+                        height: 80.0,
                         margin: EdgeInsets.only(top: 20.0, right: 20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -150,13 +153,14 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
-                                padding: EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.only(top: 12.0, bottom: 10.0),
                                 child: Column(
                                   children: <Widget>[
                                     Icon(
                                       CustomIcons.google,
                                       color: Colors.white,
-                                      size: 40.0,
+                                      size: 30.0,
                                     ),
                                     SizedBox(
                                       height: 5.0,
