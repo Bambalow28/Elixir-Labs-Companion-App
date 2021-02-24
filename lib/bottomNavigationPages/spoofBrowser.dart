@@ -40,7 +40,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         context: context,
         builder: (context) {
           return Container(
-            height: 150.0,
+            height: 210.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(30.0),
@@ -49,50 +49,47 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                 color: Colors.blueGrey[800]),
             child: Column(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        height: 90.0,
-                        margin: EdgeInsets.only(top: 20.0, left: 10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          color: Colors.green[400],
-                        ),
-                        child: GestureDetector(
-                          onTap: () => {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => CreateProfilePage())),
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.create,
-                                      color: Colors.white,
-                                      size: 50.0,
-                                    ),
-                                    Text(
-                                      'Create Tasks',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ],
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      color: Colors.green[400],
+                    ),
+                    child: GestureDetector(
+                      onTap: () => {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => CreateProfilePage())),
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.create,
+                                  color: Colors.white,
+                                  size: 50.0,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'Create Tasks',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18.0),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
                     Expanded(
                       child: GestureDetector(
                         onTap: () => {
@@ -103,7 +100,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         },
                         child: Container(
                           height: 90.0,
-                          margin: EdgeInsets.only(top: 20.0, right: 10.0),
+                          margin: EdgeInsets.only(
+                              top: 20.0, left: 20.0, right: 10.0),
                           decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
@@ -136,7 +134,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     Expanded(
                       child: Container(
                         height: 90.0,
-                        margin: EdgeInsets.only(top: 20.0, right: 10.0),
+                        margin: EdgeInsets.only(top: 20.0, right: 20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           color: Colors.blue[400],
@@ -176,6 +174,9 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 20.0,
                 ),
               ],
             ),
@@ -317,7 +318,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 10.0),
+            padding: EdgeInsets.only(right: 15.0),
             child: GestureDetector(
                 onTap: () => {addClicked()}, child: Icon(Icons.add)),
           ),
