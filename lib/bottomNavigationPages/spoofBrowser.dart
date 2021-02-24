@@ -56,7 +56,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         height: 90.0,
                         margin: EdgeInsets.only(top: 20.0, left: 10.0),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           color: Colors.green[400],
                         ),
                         child: GestureDetector(
@@ -106,7 +106,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                           margin: EdgeInsets.only(top: 20.0, right: 10.0),
                           decoration: BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(20.0)),
                             color: Colors.purple[400],
                           ),
                           child: Column(
@@ -138,7 +138,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         height: 90.0,
                         margin: EdgeInsets.only(top: 20.0, right: 10.0),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           color: Colors.blue[400],
                         ),
                         child: GestureDetector(

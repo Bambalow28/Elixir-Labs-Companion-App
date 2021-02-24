@@ -116,7 +116,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         onPressed: () => {
           setState(() {
             checkPressed = !checkPressed;
-            launchURL();
+            navigateToHome();
           })
         },
         child: Row(

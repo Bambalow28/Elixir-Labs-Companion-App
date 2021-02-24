@@ -83,6 +83,110 @@ class _BarcodeScan extends State<BarcodeScanner> {
     });
   }
 
+  void scannerClicked() {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 150.0,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30.0),
+                  topRight: const Radius.circular(30.0),
+                ),
+                color: Colors.blueGrey[800]),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        height: 90.0,
+                        margin: EdgeInsets.only(top: 20.0, left: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          color: Colors.green[400],
+                        ),
+                        child: GestureDetector(
+                          onTap: () => {
+                            scannedBarcode(),
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.scanner_rounded,
+                                      color: Colors.white,
+                                      size: 50.0,
+                                    ),
+                                    Text(
+                                      'Scan A Barcode',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () => {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => CreateProfile())),
+                        },
+                        child: Container(
+                          height: 90.0,
+                          margin: EdgeInsets.only(top: 20.0, right: 10.0),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            color: Colors.purple[400],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.shopping_bag,
+                                      color: Colors.white,
+                                      size: 50.0,
+                                    ),
+                                    Text(
+                                      'Saved Items',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,17 +196,12 @@ class _BarcodeScan extends State<BarcodeScanner> {
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(20, 20, 20, 1.0),
         actions: <Widget>[
-          PopupMenuButton<String>(
-              onSelected: choiceAction,
-              icon: Icon(Icons.qr_code_scanner),
-              itemBuilder: (BuildContext context) {
-                return BarcodeSelection.options.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              }),
+          Padding(
+            padding: EdgeInsets.only(right: 15.0),
+            child: GestureDetector(
+                onTap: () => {scannerClicked()},
+                child: Icon(Icons.qr_code_scanner)),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
