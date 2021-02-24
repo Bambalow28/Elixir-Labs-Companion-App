@@ -86,36 +86,71 @@ class _ShowDrawer extends State<ShowDrawer> {
                             {Navigator.of(context).push(supportRoute())},
                       ),
                       const Expanded(child: SizedBox()),
-                      ListTile(
-                        leading: Icon(Icons.settings, color: Colors.white),
-                        title: Text(
-                          'Settings',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onTap: () =>
-                            {Navigator.of(context).push(profileRoute())},
-                      ),
-                      ListTile(
-                        leading:
-                            Icon(Icons.exit_to_app, color: Colors.red[400]),
-                        title: Text(
-                          'Log Out',
-                          style: TextStyle(
-                            color: Colors.red[400],
-                          ),
-                        ),
-                        onTap: () => {
-                          Navigator.of(context).pushReplacementNamed('/'),
-                        },
-                      ),
+
                       const Divider(height: 1.0, color: Colors.grey),
-                      ListTile(
-                        title: Text(
-                          'Version 1.0',
-                          style: TextStyle(color: Colors.grey),
-                          textAlign: TextAlign.center,
-                        ),
+                      // ListTile(
+                      //   title: Text(
+                      //     'Beta 1.0',
+                      //     style: TextStyle(color: Colors.grey),
+                      //     textAlign: TextAlign.center,
+                      //   ),
+                      // ),
+                      SizedBox(
+                        height: 10.0,
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                color: Colors.grey,
+                              ),
+                              margin: EdgeInsets.only(bottom: 20.0, left: 20.0),
+                              height: 50.0,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                color: Colors.red[400],
+                              ),
+                              margin:
+                                  EdgeInsets.only(bottom: 20.0, right: 20.0),
+                              height: 50.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      // ListTile(
+                      //   leading: Icon(Icons.settings, color: Colors.white),
+                      //   title: Text(
+                      //     'Settings',
+                      //     style: TextStyle(color: Colors.white),
+                      //   ),
+                      //   onTap: () =>
+                      //       {Navigator.of(context).push(profileRoute())},
+                      // ),
+                      // ListTile(
+                      //   leading:
+                      //       Icon(Icons.exit_to_app, color: Colors.red[400]),
+                      //   title: Text(
+                      //     'Log Out',
+                      //     style: TextStyle(
+                      //       color: Colors.red[400],
+                      //     ),
+                      //   ),
+                      //   onTap: () => {
+                      //     Navigator.of(context).pushReplacementNamed('/'),
+                      //   },
+                      // ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 10.0),
                       ),
