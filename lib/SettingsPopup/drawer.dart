@@ -25,15 +25,45 @@ class _ShowDrawer extends State<ShowDrawer> {
                     children: <Widget>[
                       DrawerHeader(
                         padding: EdgeInsets.all(0.0),
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'SUPREMO#1533',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold),
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.only(bottom: 15.0),
+                              width: 80.0,
+                              height: 80.0,
+                              decoration: new BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.grey
+                                  // image: new DecorationImage(
+                                  //   fit: BoxFit.fill,
+                                  //   image: new NetworkImage(
+                                  //     "https://example.com/assets/images/john-doe.jpg",
+                                  //   ),
+                                  // ),
+                                  ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(bottom: 5.0),
+                              child: Text(
+                                'SUPREMO#1533',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(bottom: 5.0),
+                              child: Text(
+                                'Member Since 2019',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(21, 21, 21, 1),
@@ -108,8 +138,13 @@ class _ShowDrawer extends State<ShowDrawer> {
                                     BorderRadius.all(Radius.circular(10.0)),
                                 color: Colors.grey,
                               ),
-                              margin: EdgeInsets.only(bottom: 20.0, left: 20.0),
+                              margin: EdgeInsets.only(bottom: 20.0, left: 40.0),
                               height: 50.0,
+                              child: Icon(
+                                Icons.settings,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -123,8 +158,13 @@ class _ShowDrawer extends State<ShowDrawer> {
                                 color: Colors.red[400],
                               ),
                               margin:
-                                  EdgeInsets.only(bottom: 20.0, right: 20.0),
+                                  EdgeInsets.only(bottom: 20.0, right: 40.0),
                               height: 50.0,
+                              child: Icon(
+                                Icons.exit_to_app_rounded,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
                             ),
                           ),
                         ],
