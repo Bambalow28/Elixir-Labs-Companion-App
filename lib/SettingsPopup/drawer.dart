@@ -20,13 +20,13 @@ class _ShowDrawer extends State<ShowDrawer> {
               constraints: BoxConstraints(minHeight: constraint.maxHeight),
               child: IntrinsicHeight(
                 child: Container(
-                  color: Color.fromRGBO(21, 21, 21, 1),
+                  color: Color.fromRGBO(40, 40, 40, 1),
                   child: Column(
                     children: <Widget>[
                       DrawerHeader(
                         padding: EdgeInsets.all(0.0),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
                               alignment: Alignment.center,
@@ -54,7 +54,6 @@ class _ShowDrawer extends State<ShowDrawer> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(bottom: 5.0),
                               child: Text(
                                 'Member Since 2019',
                                 style: TextStyle(
@@ -64,9 +63,6 @@ class _ShowDrawer extends State<ShowDrawer> {
                               ),
                             ),
                           ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(21, 21, 21, 1),
                         ),
                       ),
                       const Divider(height: 1.0, color: Colors.grey),
@@ -136,7 +132,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)),
-                                color: Colors.grey,
+                                color: Colors.grey[700],
                               ),
                               margin: EdgeInsets.only(bottom: 20.0, left: 40.0),
                               height: 50.0,
