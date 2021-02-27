@@ -34,6 +34,72 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     print(tasks);
   }
 
+  //Show Create Task Bottom Sheet when 'Create Task' is Clicked
+  void createTaskClicked() {
+    Navigator.pop(context);
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30.0),
+                  topRight: const Radius.circular(30.0),
+                ),
+                color: Colors.blueGrey[800]),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: const Radius.circular(30.0),
+                      topRight: const Radius.circular(30.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.cyan.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 10,
+                          offset: Offset(0, 8))
+                    ],
+                    color: Colors.cyan[400],
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(
+                            top: 15.0, left: 20.0, bottom: 15.0),
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 30.0,
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(
+                            top: 15.0, left: 20.0, bottom: 15.0),
+                        child: Text(
+                          'Create Task',
+                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  //Show Modal Bottom Sheet when '+' is Clicked
   void addClicked() {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
@@ -50,19 +116,15 @@ class _SpoofBrowser extends State<SpoofBrowser> {
             child: Column(
               children: <Widget>[
                 Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      color: Colors.green[400],
-                    ),
-                    child: GestureDetector(
-                      onTap: () => {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => CreateProfilePage())),
-                      },
+                  child: GestureDetector(
+                    onTap: () => {createTaskClicked()},
+                    child: Container(
+                      margin:
+                          EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        color: Colors.cyan[400],
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -108,7 +170,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                           decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
-                            color: Colors.purple[400],
+                            color: Colors.deepPurple[400],
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +202,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         margin: EdgeInsets.only(top: 20.0, right: 20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          color: Colors.blue[400],
+                          color: Colors.white,
                         ),
                         child: GestureDetector(
                           onTap: () => {
@@ -157,17 +219,45 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                     EdgeInsets.only(top: 12.0, bottom: 10.0),
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
-                                      CustomIcons.google,
-                                      color: Colors.white,
-                                      size: 30.0,
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
+                                    RichText(
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 23.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'G',
+                                              style: TextStyle(
+                                                  color: Colors.blue[400])),
+                                          TextSpan(
+                                              text: 'O',
+                                              style: TextStyle(
+                                                  color: Colors.red[400])),
+                                          TextSpan(
+                                              text: 'O',
+                                              style: TextStyle(
+                                                  color: Colors.orange[400])),
+                                          TextSpan(
+                                              text: 'G',
+                                              style: TextStyle(
+                                                  color: Colors.blue[400])),
+                                          TextSpan(
+                                              text: 'L',
+                                              style: TextStyle(
+                                                  color: Colors.green[400])),
+                                          TextSpan(
+                                              text: 'E',
+                                              style: TextStyle(
+                                                  color: Colors.red[400])),
+                                        ],
+                                      ),
                                     ),
                                     Text(
-                                      'Google Login',
-                                      style: TextStyle(color: Colors.white),
+                                      'Sign In',
+                                      style: TextStyle(
+                                        color: Colors.blue[400],
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ],
                                 ),
