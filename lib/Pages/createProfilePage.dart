@@ -64,7 +64,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                   alignment: Alignment.topLeft,
                   padding: EdgeInsets.only(left: 10.0, top: 10.0),
                   child: Text(
-                    'Shipping Information',
+                    'Shipping/Billing Information',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,

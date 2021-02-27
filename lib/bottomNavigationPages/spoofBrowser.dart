@@ -41,59 +41,142 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         backgroundColor: Colors.transparent,
         context: context,
         builder: (context) {
-          return Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(30.0),
-                  topRight: const Radius.circular(30.0),
-                ),
-                color: Colors.blueGrey[800]),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(30.0),
-                      topRight: const Radius.circular(30.0),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.cyan.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 10,
-                          offset: Offset(0, 8))
-                    ],
-                    color: Colors.cyan[400],
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).requestFocus(new FocusNode());
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(30.0),
+                    topRight: const Radius.circular(30.0),
                   ),
-                  child: Row(
+                  color: Colors.blueGrey[800]),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(30.0),
+                        topRight: const Radius.circular(30.0),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.cyan.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            offset: Offset(0, 8))
+                      ],
+                      color: Colors.cyan[400],
+                    ),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      padding:
+                          EdgeInsets.only(top: 15.0, left: 20.0, bottom: 15.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(right: 10.0),
+                            child: GestureDetector(
+                              onTap: () =>
+                                  {Navigator.pop(context), addClicked()},
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                                size: 23.0,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              'Create Task',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 170,
+                    height: 100.0,
+                    padding: EdgeInsets.only(left: 10, right: 10.0, top: 10.0),
+                    decoration: BoxDecoration(),
+                    child: TextField(
+                      textCapitalization: TextCapitalization.words,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Task Name',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        contentPadding: EdgeInsets.all(8.0),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2.0, color: Colors.white),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2.0, color: Colors.cyan),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                      ),
+                      style: TextStyle(color: Colors.black, fontSize: 16.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Row(
                     children: <Widget>[
                       Container(
-                        alignment: Alignment.topLeft,
-                        padding: EdgeInsets.only(
-                            top: 15.0, left: 20.0, bottom: 15.0),
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                          size: 30.0,
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        padding: EdgeInsets.only(
-                            top: 15.0, left: 20.0, bottom: 15.0),
-                        child: Text(
-                          'Create Task',
-                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              child: Text(
+                                'URL',
+                                style: TextStyle(
+                                    color: Colors.grey, fontSize: 16.0),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 170,
+                              height: 100.0,
+                              padding: EdgeInsets.only(
+                                  left: 10, right: 10.0, top: 5.0),
+                              decoration: BoxDecoration(),
+                              child: TextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: 'Enter URL',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.all(8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2.0, color: Colors.white),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2.0, color: Colors.cyan),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16.0)),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-              ],
+                ],
+              ),
             ),
           );
         });
