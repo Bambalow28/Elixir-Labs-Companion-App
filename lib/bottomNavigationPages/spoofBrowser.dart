@@ -103,6 +103,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     height: 5.0,
                   ),
                   Container(
+                    alignment: Alignment.topCenter,
                     width: MediaQuery.of(context).size.width - 170,
                     height: 100.0,
                     padding: EdgeInsets.only(left: 10, right: 10.0, top: 10.0),
@@ -130,48 +131,101 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      'URL',
+                      style: TextStyle(color: Colors.grey, fontSize: 16.0),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width - 50,
+                          height: 100.0,
+                          padding:
+                              EdgeInsets.only(left: 10, right: 10.0, top: 5.0),
+                          decoration: BoxDecoration(),
+                          child: TextField(
+                              textCapitalization: TextCapitalization.words,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                hintText: 'Enter URL',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                contentPadding: EdgeInsets.all(8.0),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2.0, color: Colors.white),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2.0, color: Colors.cyan),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                              ),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 16.0)),
+                        ),
+                      ],
+                    ),
+                  ),
                   Row(
                     children: <Widget>[
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                'URL',
-                                style: TextStyle(
-                                    color: Colors.grey, fontSize: 16.0),
-                              ),
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.topLeft,
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              'Quantity',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16.0),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width - 170,
-                              height: 100.0,
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10.0, top: 5.0),
-                              decoration: BoxDecoration(),
-                              child: TextField(
-                                  textCapitalization: TextCapitalization.words,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: 'Enter URL',
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    contentPadding: EdgeInsets.all(8.0),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 2.0, color: Colors.white),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0))),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 2.0, color: Colors.cyan),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0))),
-                                  ),
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16.0)),
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: 100,
+                                  height: 100.0,
+                                  padding: EdgeInsets.only(
+                                      left: 10.0, right: 10.0, top: 5.0),
+                                  decoration: BoxDecoration(),
+                                  child: TextField(
+                                      textCapitalization:
+                                          TextCapitalization.words,
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        hintText: 'Qty',
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey),
+                                        contentPadding: EdgeInsets.all(8.0),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2.0,
+                                                color: Colors.white),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2.0, color: Colors.cyan),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))),
+                                      ),
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 16.0)),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -189,7 +243,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         context: context,
         builder: (context) {
           return Container(
-            height: 210.0,
+            height: 230.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(30.0),
@@ -249,7 +303,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         child: Container(
                           height: 80.0,
                           margin: EdgeInsets.only(
-                              top: 20.0, left: 20.0, right: 10.0),
+                              top: 20.0, left: 20.0, right: 10.0, bottom: 20.0),
                           decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
@@ -282,7 +336,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     Expanded(
                       child: Container(
                         height: 80.0,
-                        margin: EdgeInsets.only(top: 20.0, right: 20.0),
+                        margin: EdgeInsets.only(
+                            top: 20.0, right: 20.0, bottom: 20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           color: Colors.white,

@@ -110,9 +110,8 @@ class _BarcodeScan extends State<BarcodeScanner> {
                           color: Colors.green[400],
                         ),
                         child: GestureDetector(
-                          onTap: () => {
-                            scannedBarcode(),
-                          },
+                          onTap: () =>
+                              {scannedBarcode(), Navigator.pop(context)},
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[

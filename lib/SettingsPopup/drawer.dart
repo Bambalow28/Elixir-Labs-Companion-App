@@ -112,15 +112,20 @@ class _ShowDrawer extends State<ShowDrawer> {
                             {Navigator.of(context).push(supportRoute())},
                       ),
                       const Expanded(child: SizedBox()),
-
+                      Container(
+                        padding: EdgeInsets.only(bottom: 5.0),
+                        child: GestureDetector(
+                          onTap: () => {print('Show Terms & Conditions')},
+                          child: Text(
+                            'Terms & Conditions',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                decoration: TextDecoration.underline),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
                       const Divider(height: 1.0, color: Colors.grey),
-                      // ListTile(
-                      //   title: Text(
-                      //     'Beta 1.0',
-                      //     style: TextStyle(color: Colors.grey),
-                      //     textAlign: TextAlign.center,
-                      //   ),
-                      // ),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -147,19 +152,25 @@ class _ShowDrawer extends State<ShowDrawer> {
                             width: 10.0,
                           ),
                           Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                color: Colors.red[400],
-                              ),
-                              margin:
-                                  EdgeInsets.only(bottom: 20.0, right: 40.0),
-                              height: 50.0,
-                              child: Icon(
-                                Icons.exit_to_app_rounded,
-                                color: Colors.white,
-                                size: 30.0,
+                            child: GestureDetector(
+                              onTap: () => {
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    '/', (Route<dynamic> route) => false)
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  color: Colors.red[500],
+                                ),
+                                margin:
+                                    EdgeInsets.only(bottom: 20.0, right: 40.0),
+                                height: 50.0,
+                                child: Icon(
+                                  Icons.exit_to_app_rounded,
+                                  color: Colors.white,
+                                  size: 30.0,
+                                ),
                               ),
                             ),
                           ),
