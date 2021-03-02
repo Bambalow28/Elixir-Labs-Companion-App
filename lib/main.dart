@@ -174,27 +174,16 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                 color: Colors.transparent,
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      left: 40.0, right: 40.0, bottom: 20.0, top: 170.0),
+                      left: 40.0, right: 40.0, bottom: 20.0, top: 100.0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       //Logo Photo PNG
                       Container(
                         child: Image.asset(
-                          "assets/images/logo.png",
+                          "assets/images/newElixirLogo.png",
                           fit: BoxFit.cover,
                           width: 200.0,
-                        ),
-                      ),
-                      Container(
-                        child: ColorizeAnimatedTextKit(
-                          text: ["Elixir Labs"],
-                          textStyle: TextStyle(
-                            fontFamily: 'Montserrat-Regular',
-                            fontSize: 40.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          colors: [Colors.white, Colors.cyan],
-                          textAlign: TextAlign.start,
                         ),
                       ),
                       Padding(padding: const EdgeInsets.all(100.0)),
