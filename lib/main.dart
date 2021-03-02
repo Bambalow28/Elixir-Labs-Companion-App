@@ -167,32 +167,36 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                 double.infinity,
               ),
             ),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 40.0, right: 40.0, bottom: 20.0, top: 100.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      //Logo Photo PNG
-                      Container(
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              color: Colors.transparent,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 40.0, right: 40.0, bottom: 20.0, top: 200.0),
+                child: Column(
+                  children: <Widget>[
+                    //Logo Photo PNG
+                    Expanded(
+                      child: Container(
                         child: Image.asset(
                           "assets/images/newElixirLogo.png",
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                           width: 200.0,
                         ),
                       ),
-                      Padding(padding: const EdgeInsets.all(100.0)),
-                      loginButton,
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                    ],
-                  ),
+                    ),
+                    // Padding(padding: const EdgeInsets.all(100.0)),
+                    Expanded(
+                      child: SizedBox(),
+                    ),
+                    Container(
+                        padding: EdgeInsets.only(bottom: 130.0),
+                        child: loginButton),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                  ],
                 ),
               ),
             ),
