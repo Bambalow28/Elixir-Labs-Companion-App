@@ -22,6 +22,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
   String itemName = '';
   String itemDescr = '';
   String itemImage = '';
+  bool itemCheck = true;
   Map<String, dynamic> barcodeItem;
 
   getScannedBarcode() async {
@@ -267,149 +268,182 @@ class _BarcodeScan extends State<BarcodeScanner> {
                     ],
                   ),
                 ),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topCenter,
-                      padding:
-                          EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
-                      child: Text(
-                        itemName,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          child: Image.network(
-                            itemImage,
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height - 600.0,
-                            fit: BoxFit.fitHeight,
+                child: itemName == 'Not Available'
+                    ? Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromRGBO(23, 23, 23, 1),
+                              Color.fromRGBO(13, 13, 13, 1)
+                            ],
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Row(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.only(left: 30.0),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                      color: Colors.cyan),
-                                  height: 110.0,
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(
-                                          Icons.add,
-                                          size: 70.0,
-                                          color: Colors.white,
-                                        ),
-                                        Text(
-                                          "Add Item",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 30.0),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                      color: Colors.orange[400]),
-                                  height: 110.0,
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(
-                                          Icons.info_outline,
-                                          size: 70.0,
-                                          color: Colors.white,
-                                        ),
-                                        Text(
-                                          "Info",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                              Text(
+                                'Show Item Being Added to The System',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 20.0,
+                                    fontStyle: FontStyle.italic),
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 10.0,
+                        ),
+                      )
+                    : Column(
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.topCenter,
+                            padding: EdgeInsets.only(
+                                top: 20.0, left: 10.0, right: 10.0),
+                            child: Text(
+                              itemName,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Expanded(
                             child: Container(
-                              margin: EdgeInsets.only(left: 30.0, right: 30.0),
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
-                                  color: Colors.green[400]),
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.save_alt_outlined,
-                                      size: 70.0,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "Save",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
+                              padding: EdgeInsets.all(10.0),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                child: Image.network(
+                                  itemImage,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height -
+                                      600.0,
+                                  fit: BoxFit.fitHeight,
                                 ),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 20.0),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        margin: EdgeInsets.only(left: 30.0),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0)),
+                                            color: Colors.cyan),
+                                        height: 110.0,
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.add,
+                                                size: 70.0,
+                                                color: Colors.white,
+                                              ),
+                                              Text(
+                                                "Add Item",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16.0,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        margin: EdgeInsets.only(right: 30.0),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0)),
+                                            color: Colors.orange[400]),
+                                        height: 110.0,
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.info_outline,
+                                                size: 70.0,
+                                                color: Colors.white,
+                                              ),
+                                              Text(
+                                                "Info",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16.0,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                        left: 30.0, right: 30.0),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0)),
+                                        color: Colors.green[400]),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.save_alt_outlined,
+                                            size: 70.0,
+                                            color: Colors.white,
+                                          ),
+                                          Text(
+                                            "Save",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 20.0),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
               ),
             ),
     );

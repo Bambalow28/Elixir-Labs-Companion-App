@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         progressStatus = false;
       });
     } catch (e) {
-      return e;
+      print('Something Went Wrong');
     }
   }
 
@@ -221,21 +221,21 @@ class _HomePageState extends State<HomePage> {
                                       height: 190.0,
                                       child: Stack(
                                         children: <Widget>[
-                                          Container(
-                                            alignment: Alignment.center,
-                                            padding: EdgeInsets.only(
-                                                top: 30.0, bottom: 10.0),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
-                                              child: Image.network(
-                                                itemImage,
-                                                width: 130.0,
-                                                height: 80.0,
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ),
+                                          // Container(
+                                          //   alignment: Alignment.center,
+                                          //   padding: EdgeInsets.only(
+                                          //       top: 30.0, bottom: 10.0),
+                                          //   child: ClipRRect(
+                                          //     borderRadius: BorderRadius.all(
+                                          //         Radius.circular(10)),
+                                          //     child: Image.network(
+                                          //             itemImage,
+                                          //             width: 130.0,
+                                          //             height: 80.0,
+                                          //             fit: BoxFit.fill,
+                                          //           ),
+                                          //   ),
+                                          // ),
                                           Container(
                                             padding: EdgeInsets.only(
                                                 top: 5.0,

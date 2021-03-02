@@ -20,7 +20,7 @@ class _ShowDrawer extends State<ShowDrawer> {
               constraints: BoxConstraints(minHeight: constraint.maxHeight),
               child: IntrinsicHeight(
                 child: Container(
-                  color: Color.fromRGBO(40, 40, 40, 1),
+                  color: Color.fromRGBO(30, 30, 30, 1),
                   child: Column(
                     children: <Widget>[
                       DrawerHeader(
