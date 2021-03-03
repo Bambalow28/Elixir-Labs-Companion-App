@@ -229,11 +229,21 @@ class _HomePageState extends State<HomePage> {
                                           //     borderRadius: BorderRadius.all(
                                           //         Radius.circular(10)),
                                           //     child: Image.network(
-                                          //             itemImage,
-                                          //             width: 130.0,
-                                          //             height: 80.0,
-                                          //             fit: BoxFit.fill,
-                                          //           ),
+                                          //       itemImage,
+                                          //       width: 130.0,
+                                          //       height: 80.0,
+                                          //       fit: BoxFit.fill,
+                                          //       errorBuilder:
+                                          //           (BuildContext context,
+                                          //               Object exception,
+                                          //               StackTrace stackTrace) {
+                                          //         return Text(
+                                          //           'Image Error',
+                                          //           style: TextStyle(
+                                          //               color: Colors.grey),
+                                          //         );
+                                          //       },
+                                          //     ),
                                           //   ),
                                           // ),
                                           Container(

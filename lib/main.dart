@@ -104,44 +104,6 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     //Create Login Button
-    final loginButton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color:
-          checkPressed ? Colors.white : const Color.fromRGBO(18, 18, 18, 1.0),
-      child: FlatButton(
-        focusColor: Colors.transparent,
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () => {
-          setState(() {
-            checkPressed = !checkPressed;
-            navigateToHome();
-          })
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(
-              CustomIcons.discord,
-              color: checkPressed
-                  ? const Color.fromRGBO(18, 18, 18, 1.0)
-                  : Colors.white,
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: 10.0),
-            ),
-            Text("Login via Discord",
-                textAlign: TextAlign.center,
-                style: style.copyWith(
-                    color: checkPressed
-                        ? const Color.fromRGBO(18, 18, 18, 1.0)
-                        : Colors.white,
-                    fontWeight: FontWeight.bold)),
-          ],
-        ),
-      ),
-    );
 
     //Login View
     return MaterialApp(
@@ -182,7 +144,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                         child: Image.asset(
                           "assets/images/newElixirLogo.png",
                           fit: BoxFit.contain,
-                          width: 200.0,
+                          width: 150.0,
                         ),
                       ),
                     ),
@@ -191,10 +153,56 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                       child: SizedBox(),
                     ),
                     Container(
-                        padding: EdgeInsets.only(bottom: 130.0),
-                        child: loginButton),
+                      decoration: BoxDecoration(
+                          color: const Color.fromRGBO(18, 18, 18, 1.0),
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey[900].withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 2,
+                                offset: Offset(0, 3)),
+                          ]),
+                      child: GestureDetector(
+                        onTap: () => {
+                          checkPressed
+                              ? Colors.white
+                              : const Color.fromRGBO(18, 18, 18, 1.0),
+                          setState(() {
+                            checkPressed = !checkPressed;
+                            navigateToHome();
+                          })
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                CustomIcons.discord,
+                                color: checkPressed
+                                    ? const Color.fromRGBO(18, 18, 18, 1.0)
+                                    : Colors.white,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 10.0),
+                              ),
+                              Text("Login via Discord",
+                                  textAlign: TextAlign.center,
+                                  style: style.copyWith(
+                                      color: checkPressed
+                                          ? const Color.fromRGBO(
+                                              18, 18, 18, 1.0)
+                                          : Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
-                      height: 8.0,
+                      height: 130.0,
                     ),
                   ],
                 ),
