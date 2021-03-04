@@ -135,7 +135,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
               color: Colors.transparent,
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 40.0, right: 40.0, bottom: 20.0, top: 200.0),
+                    left: 40.0, right: 40.0, bottom: 20.0, top: 150.0),
                 child: Column(
                   children: <Widget>[
                     //Logo Photo PNG

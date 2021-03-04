@@ -27,6 +27,7 @@ class UpcomingInfo {
 //Home Page Widget State
 class _HomePageState extends State<HomePage> {
   bool progressStatus = true;
+  bool itemCheck = true;
   int pageIndex = 0;
   String appBarTitle = "Home";
   List data;
@@ -228,22 +229,27 @@ class _HomePageState extends State<HomePage> {
                                           //   child: ClipRRect(
                                           //     borderRadius: BorderRadius.all(
                                           //         Radius.circular(10)),
-                                          //     child: Image.network(
-                                          //       itemImage,
-                                          //       width: 130.0,
-                                          //       height: 80.0,
-                                          //       fit: BoxFit.fill,
-                                          //       errorBuilder:
-                                          //           (BuildContext context,
-                                          //               Object exception,
-                                          //               StackTrace stackTrace) {
-                                          //         return Text(
-                                          //           'Image Error',
-                                          //           style: TextStyle(
-                                          //               color: Colors.grey),
-                                          //         );
-                                          //       },
+                                          //     child: FadeInImage(
+                                          //       image: NetworkImage(itemImage),
+                                          //       placeholder: AssetImage(
+                                          //           'assets/imageNotAvailable.png'),
                                           //     ),
+                                          //     // child: Image.network(
+                                          //     //   itemImage,
+                                          //     //   width: 130.0,
+                                          //     //   height: 80.0,
+                                          //     //   fit: BoxFit.fill,
+                                          //     //   errorBuilder:
+                                          //     //       (BuildContext context,
+                                          //     //           Object exception,
+                                          //     //           StackTrace stackTrace) {
+                                          //     //     return Text(
+                                          //     //       'Image Error',
+                                          //     //       style: TextStyle(
+                                          //     //           color: Colors.grey),
+                                          //     //     );
+                                          //     //   },
+                                          //     // ),
                                           //   ),
                                           // ),
                                           Container(

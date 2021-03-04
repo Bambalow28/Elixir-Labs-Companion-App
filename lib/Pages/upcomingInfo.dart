@@ -49,12 +49,17 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
             padding: EdgeInsets.only(
                 top: 20.0, bottom: 10.0, left: 20.0, right: 20.0),
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              // child: FadeInImage(
+              //   image: NetworkImage(widget.itemImage),
+              //   placeholder:
+              //       AssetImage('assets/images/imageNotAvailable.png'),
+              // )
               child: Image.network(
                 widget.itemImage,
-                width: MediaQuery.of(context).size.width,
-                height: 220.0,
-                fit: BoxFit.fill,
+                // width: MediaQuery.of(context).size.width,
+                // height: 220.0,
+                // fit: BoxFit.cover,
               ),
             ),
           ),

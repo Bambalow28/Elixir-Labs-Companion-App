@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   oauth2: ^1.6.3
@@ -35,7 +35,6 @@ dependencies:
   wave: ^0.1.0
   flutter_barcode_scanner: ^1.0.2
   zendesk: ^2.0.0
-  flutter_svg: ^0.19.3
   # firebase_core: ^0.7.0
 
   flutter:
@@ -64,7 +63,7 @@ flutter:
   - assets/images/newElixirLogo.png
   - assets/images/logo.png
   - assets/images/jordanss.png
-  - assets/images/lights.gif
+  - assets/imageNotAvailable.png
 
   fonts:
         - family: Montserrat
