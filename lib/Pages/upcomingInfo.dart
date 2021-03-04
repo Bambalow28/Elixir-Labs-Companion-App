@@ -36,6 +36,13 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
 
   @override
   Widget build(BuildContext context) {
+    bool itemImageCheck() {
+      if (widget.itemImage ==
+          'https://images.solecollector.com/complex/image/upload/v1557176412/SC_Logo_Globe_TM_Blue_20190506-01-01-01_urcggx.svg') {
+        return false;
+      }
+    }
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
       appBar: AppBar(
@@ -50,17 +57,22 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
                 top: 20.0, bottom: 10.0, left: 20.0, right: 20.0),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              // child: FadeInImage(
-              //   image: NetworkImage(widget.itemImage),
-              //   placeholder:
-              //       AssetImage('assets/images/imageNotAvailable.png'),
-              // )
-              child: Image.network(
-                widget.itemImage,
-                // width: MediaQuery.of(context).size.width,
-                // height: 220.0,
-                // fit: BoxFit.cover,
-              ),
+              child: itemImageCheck() == false
+                  ? Container(
+                      alignment: Alignment.center,
+                      height: 200.0,
+                      child: Text(
+                        'Image Not Available',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 20.0),
+                        textAlign: TextAlign.center,
+                      ))
+                  : Image.network(
+                      widget.itemImage,
+                    ),
             ),
           ),
           Container(

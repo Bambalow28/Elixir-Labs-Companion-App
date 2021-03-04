@@ -184,6 +184,13 @@ class _HomePageState extends State<HomePage> {
                           String itemPrice = data[index]["price"];
                           String itemReleaseDate = data[index]["releaseDate"];
 
+                          bool itemImageCheck() {
+                            if (itemImage ==
+                                'https://images.solecollector.com/complex/image/upload/v1557176412/SC_Logo_Globe_TM_Blue_20190506-01-01-01_urcggx.svg') {
+                              return false;
+                            }
+                          }
+
                           return Column(
                             children: <Widget>[
                               GestureDetector(
@@ -222,36 +229,38 @@ class _HomePageState extends State<HomePage> {
                                       height: 190.0,
                                       child: Stack(
                                         children: <Widget>[
-                                          // Container(
-                                          //   alignment: Alignment.center,
-                                          //   padding: EdgeInsets.only(
-                                          //       top: 30.0, bottom: 10.0),
-                                          //   child: ClipRRect(
-                                          //     borderRadius: BorderRadius.all(
-                                          //         Radius.circular(10)),
-                                          //     child: FadeInImage(
-                                          //       image: NetworkImage(itemImage),
-                                          //       placeholder: AssetImage(
-                                          //           'assets/imageNotAvailable.png'),
-                                          //     ),
-                                          //     // child: Image.network(
-                                          //     //   itemImage,
-                                          //     //   width: 130.0,
-                                          //     //   height: 80.0,
-                                          //     //   fit: BoxFit.fill,
-                                          //     //   errorBuilder:
-                                          //     //       (BuildContext context,
-                                          //     //           Object exception,
-                                          //     //           StackTrace stackTrace) {
-                                          //     //     return Text(
-                                          //     //       'Image Error',
-                                          //     //       style: TextStyle(
-                                          //     //           color: Colors.grey),
-                                          //     //     );
-                                          //     //   },
-                                          //     // ),
-                                          //   ),
-                                          // ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            padding: EdgeInsets.only(
+                                                top: 30.0, bottom: 10.0),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10)),
+                                              child: itemImageCheck() == false
+                                                  ? Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      width: 130.0,
+                                                      height: 80.0,
+                                                      child: Text(
+                                                        'Image Not Available',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontStyle: FontStyle
+                                                                .italic),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ))
+                                                  : Image.network(
+                                                      itemImage,
+                                                      width: 130.0,
+                                                      height: 80.0,
+                                                      fit: BoxFit.fill,
+                                                    ),
+                                            ),
+                                          ),
                                           Container(
                                             padding: EdgeInsets.only(
                                                 top: 5.0,
