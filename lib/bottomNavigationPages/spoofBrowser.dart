@@ -26,12 +26,22 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController taskName = new TextEditingController();
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
+  List list;
+
+  var taskNum;
+
+  void checkNum() {
+    if (taskCount.text != '0') {
+      taskNum = int.parse(taskCount.text);
+      list = new List<int>.generate(taskNum, (i) => i + 1);
+    }
+  }
 
   void handleTask() {
+    checkNum();
     setState(() {
       tasks.add(browserURL.text);
     });
-    print(tasks);
   }
 
   //Show Create Task Bottom Sheet when 'Create Task' is Clicked
@@ -105,10 +115,10 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   Container(
                     alignment: Alignment.topCenter,
                     width: MediaQuery.of(context).size.width - 170,
-                    height: 100.0,
                     padding: EdgeInsets.only(left: 10, right: 10.0, top: 10.0),
                     decoration: BoxDecoration(),
                     child: TextField(
+                      controller: taskName,
                       textCapitalization: TextCapitalization.words,
                       decoration: InputDecoration(
                         filled: true,
@@ -131,6 +141,9 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Container(
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.only(left: 10.0),
@@ -145,12 +158,11 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       children: <Widget>[
                         Container(
                           width: MediaQuery.of(context).size.width - 50,
-                          height: 100.0,
                           padding:
                               EdgeInsets.only(left: 10, right: 10.0, top: 5.0),
                           decoration: BoxDecoration(),
                           child: TextField(
-                              textCapitalization: TextCapitalization.words,
+                              controller: browserURL,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.white,
@@ -174,60 +186,69 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       ],
                     ),
                   ),
-                  Row(
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Column(
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.topLeft,
-                            padding: EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              'Quantity',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 16.0),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          'Quantity',
+                          style: TextStyle(color: Colors.grey, fontSize: 16.0),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 100.0,
+                              padding: EdgeInsets.only(
+                                  left: 10, right: 10.0, top: 5.0),
+                              decoration: BoxDecoration(),
+                              child: TextField(
+                                  controller: taskCount,
+                                  textCapitalization: TextCapitalization.words,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: '1',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.all(8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2.0, color: Colors.white),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2.0, color: Colors.cyan),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16.0)),
                             ),
-                          ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  width: 100,
-                                  height: 100.0,
-                                  padding: EdgeInsets.only(
-                                      left: 10.0, right: 10.0, top: 5.0),
-                                  decoration: BoxDecoration(),
-                                  child: TextField(
-                                      textCapitalization:
-                                          TextCapitalization.words,
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        hintText: 'Qty',
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        contentPadding: EdgeInsets.all(8.0),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 2.0,
-                                                color: Colors.white),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0))),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 2.0, color: Colors.cyan),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0))),
-                                      ),
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 16.0)),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
+                  ),
+                  GestureDetector(
+                    onTap: () => {handleTask(), checkNum()},
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 200.0,
+                      height: 50.0,
+                      color: Colors.deepOrange[400],
+                      child: Text(
+                        'Test Button',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -733,7 +754,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   height: MediaQuery.of(context).size.height - 600,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: tasks.length,
+                    itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Dismissible(
                         key: Key(tasks[index]),

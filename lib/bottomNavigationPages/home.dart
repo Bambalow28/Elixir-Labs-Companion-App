@@ -418,7 +418,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: EdgeInsets.only(left: 10.0),
                                       child: FittedBox(
                                         fit: BoxFit.fitWidth,
-                                        child: Text('Yeezys are out!',
+                                        child: Text('Release in August!',
                                             style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 20.0,

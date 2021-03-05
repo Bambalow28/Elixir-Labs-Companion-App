@@ -152,27 +152,28 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                     Expanded(
                       child: SizedBox(),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: const Color.fromRGBO(18, 18, 18, 1.0),
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey[900].withOpacity(0.5),
-                                spreadRadius: 3,
-                                blurRadius: 2,
-                                offset: Offset(0, 3)),
-                          ]),
-                      child: GestureDetector(
-                        onTap: () => {
-                          checkPressed
-                              ? Colors.white
-                              : const Color.fromRGBO(18, 18, 18, 1.0),
-                          setState(() {
-                            checkPressed = !checkPressed;
-                            navigateToHome();
-                          })
-                        },
+                    GestureDetector(
+                      onTap: () => {
+                        checkPressed
+                            ? Colors.white
+                            : const Color.fromRGBO(18, 18, 18, 1.0),
+                        setState(() {
+                          checkPressed = !checkPressed;
+                          navigateToHome();
+                        })
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromRGBO(18, 18, 18, 1.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[900].withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 2,
+                                  offset: Offset(0, 3)),
+                            ]),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
