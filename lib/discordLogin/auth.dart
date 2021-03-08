@@ -1,57 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:oauth2_client/oauth2_client.dart';
-import 'package:meta/meta.dart';
-import 'package:oauth2_client/oauth2_helper.dart';
-import 'package:http/http.dart' as http;
-
-class DiscordOAuth2Client extends OAuth2Client {
-  DiscordOAuth2Client(
-      {@required String redirectUri, @required String customUriScheme})
-      : super(
-            authorizeUrl:
-                'https://discord.com/api/oauth2/authorize', //Your service's authorization url
-            tokenUrl:
-                'https://discord.com/api/oauth2/token', //Your service access token url
-            redirectUri: redirectUri,
-            customUriScheme: customUriScheme);
-}
-
-class AuthItem {
-  String id;
-  String avatar;
-  String username;
-  String email;
-  String role;
-
-  AuthItem({this.avatar, this.id, this.username, this.email});
-
-  factory AuthItem.fromJson(Map<String, dynamic> data) {
-    return AuthItem(
-      id: data['id'],
-      username: data['username'] + '#' + data['discriminator'],
-      avatar: data['avatar'],
-      email: data['email'],
-    );
-  }
-}
-
-class Auth with ChangeNotifier {
-  bool _isAuth = false;
-  AuthItem _currentUser;
-  bool _isLoading = false;
-
-  bool get isAuth {
-    return _isAuth;
-  }
-
-  bool get isLoading {
-    return _isLoading;
-  }
-
-  AuthItem get currentUser {
-    return _currentUser;
-  }
 
   Future<void> signIn() async {
     try {

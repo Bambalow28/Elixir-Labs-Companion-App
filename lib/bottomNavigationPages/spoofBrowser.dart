@@ -26,7 +26,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController taskName = new TextEditingController();
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
-  List list;
+  List<int> list = new List<int>();
 
   var taskNum;
 
@@ -34,6 +34,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     if (taskCount.text != '0') {
       taskNum = int.parse(taskCount.text);
       list = new List<int>.generate(taskNum, (i) => i + 1);
+      print(list);
     }
   }
 
@@ -754,7 +755,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   height: MediaQuery.of(context).size.height - 600,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: list.length,
+                    itemCount: list == null ? 0 : list.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Dismissible(
                         key: Key(tasks[index]),

@@ -1,5 +1,4 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
-import 'package:elixirlabs_mobileapp/discordLogin/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:wave/wave.dart';
@@ -10,59 +9,47 @@ import 'dart:core';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import "bottomNavigationPages/home.dart";
-import 'package:oauth2/oauth2.dart' as oauth2;
-import 'package:oauth2_client/oauth2_helper.dart';
-import 'package:oauth2_client/google_oauth2_client.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:oauth2/oauth2.dart' as oauth2;
 
 void main() => runApp(MyApp());
 
-// Future<void> launchURL() async {
-//   var client = OAuth2Helper(DiscordOAuth2Client(
-//       customUriScheme: 'elixirlabs_mobileapp',
-//       redirectUri:
-//           'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds'));
+final authEnd = Uri.parse(
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds');
+final tokenEnd = Uri.parse('https://discord.com/api/oauth2/token');
+final clientID = '799140079494496276';
+final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
+final redirectUrl = Uri.parse('https://www.google.ca');
 
-//   client.setAuthorizationParams(
-//       grantType: OAuth2Helper.AUTHORIZATION_CODE,
-//       clientId: '799140079494496276',
-//       clientSecret: '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd',
-//       scopes: ['identify', 'email', 'guilds']);
+// Future<oauth2.Client> launchURL() async {
+//   var grant = oauth2.AuthorizationCodeGrant(clientID, authEnd, tokenEnd,
+//       secret: clientSecret);
+
+//   // A URL on the authorization server (authorizationEndpoint with some additional
+//   // query parameters). Scopes and state can optionally be passed into this method.
+//   var authorizationUrl = grant.getAuthorizationUrl(redirectUrl);
+
+//   await redirect(authorizationUrl);
+//   var responseUrl = await listen(redirectUrl);
+
+//   return await grant.handleAuthorizationResponse(responseUrl.queryParameters);
 // }
 
-// Future<void> joinNow() async {
-//   const joinURL = 'https://elixirlabs.xyz';
-
-//   if (await canLaunch(joinURL)) {
-//     await launch(joinURL);
-//   } else {
-//     throw 'Error Launching $joinURL';
+// Future redirect(Uri url) async {
+//   if (await canLaunch(url.toString())) {
+//     await launch(url.toString());
 //   }
 // }
 
-final authEndpoint = Uri.parse(
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds');
-final tokenEndpoint = Uri.parse('https://discord.com/api/oauth2/token');
-final clientID = '799140079494496276';
-final secret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
-final redirectUrl = Uri.parse('https://www.google.ca');
-final scopes = ['identify', 'email', 'guilds'];
-
-Future<void> launchURL() async {
-  var grant = oauth2.AuthorizationCodeGrant(
-      clientID, authEndpoint, tokenEndpoint,
-      secret: secret);
-
-  var authUrl = grant.getAuthorizationUrl(redirectUrl, scopes: scopes);
-  Uri responseUri;
-
-  if (await canLaunch(authUrl.toString())) {
-    await launch(authUrl.toString()).then((result) async => {});
-  }
-  // return await grant.handleAuthorizationResponse();
-}
+// Future<Null> listen(Uri url) async {
+//   //ignore: cancel_subscriptions
+//   final linksStream = getLinksStream().listen((Uri uri) => async {
+//     if (uri.toString().startsWith(redirectUrl.toString())) {
+//       redirectUrl = uri;
+//     }
+//   });
+// }
 
 //Widget that defines app title, app theme and home page
 class MyApp extends StatelessWidget {
