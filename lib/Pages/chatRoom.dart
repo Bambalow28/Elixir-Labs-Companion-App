@@ -59,7 +59,7 @@ class _ChatRoom extends State<ChatRoom> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.home_outlined,
+                Icons.home_rounded,
                 color: Colors.white,
               ),
               label: ('')),
@@ -77,7 +77,7 @@ class _ChatRoom extends State<ChatRoom> {
               label: ('')),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.person_outline,
+                Icons.person,
                 color: Colors.white,
               ),
               label: (''))

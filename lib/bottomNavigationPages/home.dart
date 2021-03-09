@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.home_outlined,
+                Icons.home_rounded,
                 color: Colors.cyan,
               ),
               label: ('')),
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
               label: ('')),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.person_outline,
+                Icons.person,
                 color: Colors.white,
               ),
               label: (''))

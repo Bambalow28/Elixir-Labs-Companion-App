@@ -587,7 +587,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.home_outlined,
+                Icons.home_rounded,
                 color: Colors.white,
               ),
               label: ('')),
@@ -605,7 +605,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
               label: ('')),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.person_outline,
+                Icons.person,
                 color: Colors.white,
               ),
               label: (''))

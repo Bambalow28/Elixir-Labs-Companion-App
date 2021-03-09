@@ -214,7 +214,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.home_outlined,
+                Icons.home_rounded,
                 color: Colors.white,
               ),
               label: ('')),
@@ -232,7 +232,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
               label: ('')),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.person_outline,
+                Icons.person,
                 color: Colors.white,
               ),
               label: (''))

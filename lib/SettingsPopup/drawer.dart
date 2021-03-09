@@ -115,9 +115,9 @@ class _ShowDrawer extends State<ShowDrawer> {
                       Container(
                         padding: EdgeInsets.only(bottom: 5.0),
                         child: GestureDetector(
-                          onTap: () => {print('Show Terms & Conditions')},
+                          onTap: () => {print('Issue Reported')},
                           child: Text(
-                            'Terms & Conditions',
+                            'Report App Issue',
                             style: TextStyle(
                                 color: Colors.grey,
                                 decoration: TextDecoration.underline),
