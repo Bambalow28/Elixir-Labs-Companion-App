@@ -63,7 +63,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     topLeft: const Radius.circular(30.0),
                     topRight: const Radius.circular(30.0),
                   ),
-                  color: Colors.blueGrey[800]),
+                  color: Colors.grey[850]),
               child: Column(
                 children: <Widget>[
                   Container(
@@ -117,7 +117,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     alignment: Alignment.topCenter,
                     width: MediaQuery.of(context).size.width - 170,
                     padding: EdgeInsets.only(left: 10, right: 10.0, top: 10.0),
-                    decoration: BoxDecoration(),
                     child: TextField(
                       controller: taskName,
                       textCapitalization: TextCapitalization.words,
@@ -271,7 +270,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   topLeft: const Radius.circular(30.0),
                   topRight: const Radius.circular(30.0),
                 ),
-                color: Colors.blueGrey[800]),
+                color: Colors.grey[850]),
             child: Column(
               children: <Widget>[
                 Expanded(
