@@ -27,14 +27,18 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
   List<int> list = new List<int>();
+  List<String> taskCountNum = new List<String>();
 
   var taskNum;
 
   void checkNum() {
     if (taskCount.text != '0') {
       taskNum = int.parse(taskCount.text);
-      list = new List<int>.generate(taskNum, (i) => i + 1);
-      print(list);
+      // list = new List<int>.generate(taskNum, (i) => i + 1);
+      // taskCountNum = list.map((el) => el.toString()).toList();
+      // print(taskCountNum.length);
+      // print(list);
+      taskCountNum = new List<String>.generate(taskNum, (i) => "item $i");
     }
   }
 
@@ -237,7 +241,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     ],
                   ),
                   GestureDetector(
-                    onTap: () => {handleTask(), checkNum()},
+                    onTap: () => {handleTask()},
                     child: Container(
                       alignment: Alignment.center,
                       width: 200.0,
@@ -754,10 +758,10 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   height: MediaQuery.of(context).size.height - 600,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: list == null ? 0 : list.length,
+                    itemCount: taskCountNum == null ? 0 : taskCountNum.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Dismissible(
-                        key: Key(tasks[index]),
+                        key: Key(taskCountNum[index]),
                         direction: DismissDirection.endToStart,
                         onDismissed: (direction) {
                           setState(() {

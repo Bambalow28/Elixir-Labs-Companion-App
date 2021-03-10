@@ -28,7 +28,7 @@ final redirectUrl = Uri.parse('https://www.google.ca');
 
 //   // A URL on the authorization server (authorizationEndpoint with some additional
 //   // query parameters). Scopes and state can optionally be passed into this method.
-//   var authorizationUrl = grant.getAuthorizationUrl(redirectUrl);
+//   var authorizationUrl = grant.getAuthorizationUrl(redirectUrl, scopes: ['identify', 'email', 'guilds']);
 
 //   await redirect(authorizationUrl);
 //   var responseUrl = await listen(redirectUrl);

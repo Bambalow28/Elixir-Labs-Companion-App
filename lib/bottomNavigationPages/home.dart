@@ -141,7 +141,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: progressStatus
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.cyan)),
             )
           : Center(
               child: Container(
