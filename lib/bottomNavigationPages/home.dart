@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
       });
     } catch (e) {
       print('Something Went Wrong');
+      upcomingReleases();
     }
   }
 
