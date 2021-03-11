@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
       drawer: ShowDrawer(),
       appBar: AppBar(
         title: Text(appBarTitle),
-        backgroundColor: const Color.fromRGBO(20, 20, 20, 1.0),
+        backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           PopupMenuButton<String>(
               icon: Icon(
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromRGBO(16, 16, 16, 1.0),
+        backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
         type: BottomNavigationBarType.fixed,
         iconSize: 27.0,
         currentIndex: pageIndex,

@@ -1,5 +1,6 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:elixirlabs_mobileapp/Pages/support.dart';
+import 'package:elixirlabs_mobileapp/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/home.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/spoofBrowser.dart';
@@ -79,10 +80,20 @@ Route supportRoute() {
   );
 }
 
-//Transition To Support
+//Transition To Saved Items
 Route savedItemsRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => SavedItems(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Support
+Route splashScreenRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => SplashScreen(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

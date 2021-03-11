@@ -191,7 +191,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text(appBarTitle),
-        backgroundColor: const Color.fromRGBO(20, 20, 20, 1.0),
+        backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 15.0),
@@ -203,7 +203,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: navigationBarTapped,
-        backgroundColor: const Color.fromRGBO(16, 16, 16, 1.0),
+        backgroundColor: const Color.fromRGBO(24, 24, 24, 1.0),
         type: BottomNavigationBarType.fixed,
         elevation: 5,
         iconSize: 27.0,

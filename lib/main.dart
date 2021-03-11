@@ -12,6 +12,7 @@ import "bottomNavigationPages/home.dart";
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
+import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 void main() => runApp(MyApp());
 
@@ -151,7 +152,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(18, 18, 18, 1.0),
+                            color: const Color.fromRGBO(23, 23, 23, 1.0),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30.0)),
                             boxShadow: [
