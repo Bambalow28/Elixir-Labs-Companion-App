@@ -32,6 +32,8 @@ class _HomePageState extends State<HomePage> {
   String appBarTitle = "Home";
   List data;
 
+  //This Function gets a request from an API for Upcoming Releases.
+  //In cases that the GET fails then it retries again.
   Future<void> upcomingReleases() async {
     try {
       var site = await http
@@ -42,11 +44,12 @@ class _HomePageState extends State<HomePage> {
         progressStatus = false;
       });
     } catch (e) {
-      print('Something Went Wrong');
       upcomingReleases();
     }
   }
 
+  //This function is called on Page Load.
+  //It runs the UpcomingReleases Function.
   @override
   void initState() {
     super.initState();
@@ -62,6 +65,8 @@ class _HomePageState extends State<HomePage> {
       //NotificationArea
     }
 
+    //Responsible for the Bottom Navigation Bar
+    //Page doesn't change if user is in current page.
     void navigationBarTapped(int index) {
       setState(() {
         pageIndex = index;

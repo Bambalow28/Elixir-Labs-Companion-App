@@ -43,6 +43,8 @@ class _ChatRoom extends State<ChatRoom> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController message = new TextEditingController();
+
     return Scaffold(
       drawer: ShowDrawer(),
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
@@ -87,62 +89,72 @@ class _ChatRoom extends State<ChatRoom> {
         onTap: () => {
           FocusScope.of(context).requestFocus(new FocusNode()),
         },
-        child: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color.fromRGBO(23, 23, 23, 1),
-                  Color.fromRGBO(13, 13, 13, 1)
-                ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.all(10.0),
+                width: MediaQuery.of(context).size.width - 20,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                    color: Colors.grey[850],
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                child: SingleChildScrollView(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width - 100,
+                    height: MediaQuery.of(context).size.height,
+                    color: Colors.transparent,
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                            width: MediaQuery.of(context).size.width - 50,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 10.0),
-                    width: MediaQuery.of(context).size.width - 10,
-                  ),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Container(
-                  padding:
-                      EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-                  height: 60.0,
-                  child: TextField(
-                    textCapitalization: TextCapitalization.words,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(8.0),
-                      filled: true,
-                      fillColor: Color.fromRGBO(45, 45, 45, 1),
-                      hintText: 'Enter Message...',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      suffixIcon: IconButton(
-                        onPressed: () => {print('Sent')},
-                        icon: Icon(
-                          Icons.send_rounded,
-                          color: Colors.blue[400],
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
+            // SizedBox(height: 10.0),
+            Container(
+              padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+              height: 60.0,
+              child: TextField(
+                controller: message,
+                textCapitalization: TextCapitalization.words,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(8.0),
+                  filled: true,
+                  fillColor: Color.fromRGBO(45, 45, 45, 1),
+                  hintText: 'Enter Message...',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  suffixIcon: IconButton(
+                    onPressed: () => {print('Sent'), message.clear()},
+                    icon: Icon(
+                      Icons.send_rounded,
+                      color: Colors.blue[400],
                     ),
-                    style: TextStyle(color: Colors.white),
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
                   ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 ),
-              ],
+                style: TextStyle(color: Colors.white),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

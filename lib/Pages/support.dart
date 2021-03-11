@@ -135,7 +135,14 @@ class _SupportPage extends State<SupportPage> {
                   margin: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      color: Colors.blueGrey[900]),
+                      color: Colors.grey[900],
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black54.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 4,
+                            offset: Offset(0, 0)),
+                      ]),
                   // width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.all(10.0),
                   child: Column(

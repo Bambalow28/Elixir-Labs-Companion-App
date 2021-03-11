@@ -27,7 +27,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
   List<int> list = new List<int>();
-  List<String> taskCountNum = new List<String>();
+  List<String> taskCountNum = [];
 
   var taskNum;
 
