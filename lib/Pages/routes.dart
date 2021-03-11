@@ -1,6 +1,6 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:elixirlabs_mobileapp/Pages/support.dart';
-import 'package:elixirlabs_mobileapp/splashScreen.dart';
+import 'package:elixirlabs_mobileapp/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/home.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/spoofBrowser.dart';
@@ -91,9 +91,9 @@ Route savedItemsRoute() {
 }
 
 //Transition To Support
-Route splashScreenRoute() {
+Route loginRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => SplashScreen(),
+    pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

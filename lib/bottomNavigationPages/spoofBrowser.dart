@@ -21,12 +21,12 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   // final Future<FirebaseApp> firebaseInit = Firebase.initializeApp();
 
   int navIndex = 1;
-  List<String> tasks = new List<String>();
+  List<String> tasks = [];
   String appBarTitle = "Spoof Browser";
   TextEditingController taskName = new TextEditingController();
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
-  List<int> list = new List<int>();
+  List<int> list = [];
   List<String> taskCountNum = [];
 
   var taskNum;
@@ -34,11 +34,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   void checkNum() {
     if (taskCount.text != '0') {
       taskNum = int.parse(taskCount.text);
-      // list = new List<int>.generate(taskNum, (i) => i + 1);
-      // taskCountNum = list.map((el) => el.toString()).toList();
-      // print(taskCountNum.length);
-      // print(list);
-      taskCountNum = new List<String>.generate(taskNum, (i) => "item $i");
+      taskCountNum = new List<String>.generate(taskNum, (i) => "Task $i");
+      print(taskCountNum);
     }
   }
 
@@ -758,14 +755,14 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   height: MediaQuery.of(context).size.height - 600,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: taskCountNum == null ? 0 : taskCountNum.length,
+                    itemCount: taskCountNum.length.compareTo(0),
                     itemBuilder: (BuildContext context, int index) {
                       return Dismissible(
                         key: Key(taskCountNum[index]),
                         direction: DismissDirection.endToStart,
                         onDismissed: (direction) {
                           setState(() {
-                            tasks.removeAt(index);
+                            taskCountNum.removeAt(index);
                           });
 
                           Scaffold.of(context).showSnackBar(SnackBar(

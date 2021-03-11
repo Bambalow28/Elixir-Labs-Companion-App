@@ -61,23 +61,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(title: "Elixir Login"),
+      home: SplashScreen(title: "Elixir Login"),
     );
   }
 }
 
 //Login Widget
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key, this.title}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  SplashScreen({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _LoginState createState() => _LoginState();
+  _SplashScreen createState() => _SplashScreen();
 }
 
 //Login Page Widget State
-class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
+class _SplashScreen extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool isLoggedIn = false;
   bool checkPressed = false;
@@ -90,113 +91,38 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    //Create Login Button
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 2), () => {Navigator.of(context).push(loginRoute())});
+  }
 
+  @override
+  Widget build(BuildContext context) {
     //Login View
-    return MaterialApp(
-      home: Scaffold(
-        body: Stack(
+    return Container(
+      color: Colors.grey[900],
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            WaveWidget(
-              config: CustomConfig(
-                gradients: [
-                  [Colors.cyanAccent, Color(0x66FF9800)],
-                  [Colors.cyan, Color(0x55FFEB3B)]
-                ],
-                durations: [10800, 6000],
-                heightPercentages: [0.50, 0.52],
-                blur: MaskFilter.blur(BlurStyle.solid, 10),
-                gradientBegin: Alignment.bottomLeft,
-                gradientEnd: Alignment.topRight,
-              ),
-              waveAmplitude: 0,
-              backgroundColor: Color.fromRGBO(18, 18, 18, 1),
-              size: Size(
-                double.infinity,
-                double.infinity,
+            Container(
+              padding: EdgeInsets.all(50.0),
+              width: 200.0,
+              height: 200.0,
+              child: Image.asset(
+                "assets/images/newElixirLogo.png",
+                fit: BoxFit.fill,
+                height: 100.0,
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              color: Colors.transparent,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 40.0, right: 40.0, bottom: 20.0, top: 150.0),
-                child: Column(
-                  children: <Widget>[
-                    //Logo Photo PNG
-                    Expanded(
-                      child: Container(
-                        child: Image.asset(
-                          "assets/images/newElixirLogo.png",
-                          fit: BoxFit.contain,
-                          width: 150.0,
-                        ),
-                      ),
-                    ),
-                    // Padding(padding: const EdgeInsets.all(100.0)),
-                    Expanded(
-                      child: SizedBox(),
-                    ),
-                    GestureDetector(
-                      onTap: () => {
-                        checkPressed
-                            ? Colors.white
-                            : const Color.fromRGBO(18, 18, 18, 1.0),
-                        setState(() {
-                          checkPressed = !checkPressed;
-                          navigateToHome();
-                        })
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(23, 23, 23, 1.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey[900].withOpacity(0.5),
-                                  spreadRadius: 3,
-                                  blurRadius: 2,
-                                  offset: Offset(0, 3)),
-                            ]),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                CustomIcons.discord,
-                                color: checkPressed
-                                    ? const Color.fromRGBO(18, 18, 18, 1.0)
-                                    : Colors.white,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 10.0),
-                              ),
-                              Text("Login via Discord",
-                                  textAlign: TextAlign.center,
-                                  style: style.copyWith(
-                                      color: checkPressed
-                                          ? const Color.fromRGBO(
-                                              18, 18, 18, 1.0)
-                                          : Colors.white,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 130.0,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                child: CircularProgressIndicator(
+                    valueColor:
+                        new AlwaysStoppedAnimation<Color>(Colors.cyan))),
           ],
         ),
       ),
