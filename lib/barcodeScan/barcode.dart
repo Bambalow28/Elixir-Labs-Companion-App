@@ -142,12 +142,8 @@ class _BarcodeScan extends State<BarcodeScanner> {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => CreateProfile())),
-                        },
+                        onTap: () =>
+                            {Navigator.of(context).push(savedItemsRoute())},
                         child: Container(
                           height: 90.0,
                           margin: EdgeInsets.only(top: 20.0, right: 20.0),

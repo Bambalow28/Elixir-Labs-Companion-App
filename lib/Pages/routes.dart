@@ -6,6 +6,7 @@ import 'package:elixirlabs_mobileapp/bottomNavigationPages/spoofBrowser.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/supremeBot.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/profile.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
+import 'package:elixirlabs_mobileapp/barcodeScan/savedItems.dart';
 import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
 
 //Transition To Home Page
@@ -72,6 +73,16 @@ Route chatRoute() {
 Route supportRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => SupportPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Support
+Route savedItemsRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => SavedItems(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },
