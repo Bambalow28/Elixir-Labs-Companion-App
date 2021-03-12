@@ -1,4 +1,5 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
+import 'package:elixirlabs_mobileapp/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -153,10 +154,8 @@ class _ShowDrawer extends State<ShowDrawer> {
                           ),
                           Expanded(
                             child: GestureDetector(
-                              onTap: () => {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    '/', (Route<dynamic> route) => false)
-                              },
+                              onTap: () =>
+                                  {Navigator.of(context).push(loginRoute())},
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius:
