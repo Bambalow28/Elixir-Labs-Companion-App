@@ -4,7 +4,6 @@ import 'package:elixirlabs_mobileapp/Pages/spoofBrowserTask.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/foundation.dart';
 
@@ -73,14 +72,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                         topLeft: const Radius.circular(30.0),
                         topRight: const Radius.circular(30.0),
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.cyan.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 10,
-                            offset: Offset(0, 8))
-                      ],
-                      color: Colors.cyan[400],
+                      color: Colors.blueGrey[600],
                     ),
                     child: Container(
                       alignment: Alignment.topLeft,
@@ -245,7 +237,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       height: 50.0,
                       color: Colors.deepOrange[400],
                       child: Text(
-                        'Test Button',
+                        'Create Tasks',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -444,98 +436,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     taskName.clear();
     taskCount.clear();
     super.dispose();
-  }
-
-  //Create Tasks Dialog
-  Future createTask(BuildContext context) async {
-    Alert(
-        context: context,
-        title: "Create Task",
-        content: Column(
-          children: [
-            TextField(
-              controller: taskName,
-              decoration: InputDecoration(
-                labelText: "Task Name",
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0),
-            ),
-            TextField(
-              controller: browserURL,
-              decoration: InputDecoration(
-                labelText: "Enter URL",
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0),
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 100.0,
-                  child: TextField(
-                    controller: taskCount,
-                    decoration: InputDecoration(
-                      hintText: "Task Count",
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide:
-                              BorderSide(color: Colors.blue, width: 1.0)),
-                    ),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 12.0),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  width: 130.0,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Profile",
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 1.0)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide:
-                              BorderSide(color: Colors.blue, width: 1.0)),
-                    ),
-                    style: TextStyle(fontSize: 12.0),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Create Task",
-              style: TextStyle(color: Colors.white, fontSize: 20.0),
-            ),
-            onPressed: () => {handleTask()},
-          ),
-        ]).show();
-  }
-
-  //Option Menu Action
-  void choiceAction(String choice) {
-    if (choice == SpoofBrowserAdd.CreateTask) {
-      createTask(context);
-    } else if (choice == SpoofBrowserAdd.Profiles) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CreateProfile()));
-    }
   }
 
   void navigationBarTapped(int index) {

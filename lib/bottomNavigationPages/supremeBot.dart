@@ -52,18 +52,6 @@ class _SupremeBot extends State<SupremeBot> {
       appBar: AppBar(
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
-        actions: <Widget>[
-          PopupMenuButton<String>(
-              icon: Icon(CustomIcons.chat, size: 20.0),
-              itemBuilder: (BuildContext context) {
-                return BarcodeSelection.options.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              }),
-        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: navigationBarTapped,

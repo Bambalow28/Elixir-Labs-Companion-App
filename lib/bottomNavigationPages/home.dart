@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                                       margin: EdgeInsets.only(
                                           left: 5.0, right: 5.0, top: 6.0),
                                       decoration: BoxDecoration(
-                                        color: Color.fromRGBO(35, 39, 42, 1),
+                                        color: Colors.grey[850],
                                         boxShadow: [
                                           BoxShadow(
                                               color: Color.fromRGBO(0, 0, 0, 1)

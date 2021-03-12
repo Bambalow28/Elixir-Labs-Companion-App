@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/Pages/viewProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/createProfilePage.dart';
 
@@ -9,10 +10,10 @@ class CreateProfile extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _CreateProfile extends State<CreateProfile> {
-  int navIndex = 1;
   String appBarTitle = "Profiles";
   bool billingInfo = true;
   bool billingVisible = false;
+  String profileName = 'Supremo';
 
   void createProfilePressed() {
     Navigator.push(
@@ -55,7 +56,14 @@ class _CreateProfile extends State<CreateProfile> {
             return Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: () => {print('Test')},
+                  onTap: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ViewProfile(
+                                  profileName: profileName,
+                                ))),
+                  },
                   child: Container(
                     margin: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                     decoration: BoxDecoration(
