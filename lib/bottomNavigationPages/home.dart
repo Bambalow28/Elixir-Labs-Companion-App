@@ -147,8 +147,113 @@ class _HomePageState extends State<HomePage> {
       ),
       body: progressStatus
           ? Center(
-              child: CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.cyan)),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(23, 23, 23, 1),
+                      Color.fromRGBO(13, 13, 13, 1)
+                    ],
+                  ),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    //Upcoming Releases Widget
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: 10.0, left: 10.0, right: 10.0, bottom: 5.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          width: 300.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[900],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                      height: 205.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                        left: 5.0, right: 5.0, top: 6.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[900],
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    width: 160.0,
+                                    height: 190.0,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+
+                    //News Section Widget
+                    Container(
+                      padding: EdgeInsets.all(10.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          width: 300.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[900],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin:
+                            EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
+                        height: MediaQuery.of(context).size.height - 500,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: 2,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 5.0, right: 5.0, bottom: 10.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[900],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  width: MediaQuery.of(context).size.width - 10,
+                                  height: 123.0,
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             )
           : Center(
               child: Container(

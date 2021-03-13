@@ -1,6 +1,7 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+import 'package:intl/intl.dart';
 
 //Weekly Calendar Widget
 class WeeklyCalendar extends StatefulWidget {
@@ -10,6 +11,10 @@ class WeeklyCalendar extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _WeeklyCalendar extends State<WeeklyCalendar> {
+  static final DateTime now = DateTime.now();
+  static final DateFormat dateFormatter = DateFormat('MMMM dd, yyyy');
+  final String dateFormatted = dateFormatter.format(now);
+
   int navIndex;
   List<String> days = [
     'Monday',
@@ -131,10 +136,10 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
               alignment: Alignment.topLeft,
               padding: EdgeInsets.only(top: 5.0, left: 15.0, bottom: 20.0),
               child: Text(
-                'Today: March 13, 2021',
+                'Today: ' + dateFormatted,
                 style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -154,7 +159,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               top: 5.0, left: 5.0, right: 5.0, bottom: 10.0),
                           height: 190.0,
                           decoration: BoxDecoration(
-                              color: Colors.blueGrey[300],
+                              color: Colors.grey[800],
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
                               boxShadow: [
@@ -202,52 +207,109 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                 ],
                               ),
                               Expanded(
-                                child: Container(
-                                  margin:
-                                      EdgeInsets.only(left: 5.0, right: 5.0),
-                                  width: MediaQuery.of(context).size.width - 20,
-                                  height: 50.0,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: days.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Column(
-                                        children: <Widget>[
-                                          Container(
-                                            width: 140.0,
-                                            margin: EdgeInsets.only(
-                                                top: 5.0,
-                                                left: 5.0,
-                                                right: 5.0,
-                                                bottom: 10.0),
-                                            height: 140.0,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[850],
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20.0)),
-                                            ),
-                                            child: Column(
-                                              children: <Widget>[
-                                                Container(
-                                                  padding: EdgeInsets.only(
-                                                      top: 10.0, left: 15.0),
-                                                  alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    days[index],
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                child: GestureDetector(
+                                  onTap: () => {print('test')},
+                                  child: Container(
+                                    margin:
+                                        EdgeInsets.only(left: 5.0, right: 5.0),
+                                    width:
+                                        MediaQuery.of(context).size.width - 20,
+                                    height: 50.0,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: days.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Column(
+                                          children: <Widget>[
+                                            Container(
+                                              width: 140.0,
+                                              margin: EdgeInsets.only(
+                                                  top: 5.0,
+                                                  left: 5.0,
+                                                  right: 5.0,
+                                                  bottom: 10.0),
+                                              height: 140.0,
+                                              decoration: BoxDecoration(
+                                                color: Colors.blueGrey[500],
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20.0)),
+                                              ),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        top: 15.0,
+                                                        left: 10.0,
+                                                        right: 10.0),
+                                                    alignment:
+                                                        Alignment.topCenter,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
+                                                      child: Image.asset(
+                                                        "assets/images/jordanss.png",
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        height: 70.0,
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Expanded(
+                                                    child: SizedBox(),
+                                                  ),
+                                                  Stack(
+                                                    children: <Widget>[
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 13.0,
+                                                                bottom: 20.0),
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: Text(
+                                                          'Name: ' +
+                                                              'Supreme Drop',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 12.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 30.0,
+                                                                left: 13.0),
+                                                        child: Text(
+                                                          "Time: " +
+                                                              '8:00AM EST',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontSize: 12.0,
+                                                            color: Colors
+                                                                .grey[300],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      );
-                                    },
+                                          ],
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
