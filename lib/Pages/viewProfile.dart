@@ -321,28 +321,35 @@ class _ViewProfile extends State<ViewProfile> {
                 ),
               ],
             ),
+            Expanded(
+              child: SizedBox(),
+            ),
             Row(
               children: <Widget>[
                 Expanded(
                   child: Container(
                     width: 80.0,
-                    height: 80.0,
-                    margin: EdgeInsets.only(top: 30.0, left: 20.0),
+                    height: 60.0,
+                    margin:
+                        EdgeInsets.only(top: 30.0, left: 20.0, bottom: 30.0),
                     decoration: BoxDecoration(
                         color: Colors.blue[600],
                         borderRadius: BorderRadius.all(Radius.circular(30.0))),
-                    child: Column(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           Icons.edit,
                           color: Colors.white,
-                          size: 30.0,
+                          size: 25.0,
                         ),
-                        SizedBox(height: 5.0),
+                        SizedBox(width: 5.0),
                         Text(
                           'Edit',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -353,24 +360,28 @@ class _ViewProfile extends State<ViewProfile> {
                 ),
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(top: 30.0, right: 20.0),
+                    margin:
+                        EdgeInsets.only(top: 30.0, right: 20.0, bottom: 30.0),
                     width: 80.0,
-                    height: 80.0,
+                    height: 60.0,
                     decoration: BoxDecoration(
-                        color: Colors.green[600],
+                        color: Colors.green[500],
                         borderRadius: BorderRadius.all(Radius.circular(30.0))),
-                    child: Column(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           Icons.save,
                           color: Colors.white,
-                          size: 30.0,
+                          size: 25.0,
                         ),
-                        SizedBox(height: 5.0),
+                        SizedBox(width: 5.0),
                         Text(
                           'Save',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),

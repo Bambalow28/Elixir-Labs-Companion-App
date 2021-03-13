@@ -309,6 +309,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () => {
+                          Navigator.pop(context),
                           Navigator.push(
                               context,
                               MaterialPageRoute(
