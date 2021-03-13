@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import "bottomNavigationPages/home.dart";
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
-
-final authEnd = Uri.parse(
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds');
-final tokenEnd = Uri.parse('https://discord.com/api/oauth2/token');
-final clientID = '799140079494496276';
-final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
-final redirectUrl = Uri.parse('https://www.google.ca');
+import 'dart:async';
 
 //Splash Screen Widget
 class SplashScreen extends StatefulWidget {
