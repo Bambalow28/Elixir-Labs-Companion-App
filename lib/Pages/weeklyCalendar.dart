@@ -93,7 +93,6 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
         ],
       ),
       body: Container(
-        // margin: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
@@ -144,7 +143,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                           width: MediaQuery.of(context).size.width - 10,
                           margin: EdgeInsets.only(
                               top: 5.0, left: 5.0, right: 5.0, bottom: 10.0),
-                          height: 150.0,
+                          height: 190.0,
                           decoration: BoxDecoration(
                               color: Colors.blueGrey[300],
                               borderRadius:
@@ -167,6 +166,56 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                       color: Colors.white,
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin:
+                                      EdgeInsets.only(left: 5.0, right: 5.0),
+                                  width: MediaQuery.of(context).size.width - 20,
+                                  height: 50.0,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: days.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Column(
+                                        children: <Widget>[
+                                          Container(
+                                            width: 140.0,
+                                            margin: EdgeInsets.only(
+                                                top: 5.0,
+                                                left: 5.0,
+                                                right: 5.0,
+                                                bottom: 10.0),
+                                            height: 140.0,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[850],
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20.0)),
+                                            ),
+                                            child: Column(
+                                              children: <Widget>[
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      top: 10.0, left: 15.0),
+                                                  alignment: Alignment.topLeft,
+                                                  child: Text(
+                                                    days[index],
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ],
