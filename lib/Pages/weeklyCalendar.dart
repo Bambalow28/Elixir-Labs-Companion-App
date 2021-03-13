@@ -20,6 +20,15 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
     'Saturday',
     'Sunday'
   ];
+  List<String> dates = [
+    'March 15, 2021',
+    'March 16, 2021',
+    'March 17, 2021',
+    'March 18, 2021',
+    'March 19, 2021',
+    'March 20, 2021',
+    'March 21, 2021'
+  ];
 
   void navigationBarTapped(int index) {
     setState(() {
@@ -122,7 +131,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
               alignment: Alignment.topLeft,
               padding: EdgeInsets.only(top: 5.0, left: 15.0, bottom: 20.0),
               child: Text(
-                'March 13, 2021',
+                'Today: March 13, 2021',
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: 18.0,
@@ -157,16 +166,40 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               ]),
                           child: Column(
                             children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.only(top: 10.0, left: 15.0),
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  days[index],
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                              Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Container(
+                                      padding: EdgeInsets.only(
+                                          top: 10.0, left: 15.0),
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        days[index],
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SizedBox(),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      alignment: Alignment.centerRight,
+                                      padding: EdgeInsets.only(
+                                          top: 12.0, right: 10.0),
+                                      child: Text(
+                                        dates[index],
+                                        style: TextStyle(
+                                            color: Colors.grey[300],
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               Expanded(
                                 child: Container(
