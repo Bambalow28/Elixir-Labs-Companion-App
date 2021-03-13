@@ -143,7 +143,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                         Container(
                           width: MediaQuery.of(context).size.width - 10,
                           margin: EdgeInsets.only(
-                              top: 10.0, left: 5.0, right: 5.0, bottom: 10.0),
+                              top: 5.0, left: 5.0, right: 5.0, bottom: 10.0),
                           height: 150.0,
                           decoration: BoxDecoration(
                               color: Colors.blueGrey[300],
@@ -151,7 +151,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   BorderRadius.all(Radius.circular(20.0)),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
+                                    color: Colors.black38.withOpacity(0.5),
                                     spreadRadius: 2,
                                     blurRadius: 4,
                                     offset: Offset(0, 0)),
