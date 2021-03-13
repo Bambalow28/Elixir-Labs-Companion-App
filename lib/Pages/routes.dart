@@ -1,5 +1,6 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:elixirlabs_mobileapp/Pages/support.dart';
+import 'package:elixirlabs_mobileapp/Pages/weeklyCalendar.dart';
 import 'package:elixirlabs_mobileapp/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/bottomNavigationPages/home.dart';
@@ -9,6 +10,7 @@ import 'package:elixirlabs_mobileapp/bottomNavigationPages/profile.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/savedItems.dart';
 import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
+import 'package:elixirlabs_mobileapp/Pages/weeklyCalendar.dart';
 
 //Transition To Home Page
 Route homeRoute() {
@@ -94,6 +96,16 @@ Route savedItemsRoute() {
 Route loginRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Weekly Calendar
+Route weeklyCalendarRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => WeeklyCalendar(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

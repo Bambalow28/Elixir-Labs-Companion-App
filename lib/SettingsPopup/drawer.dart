@@ -1,5 +1,4 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
-import 'package:elixirlabs_mobileapp/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -76,8 +75,22 @@ class _ShowDrawer extends State<ShowDrawer> {
                           'Barcode Scanner',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onTap: () =>
-                            {Navigator.of(context).push(barcodeRoute())},
+                        onTap: () => {
+                          Navigator.pop(context),
+                          Navigator.of(context).push(barcodeRoute())
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.calendar_today_rounded,
+                            color: Colors.white),
+                        title: Text(
+                          "Weekly Calendar",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onTap: () => {
+                          Navigator.pop(context),
+                          Navigator.of(context).push(weeklyCalendarRoute())
+                        },
                       ),
                       ListTile(
                         leading: Icon(
@@ -91,7 +104,10 @@ class _ShowDrawer extends State<ShowDrawer> {
                             color: Colors.white,
                           ),
                         ),
-                        onTap: () => {Navigator.of(context).push(chatRoute())},
+                        onTap: () => {
+                          Navigator.pop(context),
+                          Navigator.of(context).push(chatRoute())
+                        },
                       ),
                       ListTile(
                         leading: Icon(Icons.attach_money_rounded,
@@ -100,8 +116,10 @@ class _ShowDrawer extends State<ShowDrawer> {
                           'Sponsors',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onTap: () =>
-                            {Navigator.of(context).push(supportRoute())},
+                        onTap: () => {
+                          Navigator.pop(context),
+                          Navigator.of(context).push(supportRoute())
+                        },
                       ),
                       ListTile(
                         leading: Icon(Icons.person, color: Colors.white),
@@ -109,8 +127,10 @@ class _ShowDrawer extends State<ShowDrawer> {
                           'Support',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onTap: () =>
-                            {Navigator.of(context).push(supportRoute())},
+                        onTap: () => {
+                          Navigator.pop(context),
+                          Navigator.of(context).push(supportRoute())
+                        },
                       ),
                       const Expanded(child: SizedBox()),
                       Container(

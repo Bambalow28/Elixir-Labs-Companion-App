@@ -340,124 +340,131 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-                      height: MediaQuery.of(context).size.height - 500,
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: importantNotif.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(
-                                    left: 5.0, right: 5.0, bottom: 10.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.blueGrey[900],
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 1)
-                                            .withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 4),
-                                  ],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
+                    Expanded(
+                      child: Container(
+                        margin:
+                            EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
+                        height: MediaQuery.of(context).size.height - 500,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: importantNotif.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 5.0, right: 5.0, bottom: 10.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blueGrey[900],
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 1)
+                                              .withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 4),
+                                    ],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
                                   ),
-                                ),
-                                width: MediaQuery.of(context).size.width - 10,
-                                height: 123.0,
-                                child: Stack(
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: <Widget>[
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              top: 10.0, left: 5.0, right: 5.0),
-                                          alignment: Alignment.topLeft,
-                                          child: SizedBox(
-                                            width: 28.0,
-                                            height: 25.0,
+                                  width: MediaQuery.of(context).size.width - 10,
+                                  height: 123.0,
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 10.0,
+                                                left: 5.0,
+                                                right: 5.0),
+                                            alignment: Alignment.topLeft,
+                                            child: SizedBox(
+                                              width: 28.0,
+                                              height: 25.0,
+                                              child: Image.asset(
+                                                "assets/images/logo.png",
+                                                fit: BoxFit.cover,
+                                                width: 200.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Container(
+                                        alignment: Alignment.topRight,
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Text(
+                                          '0:00AM',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 10.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.bottomRight,
+                                        padding: EdgeInsets.all(10.0),
+                                        child: SizedBox(
+                                          width: 120.0,
+                                          height: 80.0,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
                                             child: Image.asset(
-                                              "assets/images/logo.png",
-                                              fit: BoxFit.cover,
+                                              "assets/images/jordanss.png",
+                                              fit: BoxFit.fill,
                                               width: 200.0,
                                             ),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    Container(
-                                      alignment: Alignment.topRight,
-                                      padding: EdgeInsets.all(10.0),
-                                      child: Text(
-                                        '0:00AM',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 10.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        textAlign: TextAlign.center,
                                       ),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.bottomRight,
-                                      padding: EdgeInsets.all(10.0),
-                                      child: SizedBox(
-                                        width: 120.0,
-                                        height: 80.0,
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: Image.asset(
-                                            "assets/images/jordanss.png",
-                                            fit: BoxFit.fill,
-                                            width: 200.0,
-                                          ),
+                                      Container(
+                                        alignment: Alignment.centerLeft,
+                                        width: 300.0,
+                                        padding: EdgeInsets.only(left: 10.0),
+                                        child: FittedBox(
+                                          fit: BoxFit.fitWidth,
+                                          child: Text('Release in August!',
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold)),
                                         ),
                                       ),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      width: 300.0,
-                                      padding: EdgeInsets.only(left: 10.0),
-                                      child: FittedBox(
-                                        fit: BoxFit.fitWidth,
-                                        child: Text('Release in August!',
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 20.0,
-                                                fontWeight: FontWeight.bold)),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            top: 13.5,
+                                            bottom: 10.0,
+                                            left: 35.0),
+                                        alignment: Alignment.topLeft,
+                                        child: Column(
+                                          children: <Widget>[
+                                            Container(
+                                              alignment: Alignment.topLeft,
+                                              padding:
+                                                  EdgeInsets.only(bottom: 5.0),
+                                              child: Text('Air Jordan 1 Pollen',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18.0,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          top: 13.5, bottom: 10.0, left: 35.0),
-                                      alignment: Alignment.topLeft,
-                                      child: Column(
-                                        children: <Widget>[
-                                          Container(
-                                            alignment: Alignment.topLeft,
-                                            padding:
-                                                EdgeInsets.only(bottom: 5.0),
-                                            child: Text('Air Jordan 1 Pollen',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18.0,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],
