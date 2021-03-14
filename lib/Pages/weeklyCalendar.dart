@@ -208,7 +208,10 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               ),
                               Expanded(
                                 child: GestureDetector(
-                                  onTap: () => {print('test')},
+                                  onTap: () => {
+                                    Navigator.of(context)
+                                        .push(weeklyCalendarItemRoute())
+                                  },
                                   child: Container(
                                     margin:
                                         EdgeInsets.only(left: 5.0, right: 5.0),
