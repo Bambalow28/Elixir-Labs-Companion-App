@@ -1,8 +1,5 @@
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 
 //Create Profile Widget
 class WeeklyCalendarItem extends StatefulWidget {
@@ -12,7 +9,268 @@ class WeeklyCalendarItem extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
-  InAppWebViewController webView;
+  void sitesClicked() {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).requestFocus(new FocusNode());
+            },
+            child: Container(
+              height: 380.0,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(30.0),
+                    topRight: const Radius.circular(30.0),
+                  ),
+                  color: Colors.grey[850]),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(30.0),
+                        topRight: const Radius.circular(30.0),
+                      ),
+                      color: Colors.blueGrey[600],
+                    ),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      padding:
+                          EdgeInsets.only(top: 15.0, left: 20.0, bottom: 15.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(right: 10.0),
+                            child: GestureDetector(
+                              onTap: () => {Navigator.pop(context)},
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                                size: 23.0,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              'Shop Name',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    'URL',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 30,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[700],
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey[900].withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 2,
+                              offset: Offset(0, 0)),
+                        ]),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'https://www.test.com',
+                      style: TextStyle(color: Colors.grey[400], fontSize: 16.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(height: 20.0),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          height: 50.0,
+                          margin: EdgeInsets.only(left: 10.0),
+                          decoration: BoxDecoration(
+                              color: Colors.blue[400],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.blue[900].withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 0)),
+                              ]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Shopify: ',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Container(
+                                color: Colors.white,
+                                child: Icon(
+                                  Icons.check_box_rounded,
+                                  color: Colors.green[300],
+                                  size: 20.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10.0),
+                      Expanded(
+                        child: Container(
+                          height: 50.0,
+                          margin: EdgeInsets.only(right: 10.0),
+                          decoration: BoxDecoration(
+                              color: Colors.blue[400],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.blue[900].withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 0)),
+                              ]),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Container(
+                              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    'Account Required: ',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Container(
+                                    color: Colors.white,
+                                    child: Icon(Icons.check_box_rounded,
+                                        color: Colors.green[300]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: SizedBox(),
+                  ),
+                  Text(
+                    'RELEASE TIME',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '8:00AM EST',
+                    style: TextStyle(
+                        color: Colors.orange[300],
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(
+                    child: SizedBox(),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () => {print('URL Copied')},
+                          child: Container(
+                            margin: EdgeInsets.only(left: 20.0, bottom: 30.0),
+                            alignment: Alignment.center,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                                color: Colors.deepPurple[500],
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey[900].withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 4,
+                                      offset: Offset(0, 0)),
+                                ]),
+                            child: Text(
+                              'Quicktask',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () => {print('URL Copied')},
+                          child: Container(
+                            margin: EdgeInsets.only(right: 20.0, bottom: 30.0),
+                            alignment: Alignment.center,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                                color: Colors.deepOrange[400],
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey[900].withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 4,
+                                      offset: Offset(0, 0)),
+                                ]),
+                            child: Text(
+                              'Copy URL',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +279,14 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
       appBar: AppBar(
         title: Text('Item Name'),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 15.0),
+            child: GestureDetector(
+                onTap: () => {print('Alert Set!')},
+                child: Icon(Icons.lightbulb)),
+          ),
+        ],
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -37,94 +303,112 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
         ),
         child: Column(
           children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.only(
-                  top: 20.0, bottom: 10.0, left: 20.0, right: 20.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                child: Image.asset(
-                  'assets/images/jordanss.png',
-                  fit: BoxFit.fill,
-                  height: 200.0,
-                ),
-                // child: itemImageCheck() == false
-                //     ? Container(
-                //         alignment: Alignment.center,
-                //         height: 200.0,
-                //         child: Text(
-                //           'Image Not Available',
-                //           style: TextStyle(
-                //               color: Colors.grey,
-                //               fontWeight: FontWeight.bold,
-                //               fontStyle: FontStyle.italic,
-                //               fontSize: 20.0),
-                //           textAlign: TextAlign.center,
-                //         ))
-                //     : Image.network(
-                //         widget.itemImage,
-                //       ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
-              alignment: Alignment.topLeft,
-              child: RichText(
-                text: TextSpan(
-                  text: 'NAME: ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Item Name',
-                      style: TextStyle(color: Colors.white, fontSize: 14.0),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                        top: 20.0, bottom: 5.0, left: 10.0, right: 10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      child: Image.asset(
+                        'assets/images/jordanss.png',
+                        fit: BoxFit.fill,
+                        height: 130.0,
+                      ),
+                      // child: itemImageCheck() == false
+                      //     ? Container(
+                      //         alignment: Alignment.center,
+                      //         height: 200.0,
+                      //         child: Text(
+                      //           'Image Not Available',
+                      //           style: TextStyle(
+                      //               color: Colors.grey,
+                      //               fontWeight: FontWeight.bold,
+                      //               fontStyle: FontStyle.italic,
+                      //               fontSize: 20.0),
+                      //           textAlign: TextAlign.center,
+                      //         ))
+                      //     : Image.network(
+                      //         widget.itemImage,
+                      //       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
-              alignment: Alignment.topLeft,
-              child: RichText(
-                text: TextSpan(
-                  text: 'PRICE: ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
                   ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Item Price',
-                      style: TextStyle(color: Colors.white, fontSize: 14.0),
-                    ),
-                  ],
                 ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
-              alignment: Alignment.topLeft,
-              child: RichText(
-                text: TextSpan(
-                  text: 'TIME OF RELEASE: ',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(
+                            left: 20.0, bottom: 10.0, right: 20.0),
+                        alignment: Alignment.topLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'NAME: ',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Item Name',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 14.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            left: 20.0, bottom: 10.0, right: 20.0),
+                        alignment: Alignment.topLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'PRICE: ',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Item Price',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 14.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                        alignment: Alignment.topLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'RELEASE DATE: ',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Date',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 14.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Date',
-                      style: TextStyle(color: Colors.white, fontSize: 14.0),
-                    ),
-                  ],
                 ),
-              ),
+              ],
             ),
             SizedBox(
               height: 20.0,
@@ -257,103 +541,111 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(
-                                  top: 10.0, left: 10.0, right: 13.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.blueGrey[400],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black45.withOpacity(0.5),
-                                        spreadRadius: 4,
-                                        blurRadius: 2,
-                                        offset: Offset(0, 0)),
-                                  ]),
-                              height: 52.0,
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    padding:
-                                        EdgeInsets.only(top: 10.0, bottom: 5.0),
-                                    alignment: Alignment.topCenter,
-                                    child: Text(
-                                      'SHOP NAME',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
+                            child: GestureDetector(
+                              onTap: () => {sitesClicked()},
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    top: 10.0, left: 10.0, right: 13.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.blueGrey[400],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(bottom: 5.0),
-                                    alignment: Alignment.topCenter,
-                                    child: Text(
-                                      'Time: ' + '8:00AM EST',
-                                      style: TextStyle(
-                                          color: Colors.grey[300],
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color:
+                                              Colors.black45.withOpacity(0.5),
+                                          spreadRadius: 4,
+                                          blurRadius: 2,
+                                          offset: Offset(0, 0)),
+                                    ]),
+                                height: 52.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          top: 10.0, bottom: 5.0),
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        'SHOP NAME',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Expanded(
+                                      child: SizedBox(),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(bottom: 5.0),
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        '8:00AM EST',
+                                        style: TextStyle(
+                                            color: Colors.grey[300],
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                           Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(top: 10.0, right: 10.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.blueGrey[400],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black45.withOpacity(0.5),
-                                        spreadRadius: 4,
-                                        blurRadius: 2,
-                                        offset: Offset(0, 0)),
-                                  ]),
-                              height: 52.0,
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    padding:
-                                        EdgeInsets.only(top: 10.0, bottom: 5.0),
-                                    alignment: Alignment.topCenter,
-                                    child: Text(
-                                      'SHOP NAME',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
+                            child: GestureDetector(
+                              onTap: () => {sitesClicked()},
+                              child: Container(
+                                margin: EdgeInsets.only(top: 10.0, right: 10.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.blueGrey[400],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(bottom: 5.0),
-                                    alignment: Alignment.topCenter,
-                                    child: Text(
-                                      'Time: ' + '8:00AM EST',
-                                      style: TextStyle(
-                                          color: Colors.grey[300],
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color:
+                                              Colors.black45.withOpacity(0.5),
+                                          spreadRadius: 4,
+                                          blurRadius: 2,
+                                          offset: Offset(0, 0)),
+                                    ]),
+                                height: 52.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          top: 10.0, bottom: 5.0),
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        'SHOP NAME',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Expanded(
+                                      child: SizedBox(),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(bottom: 5.0),
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        '8:00AM EST',
+                                        style: TextStyle(
+                                            color: Colors.grey[300],
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
