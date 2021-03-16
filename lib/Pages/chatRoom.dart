@@ -112,10 +112,29 @@ class _ChatRoom extends State<ChatRoom> {
                           child: Container(
                             margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
                             width: MediaQuery.of(context).size.width - 50,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Container(
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.grey[400],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15.0,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    height: 50.0,
+                                    decoration: BoxDecoration(
+                                      color: Colors.blueGrey[600],
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0)),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],

@@ -118,7 +118,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                         ),
                         onTap: () => {
                           Navigator.pop(context),
-                          Navigator.of(context).push(supportRoute())
+                          Navigator.of(context).push(sponsorsRoute())
                         },
                       ),
                       ListTile(

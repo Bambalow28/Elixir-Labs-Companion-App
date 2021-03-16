@@ -1,4 +1,5 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
+import 'package:elixirlabs_mobileapp/Pages/sponsors.dart';
 import 'package:elixirlabs_mobileapp/Pages/support.dart';
 import 'package:elixirlabs_mobileapp/Pages/weeklyCalendar.dart';
 import 'package:elixirlabs_mobileapp/Pages/weeklyCalendarItem.dart';
@@ -118,6 +119,16 @@ Route weeklyCalendarItemRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
         WeeklyCalendarItem(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Sponsors Page
+Route sponsorsRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => SponsorsPage(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },
