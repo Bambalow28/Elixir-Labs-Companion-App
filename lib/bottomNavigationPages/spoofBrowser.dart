@@ -770,7 +770,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                           ),
                                           children: <TextSpan>[
                                             TextSpan(
-                                              text: tasks[index],
+                                              text: browserURL.text,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 14.0,
