@@ -650,182 +650,204 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                 ),
               ),
               Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                  height: MediaQuery.of(context).size.height - 600,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: taskCountNum == null ? 0 : taskCountNum.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Dismissible(
-                        key: Key(taskCountNum[index]),
-                        direction: DismissDirection.endToStart,
-                        onDismissed: (direction) {
-                          setState(() {
-                            taskCountNum.removeAt(index);
-                          });
+                child: taskCountNum.length != 0
+                    ? Container(
+                        margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                        height: MediaQuery.of(context).size.height - 600,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount:
+                              taskCountNum == null ? 0 : taskCountNum.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Dismissible(
+                              key: Key(taskCountNum[index]),
+                              direction: DismissDirection.endToStart,
+                              onDismissed: (direction) {
+                                setState(() {
+                                  taskCountNum.removeAt(index);
+                                });
 
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                            "Task Deleted",
-                            style: TextStyle(fontSize: 16.0),
-                            textAlign: TextAlign.center,
-                          )));
-                        },
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          color: Colors.red,
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 10.0),
-                            child: Icon(
-                              Icons.delete,
-                              size: 20.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        child: GestureDetector(
-                          onTap: () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => BrowserTask(
-                                          taskName: taskName.text,
-                                        ))),
-                          },
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(
-                                    left: 5.0, right: 5.0, bottom: 10.0),
-                                decoration: BoxDecoration(
-                                  color: Color.fromRGBO(36, 37, 38, 1),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 1)
-                                            .withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 4),
-                                  ],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                  "Task Deleted",
+                                  style: TextStyle(fontSize: 16.0),
+                                  textAlign: TextAlign.center,
+                                )));
+                              },
+                              background: Container(
+                                alignment: Alignment.centerRight,
+                                color: Colors.red,
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: Icon(
+                                    Icons.delete,
+                                    size: 20.0,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                width: MediaQuery.of(context).size.width,
-                                height: 80.0,
-                                child: Stack(
+                              ),
+                              child: GestureDetector(
+                                onTap: () => {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => BrowserTask(
+                                                taskName: taskName.text,
+                                              ))),
+                                },
+                                onLongPress: () {
+                                  print('Long hold pressed');
+                                },
+                                child: Column(
                                   children: <Widget>[
                                     Container(
-                                      padding: EdgeInsets.only(left: 13.0),
-                                      alignment: Alignment.centerLeft,
-                                      child: SizedBox(
-                                        width: 5.0,
-                                        height: 60.0,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
+                                      margin: EdgeInsets.only(
+                                          left: 5.0, right: 5.0, bottom: 10.0),
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(36, 37, 38, 1),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Color.fromRGBO(0, 0, 0, 1)
+                                                  .withOpacity(0.5),
+                                              spreadRadius: 2,
+                                              blurRadius: 4),
+                                        ],
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 80.0,
+                                      child: Stack(
+                                        children: <Widget>[
+                                          Container(
+                                            padding:
+                                                EdgeInsets.only(left: 13.0),
+                                            alignment: Alignment.centerLeft,
+                                            child: SizedBox(
+                                              width: 5.0,
+                                              height: 60.0,
+                                              child: DecoratedBox(
+                                                decoration: BoxDecoration(
+                                                    color: Color.fromRGBO(
+                                                        0, 255, 255, 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 10.0,
+                                                bottom: 10.0,
+                                                left: 30.0),
+                                            alignment: Alignment.topLeft,
+                                            child: RichText(
+                                              text: TextSpan(
+                                                text: 'TASK NAME: ',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: taskName.text,
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                left: 30.0,
+                                                right: 5.0,
+                                                bottom: 10.0),
+                                            padding: EdgeInsets.only(top: 30.0),
+                                            alignment: Alignment.topLeft,
+                                            child: RichText(
+                                              text: TextSpan(
+                                                text: 'URL: ',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: browserURL.text,
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                left: 30.0,
+                                                right: 5.0,
+                                                bottom: 10.0),
+                                            padding: EdgeInsets.only(top: 50.0),
+                                            alignment: Alignment.topLeft,
+                                            child: RichText(
+                                              text: TextSpan(
+                                                text: 'PROFILE: ',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: 'SUPREMO',
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.centerRight,
+                                            padding:
+                                                EdgeInsets.only(right: 20.0),
+                                            child: Icon(
+                                              Icons.circle,
                                               color: Color.fromRGBO(
-                                                  0, 255, 255, 1),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          top: 10.0, bottom: 10.0, left: 30.0),
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: 'TASK NAME: ',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: taskName.text,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14.0,
-                                                  fontWeight:
-                                                      FontWeight.normal),
+                                                  92, 184, 92, 1),
+                                              size: 20.0,
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          left: 30.0, right: 5.0, bottom: 10.0),
-                                      padding: EdgeInsets.only(top: 30.0),
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: 'URL: ',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
                                           ),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: browserURL.text,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14.0,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          left: 30.0, right: 5.0, bottom: 10.0),
-                                      padding: EdgeInsets.only(top: 50.0),
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: 'PROFILE: ',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: 'SUPREMO',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14.0,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.centerRight,
-                                      padding: EdgeInsets.only(right: 20.0),
-                                      child: Icon(
-                                        Icons.circle,
-                                        color: Color.fromRGBO(92, 184, 92, 1),
-                                        size: 20.0,
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
-                ),
+                      )
+                    : Center(
+                        child: Text(
+                          'No Tasks',
+                          style: TextStyle(
+                              color: Colors.grey[600], fontSize: 25.0),
+                        ),
+                      ),
               ),
             ],
           ),
