@@ -129,29 +129,15 @@ class _SponsorsPage extends State<SponsorsPage> {
                     ),
                     width: MediaQuery.of(context).size.width - 50,
                     height: 100.0,
-                    child: Row(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.topLeft,
-                            padding: EdgeInsets.only(
-                                left: 10.0, right: 10.0, top: 10.0),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              child: Image.asset(
-                                "assets/images/jordanss.png",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ),
                         Container(
-                          padding: EdgeInsets.only(right: 20.0),
+                          padding: EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
-                                padding: EdgeInsets.only(top: 10.0),
                                 child: Text(
                                   'Zenyscripts',
                                   style: TextStyle(
@@ -160,9 +146,12 @@ class _SponsorsPage extends State<SponsorsPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
                               Container(
                                 child: Text(
-                                  'John Doe',
+                                  'Save 10 USD on your membership',
                                   style: TextStyle(
                                       color: Colors.grey,
                                       fontSize: 14.0,
@@ -170,32 +159,6 @@ class _SponsorsPage extends State<SponsorsPage> {
                                 ),
                               ),
                             ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 10.0),
-                            decoration: BoxDecoration(
-                                color: Colors.orange[300],
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0))),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10.0,
-                                  right: 10.0,
-                                  top: 5.0,
-                                  bottom: 5.0),
-                              child: FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  'Click for Code',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
                           ),
                         ),
                       ],

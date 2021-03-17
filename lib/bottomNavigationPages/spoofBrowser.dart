@@ -695,8 +695,21 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                                 taskName: taskName.text,
                                               ))),
                                 },
-                                onLongPress: () {
-                                  print('Long hold pressed');
+                                onLongPress: () => {
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    height: 100,
+                                    width: 100,
+                                    child: PopupMenuButton(
+                                      child: FlutterLogo(),
+                                      itemBuilder: (context) {
+                                        return <PopupMenuItem>[
+                                          new PopupMenuItem(
+                                              child: Text('Delete'))
+                                        ];
+                                      },
+                                    ),
+                                  )
                                 },
                                 child: Column(
                                   children: <Widget>[
