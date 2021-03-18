@@ -1,9 +1,7 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfilePage.dart';
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:elixirlabs_mobileapp/Pages/spoofBrowserTask.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/foundation.dart';
 
@@ -26,6 +24,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController browserURL = new TextEditingController();
   TextEditingController taskCount = new TextEditingController();
   List<String> taskCountNum = [];
+  List<String> baseURL = ['Nike', 'Adidas', 'Supreme'];
 
   var taskNum;
 
@@ -181,63 +180,180 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.topLeft,
-                        padding: EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'Quantity',
-                          style: TextStyle(color: Colors.grey, fontSize: 16.0),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        child: Column(
+                  Container(
+                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                    height: 80.0,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: baseURL.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
                           children: <Widget>[
-                            Container(
-                              width: 100.0,
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10.0, top: 5.0),
-                              decoration: BoxDecoration(),
-                              child: TextField(
-                                  controller: taskCount,
-                                  textCapitalization: TextCapitalization.words,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: '1',
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    contentPadding: EdgeInsets.all(8.0),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 2.0, color: Colors.white),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0))),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 2.0, color: Colors.cyan),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0))),
+                            Column(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 5.0, right: 5.0, top: 6.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blueGrey[700],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color:
+                                              Colors.grey[900].withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 4,
+                                          offset: Offset(0, 0)),
+                                    ],
                                   ),
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16.0)),
+                                  width: 100.0,
+                                  height: 60.0,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      baseURL[index],
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16.0),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
-                        ),
+                        );
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            child: Text(
+                              'Quantity',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16.0),
+                            ),
+                          ),
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: 100.0,
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 10.0, top: 5.0),
+                                  decoration: BoxDecoration(),
+                                  child: TextField(
+                                      controller: taskCount,
+                                      textCapitalization:
+                                          TextCapitalization.words,
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        hintText: '1',
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey),
+                                        contentPadding: EdgeInsets.all(8.0),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2.0,
+                                                color: Colors.white),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2.0, color: Colors.cyan),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))),
+                                      ),
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 16.0)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 30.0,
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.center,
+                            margin: EdgeInsets.only(right: 30.0),
+                            // padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              'Profile',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16.0),
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          GestureDetector(
+                            onTap: () => {print('Profile Selected')},
+                            child: Container(
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    width: 200.0,
+                                    height: 45.0,
+                                    margin: EdgeInsets.only(right: 30.0),
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[800],
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.grey[900]
+                                                  .withOpacity(0.5),
+                                              spreadRadius: 2,
+                                              blurRadius: 4,
+                                              offset: Offset(0, 0)),
+                                        ]),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'Select...',
+                                        style: TextStyle(color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
+                  ),
+                  Expanded(
+                    child: SizedBox(),
                   ),
                   GestureDetector(
                     onTap: () => {handleTask()},
                     child: Container(
                       alignment: Alignment.center,
+                      margin: EdgeInsets.only(bottom: 30.0),
                       width: 200.0,
                       height: 50.0,
-                      color: Colors.deepOrange[400],
+                      decoration: BoxDecoration(
+                          color: Colors.deepOrange[400],
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
                       child: Text(
                         'Create Tasks',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
                       ),
                     ),
