@@ -25,6 +25,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController taskCount = new TextEditingController();
   List<String> taskCountNum = [];
   List<String> baseURL = ['Nike', 'Adidas', 'Supreme'];
+  String baseURLtext;
 
   var taskNum;
 
@@ -41,6 +42,22 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     setState(() {
       tasks.add(browserURL.text);
     });
+  }
+
+  Future<String> baseURLSelected() {
+    switch (baseURLtext) {
+      case "Nike":
+        browserURL.text = 'https://www.nike.ca/';
+        break;
+
+      case "Adidas":
+        browserURL.text = "https://www.adidas.ca";
+        break;
+
+      case "Supreme":
+        browserURL.text = "https://www.supremenewyork.com/shop/all";
+        break;
+    }
   }
 
   //Show Create Task Bottom Sheet when 'Create Task' is Clicked
@@ -191,37 +208,45 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                           children: <Widget>[
                             Column(
                               children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      left: 5.0, right: 5.0, top: 6.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blueGrey[700],
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
+                                GestureDetector(
+                                  onTap: () => {
+                                    baseURLtext = baseURL[index],
+                                    baseURLSelected()
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                        left: 5.0, right: 5.0, top: 6.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blueGrey[700],
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey[900]
+                                                .withOpacity(0.5),
+                                            spreadRadius: 2,
+                                            blurRadius: 4,
+                                            offset: Offset(0, 0)),
+                                      ],
                                     ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color:
-                                              Colors.grey[900].withOpacity(0.5),
-                                          spreadRadius: 2,
-                                          blurRadius: 4,
-                                          offset: Offset(0, 0)),
-                                    ],
-                                  ),
-                                  width: 100.0,
-                                  height: 60.0,
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      baseURL[index],
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16.0),
-                                      textAlign: TextAlign.center,
+                                    width: 100.0,
+                                    height: 60.0,
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: Text(
+                                          baseURL[index],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                )
                               ],
                             ),
                           ],
