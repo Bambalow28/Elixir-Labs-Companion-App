@@ -42,6 +42,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     setState(() {
       tasks.add(browserURL.text);
     });
+
+    Future.delayed(const Duration(seconds: 1), () => {Navigator.pop(context)});
   }
 
   Future<String> baseURLSelected() {
@@ -345,7 +347,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        'Select...',
+                                        'Select',
                                         style: TextStyle(color: Colors.white),
                                         textAlign: TextAlign.center,
                                       ),
