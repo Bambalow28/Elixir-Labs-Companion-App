@@ -983,7 +983,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                             child: Icon(
                                               Icons.circle,
                                               color: Color.fromRGBO(
-                                                  92, 184, 92, 1),
+                                                  240, 173, 78, 1),
                                               size: 20.0,
                                             ),
                                           ),
