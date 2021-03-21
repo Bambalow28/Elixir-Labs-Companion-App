@@ -13,6 +13,9 @@ class _CreateProfilePage extends State<CreateProfilePage> {
   bool billingInfo = true;
   bool billingVisible = false;
 
+  //Card Details
+  TextEditingController cardNumber = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -283,6 +286,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                       padding: EdgeInsets.only(left: 10, right: 10.0),
                       child: TextField(
                         keyboardType: TextInputType.number,
+                        controller: cardNumber,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color.fromRGBO(45, 45, 45, 1),

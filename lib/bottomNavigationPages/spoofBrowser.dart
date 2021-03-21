@@ -9,6 +9,8 @@ import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 //Spoof Browser Widget
 class SpoofBrowser extends StatefulWidget {
+  String profileSelected;
+
   @override
   _SpoofBrowser createState() => _SpoofBrowser();
 }
@@ -25,6 +27,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController taskCount = new TextEditingController();
   List<String> taskCountNum = [];
   List<String> baseURL = ['Nike', 'Adidas', 'Supreme'];
+  List<String> profileSelect = ['Supremo', 'Esskeetit', 'Bambalow28'];
   String baseURLtext;
 
   var taskNum;
@@ -33,7 +36,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     if (taskCount.text != '0') {
       taskNum = int.parse(taskCount.text);
       taskCountNum = new List<String>.generate(taskNum, (i) => "Task $i");
-      print(taskCountNum);
     }
   }
 
@@ -323,40 +325,58 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                             ),
                           ),
                           SizedBox(height: 5.0),
-                          GestureDetector(
-                            onTap: () => {print('Profile Selected')},
-                            child: Container(
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    width: 200.0,
-                                    height: 45.0,
-                                    margin: EdgeInsets.only(right: 30.0),
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey[800],
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Colors.grey[900]
-                                                  .withOpacity(0.5),
-                                              spreadRadius: 2,
-                                              blurRadius: 4,
-                                              offset: Offset(0, 0)),
-                                        ]),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        'Select',
-                                        style: TextStyle(color: Colors.white),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                          DropdownButton<String>(
+                            hint: Text('Select'),
+                            dropdownColor: Colors.grey[850],
+                            value: widget.profileSelected,
+                            style: TextStyle(color: Colors.white),
+                            onChanged: (String newValue) {
+                              setState(() {
+                                widget.profileSelected = newValue;
+                                print(widget.profileSelected);
+                              });
+                            },
+                            items: profileSelect.map((String value) {
+                              return DropdownMenuItem(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
                           ),
+                          // GestureDetector(
+                          //   onTap: () => {print('Profile Selected')},
+                          //   child: Container(
+                          //     child: Column(
+                          //       children: <Widget>[
+                          //         Container(
+                          //           width: 200.0,
+                          //           height: 45.0,
+                          //           margin: EdgeInsets.only(right: 30.0),
+                          //           decoration: BoxDecoration(
+                          //               color: Colors.grey[800],
+                          //               borderRadius: BorderRadius.all(
+                          //                   Radius.circular(10.0)),
+                          //               boxShadow: [
+                          //                 BoxShadow(
+                          //                     color: Colors.grey[900]
+                          //                         .withOpacity(0.5),
+                          //                     spreadRadius: 2,
+                          //                     blurRadius: 4,
+                          //                     offset: Offset(0, 0)),
+                          //               ]),
+                          //           child: Align(
+                          //             alignment: Alignment.center,
+                          //             child: Text(
+                          //               'Select',
+                          //               style: TextStyle(color: Colors.white),
+                          //               textAlign: TextAlign.center,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
@@ -416,7 +436,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                           EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        color: Colors.cyan[400],
+                        color: Colors.cyan[600],
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

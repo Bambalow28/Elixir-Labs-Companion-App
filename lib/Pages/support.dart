@@ -262,7 +262,7 @@ class _SupportPage extends State<SupportPage> {
                                       FittedBox(
                                         fit: BoxFit.fitWidth,
                                         child: Text(
-                                          'Q: How do you the Spoof Browser?',
+                                          'Q: How do you use the Spoof Browser?',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16.0),
