@@ -14,8 +14,8 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
   static final DateTime now = DateTime.now();
   static final DateFormat dateFormatter = DateFormat('MMMM dd, yyyy');
   final String dateFormatted = dateFormatter.format(now);
-
   int navIndex;
+
   List<String> days = [
     'Monday',
     'Tuesday',
@@ -26,13 +26,13 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
     'Sunday'
   ];
   List<String> dates = [
-    'March 15, 2021',
-    'March 16, 2021',
-    'March 17, 2021',
-    'March 18, 2021',
-    'March 19, 2021',
-    'March 20, 2021',
-    'March 21, 2021'
+    'March 22, 2021',
+    'March 23, 2021',
+    'March 24, 2021',
+    'March 25, 2021',
+    'March 26, 2021',
+    'March 27, 2021',
+    'March 28, 2021'
   ];
 
   void navigationBarTapped(int index) {

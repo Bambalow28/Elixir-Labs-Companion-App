@@ -13,7 +13,7 @@ class ViewProfile extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _ViewProfile extends State<ViewProfile> {
-  bool editClicked;
+  bool editClicked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +150,7 @@ class _ViewProfile extends State<ViewProfile> {
                     padding: EdgeInsets.only(right: 10.0),
                     child: TextField(
                       textCapitalization: TextCapitalization.words,
-                      enabled: false,
+                      enabled: editClicked == true ? true : false,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -185,7 +185,7 @@ class _ViewProfile extends State<ViewProfile> {
                         padding: EdgeInsets.only(left: 10.0),
                         child: TextField(
                           textCapitalization: TextCapitalization.words,
-                          enabled: false,
+                          enabled: editClicked == true ? true : false,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -213,7 +213,7 @@ class _ViewProfile extends State<ViewProfile> {
                         padding: EdgeInsets.only(right: 10.0),
                         child: TextField(
                           textCapitalization: TextCapitalization.words,
-                          enabled: false,
+                          enabled: editClicked == true ? true : false,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -243,7 +243,7 @@ class _ViewProfile extends State<ViewProfile> {
                   child: TextField(
                     keyboardType: TextInputType.number,
                     textCapitalization: TextCapitalization.words,
-                    enabled: false,
+                    enabled: editClicked == true ? true : false,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -272,7 +272,7 @@ class _ViewProfile extends State<ViewProfile> {
                         padding: EdgeInsets.only(left: 10.0),
                         child: TextField(
                           textCapitalization: TextCapitalization.words,
-                          enabled: false,
+                          enabled: editClicked == true ? true : false,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -300,7 +300,7 @@ class _ViewProfile extends State<ViewProfile> {
                         padding: EdgeInsets.only(right: 10.0),
                         child: TextField(
                           textCapitalization: TextCapitalization.words,
-                          enabled: false,
+                          enabled: editClicked == true ? true : false,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -330,7 +330,15 @@ class _ViewProfile extends State<ViewProfile> {
               children: <Widget>[
                 Expanded(
                   child: GestureDetector(
-                    onTap: () => {editClicked = true},
+                    onTap: () => {
+                      setState(() {
+                        if (editClicked == true) {
+                          editClicked = false;
+                        } else if (editClicked == false) {
+                          editClicked = true;
+                        }
+                      })
+                    },
                     child: Container(
                       width: 80.0,
                       height: 60.0,
