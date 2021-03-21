@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 //Create Profile Page Widget
@@ -13,8 +14,22 @@ class _CreateProfilePage extends State<CreateProfilePage> {
   bool billingInfo = true;
   bool billingVisible = false;
 
-  //Card Details
+  //Create Firebase Instance
+  final firestoreInstance = FirebaseFirestore.instance;
+
+  //Textfield Controllers
+  TextEditingController profileName = new TextEditingController();
+  TextEditingController firstName = new TextEditingController();
+  TextEditingController lastName = new TextEditingController();
+  TextEditingController address = new TextEditingController();
+  TextEditingController zipCode = new TextEditingController();
+  TextEditingController phoneNum = new TextEditingController();
+  TextEditingController state = new TextEditingController();
+  TextEditingController country = new TextEditingController();
   TextEditingController cardNumber = new TextEditingController();
+  TextEditingController cardName = new TextEditingController();
+  TextEditingController expDate = new TextEditingController();
+  TextEditingController cvv = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +62,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                   padding: EdgeInsets.only(left: 10, right: 10.0, top: 20.0),
                   child: TextField(
                     textCapitalization: TextCapitalization.words,
+                    controller: profileName,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -84,6 +100,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                         padding: EdgeInsets.only(left: 10.0),
                         child: TextField(
                           textCapitalization: TextCapitalization.words,
+                          controller: firstName,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -108,6 +125,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                         padding: EdgeInsets.only(right: 10.0),
                         child: TextField(
                           textCapitalization: TextCapitalization.words,
+                          controller: lastName,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -138,7 +156,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                           child: Container(
                             padding: EdgeInsets.only(left: 10.0),
                             child: TextField(
-                              textCapitalization: TextCapitalization.words,
+                              controller: address,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -163,6 +181,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                             padding: EdgeInsets.only(right: 10.0),
                             child: TextField(
                               textCapitalization: TextCapitalization.words,
+                              controller: zipCode,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -189,6 +208,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                       child: TextField(
                         keyboardType: TextInputType.number,
                         textCapitalization: TextCapitalization.words,
+                        controller: phoneNum,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -214,6 +234,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                             padding: EdgeInsets.only(left: 10.0),
                             child: TextField(
                               textCapitalization: TextCapitalization.words,
+                              controller: state,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -238,6 +259,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                             padding: EdgeInsets.only(right: 10.0),
                             child: TextField(
                               textCapitalization: TextCapitalization.words,
+                              controller: country,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -311,6 +333,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                           padding: EdgeInsets.only(left: 10, right: 10.0),
                           child: TextField(
                             textCapitalization: TextCapitalization.words,
+                            controller: cardName,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -336,6 +359,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                                 padding: EdgeInsets.only(left: 10.0),
                                 child: TextField(
                                   keyboardType: TextInputType.number,
+                                  controller: expDate,
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -360,6 +384,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                                 padding: EdgeInsets.only(right: 10.0),
                                 child: TextField(
                                   keyboardType: TextInputType.number,
+                                  controller: cvv,
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -395,8 +420,22 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                       minWidth: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                       onPressed: () => {
-                        setState(() {
-                          print('Saved');
+                        firestoreInstance
+                            .collection("profiles")
+                            .doc(profileName.text)
+                            .set({
+                          "profileName": profileName.text,
+                          "firstName": firstName.text,
+                          "lastName": lastName.text,
+                          "address": address.text,
+                          "zipcode": zipCode.text,
+                          "phoneNumber": phoneNum.text,
+                          "state": state.text,
+                          "country": country.text,
+                          "cardNumber": cardNumber.text,
+                          "cardName": cardName.text,
+                          "expDate": expDate.text,
+                          "securityCode": cvv.text
                         })
                       },
                       child: Text("Save Profile",

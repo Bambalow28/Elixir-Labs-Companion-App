@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() => runApp(MyApp());
 
@@ -82,6 +83,7 @@ class _SplashScreen extends State<SplashScreen>
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   bool isLoggedIn = false;
   bool checkPressed = false;
+  bool dbInitialized = false;
 
   void navigateToHome() {
     Navigator.pushAndRemoveUntil(
@@ -90,11 +92,23 @@ class _SplashScreen extends State<SplashScreen>
         ModalRoute.withName("/LoginPage"));
   }
 
+  //Initiate FlutterFire (Firebase)
+  void initializeFire() async {
+    try {
+      await Firebase.initializeApp();
+      setState(() {
+        dbInitialized = true;
+        print('DB Initialized');
+      });
+    } catch (e) {
+      print('Error: ' + e);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    Timer(
-        Duration(seconds: 2), () => {Navigator.of(context).push(loginRoute())});
+    initializeFire();
   }
 
   @override
@@ -104,28 +118,32 @@ class _SplashScreen extends State<SplashScreen>
       color: Colors.grey[900],
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(50.0),
-              width: 200.0,
-              height: 200.0,
-              child: Image.asset(
-                "assets/images/newElixirLogo.png",
-                fit: BoxFit.fill,
-                height: 100.0,
+      child: dbInitialized == true
+          ? Timer(Duration(seconds: 1), () {
+              Navigator.of(context).push(loginRoute());
+            })
+          : Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(50.0),
+                    width: 200.0,
+                    height: 200.0,
+                    child: Image.asset(
+                      "assets/images/newElixirLogo.png",
+                      fit: BoxFit.fill,
+                      height: 100.0,
+                    ),
+                  ),
+                  Container(
+                      child: CircularProgressIndicator(
+                          valueColor:
+                              new AlwaysStoppedAnimation<Color>(Colors.cyan))),
+                ],
               ),
             ),
-            Container(
-                child: CircularProgressIndicator(
-                    valueColor:
-                        new AlwaysStoppedAnimation<Color>(Colors.cyan))),
-          ],
-        ),
-      ),
     );
   }
 }
