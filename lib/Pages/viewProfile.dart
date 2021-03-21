@@ -332,11 +332,25 @@ class _ViewProfile extends State<ViewProfile> {
                   child: GestureDetector(
                     onTap: () => {
                       setState(() {
+                        String editState;
                         if (editClicked == true) {
                           editClicked = false;
+                          editState = 'Editing Disabled';
                         } else if (editClicked == false) {
                           editClicked = true;
+                          editState = 'Editing Enabled';
                         }
+
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              Future.delayed(Duration(seconds: 1), () {
+                                Navigator.of(context).pop(true);
+                              });
+                              return AlertDialog(
+                                title: Text(editState),
+                              );
+                            });
                       })
                     },
                     child: Container(
