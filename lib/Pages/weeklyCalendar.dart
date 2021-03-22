@@ -188,9 +188,6 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                     ),
                                   ),
                                   Expanded(
-                                    child: SizedBox(),
-                                  ),
-                                  Expanded(
                                     child: Container(
                                       alignment: Alignment.centerRight,
                                       padding: EdgeInsets.only(

@@ -30,6 +30,7 @@ class _CreateProfile extends State<CreateProfile> {
   final firestoreInstance = FirebaseFirestore.instance;
 
   getProfilesCreated() async {
+    profileName = [];
     await firestoreInstance.collection("profiles").get().then((querySnapshot) {
       querySnapshot.docs.forEach((profile) {
         var profileData = profile.id;
@@ -62,28 +63,55 @@ class _CreateProfile extends State<CreateProfile> {
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: getProfilesCreated(),
-        builder: (BuildContext context, snapshot) {
-          return Container(
-              // margin: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color.fromRGBO(23, 23, 23, 1),
-                    Color.fromRGBO(13, 13, 13, 1)
-                  ],
-                ),
-              ),
-              child: profileName != null
-                  ? ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: profileName == null ? 0 : profileName.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
+      body: Container(
+        // margin: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromRGBO(23, 23, 23, 1),
+              Color.fromRGBO(13, 13, 13, 1)
+            ],
+          ),
+        ),
+        child: FutureBuilder(
+          future: getProfilesCreated(),
+          builder: (BuildContext context, snapshot) {
+            return profileName != null
+                ? ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: profileName == null ? 0 : profileName.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Dismissible(
+                        key: Key(profileName[index]),
+                        direction: DismissDirection.endToStart,
+                        onDismissed: (direction) {
+                          setState(() {
+                            profileName.removeAt(index);
+                          });
+
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text(
+                            "Task Deleted",
+                            style: TextStyle(fontSize: 16.0),
+                            textAlign: TextAlign.center,
+                          )));
+                        },
+                        background: Container(
+                          alignment: Alignment.centerRight,
+                          color: Colors.red,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 10.0),
+                            child: Icon(
+                              Icons.delete,
+                              size: 20.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        child: Column(
                           children: <Widget>[
                             GestureDetector(
                               onTap: () => {
@@ -96,7 +124,7 @@ class _CreateProfile extends State<CreateProfile> {
                               },
                               child: Container(
                                 margin: EdgeInsets.only(
-                                    top: 20.0, left: 10.0, right: 10.0),
+                                    top: 20.0, left: 20.0, right: 20.0),
                                 decoration: BoxDecoration(
                                   color: Colors.blueGrey[900],
                                   boxShadow: [
@@ -110,7 +138,6 @@ class _CreateProfile extends State<CreateProfile> {
                                     Radius.circular(20.0),
                                   ),
                                 ),
-                                width: MediaQuery.of(context).size.width - 50,
                                 height: 100.0,
                                 child: Column(
                                   children: <Widget>[
@@ -156,15 +183,17 @@ class _CreateProfile extends State<CreateProfile> {
                               ),
                             ),
                           ],
-                        );
-                      },
-                    )
-                  : Center(
-                      child: Text(
-                      'No Profiles Found',
-                      style: TextStyle(color: Colors.grey, fontSize: 20.0),
-                    )));
-        },
+                        ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: Text(
+                    'No Profiles Found',
+                    style: TextStyle(color: Colors.grey, fontSize: 20.0),
+                  ));
+          },
+        ),
       ),
     );
   }
