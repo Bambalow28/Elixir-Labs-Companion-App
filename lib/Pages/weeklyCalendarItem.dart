@@ -204,7 +204,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                     children: <Widget>[
                       Expanded(
                         child: GestureDetector(
-                          onTap: () => {print('URL Copied')},
+                          onTap: () => {print('Added to Quicktask')},
                           child: Container(
                             margin: EdgeInsets.only(left: 20.0, bottom: 30.0),
                             alignment: Alignment.center,
