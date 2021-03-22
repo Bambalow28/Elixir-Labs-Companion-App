@@ -10,8 +10,6 @@ import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 //Spoof Browser Widget
 class SpoofBrowser extends StatefulWidget {
-  String profileSelected;
-
   @override
   _SpoofBrowser createState() => _SpoofBrowser();
 }
@@ -30,6 +28,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   List<String> baseURL = ['Nike', 'Adidas', 'Supreme'];
   List<String> profileSelect = [];
   String baseURLtext;
+  String profileSelected;
 
   var taskNum;
 
@@ -39,9 +38,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   @override
   void initState() {
     super.initState();
-    taskName.dispose();
-    browserURL.dispose();
-    taskCount.dispose();
   }
 
   getProfilesCreated() async {
@@ -127,8 +123,13 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                               Container(
                                 padding: EdgeInsets.only(right: 10.0),
                                 child: GestureDetector(
-                                  onTap: () =>
-                                      {Navigator.pop(context), addClicked()},
+                                  onTap: () => {
+                                    Navigator.pop(context),
+                                    addClicked(),
+                                    taskName.clear(),
+                                    browserURL.clear(),
+                                    taskCount.clear()
+                                  },
                                   child: Icon(
                                     Icons.arrow_back,
                                     color: Colors.white,
@@ -373,12 +374,12 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                         style: TextStyle(color: Colors.grey),
                                       ),
                                       dropdownColor: Colors.grey[850],
-                                      value: widget.profileSelected,
+                                      value: profileSelected,
                                       style: TextStyle(color: Colors.white),
                                       onChanged: (String newValue) {
                                         setState(() {
-                                          widget.profileSelected = newValue;
-                                          print(widget.profileSelected);
+                                          profileSelected = newValue;
+                                          print(profileSelected);
                                         });
                                       },
                                       items: profileSelect.map((String value) {
