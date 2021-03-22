@@ -13,6 +13,11 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+import 'package:visa/auth-data.dart';
+import 'package:visa/discord.dart';
+import 'package:visa/engine/oauth.dart';
+import 'package:visa/engine/simple-auth.dart';
+import 'package:visa/engine/visa.dart';
 
 final authEnd = Uri.parse(
     'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds');
@@ -20,6 +25,24 @@ final tokenEnd = Uri.parse('https://discord.com/api/oauth2/token');
 final clientID = '799140079494496276';
 final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
 final redirectUrl = Uri.parse('https://www.google.ca');
+String redUrl =
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds';
+
+launchURL() async {
+  DiscordAuth discordAuth = DiscordAuth();
+  SimpleAuth visa = discordAuth.visa;
+
+  discordAuth.visa.authenticate(
+      clientID: clientID,
+      redirectUri: redUrl,
+      scope: 'identify,email,guilds,guilds.join',
+      state: 'discordAuth',
+      onDone: done);
+}
+
+done(AuthData authData) {
+  print(authData);
+}
 
 // Future<oauth2.Client> launchURL() async {
 //   var grant = oauth2.AuthorizationCodeGrant(clientID, authEnd, tokenEnd,

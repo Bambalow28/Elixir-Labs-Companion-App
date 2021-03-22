@@ -144,6 +144,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  hexcolor:
+    dependency: transitive
+    description:
+      name: hexcolor
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   http:
     dependency: "direct main"
     description:
@@ -352,6 +359,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
+  visa:
+    dependency: "direct main"
+    description:
+      name: visa
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   wave:
     dependency: "direct main"
     description:
