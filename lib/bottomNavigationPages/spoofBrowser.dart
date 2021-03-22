@@ -4,6 +4,7 @@ import 'package:elixirlabs_mobileapp/Pages/spoofBrowserTask.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
@@ -27,10 +28,31 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   TextEditingController taskCount = new TextEditingController();
   List<String> taskCountNum = [];
   List<String> baseURL = ['Nike', 'Adidas', 'Supreme'];
-  List<String> profileSelect = ['Supremo', 'Esskeetit', 'Bambalow28'];
+  List<String> profileSelect = [];
   String baseURLtext;
 
   var taskNum;
+
+  //Create Firebase Instance
+  final firestoreInstance = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    taskName.dispose();
+    browserURL.dispose();
+    taskCount.dispose();
+  }
+
+  getProfilesCreated() async {
+    profileSelect = [];
+    await firestoreInstance.collection("profiles").get().then((querySnapshot) {
+      querySnapshot.docs.forEach((profile) {
+        var profileData = profile.id;
+        profileSelect.add(profileData);
+      });
+    });
+  }
 
   void checkNum() {
     if (taskCount.text != '0') {
@@ -75,338 +97,366 @@ class _SpoofBrowser extends State<SpoofBrowser> {
             onTap: () {
               FocusScope.of(context).requestFocus(new FocusNode());
             },
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(30.0),
-                    topRight: const Radius.circular(30.0),
-                  ),
-                  color: Colors.grey[850]),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
+            child: FutureBuilder(
+              future: getProfilesCreated(),
+              builder: (BuildContext context, snapshot) {
+                return Container(
+                  height: MediaQuery.of(context).size.height,
+                  decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: const Radius.circular(30.0),
                         topRight: const Radius.circular(30.0),
                       ),
-                      color: Colors.blueGrey[600],
-                    ),
-                    child: Container(
-                      alignment: Alignment.topLeft,
-                      padding:
-                          EdgeInsets.only(top: 15.0, left: 20.0, bottom: 15.0),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.only(right: 10.0),
-                            child: GestureDetector(
-                              onTap: () =>
-                                  {Navigator.pop(context), addClicked()},
-                              child: Icon(
-                                Icons.arrow_back,
-                                color: Colors.white,
-                                size: 23.0,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              'Create Task',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 20.0),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Container(
-                    alignment: Alignment.topCenter,
-                    width: MediaQuery.of(context).size.width - 170,
-                    padding: EdgeInsets.only(left: 10, right: 10.0, top: 10.0),
-                    child: TextField(
-                      controller: taskName,
-                      textCapitalization: TextCapitalization.words,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: 'Task Name',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        contentPadding: EdgeInsets.all(8.0),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(width: 2.0, color: Colors.white),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(width: 2.0, color: Colors.cyan),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                      ),
-                      style: TextStyle(color: Colors.black, fontSize: 16.0),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      'URL',
-                      style: TextStyle(color: Colors.grey, fontSize: 16.0),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width - 50,
-                          padding:
-                              EdgeInsets.only(left: 10, right: 10.0, top: 5.0),
-                          decoration: BoxDecoration(),
-                          child: TextField(
-                              controller: browserURL,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                hintText: 'Enter URL',
-                                hintStyle: TextStyle(color: Colors.grey),
-                                contentPadding: EdgeInsets.all(8.0),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 2.0, color: Colors.white),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 2.0, color: Colors.cyan),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0))),
-                              ),
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 16.0)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                    height: 80.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: baseURL.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                GestureDetector(
-                                  onTap: () => {
-                                    baseURLtext = baseURL[index],
-                                    baseURLSelected()
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                        left: 5.0, right: 5.0, top: 6.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.blueGrey[700],
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey[900]
-                                                .withOpacity(0.5),
-                                            spreadRadius: 2,
-                                            blurRadius: 4,
-                                            offset: Offset(0, 0)),
-                                      ],
-                                    ),
-                                    width: 100.0,
-                                    height: 60.0,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: FittedBox(
-                                        fit: BoxFit.fitWidth,
-                                        child: Text(
-                                          baseURL[index],
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                      color: Colors.grey[850]),
+                  child: Column(
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            child: Text(
-                              'Quantity',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 16.0),
-                            ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(30.0),
+                            topRight: const Radius.circular(30.0),
                           ),
-                          Container(
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  width: 100.0,
-                                  padding: EdgeInsets.only(
-                                      left: 10, right: 10.0, top: 5.0),
-                                  decoration: BoxDecoration(),
-                                  child: TextField(
-                                      controller: taskCount,
-                                      textCapitalization:
-                                          TextCapitalization.words,
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        hintText: '1',
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        contentPadding: EdgeInsets.all(8.0),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 2.0,
-                                                color: Colors.white),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0))),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 2.0, color: Colors.cyan),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0))),
-                                      ),
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 16.0)),
+                          color: Colors.blueGrey[600],
+                        ),
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(
+                              top: 15.0, left: 20.0, bottom: 15.0),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.only(right: 10.0),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      {Navigator.pop(context), addClicked()},
+                                  child: Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                    size: 23.0,
+                                  ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              Container(
+                                child: Text(
+                                  'Create Task',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20.0),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       SizedBox(
-                        width: 30.0,
+                        height: 5.0,
                       ),
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.center,
-                            margin: EdgeInsets.only(right: 30.0),
-                            // padding: EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              'Profile',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 16.0),
+                      Container(
+                        alignment: Alignment.topCenter,
+                        width: MediaQuery.of(context).size.width - 170,
+                        padding:
+                            EdgeInsets.only(left: 10, right: 10.0, top: 10.0),
+                        child: TextField(
+                          controller: taskName,
+                          textCapitalization: TextCapitalization.words,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Task Name',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            contentPadding: EdgeInsets.all(8.0),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2.0, color: Colors.white),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2.0, color: Colors.cyan),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                          ),
+                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          'URL',
+                          style: TextStyle(color: Colors.grey, fontSize: 16.0),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: MediaQuery.of(context).size.width - 50,
+                              padding: EdgeInsets.only(
+                                  left: 10, right: 10.0, top: 5.0),
+                              decoration: BoxDecoration(),
+                              child: TextField(
+                                  controller: browserURL,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: 'Enter URL',
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.all(8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2.0, color: Colors.white),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2.0, color: Colors.cyan),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                  ),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16.0)),
                             ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                        height: 80.0,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: baseURL.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: <Widget>[
+                                Column(
+                                  children: <Widget>[
+                                    GestureDetector(
+                                      onTap: () => {
+                                        baseURLtext = baseURL[index],
+                                        baseURLSelected()
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(
+                                            left: 5.0, right: 5.0, top: 6.0),
+                                        decoration: BoxDecoration(
+                                          color: Colors.blueGrey[700],
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10),
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.grey[900]
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 2,
+                                                blurRadius: 4,
+                                                offset: Offset(0, 0)),
+                                          ],
+                                        ),
+                                        width: 100.0,
+                                        height: 60.0,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: FittedBox(
+                                            fit: BoxFit.fitWidth,
+                                            child: Text(
+                                              baseURL[index],
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  'Quantity',
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 16.0),
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 100.0,
+                                      padding: EdgeInsets.only(
+                                          left: 10, right: 10.0, top: 5.0),
+                                      decoration: BoxDecoration(),
+                                      child: TextField(
+                                          controller: taskCount,
+                                          textCapitalization:
+                                              TextCapitalization.words,
+                                          decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor: Colors.white,
+                                            hintText: '1',
+                                            hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                            contentPadding: EdgeInsets.all(8.0),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    width: 2.0,
+                                                    color: Colors.white),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0))),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    width: 2.0,
+                                                    color: Colors.cyan),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0))),
+                                          ),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16.0)),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 5.0),
-                          DropdownButton<String>(
-                            hint: Text('Select'),
-                            dropdownColor: Colors.grey[850],
-                            value: widget.profileSelected,
-                            style: TextStyle(color: Colors.white),
-                            onChanged: (String newValue) {
-                              setState(() {
-                                widget.profileSelected = newValue;
-                                print(widget.profileSelected);
-                              });
-                            },
-                            items: profileSelect.map((String value) {
-                              return DropdownMenuItem(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
+                          SizedBox(
+                            width: 30.0,
                           ),
-                          // GestureDetector(
-                          //   onTap: () => {print('Profile Selected')},
-                          //   child: Container(
-                          //     child: Column(
-                          //       children: <Widget>[
-                          //         Container(
-                          //           width: 200.0,
-                          //           height: 45.0,
-                          //           margin: EdgeInsets.only(right: 30.0),
-                          //           decoration: BoxDecoration(
-                          //               color: Colors.grey[800],
-                          //               borderRadius: BorderRadius.all(
-                          //                   Radius.circular(10.0)),
-                          //               boxShadow: [
-                          //                 BoxShadow(
-                          //                     color: Colors.grey[900]
-                          //                         .withOpacity(0.5),
-                          //                     spreadRadius: 2,
-                          //                     blurRadius: 4,
-                          //                     offset: Offset(0, 0)),
-                          //               ]),
-                          //           child: Align(
-                          //             alignment: Alignment.center,
-                          //             child: Text(
-                          //               'Select',
-                          //               style: TextStyle(color: Colors.white),
-                          //               textAlign: TextAlign.center,
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
+                          Column(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.center,
+                                margin: EdgeInsets.only(right: 30.0),
+                                // padding: EdgeInsets.only(left: 10.0),
+                                child: Text(
+                                  'Profile',
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 16.0),
+                                ),
+                              ),
+                              SizedBox(height: 5.0),
+                              Container(
+                                decoration: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          width: 2.0,
+                                          style: BorderStyle.solid,
+                                          color: Colors.blueGrey[600]),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0))),
+                                ),
+                                child: DropdownButtonHideUnderline(
+                                  child: Container(
+                                    margin:
+                                        EdgeInsets.only(left: 8.0, right: 8.0),
+                                    child: DropdownButton<String>(
+                                      hint: Text(
+                                        'Select',
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                      dropdownColor: Colors.grey[850],
+                                      value: widget.profileSelected,
+                                      style: TextStyle(color: Colors.white),
+                                      onChanged: (String newValue) {
+                                        setState(() {
+                                          widget.profileSelected = newValue;
+                                          print(widget.profileSelected);
+                                        });
+                                      },
+                                      items: profileSelect.map((String value) {
+                                        return DropdownMenuItem(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // GestureDetector(
+                              //   onTap: () => {print('Profile Selected')},
+                              //   child: Container(
+                              //     child: Column(
+                              //       children: <Widget>[
+                              //         Container(
+                              //           width: 200.0,
+                              //           height: 45.0,
+                              //           margin: EdgeInsets.only(right: 30.0),
+                              //           decoration: BoxDecoration(
+                              //               color: Colors.grey[800],
+                              //               borderRadius: BorderRadius.all(
+                              //                   Radius.circular(10.0)),
+                              //               boxShadow: [
+                              //                 BoxShadow(
+                              //                     color: Colors.grey[900]
+                              //                         .withOpacity(0.5),
+                              //                     spreadRadius: 2,
+                              //                     blurRadius: 4,
+                              //                     offset: Offset(0, 0)),
+                              //               ]),
+                              //           child: Align(
+                              //             alignment: Alignment.center,
+                              //             child: Text(
+                              //               'Select',
+                              //               style: TextStyle(color: Colors.white),
+                              //               textAlign: TextAlign.center,
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
+                            ],
+                          ),
                         ],
+                      ),
+                      Expanded(
+                        child: SizedBox(),
+                      ),
+                      GestureDetector(
+                        onTap: () => {handleTask()},
+                        child: Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(bottom: 30.0),
+                          width: 200.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                              color: Colors.blue[400],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                          child: Text(
+                            'Create Tasks',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w500),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  Expanded(
-                    child: SizedBox(),
-                  ),
-                  GestureDetector(
-                    onTap: () => {handleTask()},
-                    child: Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(bottom: 30.0),
-                      width: 200.0,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                          color: Colors.deepOrange[400],
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
-                      child: Text(
-                        'Create Tasks',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w500),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                );
+              },
             ),
           );
         });
