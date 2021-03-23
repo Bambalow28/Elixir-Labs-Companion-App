@@ -51,6 +51,30 @@ class _ChatRoom extends State<ChatRoom> {
       appBar: AppBar(
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(top: 2.0, right: 15.0),
+            child: GestureDetector(
+              onTap: () => {print('Direct Messages Clicked')},
+              child: Icon(
+                Icons.question_answer_rounded,
+                size: 27.0,
+                color: Colors.blue[300],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 2.0, right: 15.0),
+            child: GestureDetector(
+              onTap: () => {print('Questions Clicked')},
+              child: Icon(
+                Icons.help,
+                size: 27.0,
+                color: Colors.orange[300],
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: navigationBarTapped,
