@@ -15,20 +15,14 @@ class _CreateProfile extends State<CreateProfile> {
   bool billingInfo = true;
   bool billingVisible = false;
   List<String> profileName = [];
-  String firstName = 'N/A';
-  String lastName = 'N/A';
-  String address = 'N/A';
-  String zip = 'N/A';
-  String phoneNum = 'N/A';
-  String state = 'N/A';
-  String country = 'N/A';
-  String cardNum = 'N/A';
-  String cardName = 'N/A';
-  String expDate = 'N/A';
+  String firstName;
+  String lastName;
+  String cardNum;
 
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
 
+  //Function that Retrieves all the Profiles
   getProfilesCreated() async {
     profileName = [];
     await firestoreInstance.collection("profiles").get().then((querySnapshot) {
@@ -90,14 +84,29 @@ class _CreateProfile extends State<CreateProfile> {
                         onDismissed: (direction) {
                           setState(() {
                             profileName.removeAt(index);
+                            firestoreInstance
+                                .collection("profiles")
+                                .doc(profileName[index])
+                                .delete()
+                                .then(
+                                  (check) => Scaffold.of(context)
+                                      .showSnackBar(SnackBar(
+                                          content: Text(
+                                    "Profile Deleted",
+                                    style: TextStyle(fontSize: 16.0),
+                                    textAlign: TextAlign.center,
+                                  ))),
+                                )
+                                .catchError(
+                                  (error) => Scaffold.of(context)
+                                      .showSnackBar(SnackBar(
+                                          content: Text(
+                                    "Something Went Wrong",
+                                    style: TextStyle(fontSize: 16.0),
+                                    textAlign: TextAlign.center,
+                                  ))),
+                                );
                           });
-
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                            "Task Deleted",
-                            style: TextStyle(fontSize: 16.0),
-                            textAlign: TextAlign.center,
-                          )));
                         },
                         background: Container(
                           alignment: Alignment.centerRight,

@@ -425,18 +425,42 @@ class _CreateProfilePage extends State<CreateProfilePage> {
                             .collection("profiles")
                             .doc(profileName.text)
                             .set({
-                          "profileName": profileName.text,
-                          "firstName": firstName.text,
-                          "lastName": lastName.text,
-                          "address": address.text,
-                          "zipcode": zipCode.text,
-                          "phoneNumber": phoneNum.text,
-                          "state": state.text,
-                          "country": country.text,
-                          "cardNumber": cardNumber.text,
-                          "cardName": cardName.text,
-                          "expDate": expDate.text,
-                          "securityCode": cvv.text
+                          "profileName": profileName.text == ''
+                              ? profileName.text = 'Not Available'
+                              : profileName.text,
+                          "firstName": firstName.text == ''
+                              ? firstName.text = 'Not Available'
+                              : firstName.text,
+                          "lastName": lastName.text == ''
+                              ? lastName.text = 'Not Available'
+                              : lastName.text,
+                          "address": address.text == ''
+                              ? address.text = 'Not Available'
+                              : address.text,
+                          "zipcode": zipCode.text == ''
+                              ? zipCode.text = 'Not Available'
+                              : zipCode.text,
+                          "phoneNumber": phoneNum.text == ''
+                              ? phoneNum.text = 'Not Available'
+                              : phoneNum.text,
+                          "state": state.text == ''
+                              ? state.text = 'Not Available'
+                              : state.text,
+                          "country": country.text == ''
+                              ? country.text = 'Not Available'
+                              : country.text,
+                          "cardNumber": cardNumber.text == ''
+                              ? cardNumber.text = 'Not Available'
+                              : cardNumber.text,
+                          "cardName": cardName.text == ''
+                              ? cardName.text = 'Not Available'
+                              : cardName.text,
+                          "expDate": expDate.text == ''
+                              ? expDate.text = 'Not Available'
+                              : expDate.text,
+                          "securityCode": cvv.text == ''
+                              ? cvv.text = 'Not Available'
+                              : cvv.text
                         })
                       },
                       child: Text("Save Profile",
