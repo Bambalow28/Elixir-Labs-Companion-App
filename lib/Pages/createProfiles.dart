@@ -15,9 +15,9 @@ class _CreateProfile extends State<CreateProfile> {
   bool billingInfo = true;
   bool billingVisible = false;
   List<String> profileName = [];
-  String firstName;
-  String lastName;
-  String cardNum;
+  late String firstName;
+  late String lastName;
+  late String cardNum;
 
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
@@ -29,10 +29,26 @@ class _CreateProfile extends State<CreateProfile> {
       querySnapshot.docs.forEach((profile) {
         var profileData = profile.id;
         profileName.add(profileData);
-        firstName = profile.data()["firstName"];
-        lastName = profile.data()["lastName"];
-        cardNum = profile.data()["cardNumber"];
+        // firstName = profile.data()["firstName"];
+        // lastName = profile.data()["lastName"];
+        // cardNum = profile.data()["cardNumber"];
       });
+    });
+    // await test();
+  }
+
+  test() async {
+    return profileName.forEach((profile) {
+      // firestoreInstance
+      //     .collection("profiles")
+      //     .doc(profile)
+      //     .get()
+      //     .then((profile) {
+      //   firstName = profile.data()["firstName"];
+      //   lastName = profile.data()["lastName"];
+      //   cardNum = profile.data()["cardNumber"];
+      // });
+      print(profile);
     });
   }
 

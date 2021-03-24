@@ -10,7 +10,7 @@ class SponsorsPage extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _SponsorsPage extends State<SponsorsPage> {
-  int navIndex;
+  late int navIndex;
   String appBarTitle = "Sponsors";
 
   void navigationBarTapped(int index) {

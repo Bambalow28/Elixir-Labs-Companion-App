@@ -20,7 +20,7 @@ class SupportPage extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _SupportPage extends State<SupportPage> {
-  int navIndex;
+  late int navIndex;
   String appBarTitle = "Support Center";
 
   final Zendesk zendesk = Zendesk();

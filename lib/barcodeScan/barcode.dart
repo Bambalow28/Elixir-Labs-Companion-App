@@ -15,7 +15,7 @@ class BarcodeScanner extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _BarcodeScan extends State<BarcodeScanner> {
-  int navIndex;
+  int navIndex = 0;
   String appBarTitle = "Barcode Scanner";
   bool progressStatus = true;
   String barcodeData = '';
@@ -23,7 +23,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
   String itemDescr = '';
   String itemImage = '';
   bool itemCheck = true;
-  Map<String, dynamic> barcodeItem;
+  Map<String, dynamic> barcodeItem = {};
 
   getScannedBarcode() async {
     String barcodeAPIURL =

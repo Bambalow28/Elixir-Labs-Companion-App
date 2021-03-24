@@ -8,11 +8,11 @@ class UpcomingReleaseInfo extends StatefulWidget {
   String itemReleaseDate;
   String itemImage;
   UpcomingReleaseInfo(
-      {Key key,
-      this.itemName,
-      this.itemPrice,
-      this.itemReleaseDate,
-      this.itemImage})
+      {Key? key,
+      required this.itemName,
+      required this.itemPrice,
+      required this.itemReleaseDate,
+      required this.itemImage})
       : super(key: key);
 
   @override
@@ -41,6 +41,7 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
           'https://images.solecollector.com/complex/image/upload/v1557176412/SC_Logo_Globe_TM_Blue_20190506-01-01-01_urcggx.svg') {
         return false;
       }
+      return itemImageCheck();
     }
 
     return Scaffold(
