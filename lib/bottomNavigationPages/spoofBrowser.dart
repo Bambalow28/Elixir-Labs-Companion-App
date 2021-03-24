@@ -16,8 +16,6 @@ class SpoofBrowser extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _SpoofBrowser extends State<SpoofBrowser> {
-  // final Future<FirebaseApp> firebaseInit = Firebase.initializeApp();
-
   int navIndex = 1;
   List<String> tasks = [];
   String appBarTitle = "Spoof Browser";
@@ -28,7 +26,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   List<String> baseURL = ['Nike', 'Adidas', 'Supreme'];
   List<String> profileSelect = [];
   String baseURLtext;
-  String profileSelected;
+  var profileSelected;
 
   var taskNum;
 
@@ -80,6 +78,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         browserURL.text = "https://www.supremenewyork.com/shop/all";
         break;
     }
+    return baseURLSelected();
   }
 
   //Show Create Task Bottom Sheet when 'Create Task' is Clicked
@@ -376,7 +375,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                       dropdownColor: Colors.grey[850],
                                       value: profileSelected,
                                       style: TextStyle(color: Colors.white),
-                                      onChanged: (String newValue) {
+                                      onChanged: (newValue) {
                                         setState(() {
                                           profileSelected = newValue;
                                           print(profileSelected);

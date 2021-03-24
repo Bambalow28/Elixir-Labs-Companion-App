@@ -5,7 +5,7 @@ import 'dart:async';
 
 //Splash Screen Widget
 class SplashScreen extends StatefulWidget {
-  SplashScreen({required Key key, required this.title}) : super(key: key);
+  SplashScreen({Key key, this.title}) : super(key: key);
 
   final String title;
 

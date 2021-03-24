@@ -75,7 +75,7 @@ done(AuthData authData) {
 
 //Login Widget
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key, required this.title}) : super(key: key);
+  LoginPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -164,7 +164,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                                 BorderRadius.all(Radius.circular(30.0)),
                             boxShadow: [
                               BoxShadow(
-                                  color: Colors.grey[900]!.withOpacity(0.5),
+                                  color: Colors.grey[900].withOpacity(0.5),
                                   spreadRadius: 3,
                                   blurRadius: 2,
                                   offset: Offset(0, 3)),

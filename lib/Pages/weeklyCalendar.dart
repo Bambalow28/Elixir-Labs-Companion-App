@@ -14,7 +14,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
   static final DateTime now = DateTime.now();
   static final DateFormat dateFormatter = DateFormat('MMMM dd, yyyy');
   final String dateFormatted = dateFormatter.format(now);
-  late int navIndex;
+  int navIndex;
 
   List<String> days = [
     'Monday',

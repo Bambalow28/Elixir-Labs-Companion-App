@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
 
 //Login Widget
 class SplashScreen extends StatefulWidget {
-  SplashScreen({Key? key, required this.title}) : super(key: key);
+  SplashScreen({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -119,7 +119,7 @@ class _SplashScreen extends State<SplashScreen>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: dbInitialized == true
-          ? Navigator.of(context).push(loginRoute());
+          ?
           // Center(
           //   child: Column(
           //     crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,8 +141,8 @@ class _SplashScreen extends State<SplashScreen>
           //                   Colors.cyan))),
           //     ],
           //   ),
-          // );
-
+          // ):
+          Navigator.of(context).push(loginRoute())
           : Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

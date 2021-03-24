@@ -85,7 +85,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey[900]!.withOpacity(0.5),
+                              color: Colors.grey[900].withOpacity(0.5),
                               spreadRadius: 2,
                               blurRadius: 2,
                               offset: Offset(0, 0)),
@@ -110,7 +110,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                                   BorderRadius.all(Radius.circular(10.0)),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.blue[900]!.withOpacity(0.5),
+                                    color: Colors.blue[900].withOpacity(0.5),
                                     spreadRadius: 2,
                                     blurRadius: 2,
                                     offset: Offset(0, 0)),
@@ -148,7 +148,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                                   BorderRadius.all(Radius.circular(10.0)),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.blue[900]!.withOpacity(0.5),
+                                    color: Colors.blue[900].withOpacity(0.5),
                                     spreadRadius: 2,
                                     blurRadius: 2,
                                     offset: Offset(0, 0)),
@@ -215,7 +215,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                                     BorderRadius.all(Radius.circular(20.0)),
                                 boxShadow: [
                                   BoxShadow(
-                                      color: Colors.grey[900]!.withOpacity(0.5),
+                                      color: Colors.grey[900].withOpacity(0.5),
                                       spreadRadius: 2,
                                       blurRadius: 4,
                                       offset: Offset(0, 0)),
@@ -247,7 +247,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                                     BorderRadius.all(Radius.circular(20.0)),
                                 boxShadow: [
                                   BoxShadow(
-                                      color: Colors.grey[900]!.withOpacity(0.5),
+                                      color: Colors.grey[900].withOpacity(0.5),
                                       spreadRadius: 2,
                                       blurRadius: 4,
                                       offset: Offset(0, 0)),

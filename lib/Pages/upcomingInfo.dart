@@ -8,11 +8,11 @@ class UpcomingReleaseInfo extends StatefulWidget {
   String itemReleaseDate;
   String itemImage;
   UpcomingReleaseInfo(
-      {Key? key,
-      required this.itemName,
-      required this.itemPrice,
-      required this.itemReleaseDate,
-      required this.itemImage})
+      {Key key,
+      this.itemName,
+      this.itemPrice,
+      this.itemReleaseDate,
+      this.itemImage})
       : super(key: key);
 
   @override

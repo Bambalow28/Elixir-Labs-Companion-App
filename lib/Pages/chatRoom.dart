@@ -14,7 +14,7 @@ class ChatRoom extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _ChatRoom extends State<ChatRoom> {
-  late int navIndex;
+  int navIndex;
   String appBarTitle = 'Chat Room';
 
   void navigationBarTapped(int index) {

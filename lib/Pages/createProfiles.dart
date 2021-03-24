@@ -15,9 +15,9 @@ class _CreateProfile extends State<CreateProfile> {
   bool billingInfo = true;
   bool billingVisible = false;
   List<String> profileName = [];
-  late String firstName;
-  late String lastName;
-  late String cardNum;
+  String firstName;
+  String lastName;
+  String cardNum;
 
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;

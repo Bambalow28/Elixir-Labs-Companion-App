@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //View Profile Widget
 class ViewProfile extends StatefulWidget {
   String profileName;
-  ViewProfile({Key? key, required this.profileName}) : super(key: key);
+  ViewProfile({Key key, this.profileName}) : super(key: key);
 
   @override
   _ViewProfile createState() => _ViewProfile();
@@ -80,7 +80,7 @@ class _ViewProfile extends State<ViewProfile> {
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.grey[600]!.withOpacity(0.5),
+                            color: Colors.grey[600].withOpacity(0.5),
                             spreadRadius: 2,
                             blurRadius: 2,
                             offset: Offset(0, 0)),

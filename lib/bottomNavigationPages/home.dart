@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   bool itemCheck = true;
   int pageIndex = 0;
   String appBarTitle = "Home";
-  List data;
+  List data = [];
 
   //This Function gets a request from an API for Upcoming Releases.
   //In cases that the GET fails then it retries again.
@@ -301,6 +301,7 @@ class _HomePageState extends State<HomePage> {
                                 'https://images.solecollector.com/complex/image/upload/v1557176412/SC_Logo_Globe_TM_Blue_20190506-01-01-01_urcggx.svg') {
                               return false;
                             }
+                            return true;
                           }
 
                           return Column(
