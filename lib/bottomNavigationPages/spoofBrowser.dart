@@ -369,6 +369,10 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                     } else {
                                       final profileList = snapshot.data.docs;
 
+                                      // profileList.forEach((profiles) {
+                                      //   profileSelect = profiles["profileName"];
+                                      // });
+
                                       return Container(
                                         decoration: ShapeDecoration(
                                           shape: RoundedRectangleBorder(
