@@ -153,9 +153,12 @@ class _CreateProfile extends State<CreateProfile> {
                                     profileList[index]["profileName"],
                                     style: TextStyle(
                                         color: Colors.cyan[400],
-                                        fontSize: 25.0,
+                                        fontSize: 28.0,
                                         fontWeight: FontWeight.bold),
                                   ),
+                                ),
+                                SizedBox(
+                                  height: 2.0,
                                 ),
                                 Container(
                                   alignment: Alignment.topLeft,
@@ -171,18 +174,19 @@ class _CreateProfile extends State<CreateProfile> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 15.0,
+                                  height: 10.0,
                                 ),
                                 Container(
                                   alignment: Alignment.topLeft,
-                                  padding: EdgeInsets.only(left: 20.0),
+                                  padding:
+                                      EdgeInsets.only(left: 20.0, bottom: 5.0),
                                   child: Text(
                                     profileList[index]["cardNumber"] == null
                                         ? 'Not Available'
                                         : profileList[index]["cardNumber"],
                                     style: TextStyle(
                                         color: Colors.grey,
-                                        fontSize: 14.0,
+                                        fontSize: 16.0,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
