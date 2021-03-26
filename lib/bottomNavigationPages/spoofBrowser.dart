@@ -36,16 +36,12 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   @override
   void initState() {
     super.initState();
+    this.getProfilesCreated();
   }
 
   getProfilesCreated() async {
-    profileSelect = [];
-    await firestoreInstance.collection("profiles").get().then((querySnapshot) {
-      querySnapshot.docs.forEach((profile) {
-        var profileData = profile.id;
-        profileSelect.add(profileData);
-      });
-    });
+    var test = firestoreInstance.collection("profiles").snapshots();
+    print(test);
   }
 
   void checkNum() {
@@ -353,44 +349,69 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                 ),
                               ),
                               SizedBox(height: 5.0),
-                              Container(
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          width: 2.0,
-                                          style: BorderStyle.solid,
-                                          color: Colors.blueGrey[600]),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0))),
-                                ),
-                                child: DropdownButtonHideUnderline(
-                                  child: Container(
-                                    margin:
-                                        EdgeInsets.only(left: 8.0, right: 8.0),
-                                    child: DropdownButton<String>(
-                                      hint: Text(
-                                        'Select',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                      dropdownColor: Colors.grey[850],
-                                      value: profileSelected,
-                                      style: TextStyle(color: Colors.white),
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          profileSelected = newValue;
-                                          print(profileSelected);
-                                        });
-                                      },
-                                      items: profileSelect.map((String value) {
-                                        return DropdownMenuItem(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              StreamBuilder(
+                                  stream: firestoreInstance
+                                      .collection("profiles")
+                                      .snapshots(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                                    if (snapshot.hasError) {
+                                      return Center(
+                                          child: Text('Error',
+                                              style: TextStyle(
+                                                  color: Colors.grey)));
+                                    }
+
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    } else {
+                                      final profileList = snapshot.data.docs;
+
+                                      return Container(
+                                        decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  width: 2.0,
+                                                  style: BorderStyle.solid,
+                                                  color: Colors.blueGrey[600]),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10.0))),
+                                        ),
+                                        child: DropdownButtonHideUnderline(
+                                          child: Container(
+                                            margin: EdgeInsets.only(
+                                                left: 8.0, right: 8.0),
+                                            child: DropdownButton<String>(
+                                              hint: Text(
+                                                'Select',
+                                                style: TextStyle(
+                                                    color: Colors.grey),
+                                              ),
+                                              dropdownColor: Colors.grey[850],
+                                              value: profileSelected,
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  profileSelected = newValue;
+                                                  print(profileSelected);
+                                                });
+                                              },
+                                              items: profileSelect
+                                                  .map((String value) {
+                                                return DropdownMenuItem(
+                                                  value: value,
+                                                  child: Text(value),
+                                                );
+                                              }).toList(),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  }),
                               // GestureDetector(
                               //   onTap: () => {print('Profile Selected')},
                               //   child: Container(
