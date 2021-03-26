@@ -119,7 +119,7 @@ class _SplashScreen extends State<SplashScreen>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: dbInitialized == true
-          ? Timer(
+          ? Future.delayed(
               Duration(seconds: 1),
               () => {
                     Center(

@@ -15,42 +15,10 @@ class _CreateProfile extends State<CreateProfile> {
   bool billingInfo = true;
   bool billingVisible = false;
   List<String> profileName = [];
-  String firstName;
-  String lastName;
-  String cardNum;
+  Future getData;
 
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
-
-  //Function that Retrieves all the Profiles
-  getProfilesCreated() async {
-    profileName = [];
-    await firestoreInstance.collection("profiles").get().then((querySnapshot) {
-      querySnapshot.docs.forEach((profile) {
-        var profileData = profile.id;
-        profileName.add(profileData);
-        // firstName = profile.data()["firstName"];
-        // lastName = profile.data()["lastName"];
-        // cardNum = profile.data()["cardNumber"];
-      });
-    });
-    // await test();
-  }
-
-  test() async {
-    return profileName.forEach((profile) {
-      // firestoreInstance
-      //     .collection("profiles")
-      //     .doc(profile)
-      //     .get()
-      //     .then((profile) {
-      //   firstName = profile.data()["firstName"];
-      //   lastName = profile.data()["lastName"];
-      //   cardNum = profile.data()["cardNumber"];
-      // });
-      print(profile);
-    });
-  }
 
   void createProfilePressed() {
     Navigator.push(
@@ -86,137 +54,148 @@ class _CreateProfile extends State<CreateProfile> {
             ],
           ),
         ),
-        child: FutureBuilder(
-          future: getProfilesCreated(),
-          builder: (BuildContext context, snapshot) {
-            return profileName != null
-                ? ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: profileName == null ? 0 : profileName.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Dismissible(
-                        key: Key(profileName[index]),
-                        direction: DismissDirection.endToStart,
-                        onDismissed: (direction) {
-                          setState(() {
-                            profileName.removeAt(index);
-                            firestoreInstance
-                                .collection("profiles")
-                                .doc(profileName[index])
-                                .delete()
-                                .then(
-                                  (check) => Scaffold.of(context)
-                                      .showSnackBar(SnackBar(
-                                          content: Text(
-                                    "Profile Deleted",
-                                    style: TextStyle(fontSize: 16.0),
-                                    textAlign: TextAlign.center,
-                                  ))),
-                                )
-                                .catchError(
-                                  (error) => Scaffold.of(context)
-                                      .showSnackBar(SnackBar(
-                                          content: Text(
-                                    "Something Went Wrong",
-                                    style: TextStyle(fontSize: 16.0),
-                                    textAlign: TextAlign.center,
-                                  ))),
-                                );
-                          });
-                        },
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          color: Colors.red,
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 10.0),
-                            child: Icon(
-                              Icons.delete,
-                              size: 20.0,
-                              color: Colors.white,
+        child: StreamBuilder(
+          stream: firestoreInstance.collection("profiles").snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              final profileList = snapshot.data.docs;
+
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: profileList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Dismissible(
+                    key: Key(profileList[index]["profileName"]),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+                      setState(() async {
+                        profileName.removeAt(index);
+                        await firestoreInstance
+                            .runTransaction((Transaction myTransaction) async {
+                              await myTransaction
+                                  .delete(snapshot.data.docs[index].reference);
+                            })
+                            .then(
+                              (check) =>
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text(
+                                "Profile Deleted",
+                                style: TextStyle(fontSize: 16.0),
+                                textAlign: TextAlign.center,
+                              ))),
+                            )
+                            .catchError(
+                              (error) =>
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text(
+                                "Something Went Wrong",
+                                style: TextStyle(fontSize: 16.0),
+                                textAlign: TextAlign.center,
+                              ))),
+                            );
+                      });
+                    },
+                    background: Container(
+                      alignment: Alignment.centerRight,
+                      color: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10.0),
+                        child: Icon(
+                          Icons.delete,
+                          size: 20.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewProfile(
+                                          profileName: profileList[index]
+                                              ["profileName"],
+                                        ))),
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                top: 20.0, left: 20.0, right: 20.0),
+                            decoration: BoxDecoration(
+                              color: Colors.blueGrey[900],
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 1)
+                                        .withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 4),
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20.0),
+                              ),
+                            ),
+                            height: 100.0,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  padding:
+                                      EdgeInsets.only(top: 10.0, left: 20.0),
+                                  child: Text(
+                                    profileList[index]["profileName"],
+                                    style: TextStyle(
+                                        color: Colors.cyan[400],
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  padding: EdgeInsets.only(left: 20.0),
+                                  child: Text(
+                                    profileList[index]["firstName"] +
+                                        ' ' +
+                                        profileList[index]["lastName"],
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  padding: EdgeInsets.only(left: 20.0),
+                                  child: Text(
+                                    profileList[index]["cardNumber"] == null
+                                        ? 'Not Available'
+                                        : profileList[index]["cardNumber"],
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        child: Column(
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () => {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ViewProfile(
-                                              profileName: profileName[index],
-                                            ))),
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                    top: 20.0, left: 20.0, right: 20.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.blueGrey[900],
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 1)
-                                            .withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 4),
-                                  ],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20.0),
-                                  ),
-                                ),
-                                height: 100.0,
-                                child: Column(
-                                  children: <Widget>[
-                                    Container(
-                                      alignment: Alignment.topLeft,
-                                      padding: EdgeInsets.only(
-                                          top: 10.0, left: 20.0),
-                                      child: Text(
-                                        profileName[index],
-                                        style: TextStyle(
-                                            color: Colors.cyan[400],
-                                            fontSize: 25.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.topLeft,
-                                      padding: EdgeInsets.only(left: 20.0),
-                                      child: Text(
-                                        firstName + ' ' + lastName,
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 15.0,
-                                    ),
-                                    Container(
-                                      alignment: Alignment.topLeft,
-                                      padding: EdgeInsets.only(left: 20.0),
-                                      child: Text(
-                                        cardNum,
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  )
-                : Center(
-                    child: Text(
-                    'No Profiles Found',
-                    style: TextStyle(color: Colors.grey, fontSize: 20.0),
-                  ));
+                      ],
+                    ),
+                  );
+                },
+              );
+            }
           },
         ),
       ),

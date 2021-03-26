@@ -35,6 +35,7 @@ class _CreateProfilePage extends State<CreateProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color.fromRGBO(18, 18, 18, 1),
       appBar: AppBar(
         title: Text('Profiles'),

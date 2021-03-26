@@ -103,16 +103,16 @@ class _BarcodeScan extends State<BarcodeScanner> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
-                      child: Container(
-                        height: 90.0,
-                        margin: EdgeInsets.only(top: 20.0, left: 20.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          color: Colors.green[400],
-                        ),
-                        child: GestureDetector(
-                          onTap: () =>
-                              {scannedBarcode(), Navigator.pop(context)},
+                      child: GestureDetector(
+                        onTap: () => {scannedBarcode(), Navigator.pop(context)},
+                        child: Container(
+                          height: 90.0,
+                          margin: EdgeInsets.only(top: 20.0, left: 20.0),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            color: Colors.green[400],
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[

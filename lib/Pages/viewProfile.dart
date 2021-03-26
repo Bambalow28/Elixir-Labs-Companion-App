@@ -59,10 +59,24 @@ class _ViewProfile extends State<ViewProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
       appBar: AppBar(
         title: Text(widget.profileName),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              icon: Icon(
+                Icons.delete_outlined,
+                color: Colors.red,
+                size: 20.0,
+              ),
+              onPressed: () => {print('Deleted')},
+            ),
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: getProfilesCreated(),
