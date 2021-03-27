@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 
 //Create Profile Widget
 class UpcomingReleaseInfo extends StatefulWidget {
@@ -40,8 +39,9 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
       if (widget.itemImage ==
           'https://images.solecollector.com/complex/image/upload/v1557176412/SC_Logo_Globe_TM_Blue_20190506-01-01-01_urcggx.svg') {
         return false;
+      } else {
+        return true;
       }
-      return itemImageCheck();
     }
 
     return Scaffold(

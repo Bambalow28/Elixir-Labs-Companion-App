@@ -29,15 +29,14 @@ String redUrl =
     'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds';
 
 launchURL() async {
-  DiscordAuth discordAuth = DiscordAuth();
-  SimpleAuth visa = discordAuth.visa;
+  // DiscordAuth discordAuth = DiscordAuth();
 
-  discordAuth.visa.authenticate(
-      clientID: clientID,
-      redirectUri: redUrl,
-      scope: 'identify,email,guilds,guilds.join',
-      state: 'discordAuth',
-      onDone: done);
+  // return discordAuth.visa.authenticate(
+  //     clientID: clientID,
+  //     redirectUri: redUrl,
+  //     scope: 'identify,email,guilds,guilds.join',
+  //     state: 'discordAuth',
+  //     onDone: done);
 }
 
 done(AuthData authData) {

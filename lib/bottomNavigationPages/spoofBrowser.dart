@@ -41,6 +41,11 @@ class _SpoofBrowser extends State<SpoofBrowser> {
 
   getProfilesCreated() async {
     var test = firestoreInstance.collection("profiles").snapshots();
+    // final profileList = test.data.docs;
+
+    // profileList.forEach((profiles) {
+    //   profileSelect = profiles["profileName"];
+    // });
     print(test);
   }
 

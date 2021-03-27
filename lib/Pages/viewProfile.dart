@@ -69,9 +69,8 @@ class _ViewProfile extends State<ViewProfile> {
             padding: EdgeInsets.only(right: 8.0),
             child: IconButton(
               icon: Icon(
-                Icons.delete_outlined,
+                Icons.delete_outline_rounded,
                 color: Colors.red,
-                size: 20.0,
               ),
               onPressed: () => {print('Deleted')},
             ),
