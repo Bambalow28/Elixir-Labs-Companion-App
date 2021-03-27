@@ -27,7 +27,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   List<String> profileSelect = [];
   String baseURLtext;
   var profileSelected;
-
   var taskNum;
 
   //Create Firebase Instance
@@ -39,14 +38,13 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     this.getProfilesCreated();
   }
 
-  getProfilesCreated() async {
-    var test = firestoreInstance.collection("profiles").snapshots();
-    // final profileList = test.data.docs;
-
-    // profileList.forEach((profiles) {
-    //   profileSelect = profiles["profileName"];
-    // });
-    print(test);
+  Future getProfilesCreated() async {
+    profileSelect = [];
+    await firestoreInstance.collection("profiles").get().then((snapshot) {
+      snapshot.docs.forEach((profiles) {
+        profileSelect.add(profiles.get('profileName'));
+      });
+    });
   }
 
   void checkNum() {
@@ -372,12 +370,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                       return Center(
                                           child: CircularProgressIndicator());
                                     } else {
-                                      final profileList = snapshot.data.docs;
-
-                                      // profileList.forEach((profiles) {
-                                      //   profileSelect = profiles["profileName"];
-                                      // });
-
                                       return Container(
                                         decoration: ShapeDecoration(
                                           shape: RoundedRectangleBorder(
@@ -388,35 +380,41 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(10.0))),
                                         ),
-                                        child: DropdownButtonHideUnderline(
-                                          child: Container(
-                                            margin: EdgeInsets.only(
-                                                left: 8.0, right: 8.0),
-                                            child: DropdownButton<String>(
-                                              hint: Text(
-                                                'Select',
-                                                style: TextStyle(
-                                                    color: Colors.grey),
+                                        child: StatefulBuilder(
+                                          builder: (context, setState) {
+                                            return DropdownButtonHideUnderline(
+                                              child: Container(
+                                                margin: EdgeInsets.only(
+                                                    left: 8.0, right: 8.0),
+                                                child: DropdownButton<String>(
+                                                  hint: Text(
+                                                    'Select',
+                                                    style: TextStyle(
+                                                        color: Colors.grey),
+                                                  ),
+                                                  dropdownColor:
+                                                      Colors.grey[850],
+                                                  value: profileSelected,
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                  onChanged: (newValue) {
+                                                    setState(() {
+                                                      profileSelected =
+                                                          newValue;
+                                                      print(profileSelected);
+                                                    });
+                                                  },
+                                                  items: profileSelect
+                                                      .map((String value) {
+                                                    return DropdownMenuItem(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
+                                                ),
                                               ),
-                                              dropdownColor: Colors.grey[850],
-                                              value: profileSelected,
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                              onChanged: (newValue) {
-                                                setState(() {
-                                                  profileSelected = newValue;
-                                                  print(profileSelected);
-                                                });
-                                              },
-                                              items: profileSelect
-                                                  .map((String value) {
-                                                return DropdownMenuItem(
-                                                  value: value,
-                                                  child: Text(value),
-                                                );
-                                              }).toList(),
-                                            ),
-                                          ),
+                                            );
+                                          },
                                         ),
                                       );
                                     }
