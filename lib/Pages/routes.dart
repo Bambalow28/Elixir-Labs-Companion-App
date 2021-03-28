@@ -1,4 +1,5 @@
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
+import 'package:elixirlabs_mobileapp/Pages/reportIssue.dart';
 import 'package:elixirlabs_mobileapp/Pages/sponsors.dart';
 import 'package:elixirlabs_mobileapp/Pages/support.dart';
 import 'package:elixirlabs_mobileapp/Pages/weeklyCalendar.dart';
@@ -129,6 +130,16 @@ Route weeklyCalendarItemRoute() {
 Route sponsorsRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => SponsorsPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Report Issue
+Route reportIssue() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => ReportIssue(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

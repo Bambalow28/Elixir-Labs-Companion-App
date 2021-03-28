@@ -32,16 +32,12 @@ launchURL() async {
   DiscordAuth discordAuth = DiscordAuth();
   var visa = discordAuth.visa;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: visa.authenticate(
-            clientID: clientID,
-            redirectUri: redUrl,
-            scope: 'identify,email,guilds,guilds.join',
-            state: 'discordAuth',
-            onDone: done));
-  }
+  return visa.authenticate(
+      clientID: clientID,
+      redirectUri: redUrl,
+      scope: 'identify,email,guilds,guilds.join',
+      state: 'discordAuth',
+      onDone: done);
 }
 
 done(AuthData authData) {

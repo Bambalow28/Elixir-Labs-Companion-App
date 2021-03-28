@@ -136,7 +136,10 @@ class _ShowDrawer extends State<ShowDrawer> {
                       Container(
                         padding: EdgeInsets.only(bottom: 5.0),
                         child: GestureDetector(
-                          onTap: () => {print('Issue Reported')},
+                          onTap: () => {
+                            Navigator.pop(context),
+                            Navigator.of(context).push(reportIssue())
+                          },
                           child: Text(
                             'Report App Issue',
                             style: TextStyle(
