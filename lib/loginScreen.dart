@@ -29,14 +29,19 @@ String redUrl =
     'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds';
 
 launchURL() async {
-  // DiscordAuth discordAuth = DiscordAuth();
+  DiscordAuth discordAuth = DiscordAuth();
+  var visa = discordAuth.visa;
 
-  // return discordAuth.visa.authenticate(
-  //     clientID: clientID,
-  //     redirectUri: redUrl,
-  //     scope: 'identify,email,guilds,guilds.join',
-  //     state: 'discordAuth',
-  //     onDone: done);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: visa.authenticate(
+            clientID: clientID,
+            redirectUri: redUrl,
+            scope: 'identify,email,guilds,guilds.join',
+            state: 'discordAuth',
+            onDone: done));
+  }
 }
 
 done(AuthData authData) {
@@ -129,7 +134,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
               color: Colors.transparent,
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 40.0, right: 40.0, bottom: 20.0, top: 160.0),
+                    left: 40.0, right: 40.0, bottom: 20.0, top: 190.0),
                 child: Column(
                   children: <Widget>[
                     //Logo Photo PNG

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 //Spoof Browser Widget
@@ -25,6 +25,8 @@ class _SpoofBrowser extends State<SpoofBrowser> {
   List<String> taskCountNum = [];
   List<String> baseURL = ['Nike', 'Adidas', 'Supreme'];
   List<String> profileSelect = [];
+  String url =
+      'https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
   String baseURLtext;
   var profileSelected;
   var taskNum;
@@ -61,6 +63,14 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     });
 
     Future.delayed(const Duration(seconds: 1), () => {Navigator.pop(context)});
+  }
+
+  loginGmail() async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('Oops! Something Went Wrong');
+    }
   }
 
   Future<String> baseURLSelected() {
@@ -126,7 +136,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                     addClicked(),
                                     taskName.clear(),
                                     browserURL.clear(),
-                                    taskCount.clear()
+                                    taskCount.clear(),
                                   },
                                   child: Icon(
                                     Icons.arrow_back,
@@ -419,40 +429,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                       );
                                     }
                                   }),
-                              // GestureDetector(
-                              //   onTap: () => {print('Profile Selected')},
-                              //   child: Container(
-                              //     child: Column(
-                              //       children: <Widget>[
-                              //         Container(
-                              //           width: 200.0,
-                              //           height: 45.0,
-                              //           margin: EdgeInsets.only(right: 30.0),
-                              //           decoration: BoxDecoration(
-                              //               color: Colors.grey[800],
-                              //               borderRadius: BorderRadius.all(
-                              //                   Radius.circular(10.0)),
-                              //               boxShadow: [
-                              //                 BoxShadow(
-                              //                     color: Colors.grey[900]
-                              //                         .withOpacity(0.5),
-                              //                     spreadRadius: 2,
-                              //                     blurRadius: 4,
-                              //                     offset: Offset(0, 0)),
-                              //               ]),
-                              //           child: Align(
-                              //             alignment: Alignment.center,
-                              //             child: Text(
-                              //               'Select',
-                              //               style: TextStyle(color: Colors.white),
-                              //               textAlign: TextAlign.center,
-                              //             ),
-                              //           ),
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
                             ],
                           ),
                         ],
@@ -598,12 +574,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                           color: Colors.white,
                         ),
                         child: GestureDetector(
-                          onTap: () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CreateProfilePage())),
-                          },
+                          onTap: () => {loginGmail()},
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -1063,7 +1034,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                                 ),
                                                 children: <TextSpan>[
                                                   TextSpan(
-                                                    text: 'SUPREMO',
+                                                    text: profileSelected,
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 14.0,
