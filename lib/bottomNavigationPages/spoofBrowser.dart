@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+import 'package:elixirlabs_mobileapp/SettingsPopup/notificationAlert.dart';
 
 //Spoof Browser Widget
 class SpoofBrowser extends StatefulWidget {
@@ -877,14 +878,20 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                               onDismissed: (direction) {
                                 setState(() {
                                   taskCountNum.removeAt(index);
-                                });
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          NotificationAlert());
 
-                                Scaffold.of(context).showSnackBar(SnackBar(
-                                    content: Text(
-                                  "Task Deleted",
-                                  style: TextStyle(fontSize: 16.0),
-                                  textAlign: TextAlign.center,
-                                )));
+                                  Future.delayed(const Duration(seconds: 1),
+                                      () => {Navigator.pop(context)});
+                                });
+                                // Scaffold.of(context).showSnackBar(SnackBar(
+                                //     content: Text(
+                                //   "Task Deleted",
+                                //   style: TextStyle(fontSize: 16.0),
+                                //   textAlign: TextAlign.center,
+                                // )));
                               },
                               background: Container(
                                 alignment: Alignment.centerRight,
