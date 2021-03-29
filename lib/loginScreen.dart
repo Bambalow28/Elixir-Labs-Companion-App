@@ -89,10 +89,13 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Discord Login'),
+          title: Text(
+            'Discord Login',
+            style: TextStyle(fontStyle: FontStyle.italic),
+          ),
           backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
           leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_rounded, size: 30.0),
+              icon: Icon(Icons.arrow_back_ios_rounded, size: 25.0),
               onPressed: () => Navigator.pop(context)),
         ),
         body: DiscordAuth().visa.authenticate(
@@ -188,9 +191,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                             children: <Widget>[
                               Icon(
                                 CustomIcons.discord,
-                                color: checkPressed
-                                    ? const Color.fromRGBO(18, 18, 18, 1.0)
-                                    : Colors.white,
+                                color: Colors.white,
                               ),
                               Padding(
                                 padding: EdgeInsets.only(right: 10.0),
@@ -198,10 +199,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                               Text("Login via Discord",
                                   textAlign: TextAlign.center,
                                   style: style.copyWith(
-                                      color: checkPressed
-                                          ? const Color.fromRGBO(
-                                              18, 18, 18, 1.0)
-                                          : Colors.white,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold)),
                             ],
                           ),
