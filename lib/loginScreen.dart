@@ -20,29 +20,13 @@ import 'package:visa/engine/simple-auth.dart';
 import 'package:visa/engine/visa.dart';
 
 final authEnd = Uri.parse(
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds');
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds%20guilds.join');
 final tokenEnd = Uri.parse('https://discord.com/api/oauth2/token');
 final clientID = '799140079494496276';
 final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
 final redirectUrl = Uri.parse('https://www.google.ca');
 String redUrl =
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds';
-
-launchURL() async {
-  DiscordAuth discordAuth = DiscordAuth();
-  var visa = discordAuth.visa;
-
-  return visa.authenticate(
-      clientID: clientID,
-      redirectUri: redUrl,
-      scope: 'identify,email,guilds,guilds.join',
-      state: 'discordAuth',
-      onDone: done);
-}
-
-done(AuthData authData) {
-  print(authData);
-}
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds%20guilds.join';
 
 // Future<oauth2.Client> launchURL() async {
 //   var grant = oauth2.AuthorizationCodeGrant(clientID, authEnd, tokenEnd,
@@ -89,11 +73,34 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   bool isLoggedIn = false;
   bool checkPressed = false;
 
-  void navigateToHome() {
+  navigateToHome() {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => HomePage()),
         ModalRoute.withName("/LoginPage"));
+  }
+
+  launchURL(BuildContext context) {
+    var done = (AuthData authData) {
+      print('test');
+      // print(authData.accessToken);
+      navigateToHome();
+    };
+
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Discord Login'),
+          backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_rounded, size: 30.0),
+              onPressed: () => Navigator.pop(context)),
+        ),
+        body: DiscordAuth().visa.authenticate(
+            clientID: clientID,
+            redirectUri: redUrl,
+            scope: 'identify',
+            state: 'discordAuth',
+            onDone: done));
   }
 
   @override
@@ -154,7 +161,11 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                             : const Color.fromRGBO(18, 18, 18, 1.0),
                         setState(() {
                           checkPressed = !checkPressed;
-                          navigateToHome();
+                          // navigateToHome();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => launchURL(context)));
                         })
                       },
                       child: Container(
