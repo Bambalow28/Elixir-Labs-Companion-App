@@ -30,6 +30,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
       'https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
   String baseURLtext;
   var profileSelected;
+  var resetProfileSelected;
   var taskNum;
 
   //Create Firebase Instance
@@ -100,7 +101,12 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         builder: (context) {
           return GestureDetector(
             onTap: () {
-              FocusScope.of(context).requestFocus(new FocusNode());
+              // FocusScope.of(context).requestFocus(new FocusNode());
+              FocusScopeNode currentFocus = FocusScope.of(context);
+
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.unfocus();
+              }
             },
             child: FutureBuilder(
               future: getProfilesCreated(),
@@ -138,6 +144,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                     taskName.clear(),
                                     browserURL.clear(),
                                     taskCount.clear(),
+                                    profileSelected = resetProfileSelected
                                   },
                                   child: Icon(
                                     Icons.arrow_back,
@@ -376,59 +383,51 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                                   color: Colors.grey)));
                                     }
 
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return Center(
-                                          child: CircularProgressIndicator());
-                                    } else {
-                                      return Container(
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                              side: BorderSide(
-                                                  width: 2.0,
-                                                  style: BorderStyle.solid,
-                                                  color: Colors.blueGrey[600]),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10.0))),
-                                        ),
-                                        child: StatefulBuilder(
-                                          builder: (context, setState) {
-                                            return DropdownButtonHideUnderline(
-                                              child: Container(
-                                                margin: EdgeInsets.only(
-                                                    left: 8.0, right: 8.0),
-                                                child: DropdownButton<String>(
-                                                  hint: Text(
-                                                    'Select',
-                                                    style: TextStyle(
-                                                        color: Colors.grey),
-                                                  ),
-                                                  dropdownColor:
-                                                      Colors.grey[850],
-                                                  value: profileSelected,
+                                    return Container(
+                                      decoration: ShapeDecoration(
+                                        shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                                width: 2.0,
+                                                style: BorderStyle.solid,
+                                                color: Colors.blueGrey[600]),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))),
+                                      ),
+                                      child: StatefulBuilder(
+                                        builder: (context, setState) {
+                                          return DropdownButtonHideUnderline(
+                                            child: Container(
+                                              margin: EdgeInsets.only(
+                                                  left: 8.0, right: 8.0),
+                                              child: DropdownButton<String>(
+                                                hint: Text(
+                                                  'Select',
                                                   style: TextStyle(
-                                                      color: Colors.white),
-                                                  onChanged: (newValue) {
-                                                    setState(() {
-                                                      profileSelected =
-                                                          newValue;
-                                                      print(profileSelected);
-                                                    });
-                                                  },
-                                                  items: profileSelect
-                                                      .map((String value) {
-                                                    return DropdownMenuItem(
-                                                      value: value,
-                                                      child: Text(value),
-                                                    );
-                                                  }).toList(),
+                                                      color: Colors.grey),
                                                 ),
+                                                dropdownColor: Colors.grey[850],
+                                                value: profileSelected,
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                                onChanged: (newValue) {
+                                                  setState(() {
+                                                    profileSelected = newValue;
+                                                    print(profileSelected);
+                                                  });
+                                                },
+                                                items: profileSelect
+                                                    .map((String value) {
+                                                  return DropdownMenuItem(
+                                                    value: value,
+                                                    child: Text(value),
+                                                  );
+                                                }).toList(),
                                               ),
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    }
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
                                   }),
                             ],
                           ),
@@ -464,7 +463,12 @@ class _SpoofBrowser extends State<SpoofBrowser> {
               },
             ),
           );
-        });
+        }).whenComplete(() {
+      taskName.clear();
+      browserURL.clear();
+      taskCount.clear();
+      profileSelected = resetProfileSelected;
+    });
   }
 
   //Show Modal Bottom Sheet when '+' is Clicked
