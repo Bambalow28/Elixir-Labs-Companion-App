@@ -78,10 +78,9 @@ class _CreateProfile extends State<CreateProfile> {
                       setState(() async {
                         profileName.removeAt(index);
                         await firestoreInstance
-                            .runTransaction((Transaction myTransaction) async {
-                              await myTransaction
-                                  .delete(snapshot.data.docs[index].reference);
-                            })
+                            .collection("profiles")
+                            .doc(profileList[index][["profileName"]])
+                            .delete()
                             .then(
                               (check) =>
                                   Scaffold.of(context).showSnackBar(SnackBar(

@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/Pages/upcomingInfo.dart';
@@ -32,6 +33,9 @@ class _HomePageState extends State<HomePage> {
   String appBarTitle = "Home";
   List data = [];
 
+  //Create Firebase Instance
+  final firestoreInstance = FirebaseFirestore.instance;
+
   //This Function gets a request from an API for Upcoming Releases.
   //In cases that the GET fails then it retries again.
   Future<void> upcomingReleases() async {
@@ -42,6 +46,13 @@ class _HomePageState extends State<HomePage> {
       this.setState(() {
         data = convert.jsonDecode(site.body);
         progressStatus = false;
+        // for (var i = 0; i < data.length; i++) {
+        //   var item = data[i]["name"];
+        //   firestoreInstance.collection("Item Releases").doc(item).set({
+        //     //Set Likes and Resell Predictions
+        //     "itemName": item
+        //   });
+        // }
       });
     } catch (e) {
       upcomingReleases();
