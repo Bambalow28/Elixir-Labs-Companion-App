@@ -75,7 +75,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     }
   }
 
-  Future<String> baseURLSelected() {
+  baseURLSelected() {
     switch (baseURLtext) {
       case "Nike":
         browserURL.text = 'https://www.nike.ca/';
@@ -89,7 +89,6 @@ class _SpoofBrowser extends State<SpoofBrowser> {
         browserURL.text = "https://www.supremenewyork.com/shop/all";
         break;
     }
-    return baseURLSelected();
   }
 
   //Show Create Task Bottom Sheet when 'Create Task' is Clicked

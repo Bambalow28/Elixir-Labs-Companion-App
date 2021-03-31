@@ -81,11 +81,11 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   }
 
   launchURL(BuildContext context) {
-    var done = (AuthData authData) {
+    void done(AuthData authData) {
       print('test');
       // print(authData.accessToken);
       navigateToHome();
-    };
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -108,8 +108,6 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    //Create Login Button
-
     //Login View
     return MaterialApp(
       home: Scaffold(
