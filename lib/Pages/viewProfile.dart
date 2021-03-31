@@ -23,6 +23,7 @@ class _ViewProfile extends State<ViewProfile> {
   TextEditingController phoneNum = new TextEditingController();
   TextEditingController state = new TextEditingController();
   TextEditingController country = new TextEditingController();
+  String cardName = 'N/A';
   String cardNum = 'N/A';
   String expDate = 'N/A';
 
@@ -41,6 +42,7 @@ class _ViewProfile extends State<ViewProfile> {
       phoneNum.text = profile.data()["phoneNumber"];
       state.text = profile.data()["state"];
       country.text = profile.data()["country"];
+      cardName = profile.data()["cardName"];
       cardNum = profile.data()["cardNumber"];
       expDate = profile.data()["expDate"];
     });
@@ -48,6 +50,15 @@ class _ViewProfile extends State<ViewProfile> {
 
   void saveEditedInfo() {
     saveBtnClicked = true;
+    firestoreInstance.collection("profiles").doc(widget.profileName).update({
+      "firstName": firstName.text,
+      "lastName": lastName.text,
+      "address": address.text,
+      "zipcode": zip.text,
+      "phoneNumber": phoneNum.text,
+      "state": state.text,
+      "country": country.text
+    }).then((value) => print('Updated'));
   }
 
   @override
@@ -126,12 +137,12 @@ class _ViewProfile extends State<ViewProfile> {
                             children: <Widget>[
                               Container(
                                 alignment: Alignment.bottomLeft,
-                                child: Text('PROFILE NAME',
+                                child: Text('CARD HOLDER',
                                     style: TextStyle(color: Colors.grey[400])),
                               ),
                               Container(
                                 alignment: Alignment.bottomLeft,
-                                child: Text(widget.profileName,
+                                child: Text(cardName,
                                     style: TextStyle(color: Colors.white)),
                               ),
                             ],
