@@ -7,7 +7,7 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:elixirlabs_mobileapp/SettingsPopup/loadAnimation.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/Pages/upcomingInfo.dart';
 
@@ -177,13 +177,15 @@ class _HomePageState extends State<HomePage> {
                           top: 10.0, left: 10.0, right: 10.0, bottom: 5.0),
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Container(
-                          width: 300.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                              color: Colors.grey[900],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0))),
+                        child: LoadAnimation(
+                          child: Container(
+                            width: 300.0,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                                color: Colors.grey[900],
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0))),
+                          ),
                         ),
                       ),
                     ),
@@ -198,17 +200,19 @@ class _HomePageState extends State<HomePage> {
                             children: <Widget>[
                               Column(
                                 children: <Widget>[
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: 5.0, right: 5.0, top: 6.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[900],
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
+                                  LoadAnimation(
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                          left: 5.0, right: 5.0, top: 6.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[900],
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
                                       ),
+                                      width: 160.0,
+                                      height: 190.0,
                                     ),
-                                    width: 160.0,
-                                    height: 190.0,
                                   ),
                                 ],
                               ),
@@ -223,13 +227,15 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.all(10.0),
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Container(
-                          width: 300.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                              color: Colors.grey[900],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0))),
+                        child: LoadAnimation(
+                          child: Container(
+                            width: 300.0,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                                color: Colors.grey[900],
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0))),
+                          ),
                         ),
                       ),
                     ),
@@ -244,17 +250,20 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (BuildContext context, int index) {
                             return Column(
                               children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      left: 5.0, right: 5.0, bottom: 10.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[900],
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
+                                LoadAnimation(
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                        left: 5.0, right: 5.0, bottom: 10.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[900],
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
                                     ),
+                                    width:
+                                        MediaQuery.of(context).size.width - 10,
+                                    height: 123.0,
                                   ),
-                                  width: MediaQuery.of(context).size.width - 10,
-                                  height: 123.0,
                                 ),
                               ],
                             );

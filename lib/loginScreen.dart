@@ -22,7 +22,7 @@ import 'package:visa/engine/visa.dart';
 final clientID = '799140079494496276';
 final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
 String redirectURL =
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=guilds%20identify%20email%20guilds.join';
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20guilds%20guilds.join%20email';
 
 //Login Widget
 class LoginPage extends StatefulWidget {
@@ -47,7 +47,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         ModalRoute.withName("/LoginPage"));
   }
 
-  launchURL(BuildContext context) {
+  launchURL() {
     done(AuthData authData) {
       print('test');
       // print(authData.accessToken);
@@ -69,8 +69,8 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
             clientID: clientID,
             clientSecret: clientSecret,
             redirectUri: redirectURL,
-            scope: 'identify',
             state: 'discordAuth',
+            scope: 'identify',
             onDone: done));
   }
 
@@ -134,7 +134,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(
-                          //         builder: (context) => launchURL(context)));
+                          //         builder: (context) => launchURL()));
                         })
                       },
                       child: Container(

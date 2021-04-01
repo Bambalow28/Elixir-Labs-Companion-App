@@ -71,7 +71,7 @@ class _CreateProfile extends State<CreateProfile> {
                 scrollDirection: Axis.vertical,
                 itemCount: profileList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  String test = profileList[index]["cardNumber"];
+                  // String test = profileList[index]["cardNumber"];
 
                   return Dismissible(
                     key: Key(profileList[index]["profileName"]),
