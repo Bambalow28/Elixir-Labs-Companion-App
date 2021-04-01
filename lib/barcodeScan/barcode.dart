@@ -19,26 +19,46 @@ class _BarcodeScan extends State<BarcodeScanner> {
   String appBarTitle = "Barcode Scanner";
   bool progressStatus = true;
   String barcodeData = '';
+  String sneakerData = '';
   String itemName = '';
   String itemDescr = '';
   String itemImage = '';
   bool itemCheck = true;
   Map<String, dynamic> barcodeItem = {};
+  Map<String, dynamic> sneakerItem = {};
+  TextEditingController size = new TextEditingController();
+  TextEditingController boughtPrice = new TextEditingController();
+
+  getSneakerData() async {
+    String sneakerURL =
+        'https://api.thesneakerdatabase.com/v1/sneakers?limit=10&name=$itemName';
+
+    var sneakerDataResponse = await http.get(sneakerURL);
+
+    try {
+      sneakerItem = convert.jsonDecode(sneakerDataResponse.body);
+      print(sneakerItem);
+    } catch (e) {
+      print(e);
+    }
+  }
 
   getScannedBarcode() async {
     String barcodeAPIURL =
         'https://api.barcodelookup.com/v2/products?barcode=$barcodeData&formatted=y&key=y65xwlx48d5v98os3dej0s9oqma8ik';
 
-    var res = await http.get(barcodeAPIURL);
+    var barcodeDataReponse = await http.get(barcodeAPIURL);
 
     this.setState(() {
       progressStatus = false;
 
       try {
-        barcodeItem = convert.jsonDecode(res.body);
+        barcodeItem = convert.jsonDecode(barcodeDataReponse.body);
         itemName = barcodeItem['products'][0]['product_name'];
         itemDescr = barcodeItem['products'][0]['description'];
         itemImage = barcodeItem['products'][0]['images'][0];
+        size.text = barcodeItem['products'][0]['title'];
+        // getSneakerData();
       } catch (e) {
         itemName = 'Not Available';
         itemDescr = 'Not Avilable';
@@ -188,6 +208,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: ShowDrawer(),
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text(appBarTitle),
@@ -293,36 +314,160 @@ class _BarcodeScan extends State<BarcodeScanner> {
                       )
                     : Column(
                         children: <Widget>[
+                          // Expanded(
+                          //       child: Container(
+                          //         padding: EdgeInsets.only(
+                          //             top: 20.0, left: 10.0, right: 10.0),
+                          //         child: ClipRRect(
+                          //           borderRadius:
+                          //               BorderRadius.all(Radius.circular(10)),
+                          //           child: Image.network(
+                          //             itemImage,
+                          //             width: MediaQuery.of(context).size.width,
+                          //             height:
+                          //                 MediaQuery.of(context).size.height -
+                          //                     600.0,
+                          //             fit: BoxFit.fitHeight,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
                           Container(
-                            alignment: Alignment.topCenter,
+                            alignment: Alignment.center,
                             padding: EdgeInsets.only(
-                                top: 20.0, left: 10.0, right: 10.0),
-                            child: Text(
-                              itemName,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: Image.network(
-                                  itemImage,
-                                  width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height -
-                                      600.0,
-                                  fit: BoxFit.fitHeight,
-                                ),
+                                top: 20.0,
+                                bottom: 10.0,
+                                left: 20.0,
+                                right: 20.0),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              child: Image.network(
+                                itemImage,
+                                width: MediaQuery.of(context).size.width,
+                                height:
+                                    MediaQuery.of(context).size.height - 600.0,
+                                fit: BoxFit.fitHeight,
                               ),
                             ),
                           ),
                           SizedBox(
-                            height: 20.0,
+                            height: 15.0,
+                          ),
+                          Container(
+                            // alignment: Alignment.topCenter,
+                            padding: EdgeInsets.only(
+                                top: 20.0, left: 10.0, right: 10.0),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: 'NAME: ',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: itemName,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: 'RETAIL PRICE: ',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: '\$ 90',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: 'RELEASE DATE: ',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Jan 23, 2006',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: 'STYLE ID: ',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'testing123',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 15.0),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              'Add Item',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 28.0),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
                           ),
                           Expanded(
                             child: Column(
@@ -331,33 +476,26 @@ class _BarcodeScan extends State<BarcodeScanner> {
                                   children: <Widget>[
                                     Expanded(
                                       child: Container(
-                                        margin: EdgeInsets.only(left: 30.0),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            color: Colors.cyan),
-                                        height: 110.0,
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.add,
-                                                size: 70.0,
-                                                color: Colors.white,
-                                              ),
-                                              Text(
-                                                "Add Item",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
+                                        padding: EdgeInsets.only(left: 10.0),
+                                        child: TextField(
+                                          textCapitalization:
+                                              TextCapitalization.words,
+                                          controller: size,
+                                          decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor:
+                                                Color.fromRGBO(45, 45, 45, 1),
+                                            hintText: 'Size',
+                                            hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0))),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0))),
                                           ),
+                                          style: TextStyle(color: Colors.white),
                                         ),
                                       ),
                                     ),
@@ -366,69 +504,63 @@ class _BarcodeScan extends State<BarcodeScanner> {
                                     ),
                                     Expanded(
                                       child: Container(
-                                        margin: EdgeInsets.only(right: 30.0),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0)),
-                                            color: Colors.orange[400]),
-                                        height: 110.0,
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.info_outline,
-                                                size: 70.0,
-                                                color: Colors.white,
-                                              ),
-                                              Text(
-                                                "Info",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
+                                        padding: EdgeInsets.only(right: 10.0),
+                                        child: TextField(
+                                          textCapitalization:
+                                              TextCapitalization.words,
+                                          controller: boughtPrice,
+                                          decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor:
+                                                Color.fromRGBO(45, 45, 45, 1),
+                                            hintText: '\$ Bought Price',
+                                            hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0))),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0))),
                                           ),
+                                          style: TextStyle(color: Colors.white),
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 10.0,
-                                ),
                                 Expanded(
+                                  child: SizedBox(),
+                                ),
+                                Container(
+                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  margin:
+                                      EdgeInsets.only(left: 30.0, right: 30.0),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0)),
+                                      color: Colors.blue[400]),
                                   child: Container(
-                                    margin: EdgeInsets.only(
-                                        left: 30.0, right: 30.0),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0)),
-                                        color: Colors.green[400]),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.save_alt_outlined,
-                                            size: 70.0,
-                                            color: Colors.white,
-                                          ),
-                                          Text(
-                                            "Save",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.add,
+                                          size: 25.0,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(width: 10.0),
+                                        Text(
+                                          "Add Item",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
