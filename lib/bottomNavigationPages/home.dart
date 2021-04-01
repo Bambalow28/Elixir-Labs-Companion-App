@@ -468,207 +468,216 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (BuildContext context, int index) {
                             return Column(
                               children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      left: 5.0, right: 5.0, bottom: 5.0),
-                                  decoration: BoxDecoration(
-                                      // color: Colors.blueGrey[900],
-                                      // boxShadow: [
-                                      //   BoxShadow(
-                                      //       color: Color.fromRGBO(0, 0, 0, 1)
-                                      //           .withOpacity(0.5),
-                                      //       spreadRadius: 2,
-                                      //       blurRadius: 4),
-                                      // ],
-                                      // borderRadius: BorderRadius.all(
-                                      //   Radius.circular(10),
-                                      // ),
-                                      ),
-                                  width: MediaQuery.of(context).size.width - 10,
-                                  height: 123.0,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 5.0, right: 5.0),
-                                                alignment: Alignment.topLeft,
-                                                child: SizedBox(
-                                                    width: 28.0,
-                                                    height: 25.0,
-                                                    child: Container(
-                                                      margin:
-                                                          EdgeInsets.all(2.0),
-                                                      child: Image.asset(
-                                                        "assets/images/newElixirLogo.png",
-                                                        fit: BoxFit.contain,
-                                                        width: 200.0,
+                                GestureDetector(
+                                  onTap: () => {
+                                    Navigator.of(context).push(viewNewsRoute())
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                        left: 5.0, right: 5.0, bottom: 5.0),
+                                    decoration: BoxDecoration(
+                                        // color: Colors.blueGrey[900],
+                                        // boxShadow: [
+                                        //   BoxShadow(
+                                        //       color: Color.fromRGBO(0, 0, 0, 1)
+                                        //           .withOpacity(0.5),
+                                        //       spreadRadius: 2,
+                                        //       blurRadius: 4),
+                                        // ],
+                                        // borderRadius: BorderRadius.all(
+                                        //   Radius.circular(10),
+                                        // ),
+                                        ),
+                                    width:
+                                        MediaQuery.of(context).size.width - 10,
+                                    height: 123.0,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Column(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      left: 5.0, right: 5.0),
+                                                  alignment: Alignment.topLeft,
+                                                  child: SizedBox(
+                                                      width: 28.0,
+                                                      height: 25.0,
+                                                      child: Container(
+                                                        margin:
+                                                            EdgeInsets.all(2.0),
+                                                        child: Image.asset(
+                                                          "assets/images/newElixirLogo.png",
+                                                          fit: BoxFit.contain,
+                                                          width: 200.0,
+                                                        ),
+                                                      )),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                    top: 13.5,
+                                                    bottom: 10.0,
+                                                  ),
+                                                  alignment: Alignment.topLeft,
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Container(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                bottom: 5.0),
+                                                        child: Text(
+                                                            'Air Jordan 1 Pollen',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 18.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold)),
                                                       ),
-                                                    )),
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                  top: 13.5,
-                                                  bottom: 10.0,
+                                                    ],
+                                                  ),
                                                 ),
-                                                alignment: Alignment.topLeft,
-                                                child: Column(
-                                                  children: <Widget>[
-                                                    Container(
-                                                      alignment:
-                                                          Alignment.topLeft,
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 5.0),
-                                                      child: Text(
-                                                          'Air Jordan 1 Pollen',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 18.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              'Rumour has it that they are releasing this August',
-                                              style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 16.0,
-                                              ),
+                                              ],
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: SizedBox(),
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              'By: ' + 'SUPREMO#1533',
-                                              style: TextStyle(
+                                            Container(
+                                              child: Text(
+                                                'Rumour has it that they are releasing this August',
+                                                style: TextStyle(
                                                   color: Colors.grey,
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.bold),
+                                                  fontSize: 16.0,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      // Expanded(
-                                      //   child: SizedBox(),
-                                      // ),
-                                      // Column(
-                                      //   children: <Widget>[
-                                      //     Container(
-                                      //       padding: EdgeInsets.only(top: 13.5),
-                                      //       child: Text(
-                                      //         '0:00 AM',
-                                      //         style: TextStyle(
-                                      //             color: Colors.grey,
-                                      //             fontSize: 12.0,
-                                      //             fontWeight: FontWeight.bold),
-                                      //       ),
-                                      //     ),
-                                      //   ],
-                                      // ),
+                                            Expanded(
+                                              child: SizedBox(),
+                                            ),
+                                            Container(
+                                              child: Text(
+                                                'By: ' + 'SUPREMO#1533',
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 14.0,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        // Expanded(
+                                        //   child: SizedBox(),
+                                        // ),
+                                        // Column(
+                                        //   children: <Widget>[
+                                        //     Container(
+                                        //       padding: EdgeInsets.only(top: 13.5),
+                                        //       child: Text(
+                                        //         '0:00 AM',
+                                        //         style: TextStyle(
+                                        //             color: Colors.grey,
+                                        //             fontSize: 12.0,
+                                        //             fontWeight: FontWeight.bold),
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // ),
 
-                                      // Row(
-                                      //   mainAxisAlignment:
-                                      //       MainAxisAlignment.start,
-                                      //   children: <Widget>[
-                                      //     Container(
-                                      //       padding: EdgeInsets.only(
-                                      //           top: 11.0,
-                                      //           left: 5.0,
-                                      //           right: 5.0),
-                                      //       alignment: Alignment.topLeft,
-                                      //       child: SizedBox(
-                                      //           width: 28.0,
-                                      //           height: 25.0,
-                                      //           child: Container(
-                                      //             margin: EdgeInsets.all(2.0),
-                                      //             child: Image.asset(
-                                      //               "assets/images/newElixirLogo.png",
-                                      //               fit: BoxFit.contain,
-                                      //               width: 200.0,
-                                      //             ),
-                                      //           )),
-                                      //     ),
-                                      //   ],
-                                      // ),
-                                      // Container(
-                                      //   alignment: Alignment.topRight,
-                                      //   padding: EdgeInsets.all(10.0),
-                                      //   child: Text(
-                                      //     '0:00AM',
-                                      //     style: TextStyle(
-                                      //       color: Colors.grey,
-                                      //       fontSize: 10.0,
-                                      //       fontWeight: FontWeight.bold,
-                                      //     ),
-                                      //     textAlign: TextAlign.center,
-                                      //   ),
-                                      // ),
-                                      // Container(
-                                      //   alignment: Alignment.bottomRight,
-                                      //   padding: EdgeInsets.all(10.0),
-                                      //   child: SizedBox(
-                                      //     width: 120.0,
-                                      //     height: 80.0,
-                                      //     child: ClipRRect(
-                                      //       borderRadius: BorderRadius.all(
-                                      //           Radius.circular(10)),
-                                      //       child: Image.asset(
-                                      //         "assets/images/jordanss.png",
-                                      //         fit: BoxFit.fill,
-                                      //         width: 200.0,
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // Container(
-                                      //   alignment: Alignment.centerLeft,
-                                      //   width: 300.0,
-                                      //   padding: EdgeInsets.only(left: 10.0),
-                                      //   child: FittedBox(
-                                      //     fit: BoxFit.fitWidth,
-                                      //     child: Text('Release in August!',
-                                      //         style: TextStyle(
-                                      //             color: Colors.grey,
-                                      //             fontSize: 20.0,
-                                      //             fontWeight: FontWeight.bold)),
-                                      //   ),
-                                      // ),
-                                      // Container(
-                                      //   padding: EdgeInsets.only(
-                                      //       top: 13.5,
-                                      //       bottom: 10.0,
-                                      //       left: 35.0),
-                                      //   alignment: Alignment.topLeft,
-                                      //   child: Column(
-                                      //     children: <Widget>[
-                                      //       Container(
-                                      //         alignment: Alignment.topLeft,
-                                      //         padding:
-                                      //             EdgeInsets.only(bottom: 5.0),
-                                      //         child: Text('Air Jordan 1 Pollen',
-                                      //             style: TextStyle(
-                                      //                 color: Colors.white,
-                                      //                 fontSize: 18.0,
-                                      //                 fontWeight:
-                                      //                     FontWeight.bold)),
-                                      //       ),
-                                      //     ],
-                                      //   ),
-                                      // ),
-                                    ],
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.start,
+                                        //   children: <Widget>[
+                                        //     Container(
+                                        //       padding: EdgeInsets.only(
+                                        //           top: 11.0,
+                                        //           left: 5.0,
+                                        //           right: 5.0),
+                                        //       alignment: Alignment.topLeft,
+                                        //       child: SizedBox(
+                                        //           width: 28.0,
+                                        //           height: 25.0,
+                                        //           child: Container(
+                                        //             margin: EdgeInsets.all(2.0),
+                                        //             child: Image.asset(
+                                        //               "assets/images/newElixirLogo.png",
+                                        //               fit: BoxFit.contain,
+                                        //               width: 200.0,
+                                        //             ),
+                                        //           )),
+                                        //     ),
+                                        //   ],
+                                        // ),
+                                        // Container(
+                                        //   alignment: Alignment.topRight,
+                                        //   padding: EdgeInsets.all(10.0),
+                                        //   child: Text(
+                                        //     '0:00AM',
+                                        //     style: TextStyle(
+                                        //       color: Colors.grey,
+                                        //       fontSize: 10.0,
+                                        //       fontWeight: FontWeight.bold,
+                                        //     ),
+                                        //     textAlign: TextAlign.center,
+                                        //   ),
+                                        // ),
+                                        // Container(
+                                        //   alignment: Alignment.bottomRight,
+                                        //   padding: EdgeInsets.all(10.0),
+                                        //   child: SizedBox(
+                                        //     width: 120.0,
+                                        //     height: 80.0,
+                                        //     child: ClipRRect(
+                                        //       borderRadius: BorderRadius.all(
+                                        //           Radius.circular(10)),
+                                        //       child: Image.asset(
+                                        //         "assets/images/jordanss.png",
+                                        //         fit: BoxFit.fill,
+                                        //         width: 200.0,
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        // Container(
+                                        //   alignment: Alignment.centerLeft,
+                                        //   width: 300.0,
+                                        //   padding: EdgeInsets.only(left: 10.0),
+                                        //   child: FittedBox(
+                                        //     fit: BoxFit.fitWidth,
+                                        //     child: Text('Release in August!',
+                                        //         style: TextStyle(
+                                        //             color: Colors.grey,
+                                        //             fontSize: 20.0,
+                                        //             fontWeight: FontWeight.bold)),
+                                        //   ),
+                                        // ),
+                                        // Container(
+                                        //   padding: EdgeInsets.only(
+                                        //       top: 13.5,
+                                        //       bottom: 10.0,
+                                        //       left: 35.0),
+                                        //   alignment: Alignment.topLeft,
+                                        //   child: Column(
+                                        //     children: <Widget>[
+                                        //       Container(
+                                        //         alignment: Alignment.topLeft,
+                                        //         padding:
+                                        //             EdgeInsets.only(bottom: 5.0),
+                                        //         child: Text('Air Jordan 1 Pollen',
+                                        //             style: TextStyle(
+                                        //                 color: Colors.white,
+                                        //                 fontSize: 18.0,
+                                        //                 fontWeight:
+                                        //                     FontWeight.bold)),
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Divider(

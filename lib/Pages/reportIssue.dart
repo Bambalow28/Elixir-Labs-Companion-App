@@ -3,13 +3,13 @@ import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-//Create Profile Widget
+//Report Issue Widget
 class ReportIssue extends StatefulWidget {
   @override
   _ReportIssue createState() => _ReportIssue();
 }
 
-//Spoof Browser Widget State
+//Report Issue Widget State
 class _ReportIssue extends State<ReportIssue> {
   int navIndex;
   String appBarTitle = "Report Issue";

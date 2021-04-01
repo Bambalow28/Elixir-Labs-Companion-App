@@ -14,6 +14,7 @@ import 'package:elixirlabs_mobileapp/barcodeScan/barcode.dart';
 import 'package:elixirlabs_mobileapp/barcodeScan/savedItems.dart';
 import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
 import 'package:elixirlabs_mobileapp/Pages/weeklyCalendar.dart';
+import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
 
 //Transition To Home Page
 Route homeRoute() {
@@ -140,6 +141,16 @@ Route sponsorsRoute() {
 Route reportIssue() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => ReportIssue(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To View News
+Route viewNewsRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => ViewNews(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

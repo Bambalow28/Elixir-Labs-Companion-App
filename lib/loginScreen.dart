@@ -19,43 +19,10 @@ import 'package:visa/engine/oauth.dart';
 import 'package:visa/engine/simple-auth.dart';
 import 'package:visa/engine/visa.dart';
 
-final authEnd = Uri.parse(
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds%20guilds.join');
-final tokenEnd = Uri.parse('https://discord.com/api/oauth2/token');
 final clientID = '799140079494496276';
 final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
-final redirectUrl = Uri.parse('https://www.google.ca');
-String redUrl =
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds%20guilds.join';
-
-// Future<oauth2.Client> launchURL() async {
-//   var grant = oauth2.AuthorizationCodeGrant(clientID, authEnd, tokenEnd,
-//       secret: clientSecret);
-
-//   // A URL on the authorization server (authorizationEndpoint with some additional
-//   // query parameters). Scopes and state can optionally be passed into this method.
-//   var authorizationUrl = grant.getAuthorizationUrl(redirectUrl, scopes: ['identify', 'email', 'guilds']);
-
-//   await redirect(authorizationUrl);
-//   var responseUrl = await listen(redirectUrl);
-
-//   return await grant.handleAuthorizationResponse(responseUrl.queryParameters);
-// }
-
-// Future redirect(Uri url) async {
-//   if (await canLaunch(url.toString())) {
-//     await launch(url.toString());
-//   }
-// }
-
-// Future<Null> listen(Uri url) async {
-//   //ignore: cancel_subscriptions
-//   final linksStream = getLinksStream().listen((Uri uri) => async {
-//     if (uri.toString().startsWith(redirectUrl.toString())) {
-//       redirectUrl = uri;
-//     }
-//   });
-// }
+String redirectURL =
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=guilds%20identify%20email%20guilds.join';
 
 //Login Widget
 class LoginPage extends StatefulWidget {
@@ -84,7 +51,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
     done(AuthData authData) {
       print('test');
       // print(authData.accessToken);
-      navigateToHome();
+      // navigateToHome();
     }
 
     return Scaffold(
@@ -100,7 +67,8 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         ),
         body: DiscordAuth().visa.authenticate(
             clientID: clientID,
-            redirectUri: redUrl,
+            clientSecret: clientSecret,
+            redirectUri: redirectURL,
             scope: 'identify',
             state: 'discordAuth',
             onDone: done));
