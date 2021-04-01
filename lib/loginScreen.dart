@@ -81,7 +81,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   }
 
   launchURL(BuildContext context) {
-    void done(AuthData authData) {
+    done(AuthData authData) {
       print('test');
       // print(authData.accessToken);
       navigateToHome();
