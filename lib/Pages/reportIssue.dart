@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Create Profile Widget
 class ReportIssue extends StatefulWidget {
@@ -14,6 +15,9 @@ class _ReportIssue extends State<ReportIssue> {
   String appBarTitle = "Report Issue";
   TextEditingController issueName = TextEditingController();
   TextEditingController issueDescription = TextEditingController();
+
+  //Create Firebase Instance
+  final firestoreInstance = FirebaseFirestore.instance;
 
   void navigationBarTapped(int index) {
     setState(() {
@@ -153,7 +157,15 @@ class _ReportIssue extends State<ReportIssue> {
               ),
               Expanded(child: SizedBox()),
               GestureDetector(
-                onTap: () => {print('Submit Clicked')},
+                onTap: () => {
+                  firestoreInstance.collection("issues").add({
+                    "submittedBy": 'SUPREMO\$1533',
+                    "issueName": issueName.text,
+                    "description": issueDescription.text
+                  }),
+                  issueName.clear(),
+                  issueDescription.clear()
+                },
                 child: Container(
                   margin:
                       EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
