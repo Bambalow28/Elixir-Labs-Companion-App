@@ -1,6 +1,7 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_links/uni_links.dart';
+import 'package:visa/engine/oauth.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
 import 'dart:async';
@@ -15,14 +16,22 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:visa/auth-data.dart';
 import 'package:visa/discord.dart';
-import 'package:visa/engine/oauth.dart';
-import 'package:visa/engine/simple-auth.dart';
 import 'package:visa/engine/visa.dart';
 
+String baseUrl = "https://discord.com/api/oauth2/authorize";
 final clientID = '799140079494496276';
 final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
 String redirectURL =
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20guilds%20guilds.join%20email';
+    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds%20guilds.join';
+
+final OAuth oAuth = OAuth(
+    debugMode: true,
+    baseUrl: baseUrl,
+    clientID: clientID,
+    redirectUri: redirectURL,
+    state: "dicordAuth",
+    scope: "identify",
+    clientSecret: clientSecret);
 
 //Login Widget
 class LoginPage extends StatefulWidget {
@@ -40,6 +49,11 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   bool isLoggedIn = false;
   bool checkPressed = false;
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   navigateToHome() {
     Navigator.pushAndRemoveUntil(
         context,
@@ -54,24 +68,30 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       // navigateToHome();
     }
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Discord Login',
-            style: TextStyle(fontStyle: FontStyle.italic),
-          ),
-          backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_rounded, size: 25.0),
-              onPressed: () => Navigator.pop(context)),
-        ),
-        body: DiscordAuth().visa.authenticate(
-            clientID: clientID,
-            clientSecret: clientSecret,
-            redirectUri: redirectURL,
-            state: 'discordAuth',
-            scope: 'identify',
-            onDone: done));
+    return oAuth.authenticate(
+        clearCache: false,
+        onDone: (responseData) {
+          print(responseData);
+        });
+
+    // return Scaffold(
+    //     appBar: AppBar(
+    //       title: Text(
+    //         'Discord Login',
+    //         style: TextStyle(fontStyle: FontStyle.italic),
+    //       ),
+    //       backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+    //       leading: IconButton(
+    //           icon: Icon(Icons.arrow_back_ios_rounded, size: 25.0),
+    //           onPressed: () => Navigator.pop(context)),
+    //     ),
+    //     body: DiscordAuth().visa.authenticate(
+    //         clientID: clientID,
+    //         clientSecret: clientSecret,
+    //         redirectUri: redirectURL,
+    //         state: 'discordAuth',
+    //         scope: 'identify',
+    //         onDone: done));
   }
 
   @override

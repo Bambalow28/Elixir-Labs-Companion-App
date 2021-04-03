@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Create Profile Widget
 class UpcomingReleaseInfo extends StatefulWidget {
@@ -20,6 +21,25 @@ class UpcomingReleaseInfo extends StatefulWidget {
 
 //Spoof Browser Widget State
 class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
+  bool likeButton = false;
+  bool dislikeButton = false;
+  int likeCount = 0;
+  int dislikeCount = 0;
+
+  //Create Firebase Instance
+  final firestoreInstance = FirebaseFirestore.instance;
+
+  getItemReleases() async {
+    await firestoreInstance
+        .collection("Item Releases")
+        .doc(widget.itemName)
+        .get()
+        .then((item) {
+      likeCount = item.data()["Liked"];
+      dislikeCount = item.data()["Dislikes"];
+    });
+  }
+
   //Function to Check Whether Price is Available
   void checkPrice() {
     if (widget.itemPrice.isEmpty) {
@@ -27,10 +47,38 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
     }
   }
 
+  void hypeStatus() {
+    if (likeButton == true) {
+      dislikeButton = false;
+      firestoreInstance
+          .collection("Item Releases")
+          .doc(widget.itemName)
+          .update({
+        "Liked": FieldValue.increment(1),
+      }).then((check) {
+        print('Liked Registered Successfully');
+      });
+    } else if (dislikeButton == true) {
+      likeButton = false;
+      firestoreInstance
+          .collection("Item Releases")
+          .doc(widget.itemName)
+          .set({"Dislikes": FieldValue.increment(1)}).then((check) {
+        print('Liked Registered Successfully');
+      });
+    }
+  }
+
   @override
   void initState() {
     this.checkPrice();
+    this.getItemReleases();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -76,262 +124,289 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
                     ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
-            alignment: Alignment.topLeft,
-            child: RichText(
-              text: TextSpan(
-                text: 'NAME: ',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: widget.itemName,
-                    style: TextStyle(color: Colors.white, fontSize: 14.0),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
-            alignment: Alignment.topLeft,
-            child: RichText(
-              text: TextSpan(
-                text: 'PRICE: ',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: widget.itemPrice,
-                    style: TextStyle(color: Colors.white, fontSize: 14.0),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
-            alignment: Alignment.topLeft,
-            child: RichText(
-              text: TextSpan(
-                text: 'RELEASE DATE: ',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: widget.itemReleaseDate,
-                    style: TextStyle(color: Colors.white, fontSize: 14.0),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 10.0, bottom: 15.0),
-            alignment: Alignment.topLeft,
-            child: Text('Resell Predictions',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22.0)),
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(left: 10.0),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(36, 37, 38, 1),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 4),
-                    ],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
+          FutureBuilder(
+            future: getItemReleases(),
+            builder: (BuildContext context, snapshot) {
+              return Column(
+                children: <Widget>[
+                  Container(
+                    padding:
+                        EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'NAME: ',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: widget.itemName,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14.0),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  height: 127.0,
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          'N/A',
-                          style: TextStyle(
-                              color: Colors.orange,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 36.0),
+                  Container(
+                    padding:
+                        EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'PRICE: ',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
                         ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: widget.itemPrice,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14.0),
+                          ),
+                        ],
                       ),
-                      Container(
-                        alignment: Alignment.bottomCenter,
-                        padding: EdgeInsets.only(bottom: 10.0),
-                        child: Text(
-                          'Lowest Price',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(right: 10.0),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(36, 37, 38, 1),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 1).withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 4),
-                    ],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
                     ),
                   ),
-                  height: 127.0,
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          'N/A',
-                          style: TextStyle(
-                              color: Colors.orange,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 36.0),
+                  Container(
+                    padding:
+                        EdgeInsets.only(left: 20.0, bottom: 10.0, right: 20.0),
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'RELEASE DATE: ',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      Container(
-                        alignment: Alignment.bottomCenter,
-                        padding: EdgeInsets.only(bottom: 10.0),
-                        child: Text(
-                          'Highest Price',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30.0,
-          ),
-          Container(
-            child: Text(
-              'Hype Status',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0),
-            ),
-          ),
-          SizedBox(
-            height: 15.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(left: 10.0, right: 13.0),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(39, 165, 96, 1),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                ),
-                width: 140.0,
-                height: 52.0,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: Icon(
-                        Icons.thumb_up,
-                        color: Colors.white,
-                        size: 25.0,
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: widget.itemReleaseDate,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14.0),
+                          ),
+                        ],
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        '0',
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 10.0, bottom: 15.0),
+                    alignment: Alignment.topLeft,
+                    child: Text('Resell Predictions',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: 5.0),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(231, 76, 60, 1),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22.0)),
                   ),
-                ),
-                width: 140.0,
-                height: 52.0,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: Icon(
-                        Icons.thumb_down,
-                        color: Colors.white,
-                        size: 25.0,
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10.0),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(36, 37, 38, 1),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 1)
+                                      .withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 4),
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          height: 127.0,
+                          child: Stack(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.only(bottom: 20.0),
+                                child: Text(
+                                  'N/A',
+                                  style: TextStyle(
+                                      color: Colors.orange,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 36.0),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomCenter,
+                                padding: EdgeInsets.only(bottom: 10.0),
+                                child: Text(
+                                  'Lowest Price',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        '0',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold),
+                      SizedBox(
+                        width: 10.0,
                       ),
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(right: 10.0),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(36, 37, 38, 1),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 1)
+                                      .withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 4),
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          height: 127.0,
+                          child: Stack(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.only(bottom: 20.0),
+                                child: Text(
+                                  'N/A',
+                                  style: TextStyle(
+                                      color: Colors.orange,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 36.0),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomCenter,
+                                padding: EdgeInsets.only(bottom: 10.0),
+                                child: Text(
+                                  'Highest Price',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Container(
+                    child: Text(
+                      'Hype Status',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22.0),
                     ),
-                  ],
-                ),
-              ),
-            ],
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () => {likeButton = true, hypeStatus()},
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10.0, right: 13.0),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(39, 165, 96, 1),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          width: 140.0,
+                          height: 52.0,
+                          child: Stack(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.only(left: 15.0),
+                                child: Icon(
+                                  Icons.thumb_up,
+                                  color: Colors.white,
+                                  size: 25.0,
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.only(left: 20.0),
+                                child: Text(
+                                  likeCount != null
+                                      ? likeCount.toString()
+                                      : '0',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => {dislikeButton = true, hypeStatus()},
+                        child: Container(
+                          margin: EdgeInsets.only(right: 5.0),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(231, 76, 60, 1),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          width: 140.0,
+                          height: 52.0,
+                          child: Stack(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.only(left: 15.0),
+                                child: Icon(
+                                  Icons.thumb_down,
+                                  color: Colors.white,
+                                  size: 25.0,
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.only(left: 20.0),
+                                child: Text(
+                                  dislikeCount != null
+                                      ? dislikeCount.toString()
+                                      : '0',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

@@ -5,13 +5,13 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
-//Supreme Bot Widget
+//Profile Page Widget
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePage createState() => _ProfilePage();
 }
 
-//Spoof Browser Widget State
+//Profile Page Widget State
 class _ProfilePage extends State<ProfilePage> {
   int navIndex = 3;
   String appBarTitle = "Profile";

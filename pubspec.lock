@@ -365,7 +365,7 @@ packages:
       name: visa
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   wave:
     dependency: "direct main"
     description:

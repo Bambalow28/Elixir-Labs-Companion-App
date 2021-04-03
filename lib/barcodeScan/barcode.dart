@@ -29,6 +29,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
   TextEditingController size = new TextEditingController();
   TextEditingController boughtPrice = new TextEditingController();
 
+  //Function that gets barcode result from an API and gets another result from another Sneaker Database API
   getSneakerData() async {
     String sneakerURL =
         'https://api.thesneakerdatabase.com/v1/sneakers?limit=10&name=$itemName';
@@ -43,6 +44,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
     }
   }
 
+  //Function that gets the result of the Barcode Scanner
   getScannedBarcode() async {
     String barcodeAPIURL =
         'https://api.barcodelookup.com/v2/products?barcode=$barcodeData&formatted=y&key=y65xwlx48d5v98os3dej0s9oqma8ik';
@@ -66,6 +68,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
     });
   }
 
+  //Function that reads the data of a Barcode
   scannedBarcode() async {
     await FlutterBarcodeScanner.scanBarcode(
             '#FF0000', 'Cancel', true, ScanMode.BARCODE)
@@ -80,6 +83,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
     }
   }
 
+  //Bottom Navigation Bar
   void navigationBarTapped(int index) {
     setState(() {
       navIndex = index;
@@ -104,6 +108,7 @@ class _BarcodeScan extends State<BarcodeScanner> {
     });
   }
 
+  //Show Scanner Options
   void scannerClicked() {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,

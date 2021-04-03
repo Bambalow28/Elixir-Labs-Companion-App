@@ -652,6 +652,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
     taskName.clear();
     taskCount.clear();
     super.dispose();
+    print('Disposed');
   }
 
   void navigationBarTapped(int index) {
@@ -885,10 +886,9 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                       context: context,
                                       builder: (context) =>
                                           NotificationAlert());
-
-                                  Future.delayed(const Duration(seconds: 1),
-                                      () => {Navigator.pop(context)});
                                 });
+                                Future.delayed(const Duration(seconds: 1),
+                                    () => {Navigator.pop(context)});
                                 // Scaffold.of(context).showSnackBar(SnackBar(
                                 //     content: Text(
                                 //   "Task Deleted",
@@ -999,31 +999,36 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                left: 30.0,
-                                                right: 5.0,
-                                                bottom: 10.0),
-                                            padding: EdgeInsets.only(top: 30.0),
-                                            alignment: Alignment.topLeft,
-                                            child: RichText(
-                                              text: TextSpan(
-                                                text: 'URL: ',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 12.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: browserURL.text,
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 14.0,
-                                                        fontWeight:
-                                                            FontWeight.normal),
+                                          ConstrainedBox(
+                                            constraints:
+                                                BoxConstraints(maxWidth: 300),
+                                            child: Container(
+                                              margin: EdgeInsets.only(
+                                                  left: 30.0,
+                                                  right: 5.0,
+                                                  bottom: 10.0),
+                                              padding:
+                                                  EdgeInsets.only(top: 30.0),
+                                              alignment: Alignment.topLeft,
+                                              child: RichText(
+                                                text: TextSpan(
+                                                  text: 'URL: ',
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
-                                                ],
+                                                  children: <TextSpan>[
+                                                    TextSpan(
+                                                      text: browserURL.text,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 14.0,
+                                                          fontWeight: FontWeight
+                                                              .normal),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),

@@ -23,6 +23,12 @@ class _LoadAnimationState extends State<LoadAnimation>
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[

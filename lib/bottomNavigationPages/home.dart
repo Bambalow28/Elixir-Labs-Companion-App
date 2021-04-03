@@ -46,6 +46,8 @@ class _HomePageState extends State<HomePage> {
       this.setState(() {
         data = convert.jsonDecode(site.body);
         progressStatus = false;
+
+        //Only RUN On New Releases
         // for (var i = 0; i < data.length; i++) {
         //   var item = data[i]["name"];
         //   firestoreInstance.collection("Item Releases").doc(item).set({
@@ -65,6 +67,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     this.upcomingReleases();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('Disposed');
   }
 
   @override

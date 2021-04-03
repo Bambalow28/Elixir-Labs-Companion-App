@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 //Report Issue Widget
 class ReportIssue extends StatefulWidget {
@@ -13,6 +14,7 @@ class ReportIssue extends StatefulWidget {
 class _ReportIssue extends State<ReportIssue> {
   int navIndex;
   String appBarTitle = "Report Issue";
+  String buttonText = 'Submit';
   TextEditingController issueName = TextEditingController();
   TextEditingController issueDescription = TextEditingController();
 
@@ -158,6 +160,9 @@ class _ReportIssue extends State<ReportIssue> {
               Expanded(child: SizedBox()),
               GestureDetector(
                 onTap: () => {
+                  setState(() {
+                    buttonText = 'Submitted';
+                  }),
                   firestoreInstance.collection("issues").add({
                     "submittedBy": 'SUPREMO\$1533',
                     "issueName": issueName.text,
@@ -177,7 +182,7 @@ class _ReportIssue extends State<ReportIssue> {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Submit',
+                      buttonText,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
