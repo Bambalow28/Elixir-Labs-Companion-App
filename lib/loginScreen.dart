@@ -1,19 +1,12 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:uni_links/uni_links.dart';
-import 'package:visa/engine/oauth.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
-import 'dart:async';
-import 'dart:io';
 import 'dart:core';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import "bottomNavigationPages/home.dart";
-import 'package:url_launcher/url_launcher.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:oauth2/oauth2.dart' as oauth2;
-import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:visa/auth-data.dart';
 import 'package:visa/discord.dart';
 import 'package:visa/engine/visa.dart';
@@ -21,17 +14,7 @@ import 'package:visa/engine/visa.dart';
 String baseUrl = "https://discord.com/api/oauth2/authorize";
 final clientID = '799140079494496276';
 final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
-String redirectURL =
-    'https://discord.com/api/oauth2/authorize?client_id=799140079494496276&redirect_uri=https%3A%2F%2Fwww.google.ca&response_type=code&scope=identify%20email%20guilds%20guilds.join';
-
-final OAuth oAuth = OAuth(
-    debugMode: true,
-    baseUrl: baseUrl,
-    clientID: clientID,
-    redirectUri: redirectURL,
-    state: "dicordAuth",
-    scope: "identify",
-    clientSecret: clientSecret);
+String redirectURL = 'https://api.elixirlabs.xyz/discord_oauth?req=get_roles';
 
 //Login Widget
 class LoginPage extends StatefulWidget {
@@ -49,6 +32,9 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   bool isLoggedIn = false;
   bool checkPressed = false;
 
+  //Create Firebase Instance
+  final firestoreInstance = FirebaseFirestore.instance;
+
   @override
   void dispose() {
     super.dispose();
@@ -61,37 +47,58 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         ModalRoute.withName("/LoginPage"));
   }
 
+  //This Function handles the Oauth2 login process
   launchURL() {
-    done(AuthData authData) {
-      print('test');
-      // print(authData.accessToken);
-      // navigateToHome();
+    done(AuthData authData) async {
+      var id = authData.userID;
+      var profilePic = authData.profileImgUrl;
+      var email = authData.email;
+      var discordName = authData.userJson["username"];
+
+      var usersRoles = await http
+          .get('https://api.elixirlabs.xyz/discord_oauth?req=get_roles&id=$id');
+      var roles = convert.jsonDecode(usersRoles.body);
+
+      for (var i = 0; i < roles.length; i++) {
+        var name = roles[i]["name"];
+        var role = roles[1]["name"];
+        if (name == "Member") {
+          navigateToHome();
+          firestoreInstance.collection("users").doc(id).set({
+            "userID": id,
+            "discordName": discordName,
+            "email": email,
+            "role": role,
+            "profilePic": profilePic,
+          }).then((result) {
+            print('User Saved in Firebase! User is a MEMBER');
+          });
+          break;
+        } else {
+          print('Login Error');
+          break;
+        }
+      }
     }
 
-    return oAuth.authenticate(
-        clearCache: false,
-        onDone: (responseData) {
-          print(responseData);
-        });
-
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: Text(
-    //         'Discord Login',
-    //         style: TextStyle(fontStyle: FontStyle.italic),
-    //       ),
-    //       backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
-    //       leading: IconButton(
-    //           icon: Icon(Icons.arrow_back_ios_rounded, size: 25.0),
-    //           onPressed: () => Navigator.pop(context)),
-    //     ),
-    //     body: DiscordAuth().visa.authenticate(
-    //         clientID: clientID,
-    //         clientSecret: clientSecret,
-    //         redirectUri: redirectURL,
-    //         state: 'discordAuth',
-    //         scope: 'identify',
-    //         onDone: done));
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Discord Login',
+            style: TextStyle(fontStyle: FontStyle.italic),
+          ),
+          backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_rounded, size: 25.0),
+              onPressed: () => Navigator.pop(context)),
+        ),
+        body: DiscordAuth().visa.authenticate(
+            clientID: clientID,
+            clientSecret: clientSecret,
+            redirectUri: redirectURL,
+            state: 'discordAuth',
+            scope: 'identify',
+            onDone: done));
   }
 
   @override
@@ -150,11 +157,11 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                             : const Color.fromRGBO(18, 18, 18, 1.0),
                         setState(() {
                           checkPressed = !checkPressed;
-                          navigateToHome();
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => launchURL()));
+                          // navigateToHome();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => launchURL()));
                         })
                       },
                       child: Container(

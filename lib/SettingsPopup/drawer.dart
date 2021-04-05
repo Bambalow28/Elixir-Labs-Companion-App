@@ -1,6 +1,7 @@
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Create Profile Widget
 class ShowDrawer extends StatefulWidget {
@@ -8,8 +9,28 @@ class ShowDrawer extends StatefulWidget {
   _ShowDrawer createState() => _ShowDrawer();
 }
 
+//Create Firebase Instance
+final firestoreInstance = FirebaseFirestore.instance;
+
+//Fetch User Data from Firebase
+getProfileInfo() async {
+  await firestoreInstance
+      .collection("users")
+      .doc('682347192140169305')
+      .get()
+      .then((info) {
+    print(info.data());
+  });
+}
+
 //Spoof Browser Widget State
 class _ShowDrawer extends State<ShowDrawer> {
+  @override
+  void initState() {
+    super.initState();
+    getProfileInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
