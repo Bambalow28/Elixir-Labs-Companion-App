@@ -49,7 +49,6 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
 
   void hypeStatus() {
     if (likeButton == true) {
-      dislikeButton = false;
       firestoreInstance
           .collection("Item Releases")
           .doc(widget.itemName)
@@ -57,14 +56,16 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
         "Liked": FieldValue.increment(1),
       }).then((check) {
         print('Liked Registered Successfully');
+        likeButton = false;
       });
     } else if (dislikeButton == true) {
-      likeButton = false;
+      dislikeButton = false;
       firestoreInstance
           .collection("Item Releases")
           .doc(widget.itemName)
-          .set({"Dislikes": FieldValue.increment(1)}).then((check) {
-        print('Liked Registered Successfully');
+          .update({"Dislikes": FieldValue.increment(1)}).then((check) {
+        print('Dislike Registered Successfully');
+        dislikeButton = false;
       });
     }
   }
