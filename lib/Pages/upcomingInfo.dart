@@ -323,7 +323,12 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () => {likeButton = true, hypeStatus()},
+                        onTap: () => {
+                          setState(() {
+                            likeButton = true;
+                            hypeStatus();
+                          })
+                        },
                         child: Container(
                           margin: EdgeInsets.only(left: 10.0, right: 13.0),
                           decoration: BoxDecoration(
@@ -363,7 +368,12 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => {dislikeButton = true, hypeStatus()},
+                        onTap: () => {
+                          setState(() {
+                            dislikeButton = true;
+                            hypeStatus();
+                          })
+                        },
                         child: Container(
                           margin: EdgeInsets.only(right: 5.0),
                           decoration: BoxDecoration(

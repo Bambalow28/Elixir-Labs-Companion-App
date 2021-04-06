@@ -283,6 +283,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             )
+          //Show when Loaded
           : Center(
               child: Container(
                 decoration: BoxDecoration(

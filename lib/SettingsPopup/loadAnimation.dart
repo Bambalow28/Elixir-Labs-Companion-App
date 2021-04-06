@@ -49,13 +49,13 @@ class _LoadAnimationState extends State<LoadAnimation>
             },
             child: const DecoratedBox(
               decoration: const BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: const [
-                    Color.fromARGB(0, 255, 255, 255),
-                    Color.fromRGBO(16, 16, 16, 1),
-                  ],
-                ),
-              ),
+                  gradient: const LinearGradient(
+                    colors: const [
+                      Color.fromARGB(0, 255, 255, 255),
+                      Color.fromRGBO(16, 16, 16, 1),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
             ),
           )),
         ),

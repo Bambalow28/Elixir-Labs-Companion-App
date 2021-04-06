@@ -54,30 +54,42 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       var profilePic = authData.profileImgUrl;
       var email = authData.email;
       var discordName = authData.userJson["username"];
+      var discordDiscriminator = authData.userJson["discriminator"];
 
       var usersRoles = await http
           .get('https://api.elixirlabs.xyz/discord_oauth?req=get_roles&id=$id');
       var roles = convert.jsonDecode(usersRoles.body);
 
-      for (var i = 0; i < roles.length; i++) {
-        var name = roles[i]["name"];
-        var role = roles[1]["name"];
-        if (name == "Member") {
-          navigateToHome();
-          firestoreInstance.collection("users").doc(id).set({
-            "userID": id,
-            "discordName": discordName,
-            "email": email,
-            "role": role,
-            "profilePic": profilePic,
-          }).then((result) {
-            print('User Saved in Firebase! User is a MEMBER');
-          });
-          break;
-        } else {
-          print('Login Error');
-          break;
+      final snapshot =
+          await firestoreInstance.collection("users").doc(id).get();
+
+      if (snapshot.exists) {
+        navigateToHome();
+        print('User Exists! Getting Info now..');
+      } else if (!snapshot.exists) {
+        for (var i = 0; i < roles.length; i++) {
+          var name = roles[i]["name"];
+          var role = roles[1]["name"];
+          if (name == "Member") {
+            navigateToHome();
+            firestoreInstance.collection("users").doc(id).set({
+              "userID": id,
+              "discordName": discordName + '#' + discordDiscriminator,
+              "email": email,
+              "role": role,
+              "profilePic": profilePic,
+            }).then((result) {
+              print('User Saved in Firebase! User is a MEMBER');
+            });
+            break;
+          } else {
+            print('Login Error');
+            Navigator.pop(context);
+            break;
+          }
         }
+      } else {
+        print('Something Went Wrong!');
       }
     }
 

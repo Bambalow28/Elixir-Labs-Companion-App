@@ -1,4 +1,3 @@
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
@@ -6,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/loadAnimation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //Profile Page Widget
 class ProfilePage extends StatefulWidget {
@@ -16,6 +16,7 @@ class ProfilePage extends StatefulWidget {
 var discordName;
 var profilePic;
 var userRole;
+String storeUrl = 'https://elixirlabs.xyz/shop';
 
 //Create Firebase Instance
 final firestoreInstance = FirebaseFirestore.instance;
@@ -38,6 +39,14 @@ class _ProfilePage extends State<ProfilePage> {
         userRole = info.data()["role"];
       });
     });
+  }
+
+  goToShop() async {
+    if (await canLaunch(storeUrl)) {
+      await launch(storeUrl);
+    } else {
+      print('Oops! Something Went Wrong');
+    }
   }
 
   @override
@@ -165,6 +174,7 @@ class _ProfilePage extends State<ProfilePage> {
                           ),
                           Container(
                             margin: EdgeInsets.only(top: 30.0),
+                            padding: EdgeInsets.only(left: 20.0, right: 20.0),
                             alignment: Alignment.center,
                             child: FittedBox(
                               fit: BoxFit.fitWidth,
@@ -370,7 +380,7 @@ class _ProfilePage extends State<ProfilePage> {
                         ),
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => {print('Store Clicked')},
+                            onTap: () => {goToShop()},
                             child: Container(
                               height: 80,
                               margin: EdgeInsets.only(top: 20.0, bottom: 20.0),

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+var discordName;
+var profilePic;
+
 //Create Profile Widget
 class ShowDrawer extends StatefulWidget {
   @override
   _ShowDrawer createState() => _ShowDrawer();
 }
-
-var discordName;
-var profilePic;
 
 //Create Firebase Instance
 final firestoreInstance = FirebaseFirestore.instance;
@@ -71,7 +71,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                                       shape: BoxShape.circle,
                                       color: Colors.grey,
                                       image: new DecorationImage(
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.contain,
                                         image: new NetworkImage(
                                           profilePic,
                                         ),
@@ -245,9 +245,11 @@ class _ShowDrawer extends State<ShowDrawer> {
                     ),
                   ),
                 )
-              : Center(
-                  child: CircularProgressIndicator(
-                      backgroundColor: Color.fromRGBO(30, 30, 30, 1)));
+              : Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  color: Color.fromRGBO(30, 30, 30, 1),
+                );
         },
       ),
     );
