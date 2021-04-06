@@ -15,6 +15,7 @@ import 'package:elixirlabs_mobileapp/barcodeScan/savedItems.dart';
 import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
 import 'package:elixirlabs_mobileapp/Pages/weeklyCalendar.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
+import 'package:elixirlabs_mobileapp/Pages/weeklyDaysClicked.dart';
 
 //Transition To Home Page
 Route homeRoute() {
@@ -151,6 +152,16 @@ Route reportIssue() {
 Route viewNewsRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => ViewNews(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Days Clicked
+Route daysClickedRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => DaysClicked(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },

@@ -65,6 +65,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
 
       if (snapshot.exists) {
         navigateToHome();
+        print(roles);
         print('User Exists! Getting Info now..');
       } else if (!snapshot.exists) {
         for (var i = 0; i < roles.length; i++) {

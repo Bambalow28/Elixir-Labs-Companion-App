@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:flutter/rendering.dart';
@@ -488,7 +489,10 @@ class _HomePageState extends State<HomePage> {
                               children: <Widget>[
                                 GestureDetector(
                                   onTap: () => {
-                                    Navigator.of(context).push(viewNewsRoute())
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ViewNews())),
                                   },
                                   child: Container(
                                     margin: EdgeInsets.only(
