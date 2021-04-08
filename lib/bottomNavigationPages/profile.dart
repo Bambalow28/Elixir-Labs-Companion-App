@@ -275,7 +275,7 @@ class _ProfilePage extends State<ProfilePage> {
                                   margin: EdgeInsets.only(top: 10.0),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    '03/22/2021',
+                                    'N/A',
                                     style: TextStyle(
                                         color: Colors.orange[400],
                                         fontSize: 20.0,
@@ -320,7 +320,7 @@ class _ProfilePage extends State<ProfilePage> {
                             margin: EdgeInsets.only(top: 10.0),
                             alignment: Alignment.center,
                             child: Text(
-                              '300',
+                              'N/A',
                               style: TextStyle(
                                   color: Colors.green[600],
                                   fontSize: 20.0,

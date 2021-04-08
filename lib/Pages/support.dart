@@ -304,7 +304,8 @@ class _SupportPage extends State<SupportPage> {
                                 messagingName: "Elixir Support",
                                 iosNavigationBarColor: Colors.cyan,
                                 iosNavigationTitleColor: Colors.white,
-                                isAgentAvailabilityEnabled: false)
+                                isAgentAvailabilityEnabled: false,
+                                isChatTranscriptPromptEnabled: false)
                             .then((r) {
                           print('startChat finished');
                         }).catchError((e) {

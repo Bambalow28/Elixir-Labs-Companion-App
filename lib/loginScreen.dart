@@ -10,11 +10,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:visa/auth-data.dart';
 import 'package:visa/discord.dart';
 import 'package:visa/engine/visa.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 String baseUrl = "https://discord.com/api/oauth2/authorize";
 final clientID = '799140079494496276';
 final clientSecret = '7QZ0cVfqyHPCTitgIBkK3IhlDgYcjvbd';
 String redirectURL = 'https://api.elixirlabs.xyz/discord_oauth?req=get_roles';
+
+var id;
+var profilePic;
+var email;
+var discordName;
+var discordDiscriminator;
+var role;
+bool status;
 
 //Login Widget
 class LoginPage extends StatefulWidget {
@@ -34,10 +43,16 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
 
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
+  SharedPreferences sharedPreferences;
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   navigateToHome() {
@@ -47,14 +62,28 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         ModalRoute.withName("/LoginPage"));
   }
 
+  saveToDB() async {
+    navigateToHome();
+    // await sharedPreferences.setBool('userLoggedIn', true);
+    firestoreInstance.collection("users").doc(id).set({
+      "userID": id,
+      "discordName": discordName + '#' + discordDiscriminator,
+      "email": email,
+      "role": role,
+      "profilePic": profilePic,
+    }).then((result) {
+      print('User Saved in Firebase! User is a MEMBER');
+    });
+  }
+
   //This Function handles the Oauth2 login process
   launchURL() {
     done(AuthData authData) async {
-      var id = authData.userID;
-      var profilePic = authData.profileImgUrl;
-      var email = authData.email;
-      var discordName = authData.userJson["username"];
-      var discordDiscriminator = authData.userJson["discriminator"];
+      id = authData.userID;
+      profilePic = authData.profileImgUrl;
+      email = authData.email;
+      discordName = authData.userJson["username"];
+      discordDiscriminator = authData.userJson["discriminator"];
 
       var usersRoles = await http
           .get('https://api.elixirlabs.xyz/discord_oauth?req=get_roles&id=$id');
@@ -63,55 +92,52 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       final snapshot =
           await firestoreInstance.collection("users").doc(id).get();
 
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      status = sharedPreferences.getBool('userLoggedIn');
+
       if (snapshot.exists) {
         navigateToHome();
-        print(roles);
         print('User Exists! Getting Info now..');
-      } else if (!snapshot.exists) {
+        await sharedPreferences.setBool('userLoggedIn', true);
+      } else {
+        // print(sharedPreferences);
         for (var i = 0; i < roles.length; i++) {
           var name = roles[i]["name"];
-          var role = roles[1]["name"];
-          if (name == "Member") {
-            navigateToHome();
-            firestoreInstance.collection("users").doc(id).set({
-              "userID": id,
-              "discordName": discordName + '#' + discordDiscriminator,
-              "email": email,
-              "role": role,
-              "profilePic": profilePic,
-            }).then((result) {
-              print('User Saved in Firebase! User is a MEMBER');
-            });
-            break;
-          } else {
-            print('Login Error');
-            Navigator.pop(context);
-            break;
+          switch (name) {
+            case 'Member':
+              role = 'Member';
+              saveToDB();
+              continue;
+            case 'Staff':
+              role = 'Staff';
+              saveToDB();
+              break;
+            default:
+              print('Not a Member');
+              break;
           }
         }
-      } else {
-        print('Something Went Wrong!');
       }
     }
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Discord Login',
-            style: TextStyle(fontStyle: FontStyle.italic),
-          ),
-          backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_rounded, size: 25.0),
-              onPressed: () => Navigator.pop(context)),
-        ),
-        body: DiscordAuth().visa.authenticate(
-            clientID: clientID,
-            clientSecret: clientSecret,
-            redirectUri: redirectURL,
-            state: 'discordAuth',
-            scope: 'identify',
-            onDone: done));
+    return status == true
+        ? navigateToHome()
+        : Scaffold(
+            appBar: AppBar(
+              title: Text('Discord Login'),
+              backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
+              leading: IconButton(
+                  icon: Icon(Icons.arrow_back_ios_rounded, size: 25.0),
+                  onPressed: () => Navigator.pop(context)),
+            ),
+            body: DiscordAuth().visa.authenticate(
+                clientID: clientID,
+                clientSecret: clientSecret,
+                redirectUri: redirectURL,
+                state: 'discordAuth',
+                scope: 'identify',
+                onDone: done));
   }
 
   @override

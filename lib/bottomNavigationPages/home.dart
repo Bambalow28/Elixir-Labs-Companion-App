@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:core';
 import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
 
   //This Function gets a request from an API for Upcoming Releases.
   //In cases that the GET fails then it retries again.
-  Future<void> upcomingReleases() async {
+  Future upcomingReleases() async {
     try {
       var site = await http
           .get('https://resell-tracker-api.herokuapp.com/releases/upcoming');
@@ -48,12 +48,29 @@ class _HomePageState extends State<HomePage> {
         data = convert.jsonDecode(site.body);
         progressStatus = false;
 
-        //Only RUN On New Releases
+        for (var i = 0; i < data.length; i++) {
+          var item = data[i]["name"];
+          print(item);
+          // firestoreInstance.collection("Item Releases").doc(item).get();
+        }
+
+        // // Only RUN On New Releases
         // for (var i = 0; i < data.length; i++) {
         //   var item = data[i]["name"];
-        //   firestoreInstance.collection("Item Releases").doc(item).set({
-        //     //Set Likes and Resell Predictions
-        //     "itemName": item
+        //   firestoreInstance
+        //       .collection("Item Releases")
+        //       .doc(item)
+        //       .get()
+        //       .then((result) {
+        //     if (result.exists) {
+        //       print('Items Up To Date');
+        //     } else if (!result.exists) {
+        //       firestoreInstance.collection("Item Releases").doc(item).set({
+        //         //Set Likes and Resell Predictions
+        //         "itemName": item
+        //       });
+        //       print('New Items Added!');
+        //     }
         //   });
         // }
       });

@@ -5,6 +5,7 @@ import 'dart:core';
 import "bottomNavigationPages/home.dart";
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,6 +40,7 @@ class _SplashScreen extends State<SplashScreen>
   bool isLoggedIn = false;
   bool checkPressed = false;
   bool dbInitialized = false;
+  bool status;
 
   void navigateToHome() {
     Navigator.pushAndRemoveUntil(
@@ -51,9 +53,25 @@ class _SplashScreen extends State<SplashScreen>
   void initializeFire() async {
     try {
       await Firebase.initializeApp();
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
       setState(() {
         dbInitialized = true;
+        status = sharedPreferences.getBool('userLoggedIn');
         print('DB Initialized');
+        Future.delayed(Duration(seconds: 1), () {
+          if (status == true && dbInitialized == true) {
+            Navigator.of(context).push((homeRoute()));
+            // } else if (status == null) {
+            //   // initializeFire();
+            //   print(status);
+            //   enterLogin();
+          } else {
+            // initializeFire();
+            // enterLogin();
+            Navigator.of(context).push((loginRoute()));
+          }
+        });
       });
     } catch (e) {
       print('Error');
@@ -62,10 +80,14 @@ class _SplashScreen extends State<SplashScreen>
 
   void enterLogin() {
     Future.delayed(Duration(seconds: 1), () {
-      if (dbInitialized == true) {
-        Navigator.of(context).push(loginRoute());
+      if (status == true && dbInitialized == true) {
+        Navigator.of(context).push((homeRoute()));
+      } else if (status == null) {
+        // initializeFire();
+        print(status);
+        enterLogin();
       } else {
-        initializeFire();
+        // initializeFire();
         enterLogin();
       }
     });
@@ -75,7 +97,7 @@ class _SplashScreen extends State<SplashScreen>
   void initState() {
     super.initState();
     initializeFire();
-    enterLogin();
+    // enterLogin();
   }
 
   @override

@@ -44,7 +44,7 @@ class _BrowserTask extends State<BrowserTask> {
             padding: EdgeInsets.only(
                 top: 20.0, left: 10.0, right: 10.0, bottom: 10.0),
             child: InAppWebView(
-              initialUrl: 'https://www.google.ca',
+              // initialUrl: 'https://www.google.ca',
               onWebViewCreated: (InAppWebViewController controller) {
                 webView = controller;
               },
