@@ -48,31 +48,36 @@ class _HomePageState extends State<HomePage> {
         data = convert.jsonDecode(site.body);
         progressStatus = false;
 
-        for (var i = 0; i < data.length; i++) {
-          var item = data[i]["name"];
-          print(item);
-          // firestoreInstance.collection("Item Releases").doc(item).get();
-        }
-
-        // // Only RUN On New Releases
-        // for (var i = 0; i < data.length; i++) {
+        // for (var i = 0; i < 10; i++) {
         //   var item = data[i]["name"];
         //   firestoreInstance
         //       .collection("Item Releases")
         //       .doc(item)
         //       .get()
-        //       .then((result) {
-        //     if (result.exists) {
-        //       print('Items Up To Date');
-        //     } else if (!result.exists) {
-        //       firestoreInstance.collection("Item Releases").doc(item).set({
-        //         //Set Likes and Resell Predictions
-        //         "itemName": item
-        //       });
-        //       print('New Items Added!');
-        //     }
+        //       .then((value) {
+        //     print(value.id);
         //   });
         // }
+
+        // Only RUN On New Releases
+        for (var i = 0; i < data.length; i++) {
+          var item = data[i]["name"];
+          firestoreInstance
+              .collection("Item Releases")
+              .doc(item)
+              .get()
+              .then((result) {
+            if (result.exists) {
+              print('Items Up To Date');
+            } else if (!result.exists) {
+              firestoreInstance.collection("Item Releases").doc(item).set({
+                //Set Likes and Resell Predictions
+                "itemName": item
+              });
+              print('New Items Added!');
+            }
+          });
+        }
       });
     } catch (e) {
       upcomingReleases();
