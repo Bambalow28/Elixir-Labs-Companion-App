@@ -2,6 +2,7 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 var discordName;
 var profilePic;
@@ -14,6 +15,9 @@ class ShowDrawer extends StatefulWidget {
 
 //Create Firebase Instance
 final firestoreInstance = FirebaseFirestore.instance;
+
+//Create SharedPreferences Instance
+SharedPreferences sharedPreferences;
 
 //Spoof Browser Widget State
 class _ShowDrawer extends State<ShowDrawer> {
@@ -29,6 +33,12 @@ class _ShowDrawer extends State<ShowDrawer> {
         profilePic = info.data()["profilePic"];
       });
     });
+  }
+
+  logOutClicked() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setBool('userLoggedIn', false);
+    Navigator.of(context).push(loginRoute());
   }
 
   @override
@@ -214,9 +224,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                                 ),
                                 Expanded(
                                   child: GestureDetector(
-                                    onTap: () => {
-                                      Navigator.of(context).push(loginRoute())
-                                    },
+                                    onTap: () => {logOutClicked()},
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(

@@ -60,24 +60,24 @@ class _HomePageState extends State<HomePage> {
         // }
 
         // Only RUN On New Releases
-        for (var i = 0; i < data.length; i++) {
-          var item = data[i]["name"];
-          firestoreInstance
-              .collection("Item Releases")
-              .doc(item)
-              .get()
-              .then((result) {
-            if (result.exists) {
-              print('Items Up To Date');
-            } else if (!result.exists) {
-              firestoreInstance.collection("Item Releases").doc(item).set({
-                //Set Likes and Resell Predictions
-                "itemName": item
-              });
-              print('New Items Added!');
-            }
-          });
-        }
+        // for (var i = 0; i < data.length; i++) {
+        //   var item = data[i]["name"];
+        //   firestoreInstance
+        //       .collection("Item Releases")
+        //       .doc(item)
+        //       .get()
+        //       .then((result) {
+        //     if (result.exists) {
+        //       print('Items Up To Date');
+        //     } else if (!result.exists) {
+        //       firestoreInstance.collection("Item Releases").doc(item).set({
+        //         //Set Likes and Resell Predictions
+        //         "itemName": item
+        //       });
+        //       print('New Items Added!');
+        //     }
+        //   });
+        // }
       });
     } catch (e) {
       upcomingReleases();
