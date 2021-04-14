@@ -228,33 +228,38 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       margin: EdgeInsets.only(left: 5.0, right: 5.0),
                       height: 205.0,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 3,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
+                      child: Column(
+                        children: <Widget>[
+                          Row(
                             children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  LoadAnimation(
-                                    child: Container(
-                                      margin: EdgeInsets.only(
-                                          left: 5.0, right: 5.0, top: 6.0),
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey[900],
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                      width: 160.0,
-                                      height: 190.0,
+                              LoadAnimation(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[900],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
                                     ),
                                   ),
-                                ],
+                                  width: 160.0,
+                                  height: 190.0,
+                                ),
+                              ),
+                              SizedBox(width: 10.0),
+                              LoadAnimation(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[900],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  width: 160.0,
+                                  height: 190.0,
+                                ),
                               ),
                             ],
-                          );
-                        },
+                          ),
+                        ],
                       ),
                     ),
 
@@ -277,35 +282,38 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: Container(
-                        margin:
-                            EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-                        height: MediaQuery.of(context).size.height - 500,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: 2,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              children: <Widget>[
-                                LoadAnimation(
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                        left: 5.0, right: 5.0, bottom: 10.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[900],
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
+                          margin:
+                              EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
+                          height: MediaQuery.of(context).size.height - 500,
+                          child: Column(
+                            children: <Widget>[
+                              LoadAnimation(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[900],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
                                     ),
-                                    width:
-                                        MediaQuery.of(context).size.width - 10,
-                                    height: 123.0,
                                   ),
+                                  width: MediaQuery.of(context).size.width - 10,
+                                  height: 123.0,
                                 ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
+                              ),
+                              SizedBox(height: 10.0),
+                              LoadAnimation(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[900],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  width: MediaQuery.of(context).size.width - 10,
+                                  height: 123.0,
+                                ),
+                              ),
+                            ],
+                          )),
                     ),
                   ],
                 ),

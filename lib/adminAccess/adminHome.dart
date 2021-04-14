@@ -2,17 +2,18 @@ import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
-//View News Page Widget
+//Admin Home Page Widget
 class AdminHome extends StatefulWidget {
   @override
   _AdminHome createState() => _AdminHome();
 }
 
-//View News Widget State
+//Admin Home Widget State
 class _AdminHome extends State<AdminHome> {
   int pageIndex;
   String appBarTitle = "Admin Options";
 
+  //This Function controls the bottom navigation bar. Redirecting users in their respective destinations
   void navigationBarTapped(int index) {
     setState(() {
       pageIndex = index;

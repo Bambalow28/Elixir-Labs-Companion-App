@@ -13,11 +13,6 @@ class ProfilePage extends StatefulWidget {
   _ProfilePage createState() => _ProfilePage();
 }
 
-var discordName;
-var profilePic;
-var userRole;
-String storeUrl = 'https://elixirlabs.xyz/shop';
-
 //Create Firebase Instance
 final firestoreInstance = FirebaseFirestore.instance;
 
@@ -25,6 +20,90 @@ final firestoreInstance = FirebaseFirestore.instance;
 class _ProfilePage extends State<ProfilePage> {
   int navIndex = 3;
   String appBarTitle = "Profile";
+  var discordName;
+  var profilePic;
+  var userRole;
+  String storeUrl = 'https://elixirlabs.xyz/shop';
+  TextEditingController reason = new TextEditingController();
+
+  //Show Modal Bottom Sheet when 'Cancel Membership' is Clicked
+  void cancelClicked() {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 400.0,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30.0),
+                  topRight: const Radius.circular(30.0),
+                ),
+                color: Colors.grey[850]),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                  child: Text(
+                    'Request for Cancellation',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                  padding: EdgeInsets.only(left: 10, right: 10.0, top: 20.0),
+                  child: TextField(
+                      maxLines: 10,
+                      controller: reason,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.grey[700],
+                        hintText: 'Why are you leaving?',
+                        hintStyle: TextStyle(color: Colors.grey[500]),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.left),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.only(left: 23.0, right: 20.0, top: 5.0),
+                  child: Text(
+                    '* Request will be placed on hold until an ElixirLabs Staff reviews the Request.',
+                    style: TextStyle(color: Colors.grey, fontSize: 8.0),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => {print('Process Clicked')},
+                  child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(
+                          left: 40.0, right: 40.0, top: 20.0, bottom: 20.0),
+                      padding: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.red[700],
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      child: Text(
+                        'Process Request',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      )),
+                )
+              ],
+            ),
+          );
+        }).whenComplete(() => {reason.clear()});
+  }
 
   //Fetch User Data from Firebase
   Future getProfileInfo() async {
@@ -421,7 +500,7 @@ class _ProfilePage extends State<ProfilePage> {
                         ),
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => {print('Cancel Clicked')},
+                            onTap: () => {cancelClicked()},
                             child: Container(
                               height: 80.0,
                               margin: EdgeInsets.only(
