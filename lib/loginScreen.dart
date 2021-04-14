@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/wave.dart';
@@ -97,20 +98,37 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       status = sharedPreferences.getBool('userLoggedIn');
 
       if (snapshot.exists) {
-        navigateToHome();
+        if (discordName == 'SUPREMO' && discordDiscriminator == '1533') {
+          print('Developer Signed In');
+        }
         print('User Exists! Getting Info now..');
         await sharedPreferences.setBool('userLoggedIn', true);
+        navigateToHome();
       } else {
-        // print(sharedPreferences);
         for (var i = 0; i < roles.length; i++) {
           var name = roles[i]["name"];
+          if (name == 'Administrator') {
+            role = 'Administrator';
+            saveToDB();
+          } else if (name == 'Friends & Family') {
+            role = 'Friends & Family';
+            saveToDB();
+          } else if (name == 'Member') {
+            role = 'Member';
+          } else {
+            print('Not A Member');
+          }
           switch (name) {
-            case 'Member':
-              role = 'Member';
+            case 'Administrator':
+              role = 'Admin';
               saveToDB();
               continue;
-            case 'Staff':
-              role = 'Staff';
+            case 'Friends & Family':
+              role = 'Friends & Family';
+              saveToDB();
+              break;
+            case 'Member':
+              role = 'Member';
               saveToDB();
               break;
             default:
