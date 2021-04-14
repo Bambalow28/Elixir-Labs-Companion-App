@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 var discordName;
 var profilePic;
+var role;
 
 //Create Profile Widget
 class ShowDrawer extends StatefulWidget {
@@ -31,6 +32,7 @@ class _ShowDrawer extends State<ShowDrawer> {
       setState(() {
         discordName = info.data()["discordName"];
         profilePic = info.data()["profilePic"];
+        role = info.data()["role"];
       });
     });
   }
@@ -178,6 +180,32 @@ class _ShowDrawer extends State<ShowDrawer> {
                                 Navigator.of(context).push(supportRoute())
                               },
                             ),
+                            role == 'Friends & Family'
+                                ? ListTile(
+                                    leading: Icon(
+                                        Icons.admin_panel_settings_rounded,
+                                        color: Colors.orange[300]),
+                                    title: Text(
+                                      'Admin Options',
+                                      style:
+                                          TextStyle(color: Colors.orange[300]),
+                                    ),
+                                    onTap: () => {
+                                      Navigator.pop(context),
+                                      Navigator.of(context)
+                                          .push(adminHomeRoute())
+                                    },
+                                  )
+                                : ListTile(
+                                    leading: Icon(Icons.person,
+                                        color: Colors.transparent),
+                                    title: Text(
+                                      '',
+                                      style:
+                                          TextStyle(color: Colors.transparent),
+                                    ),
+                                    onTap: () => {print(role)},
+                                  ),
                             const Expanded(child: SizedBox()),
                             Container(
                               padding: EdgeInsets.only(bottom: 5.0),

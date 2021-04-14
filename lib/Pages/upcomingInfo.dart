@@ -30,13 +30,9 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
   final firestoreInstance = FirebaseFirestore.instance;
 
   getItemReleases() async {
-    await firestoreInstance
-        .collection("Item Releases")
-        .doc(widget.itemName)
-        .get()
-        .then((item) {
-      likeCount = item.data()["Liked"];
-      dislikeCount = item.data()["Dislikes"];
+    await firestoreInstance.collection("itemReleases").get().then((item) {
+      likeCount = item.docs[0].data()["Liked"];
+      dislikeCount = item.docs[0].data()["Dislikes"];
     });
   }
 
@@ -72,8 +68,8 @@ class _UpcomingReleaseInfo extends State<UpcomingReleaseInfo> {
 
   @override
   void initState() {
-    this.checkPrice();
     this.getItemReleases();
+    this.checkPrice();
     super.initState();
   }
 

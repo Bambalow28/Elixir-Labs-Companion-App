@@ -4,13 +4,16 @@ import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
 import 'package:flutter/rendering.dart';
+import 'package:intl/intl.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elixirlabs_mobileapp/SettingsPopup/loadAnimation.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/Pages/upcomingInfo.dart';
+
+DateTime today = DateTime.now();
+DateFormat formatDate = DateFormat('MMM');
 
 //Home Page Widget
 class HomePage extends StatefulWidget {
@@ -34,53 +37,55 @@ class _HomePageState extends State<HomePage> {
   String appBarTitle = "Home";
   List data = [];
 
+  String formattedDate = formatDate.format(today).toUpperCase();
+
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
 
   //This Function gets a request from an API for Upcoming Releases.
   //In cases that the GET fails then it retries again.
-  Future upcomingReleases() async {
+  upcomingReleases() async {
     try {
       var site = await http
           .get('https://resell-tracker-api.herokuapp.com/releases/upcoming');
 
       this.setState(() {
-        data = convert.jsonDecode(site.body);
-        progressStatus = false;
+        if (site.statusCode == 200) {
+          progressStatus = false;
+          data = convert.jsonDecode(site.body);
 
-        // for (var i = 0; i < 10; i++) {
-        //   var item = data[i]["name"];
-        //   firestoreInstance
-        //       .collection("Item Releases")
-        //       .doc(item)
-        //       .get()
-        //       .then((value) {
-        //     print(value.id);
-        //   });
-        // }
-
-        // Only RUN On New Releases
-        // for (var i = 0; i < data.length; i++) {
-        //   var item = data[i]["name"];
-        //   firestoreInstance
-        //       .collection("Item Releases")
-        //       .doc(item)
-        //       .get()
-        //       .then((result) {
-        //     if (result.exists) {
-        //       print('Items Up To Date');
-        //     } else if (!result.exists) {
-        //       firestoreInstance.collection("Item Releases").doc(item).set({
-        //         //Set Likes and Resell Predictions
-        //         "itemName": item
-        //       });
-        //       print('New Items Added!');
-        //     }
-        //   });
-        // }
+          // Only RUN On New Releases
+          for (var i = 1; i < data.length; i++) {
+            var item = data[i]["name"];
+            firestoreInstance
+                .collection("itemReleases")
+                .doc(formattedDate + i.toString())
+                .get()
+                .then((value) {
+              if (value.exists) {
+                print('Item is in the System');
+              } else if (!value.exists) {
+                firestoreInstance
+                    .collection("itemReleases")
+                    .doc(formattedDate + i.toString())
+                    .set({
+                  //Set Likes and Resell Predictions
+                  "itemName": item
+                });
+                print('New Items Added!');
+              } else {
+                print('Error!');
+              }
+            });
+          }
+        } else {
+          print(site.statusCode);
+          upcomingReleases();
+        }
       });
     } catch (e) {
       upcomingReleases();
+      print(e);
     }
   }
 

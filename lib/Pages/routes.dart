@@ -16,6 +16,7 @@ import 'package:elixirlabs_mobileapp/Pages/chatRoom.dart';
 import 'package:elixirlabs_mobileapp/Pages/weeklyCalendar.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
 import 'package:elixirlabs_mobileapp/Pages/weeklyDaysClicked.dart';
+import 'package:elixirlabs_mobileapp/adminAccess/adminHome.dart';
 
 //Transition To Home Page
 Route homeRoute() {
@@ -162,6 +163,16 @@ Route viewNewsRoute() {
 Route daysClickedRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => DaysClicked(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
+}
+
+//Transition To Days Clicked
+Route adminHomeRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => AdminHome(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return child;
     },
