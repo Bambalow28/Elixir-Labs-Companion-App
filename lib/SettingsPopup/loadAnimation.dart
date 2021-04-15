@@ -55,7 +55,7 @@ class _LoadAnimationState extends State<LoadAnimation>
                       Color.fromRGBO(16, 16, 16, 1),
                     ],
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
             ),
           )),
         ),
