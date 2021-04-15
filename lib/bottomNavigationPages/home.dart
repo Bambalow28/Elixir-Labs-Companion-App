@@ -1,14 +1,14 @@
 import 'dart:core';
-import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
+import 'package:elixirlabs_mobileapp/Options/settings.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/loadAnimation.dart';
+import 'package:elixirlabs_mobileapp/Options/loadAnimation.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:elixirlabs_mobileapp/Pages/upcomingInfo.dart';
 
