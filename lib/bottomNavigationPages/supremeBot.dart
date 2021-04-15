@@ -1,7 +1,7 @@
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
+import 'package:elixirlabs_mobileapp/Options/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:elixirlabs_mobileapp/Options/settings.dart';
+import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 //Supreme Bot Widget

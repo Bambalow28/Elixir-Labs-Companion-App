@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/settings.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:elixirlabs_mobileapp/Options/settings.dart';
+import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/loadAnimation.dart';
+import 'package:elixirlabs_mobileapp/Options/loadAnimation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //Profile Page Widget

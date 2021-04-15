@@ -1,5 +1,5 @@
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/custom_icons_icons.dart';
+import 'package:elixirlabs_mobileapp/Options/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';

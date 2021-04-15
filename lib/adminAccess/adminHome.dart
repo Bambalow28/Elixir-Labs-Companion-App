@@ -1,4 +1,4 @@
-import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 

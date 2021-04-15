@@ -2,12 +2,12 @@ import 'package:elixirlabs_mobileapp/Pages/createProfilePage.dart';
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:elixirlabs_mobileapp/Pages/spoofBrowserTask.dart';
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
-import 'package:elixirlabs_mobileapp/SettingsPopup/notificationAlert.dart';
+import 'package:elixirlabs_mobileapp/Options/notificationAlert.dart';
 
 //Spoof Browser Widget
 class SpoofBrowser extends StatefulWidget {

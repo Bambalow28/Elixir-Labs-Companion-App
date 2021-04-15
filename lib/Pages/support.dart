@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:elixirlabs_mobileapp/SettingsPopup/drawer.dart';
+import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:http/http.dart';
 import 'package:zendesk/zendesk.dart';
 
