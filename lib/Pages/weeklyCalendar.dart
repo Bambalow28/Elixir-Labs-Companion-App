@@ -63,6 +63,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
   @override
   void initState() {
     super.initState();
+    print(dateFormatted);
   }
 
   @override

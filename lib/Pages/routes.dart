@@ -1,3 +1,4 @@
+import 'package:elixirlabs_mobileapp/Options/settings.dart';
 import 'package:elixirlabs_mobileapp/Pages/createProfiles.dart';
 import 'package:elixirlabs_mobileapp/Pages/reportIssue.dart';
 import 'package:elixirlabs_mobileapp/Pages/sponsors.dart';

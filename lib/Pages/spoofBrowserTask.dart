@@ -24,16 +24,9 @@ class _BrowserTask extends State<BrowserTask> {
         title: Text(widget.taskName),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
-          PopupMenuButton<String>(
-              icon: Icon(CustomIcons.google),
-              itemBuilder: (BuildContext context) {
-                return BarcodeSelection.options.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              }),
+          Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(CustomIcons.google)),
         ],
       ),
       body: Column(
@@ -53,17 +46,19 @@ class _BrowserTask extends State<BrowserTask> {
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blue, onPrimary: Colors.white),
                 child: Icon(Icons.person),
-                color: Colors.blue,
                 onPressed: () {
                   if (webView != null) {
                     webView.goBack();
                   }
                 },
               ),
-              RaisedButton(
-                color: Colors.green,
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.green, onPrimary: Colors.white),
                 child: Icon(Icons.bolt),
                 onPressed: () {
                   if (webView != null) {
@@ -71,8 +66,9 @@ class _BrowserTask extends State<BrowserTask> {
                   }
                 },
               ),
-              RaisedButton(
-                color: Colors.cyan,
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan, onPrimary: Colors.white),
                 child: IconTheme(
                   data: IconThemeData(color: Colors.white),
                   child: Icon(Icons.refresh),

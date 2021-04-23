@@ -53,10 +53,10 @@ class _HomePageState extends State<HomePage> {
         if (site.statusCode == 200) {
           progressStatus = false;
           data = convert.jsonDecode(site.body);
-
           // Only RUN On New Releases
           for (var i = 1; i < data.length; i++) {
             var item = data[i]["name"];
+            print(item);
             firestoreInstance
                 .collection("itemReleases")
                 .doc(formattedDate + i.toString())
@@ -142,20 +142,13 @@ class _HomePageState extends State<HomePage> {
         title: Text(appBarTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: <Widget>[
-          PopupMenuButton<String>(
-              icon: Icon(
-                Icons.notifications_none_outlined,
-                size: 25.0,
-              ),
-              onSelected: choiceAction,
-              itemBuilder: (BuildContext context) {
-                return NotificationArea.options.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              }),
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Icon(
+              Icons.notifications_none_outlined,
+              size: 25.0,
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

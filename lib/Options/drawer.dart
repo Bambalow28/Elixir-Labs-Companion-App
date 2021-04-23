@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-var discordName;
-var profilePic;
-var role;
+import 'package:elixirlabs_mobileapp/Options/settings.dart';
 
 //Create Profile Widget
 class ShowDrawer extends StatefulWidget {
@@ -22,13 +19,16 @@ SharedPreferences sharedPreferences;
 
 //Spoof Browser Widget State
 class _ShowDrawer extends State<ShowDrawer> {
+  var discordName;
+  var profilePic;
+  var role;
+  var userID;
+
 //Fetch User Data from Firebase
   Future getProfileInfo() async {
-    await firestoreInstance
-        .collection("users")
-        .doc('682347192140169305')
-        .get()
-        .then((info) {
+    sharedPreferences = await SharedPreferences.getInstance();
+    userID = sharedPreferences.getString('userID');
+    await firestoreInstance.collection("users").doc(userID).get().then((info) {
       setState(() {
         discordName = info.data()["discordName"];
         profilePic = info.data()["profilePic"];
@@ -102,7 +102,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                                   ),
                                   Container(
                                     child: Text(
-                                      'Member Since 2019',
+                                      role,
                                       style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 12.0,
@@ -231,6 +231,15 @@ class _ShowDrawer extends State<ShowDrawer> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Expanded(
+                                    child: GestureDetector(
+                                  onTap: () {
+                                    // Navigator.pop(context);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                UserSettings()));
+                                  },
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
@@ -246,7 +255,7 @@ class _ShowDrawer extends State<ShowDrawer> {
                                       size: 30.0,
                                     ),
                                   ),
-                                ),
+                                )),
                                 SizedBox(
                                   width: 10.0,
                                 ),

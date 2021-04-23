@@ -114,46 +114,60 @@ class _ChatRoom extends State<ChatRoom> {
           FocusScope.of(context).requestFocus(new FocusNode()),
         },
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          // mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Expanded(
               child: Container(
-                margin: EdgeInsets.all(10.0),
-                width: MediaQuery.of(context).size.width - 20,
+                padding: EdgeInsets.only(top: 10.0, bottom: 20.0),
                 height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                    color: Colors.grey[850],
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                child: SingleChildScrollView(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 100,
-                    height: MediaQuery.of(context).size.height,
-                    color: Colors.transparent,
-                    child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: 1,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: EdgeInsets.all(10.0),
+                        width: MediaQuery.of(context).size.width - 20,
+                        height: MediaQuery.of(context).size.height,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[850],
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                        child: SingleChildScrollView(
                           child: Container(
-                            margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                            width: MediaQuery.of(context).size.width - 50,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                            width: MediaQuery.of(context).size.width - 100,
+                            height: MediaQuery.of(context).size.height,
+                            color: Colors.transparent,
+                            child: Column(
+                              // mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Container(
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.grey[400],
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 15.0,
-                                ),
                                 Expanded(
                                   child: Container(
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blueGrey[600],
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20.0)),
+                                    margin: EdgeInsets.only(
+                                        top: 10.0, bottom: 10.0),
+                                    width:
+                                        MediaQuery.of(context).size.width - 50,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        Container(
+                                          child: CircleAvatar(
+                                            backgroundColor: Colors.grey[400],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 15.0,
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            height: 50.0,
+                                            decoration: BoxDecoration(
+                                              color: Colors.blueGrey[600],
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -161,42 +175,40 @@ class _ChatRoom extends State<ChatRoom> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
+                      );
+                    }),
               ),
             ),
             // SizedBox(height: 10.0),
-            Container(
-              padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-              height: 60.0,
-              child: TextField(
-                controller: message,
-                textCapitalization: TextCapitalization.words,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(8.0),
-                  filled: true,
-                  fillColor: Color.fromRGBO(45, 45, 45, 1),
-                  hintText: 'Enter Message...',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  suffixIcon: IconButton(
-                    onPressed: () => {print('Sent'), message.clear()},
-                    icon: Icon(
-                      Icons.send_rounded,
-                      color: Colors.blue[400],
-                    ),
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                ),
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+            // Container(
+            //   padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+            //   height: 60.0,
+            //   child: TextField(
+            //     controller: message,
+            //     textCapitalization: TextCapitalization.words,
+            //     decoration: InputDecoration(
+            //       contentPadding: EdgeInsets.all(8.0),
+            //       filled: true,
+            //       fillColor: Color.fromRGBO(45, 45, 45, 1),
+            //       hintText: 'Enter Message...',
+            //       hintStyle: TextStyle(color: Colors.grey),
+            //       suffixIcon: IconButton(
+            //         onPressed: () => {print('Sent'), message.clear()},
+            //         icon: Icon(
+            //           Icons.send_rounded,
+            //           color: Colors.blue[400],
+            //         ),
+            //         highlightColor: Colors.transparent,
+            //         splashColor: Colors.transparent,
+            //       ),
+            //       enabledBorder: OutlineInputBorder(
+            //           borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            //       focusedBorder: OutlineInputBorder(
+            //           borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            //     ),
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            // ),
           ],
         ),
       ),

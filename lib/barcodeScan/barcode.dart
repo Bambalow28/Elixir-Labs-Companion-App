@@ -76,13 +76,6 @@ class _BarcodeScan extends State<BarcodeScanner> {
     return getScannedBarcode();
   }
 
-  //Option Menu Action
-  void choiceAction(String choice) {
-    if (choice == BarcodeSelection.ScanBarcode) {
-      scannedBarcode();
-    }
-  }
-
   //Bottom Navigation Bar
   void navigationBarTapped(int index) {
     setState(() {

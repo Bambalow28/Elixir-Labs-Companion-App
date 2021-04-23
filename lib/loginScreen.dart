@@ -65,7 +65,8 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
 
   saveToDB() async {
     navigateToHome();
-    // await sharedPreferences.setBool('userLoggedIn', true);
+    sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString('userID', id);
     firestoreInstance.collection("users").doc(id).set({
       "userID": id,
       "discordName": discordName + '#' + discordDiscriminator,
@@ -73,7 +74,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       "role": role,
       "profilePic": profilePic,
     }).then((result) {
-      print('User Saved in Firebase! User is a MEMBER');
+      print('User Saved in Firebase! User is a ' + role);
     });
   }
 
@@ -109,32 +110,39 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
           var name = roles[i]["name"];
           if (name == 'Administrator') {
             role = 'Administrator';
+            print(name);
             saveToDB();
-          } else if (name == 'Friends & Family') {
+            break;
+          } else if (name.toString() == 'Friends & Family') {
             role = 'Friends & Family';
+            print(name);
             saveToDB();
+            break;
           } else if (name == 'Member') {
             role = 'Member';
+            print(name);
+            saveToDB();
+            break;
           } else {
-            print('Not A Member');
+            print('Not A Member, ' + 'Role is: ' + name);
           }
-          switch (name) {
-            case 'Administrator':
-              role = 'Admin';
-              saveToDB();
-              continue;
-            case 'Friends & Family':
-              role = 'Friends & Family';
-              saveToDB();
-              break;
-            case 'Member':
-              role = 'Member';
-              saveToDB();
-              break;
-            default:
-              print('Not a Member');
-              break;
-          }
+          // switch (name) {
+          //   case 'Administrator':
+          //     role = 'Admin';
+          //     saveToDB();
+          //     continue;
+          //   case 'Friends & Family':
+          //     role = 'Friends & Family';
+          //     saveToDB();
+          //     break;
+          //   case 'Member':
+          //     role = 'Member';
+          //     saveToDB();
+          //     break;
+          //   default:
+          //     print('Not a Member');
+          //     break;
+          // }
         }
       }
     }
