@@ -26,15 +26,6 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
     'Saturday',
     'Sunday'
   ];
-  List<String> dates = [
-    'March 22, 2021',
-    'March 23, 2021',
-    'March 24, 2021',
-    'March 25, 2021',
-    'March 26, 2021',
-    'March 27, 2021',
-    'March 28, 2021'
-  ];
 
   void navigationBarTapped(int index) {
     setState(() {
@@ -196,19 +187,6 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 20.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          alignment: Alignment.centerRight,
-                                          padding: EdgeInsets.only(right: 10.0),
-                                          child: Text(
-                                            dates[index],
-                                            style: TextStyle(
-                                                color: Colors.grey[300],
-                                                fontSize: 14.0,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),

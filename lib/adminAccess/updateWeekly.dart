@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //View News Page Widget
 class UpdateWeekly extends StatefulWidget {
@@ -9,6 +10,20 @@ class UpdateWeekly extends StatefulWidget {
 //View News Widget State
 class _UpdateWeekly extends State<UpdateWeekly> {
   String appBarTitle = "Weekly Calendar";
+  var profileSelected;
+  var resetProfileSelected;
+  List<String> profileSelect = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
+
+  //Create Firebase Instance
+  final firestoreInstance = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -42,63 +57,60 @@ class _UpdateWeekly extends State<UpdateWeekly> {
         ),
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    margin: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
-                    padding:
-                        EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                    decoration: BoxDecoration(
-                        color: Colors.blue[100],
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: Text(
-                      'MONDAY',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    margin: EdgeInsets.only(top: 20.0, right: 10.0),
-                    padding:
-                        EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                    decoration: BoxDecoration(
-                        color: Colors.blue[100],
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: Text(
-                      'TUESDAY',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    margin: EdgeInsets.only(top: 20.0, right: 10.0),
-                    padding:
-                        EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                    decoration: BoxDecoration(
-                        color: Colors.blue[100],
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: Text(
-                      'Air Jordan 1',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                )
-              ],
+            Container(
+              padding: EdgeInsets.only(top: 20.0),
+              child: StreamBuilder(
+                  stream: firestoreInstance.collection("profiles").snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                          child: Text('Error',
+                              style: TextStyle(color: Colors.grey)));
+                    }
+                    return Container(
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                width: 2.0,
+                                style: BorderStyle.solid,
+                                color: Colors.blueGrey[600]),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                      ),
+                      child: StatefulBuilder(
+                        builder: (context, setState) {
+                          return DropdownButtonHideUnderline(
+                            child: Container(
+                              width: 150.0,
+                              margin: EdgeInsets.only(left: 8.0, right: 8.0),
+                              child: DropdownButton<String>(
+                                hint: Text(
+                                  'Select Day',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                dropdownColor: Colors.grey[850],
+                                value: profileSelected,
+                                style: TextStyle(color: Colors.white),
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    profileSelected = newValue;
+                                    print(profileSelected);
+                                  });
+                                },
+                                items: profileSelect.map((String value) {
+                                  return DropdownMenuItem(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }),
             ),
           ],
         ),
