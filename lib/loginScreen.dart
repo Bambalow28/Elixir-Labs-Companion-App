@@ -64,7 +64,6 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   }
 
   saveToDB() async {
-    navigateToHome();
     sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('userID', id);
     firestoreInstance.collection("users").doc(id).set({
@@ -75,7 +74,10 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
       "profilePic": profilePic,
     }).then((result) {
       print('User Saved in Firebase! User is a ' + role);
+      var check = sharedPreferences.getString('userID');
+      print(check);
     });
+    navigateToHome();
   }
 
   //This Function handles the Oauth2 login process
@@ -104,6 +106,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         }
         print('User Exists! Getting Info now..');
         await sharedPreferences.setBool('userLoggedIn', true);
+        await sharedPreferences.setString('userID', id);
         navigateToHome();
       } else {
         for (var i = 0; i < roles.length; i++) {

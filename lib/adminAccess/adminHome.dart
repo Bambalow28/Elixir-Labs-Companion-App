@@ -1,5 +1,6 @@
 import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:elixirlabs_mobileapp/adminAccess/updateWeekly.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 //Admin Home Page Widget
@@ -128,7 +129,10 @@ class _AdminHome extends State<AdminHome> {
               ),
             ),
             GestureDetector(
-              onTap: () => {print('Weekly Clicked')},
+              onTap: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => UpdateWeekly()))
+              },
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(
@@ -187,8 +191,7 @@ class _AdminHome extends State<AdminHome> {
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(
                     left: 10.0, right: 10.0, top: 15.0, bottom: 15.0),
-                margin: EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 10.0, bottom: 20.0),
+                margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
                 decoration: BoxDecoration(
                     color: Colors.blueGrey[600],
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -207,7 +210,34 @@ class _AdminHome extends State<AdminHome> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-            )
+            ),
+            GestureDetector(
+              onTap: () => {print('Sponsor Clicked')},
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(
+                    left: 10.0, right: 10.0, top: 15.0, bottom: 15.0),
+                margin: EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 10.0, bottom: 20.0),
+                decoration: BoxDecoration(
+                    color: Colors.blueGrey[600],
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey[900].withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 2,
+                          offset: Offset(0, 0))
+                    ]),
+                child: Text(
+                  'Add New Sponsor',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ],
         ),
       ),

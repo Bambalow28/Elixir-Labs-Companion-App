@@ -89,7 +89,17 @@ class _ProfilePage extends State<ProfilePage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => {print('Process Clicked')},
+                      onTap: () => {
+                        firestoreInstance
+                            .collection("cancellationRequests")
+                            .doc(discordName)
+                            .set({
+                          "discordID": discordName,
+                          "Reason": reason,
+                        }).then((result) {
+                          print('Request for Cancellation Submitted.');
+                        })
+                      },
                       child: Container(
                           width: MediaQuery.of(context).size.width,
                           margin: EdgeInsets.only(
