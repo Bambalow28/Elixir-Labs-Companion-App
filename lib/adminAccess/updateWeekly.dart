@@ -40,9 +40,6 @@ class _UpdateWeekly extends State<UpdateWeekly> {
         firstDate: DateTime(1901, 1),
         lastDate: DateTime(2040));
 
-    final DateFormat formatDate = DateFormat('MM dd, yyyy');
-    final String newSelectedDate = formatDate.format(selectedDate);
-
     if (selectedDate != null) {
       setState(() {
         todayDate = selectedDate;
