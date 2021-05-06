@@ -102,36 +102,6 @@ class _UserSettings extends State<UserSettings> {
                     }),
               ),
             ),
-            // SizedBox(height: 10.0),
-            // Container(
-            //   padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-            //   height: 60.0,
-            //   child: TextField(
-            //     controller: message,
-            //     textCapitalization: TextCapitalization.words,
-            //     decoration: InputDecoration(
-            //       contentPadding: EdgeInsets.all(8.0),
-            //       filled: true,
-            //       fillColor: Color.fromRGBO(45, 45, 45, 1),
-            //       hintText: 'Enter Message...',
-            //       hintStyle: TextStyle(color: Colors.grey),
-            //       suffixIcon: IconButton(
-            //         onPressed: () => {print('Sent'), message.clear()},
-            //         icon: Icon(
-            //           Icons.send_rounded,
-            //           color: Colors.blue[400],
-            //         ),
-            //         highlightColor: Colors.transparent,
-            //         splashColor: Colors.transparent,
-            //       ),
-            //       enabledBorder: OutlineInputBorder(
-            //           borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            //       focusedBorder: OutlineInputBorder(
-            //           borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            //     ),
-            //     style: TextStyle(color: Colors.white),
-            //   ),
-            // ),
           ],
         ),
       ),
