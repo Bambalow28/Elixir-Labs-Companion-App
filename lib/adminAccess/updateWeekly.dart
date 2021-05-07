@@ -14,7 +14,6 @@ class _UpdateWeekly extends State<UpdateWeekly> {
   DateTime todayDate = DateTime.now();
   var releaseDate;
   var daySelected;
-  var resetDaySelected;
   List<String> daySelect = [
     'Monday',
     'Tuesday',
@@ -60,15 +59,6 @@ class _UpdateWeekly extends State<UpdateWeekly> {
         appBar: AppBar(
           title: Text(appBarTitle),
           backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 15.0),
-              child: GestureDetector(
-                onTap: () => {print('Save Article')},
-                child: Icon(Icons.bookmark_rounded),
-              ),
-            )
-          ],
         ),
         body: GestureDetector(
             onTap: () => {FocusScope.of(context).requestFocus(new FocusNode())},
@@ -104,47 +94,75 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                         style: TextStyle(color: Colors.grey)));
                               }
                               return Container(
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          width: 2.0,
-                                          style: BorderStyle.solid,
-                                          color: Colors.blueGrey[600]),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0))),
-                                ),
-                                child: StatefulBuilder(
-                                  builder: (context, setState) {
-                                    return DropdownButtonHideUnderline(
+                                width: 300.0,
+                                margin:
+                                    EdgeInsets.only(left: 10.0, right: 10.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.deepPurple[300],
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
                                       child: Container(
-                                        width: 150.0,
-                                        margin: EdgeInsets.only(
-                                            left: 8.0, right: 8.0),
-                                        child: DropdownButton<String>(
-                                          hint: Text(
-                                            'Select Day',
-                                            style:
-                                                TextStyle(color: Colors.grey),
-                                          ),
-                                          dropdownColor: Colors.grey[850],
-                                          value: daySelected,
-                                          style: TextStyle(color: Colors.white),
-                                          onChanged: (newValue) {
-                                            setState(() {
-                                              daySelected = newValue;
-                                              print(daySelected);
-                                            });
-                                          },
-                                          items: daySelect.map((String value) {
-                                            return DropdownMenuItem(
-                                              value: value,
-                                              child: Text(value),
-                                            );
-                                          }).toList(),
-                                        ),
+                                          padding: EdgeInsets.only(left: 15.0),
+                                          child: Text(
+                                            'Day: ',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 24.0,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                          top: 10.0, bottom: 10.0, right: 15.0),
+                                      decoration: ShapeDecoration(
+                                        shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                                width: 2.0,
+                                                style: BorderStyle.solid,
+                                                color: Colors.white54),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))),
                                       ),
-                                    );
-                                  },
+                                      child: StatefulBuilder(
+                                        builder: (context, setState) {
+                                          return DropdownButtonHideUnderline(
+                                            child: Container(
+                                              width: 130.0,
+                                              margin: EdgeInsets.only(
+                                                  left: 8.0, right: 8.0),
+                                              child: DropdownButton<String>(
+                                                hint: Text(
+                                                  'Select',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                dropdownColor: Colors.grey[850],
+                                                value: daySelected,
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                                onChanged: (newValue) {
+                                                  setState(() {
+                                                    daySelected = newValue;
+                                                    print(daySelected);
+                                                  });
+                                                },
+                                                items: daySelect
+                                                    .map((String value) {
+                                                  return DropdownMenuItem(
+                                                    value: value,
+                                                    child: Text(value),
+                                                  );
+                                                }).toList(),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
                             }),
@@ -155,148 +173,231 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                         child: Text(
                           'Posted Releases',
                           style: TextStyle(
-                              color: Colors.grey,
+                              color: Colors.white,
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 300.0,
-                        margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: 4,
-                          itemBuilder: (BuildContext context, int index) {
-                            // String itemName = data[index]["name"];
-                            // String itemImage = data[index]["image"];
-                            // String itemPrice = data[index]["price"];
-                            // String itemReleaseDate = data[index]["releaseDate"];
+                      daySelected == null
+                          ? Center(
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  height: 300.0,
+                                  child: Text(
+                                    'No Releases Found',
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold),
+                                  )))
+                          : StreamBuilder(
+                              stream: firestoreInstance
+                                  .collection('weeklyCalendar')
+                                  .doc('days')
+                                  .collection(daySelected)
+                                  .snapshots(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  print('Something Went Wrong');
+                                }
 
-                            return Column(
-                              children: <Widget>[
-                                GestureDetector(
-                                  onTap: () => {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) =>
-                                    //             UpcomingReleaseInfo(
-                                    //               itemName: itemName,
-                                    //               itemPrice: itemPrice,
-                                    //               itemReleaseDate:
-                                    //                   itemReleaseDate,
-                                    //               itemImage: itemImage,
-                                    //             ))),
-                                  },
-                                  child: Column(
-                                    children: <Widget>[
-                                      GestureDetector(
-                                        onTap: () =>
-                                            {print('Show Release Info')},
-                                        child: Container(
-                                          margin: EdgeInsets.only(
-                                              left: 10.0,
-                                              right: 10.0,
-                                              top: 10.0),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey[800],
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color:
-                                                      Color.fromRGBO(0, 0, 0, 1)
-                                                          .withOpacity(0.5),
-                                                  spreadRadius: 2,
-                                                  blurRadius: 4),
-                                            ],
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10),
-                                            ),
-                                          ),
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 90.0,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Container(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10.0, bottom: 5.0),
-                                                  alignment: Alignment.topLeft,
-                                                  child: RichText(
-                                                      text: TextSpan(
-                                                    text: 'ITEM NAME: ',
-                                                    style: TextStyle(
-                                                        color: Colors.grey,
-                                                        fontSize: 12.0,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                    children: <TextSpan>[
-                                                      TextSpan(
-                                                        text: 'Jordan 1',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 14.0),
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                      child: Text('No Data Found',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20.0)));
+                                } else {
+                                  final itemReleases = snapshot.data.docs;
+                                  return Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 300.0,
+                                    margin:
+                                        EdgeInsets.only(left: 5.0, right: 5.0),
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: itemReleases.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        String itemName =
+                                            itemReleases[index]['itemName'];
+                                        String itemPrice =
+                                            itemReleases[index]['itemPrice'];
+                                        // String itemReleaseDate = data[index]["releaseDate"];
+
+                                        return Column(
+                                          children: <Widget>[
+                                            GestureDetector(
+                                              onTap: () => {
+                                                // Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //         builder: (context) =>
+                                                //             UpcomingReleaseInfo(
+                                                //               itemName: itemName,
+                                                //               itemPrice: itemPrice,
+                                                //               itemReleaseDate:
+                                                //                   itemReleaseDate,
+                                                //               itemImage: itemImage,
+                                                //             ))),
+                                              },
+                                              child: Column(
+                                                children: <Widget>[
+                                                  GestureDetector(
+                                                    onTap: () => {
+                                                      print('Show Release Info')
+                                                    },
+                                                    child: Container(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10.0,
+                                                          right: 10.0,
+                                                          top: 10.0),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.grey[800],
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                              color: Color
+                                                                      .fromRGBO(
+                                                                          0,
+                                                                          0,
+                                                                          0,
+                                                                          1)
+                                                                  .withOpacity(
+                                                                      0.5),
+                                                              spreadRadius: 2,
+                                                              blurRadius: 4),
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                          Radius.circular(10),
+                                                        ),
                                                       ),
-                                                    ],
-                                                  ))),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 10.0, bottom: 5.0),
-                                                alignment: Alignment.topLeft,
-                                                child: RichText(
-                                                    text: TextSpan(
-                                                  text: 'PRICE: ',
-                                                  style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 12.0,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: '\$150',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 14.0),
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 90.0,
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: <Widget>[
+                                                          Container(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          10.0,
+                                                                      bottom:
+                                                                          5.0),
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topLeft,
+                                                              child: RichText(
+                                                                  text:
+                                                                      TextSpan(
+                                                                text:
+                                                                    'ITEM NAME: ',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                                children: <
+                                                                    TextSpan>[
+                                                                  TextSpan(
+                                                                    text:
+                                                                        itemName,
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            14.0),
+                                                                  ),
+                                                                ],
+                                                              ))),
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 10.0,
+                                                                    bottom:
+                                                                        5.0),
+                                                            alignment: Alignment
+                                                                .topLeft,
+                                                            child: RichText(
+                                                                text: TextSpan(
+                                                              text: 'PRICE: ',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .grey,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                              children: <
+                                                                  TextSpan>[
+                                                                TextSpan(
+                                                                  text:
+                                                                      itemPrice,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          14.0),
+                                                                ),
+                                                              ],
+                                                            )),
+                                                          ),
+                                                          Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 10.0),
+                                                            alignment: Alignment
+                                                                .topLeft,
+                                                            child: RichText(
+                                                                text: TextSpan(
+                                                              text:
+                                                                  'RELEASE DATE: ',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .grey,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                              children: <
+                                                                  TextSpan>[
+                                                                TextSpan(
+                                                                  text:
+                                                                      'July 1st, 2021',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          14.0),
+                                                                ),
+                                                              ],
+                                                            )),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ],
-                                                )),
+                                                  )
+                                                ],
                                               ),
-                                              Container(
-                                                padding:
-                                                    EdgeInsets.only(left: 10.0),
-                                                alignment: Alignment.topLeft,
-                                                child: RichText(
-                                                    text: TextSpan(
-                                                  text: 'RELEASE DATE: ',
-                                                  style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 12.0,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: 'July 1st, 2021',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 14.0),
-                                                    ),
-                                                  ],
-                                                )),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  );
+                                }
+                              }),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -311,7 +412,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                         child: Text(
                           'Add New Releases ',
                           style: TextStyle(
-                              color: Colors.grey,
+                              color: Colors.white,
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold),
                         ),

@@ -146,7 +146,8 @@ class _DaysClicked extends State<DaysClicked> {
                 if (!snapshot.hasData) {
                   return Center(
                       child: Text('No Data Found',
-                          style: TextStyle(color: Colors.white)));
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 20.0)));
                 } else {
                   final itemReleases = snapshot.data.docs;
                   return Container(
