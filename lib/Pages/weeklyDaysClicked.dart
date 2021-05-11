@@ -159,8 +159,8 @@ class _DaysClicked extends State<DaysClicked> {
                       itemBuilder: (BuildContext context, int index) {
                         String itemName = itemReleases[index]['itemName'];
                         String itemPrice = itemReleases[index]['itemPrice'];
-                        // String itemReleaseDate = itemReleases[index]
-                        //                                 ['itemReleaseDate'];
+                        String itemReleaseDate =
+                            itemReleases[index]['releaseDate'];
 
                         return Column(
                           children: <Widget>[
@@ -259,7 +259,7 @@ class _DaysClicked extends State<DaysClicked> {
                                                   fontWeight: FontWeight.bold),
                                               children: <TextSpan>[
                                                 TextSpan(
-                                                  text: 'July 1st, 2021',
+                                                  text: itemReleaseDate,
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 14.0),

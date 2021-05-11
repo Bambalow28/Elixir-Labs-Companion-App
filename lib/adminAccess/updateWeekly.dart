@@ -94,18 +94,18 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                         style: TextStyle(color: Colors.grey)));
                               }
                               return Container(
-                                width: 300.0,
+                                width: 280.0,
                                 margin:
                                     EdgeInsets.only(left: 10.0, right: 10.0),
                                 decoration: BoxDecoration(
                                     color: Colors.deepPurple[300],
                                     borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0))),
+                                        Radius.circular(20.0))),
                                 child: Row(
                                   children: <Widget>[
                                     Expanded(
                                       child: Container(
-                                          padding: EdgeInsets.only(left: 15.0),
+                                          padding: EdgeInsets.only(left: 20.0),
                                           child: Text(
                                             'Day: ',
                                             style: TextStyle(
@@ -116,7 +116,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(
-                                          top: 10.0, bottom: 10.0, right: 15.0),
+                                          top: 10.0, bottom: 10.0, right: 20.0),
                                       decoration: ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                             side: BorderSide(
@@ -178,19 +178,8 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      daySelected == null
-                          ? Center(
-                              child: Container(
-                                  alignment: Alignment.center,
-                                  height: 300.0,
-                                  child: Text(
-                                    'No Releases Found',
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                  )))
-                          : StreamBuilder(
+                      daySelected != null
+                          ? StreamBuilder(
                               stream: firestoreInstance
                                   .collection('weeklyCalendar')
                                   .doc('days')
@@ -224,7 +213,8 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                             itemReleases[index]['itemName'];
                                         String itemPrice =
                                             itemReleases[index]['itemPrice'];
-                                        // String itemReleaseDate = data[index]["releaseDate"];
+                                        String itemReleaseDate =
+                                            itemReleases[index]["releaseDate"];
 
                                         return Column(
                                           children: <Widget>[
@@ -341,7 +331,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                                               children: <
                                                                   TextSpan>[
                                                                 TextSpan(
-                                                                  text:
+                                                                  text: "\$" +
                                                                       itemPrice,
                                                                   style: TextStyle(
                                                                       color: Colors
@@ -374,7 +364,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                                                   TextSpan>[
                                                                 TextSpan(
                                                                   text:
-                                                                      'July 1st, 2021',
+                                                                      itemReleaseDate,
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .white,
@@ -397,7 +387,18 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                     ),
                                   );
                                 }
-                              }),
+                              })
+                          : Center(
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  height: 300.0,
+                                  child: Text(
+                                    'No Releases Found',
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold),
+                                  ))),
                       SizedBox(
                         height: 10.0,
                       ),
@@ -707,7 +708,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                 "Day": daySelected,
                                 "itemName": itemName.text,
                                 "itemPrice": itemPrice.text,
-                                // "releaseDate": releaseDate.toString(),
+                                "releaseDate": releaseDate.toString()
                               })
                               .then((value) => print('Successfully Added!'))
                               .catchError((error) => {print('Error: $error')})
