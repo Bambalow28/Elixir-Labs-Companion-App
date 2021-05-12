@@ -3,6 +3,13 @@ import 'package:flutter/rendering.dart';
 
 //Create Profile Widget
 class WeeklyCalendarItem extends StatefulWidget {
+  String itemTitle;
+  String itemPrice;
+  String releaseDate;
+  WeeklyCalendarItem(
+      {Key key, this.itemTitle, this.itemPrice, this.releaseDate})
+      : super(key: key);
+
   @override
   _WeeklyCalendarItem createState() => _WeeklyCalendarItem();
 }
@@ -277,7 +284,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1.0),
       appBar: AppBar(
-        title: Text('Item Name'),
+        title: Text(widget.itemTitle),
         backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
         actions: [
           Padding(
@@ -354,7 +361,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: 'Item Name',
+                                text: widget.itemTitle,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14.0),
                               ),
@@ -376,7 +383,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: 'Item Price',
+                                text: '\$' + widget.itemPrice,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14.0),
                               ),
@@ -397,7 +404,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                text: 'Date',
+                                text: widget.releaseDate,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14.0),
                               ),

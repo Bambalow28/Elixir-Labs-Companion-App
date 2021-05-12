@@ -51,6 +51,124 @@ class _PushNotifs extends State<PushNotifs> {
                     ],
                   ),
                 ),
-                child: Text('Test'))));
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.topLeft,
+                      margin:
+                          EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
+                      width: 300.0,
+                      child: TextField(
+                        textCapitalization: TextCapitalization.words,
+                        controller: messageTitle,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color.fromRGBO(45, 45, 45, 1),
+                          hintText: 'Message Title',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      margin:
+                          EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
+                      width: MediaQuery.of(context).size.width,
+                      child: TextField(
+                        textCapitalization: TextCapitalization.words,
+                        controller: messageDescription,
+                        maxLines: 10,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color.fromRGBO(45, 45, 45, 1),
+                          hintText: 'Description',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => {print('Released!!')},
+                            child: Container(
+                                margin: EdgeInsets.only(
+                                    top: 15.0, left: 10.0, right: 5.0),
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                    color: Colors.yellow[300],
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Release Alert',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                          ),
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => {print('Restock!!')},
+                            child: Container(
+                                margin: EdgeInsets.only(
+                                    top: 15.0, left: 10.0, right: 10.0),
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                    color: Colors.orange[300],
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Restock Alert',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                          ),
+                        ),
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () => {print('Shock Drop!!')},
+                      child: Container(
+                          margin: EdgeInsets.only(
+                              top: 15.0, left: 10.0, right: 10.0),
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                              color: Colors.red[300],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Shock Drop Alert',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          )),
+                    ),
+                  ],
+                ))));
   }
 }

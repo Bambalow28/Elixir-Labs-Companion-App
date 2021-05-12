@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elixirlabs_mobileapp/Pages/weeklyCalendarItem.dart';
 
 //Weekly Calendar Widget
 class DaysClicked extends StatefulWidget {
@@ -181,7 +182,17 @@ class _DaysClicked extends State<DaysClicked> {
                               child: Column(
                                 children: <Widget>[
                                   GestureDetector(
-                                    onTap: () => {print('Show Release Info')},
+                                    onTap: () => {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  WeeklyCalendarItem(
+                                                      itemTitle: itemName,
+                                                      itemPrice: itemPrice,
+                                                      releaseDate:
+                                                          itemReleaseDate)))
+                                    },
                                     child: Container(
                                       margin: EdgeInsets.only(
                                           left: 10.0, right: 10.0, top: 10.0),

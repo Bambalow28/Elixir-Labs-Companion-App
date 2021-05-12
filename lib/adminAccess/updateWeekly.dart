@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:elixirlabs_mobileapp/Pages/weeklyCalendarItem.dart';
 
 //View News Page Widget
 class UpdateWeekly extends StatefulWidget {
@@ -24,10 +25,12 @@ class _UpdateWeekly extends State<UpdateWeekly> {
     'Sunday'
   ];
   TextEditingController itemName = new TextEditingController();
-  // TextEditingController releaseDate = new TextEditingController();
   TextEditingController itemPrice = new TextEditingController();
   TextEditingController linkURL = new TextEditingController();
-
+  TextEditingController lowPrice = new TextEditingController();
+  TextEditingController highPrice = new TextEditingController();
+  TextEditingController storeName = new TextEditingController();
+  TextEditingController storeLink = new TextEditingController();
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
 
@@ -77,7 +80,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
               child: SingleChildScrollView(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 1.4,
+                  height: MediaQuery.of(context).size.height * 1.5,
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -146,7 +149,6 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                                 onChanged: (newValue) {
                                                   setState(() {
                                                     daySelected = newValue;
-                                                    print(daySelected);
                                                   });
                                                 },
                                                 items: daySelect
@@ -236,7 +238,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                                 children: <Widget>[
                                                   GestureDetector(
                                                     onTap: () => {
-                                                      print('Show Release Info')
+                                                      //Test
                                                     },
                                                     child: Container(
                                                       margin: EdgeInsets.only(
@@ -461,7 +463,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                     BoxConstraints(minWidth: 0, minHeight: 0),
                                 filled: true,
                                 fillColor: Color.fromRGBO(45, 45, 45, 1),
-                                hintText: 'Price',
+                                hintText: 'Retail',
                                 hintStyle: TextStyle(color: Colors.grey),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
@@ -471,6 +473,78 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                         Radius.circular(10.0))),
                               ),
                               style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.topLeft,
+                              margin: EdgeInsets.only(
+                                  left: 10.0, right: 10.0, top: 10.0),
+                              width: 140.0,
+                              child: TextField(
+                                textCapitalization: TextCapitalization.words,
+                                controller: lowPrice,
+                                decoration: InputDecoration(
+                                  prefixIcon: Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Text(
+                                        '\$',
+                                        style: TextStyle(
+                                            color: Colors.red[300],
+                                            fontSize: 16.0),
+                                      )),
+                                  prefixIconConstraints:
+                                      BoxConstraints(minWidth: 0, minHeight: 0),
+                                  filled: true,
+                                  fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                  hintText: 'Lowest Price',
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                ),
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.topLeft,
+                              margin: EdgeInsets.only(right: 10.0, top: 10.0),
+                              child: TextField(
+                                textCapitalization: TextCapitalization.words,
+                                controller: highPrice,
+                                decoration: InputDecoration(
+                                  prefixIcon: Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Text(
+                                        '\$',
+                                        style: TextStyle(
+                                            color: Colors.green[300],
+                                            fontSize: 16.0),
+                                      )),
+                                  prefixIconConstraints:
+                                      BoxConstraints(minWidth: 0, minHeight: 0),
+                                  filled: true,
+                                  fillColor: Color.fromRGBO(45, 45, 45, 1),
+                                  hintText: 'Highest Price',
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                ),
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
                         ],
@@ -549,6 +623,27 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(
+                            left: 10.0, right: 10.0, bottom: 10.0),
+                        child: TextField(
+                          controller: storeName,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(45, 45, 45, 1),
+                            hintText: 'Store Name',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                          ),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                       Row(
                         children: <Widget>[
                           Expanded(
@@ -556,7 +651,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                               width: 250.0,
                               padding: EdgeInsets.only(left: 10.0, right: 10.0),
                               child: TextField(
-                                controller: linkURL,
+                                controller: storeLink,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Color.fromRGBO(45, 45, 45, 1),
@@ -705,13 +800,19 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                               .collection(daySelected)
                               .doc(itemName.text)
                               .set({
-                                "Day": daySelected,
-                                "itemName": itemName.text,
-                                "itemPrice": itemPrice.text,
-                                "releaseDate": releaseDate.toString()
-                              })
-                              .then((value) => print('Successfully Added!'))
-                              .catchError((error) => {print('Error: $error')})
+                            "Day": daySelected,
+                            "itemName": itemName.text,
+                            "itemPrice": itemPrice.text,
+                            "releaseDate": releaseDate.toString(),
+                            "lowestPrice": lowPrice.text,
+                            "highestPrice": highPrice.text,
+                          }).then((value) => print('Item Added!')),
+                          itemName.clear(),
+                          itemPrice.clear(),
+                          lowPrice.clear(),
+                          highPrice.clear(),
+                          storeName.clear(),
+                          storeLink.clear()
                         },
                         child: Container(
                             margin: EdgeInsets.only(
