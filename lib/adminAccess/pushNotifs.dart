@@ -11,6 +11,10 @@ class PushNotifs extends StatefulWidget {
 //View News Widget State
 class _PushNotifs extends State<PushNotifs> {
   String appBarTitle = "Notification To Users";
+  bool general = false;
+  bool release = false;
+  bool restock = false;
+  bool shockDrop = false;
 
   TextEditingController messageTitle = new TextEditingController();
   TextEditingController messageDescription = new TextEditingController();
@@ -27,15 +31,6 @@ class _PushNotifs extends State<PushNotifs> {
         appBar: AppBar(
           title: Text(appBarTitle),
           backgroundColor: const Color.fromRGBO(38, 38, 38, 1.0),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 15.0),
-              child: GestureDetector(
-                onTap: () => {print('Save Article')},
-                child: Icon(Icons.bookmark_rounded),
-              ),
-            )
-          ],
         ),
         body: GestureDetector(
             onTap: () => {FocusScope.of(context).requestFocus(new FocusNode())},
@@ -100,11 +95,46 @@ class _PushNotifs extends State<PushNotifs> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
+                    GestureDetector(
+                      onTap: () => {
+                        setState(() {
+                          general = true;
+                          release = false;
+                          restock = false;
+                          shockDrop = false;
+                        })
+                      },
+                      child: Container(
+                          margin: EdgeInsets.only(
+                              top: 15.0, left: 10.0, right: 10.0),
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                              color: Colors.blue[300],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'General Alert',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            ),
+                          )),
+                    ),
                     Row(
                       children: <Widget>[
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => {print('Released!!')},
+                            onTap: () => {
+                              setState(() {
+                                general = false;
+                                release = true;
+                                restock = false;
+                                shockDrop = false;
+                              })
+                            },
                             child: Container(
                                 margin: EdgeInsets.only(
                                     top: 15.0, left: 10.0, right: 5.0),
@@ -116,7 +146,7 @@ class _PushNotifs extends State<PushNotifs> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Release Alert',
+                                    'Release',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -126,10 +156,17 @@ class _PushNotifs extends State<PushNotifs> {
                         ),
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => {print('Restock!!')},
+                            onTap: () => {
+                              setState(() {
+                                general = false;
+                                release = false;
+                                restock = true;
+                                shockDrop = false;
+                              })
+                            },
                             child: Container(
                                 margin: EdgeInsets.only(
-                                    top: 15.0, left: 10.0, right: 10.0),
+                                    top: 15.0, left: 5.0, right: 5.0),
                                 height: 50.0,
                                 decoration: BoxDecoration(
                                     color: Colors.orange[300],
@@ -138,7 +175,7 @@ class _PushNotifs extends State<PushNotifs> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Restock Alert',
+                                    'Restock',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -146,28 +183,69 @@ class _PushNotifs extends State<PushNotifs> {
                                 )),
                           ),
                         ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => {
+                              setState(() {
+                                general = false;
+                                release = false;
+                                restock = false;
+                                shockDrop = true;
+                              })
+                            },
+                            child: Container(
+                                margin: EdgeInsets.only(
+                                    top: 15.0, right: 10.0, left: 10.0),
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                    color: Colors.red[300],
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Shock Drop',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                          ),
+                        )
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () => {print('Shock Drop!!')},
-                      child: Container(
-                          margin: EdgeInsets.only(
-                              top: 15.0, left: 10.0, right: 10.0),
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                              color: Colors.red[300],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0))),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Shock Drop Alert',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )),
+                    Expanded(
+                      child: SizedBox(),
                     ),
+                    Container(
+                      child: Text(
+                        'Alert Type: ',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
+                      ),
+                    ),
+                    Expanded(
+                      child: SizedBox(),
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(
+                            top: 15.0, right: 20.0, left: 20.0, bottom: 40.0),
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                            color: Colors.green[300],
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0))),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Push To All Users',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )),
                   ],
                 ))));
   }

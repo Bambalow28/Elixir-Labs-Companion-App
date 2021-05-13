@@ -114,7 +114,7 @@ class _AdminHome extends State<AdminHome> {
                     left: 10.0, right: 10.0, top: 15.0, bottom: 15.0),
                 margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey[600],
+                    color: Colors.grey[850],
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     boxShadow: [
                       BoxShadow(
@@ -143,7 +143,7 @@ class _AdminHome extends State<AdminHome> {
                     left: 10.0, right: 10.0, top: 15.0, bottom: 15.0),
                 margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey[600],
+                    color: Colors.grey[850],
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     boxShadow: [
                       BoxShadow(
@@ -169,7 +169,7 @@ class _AdminHome extends State<AdminHome> {
                     left: 10.0, right: 10.0, top: 15.0, bottom: 15.0),
                 margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey[600],
+                    color: Colors.grey[850],
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     boxShadow: [
                       BoxShadow(
@@ -197,7 +197,7 @@ class _AdminHome extends State<AdminHome> {
                     left: 10.0, right: 10.0, top: 15.0, bottom: 15.0),
                 margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey[600],
+                    color: Colors.grey[850],
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     boxShadow: [
                       BoxShadow(
@@ -224,7 +224,7 @@ class _AdminHome extends State<AdminHome> {
                 margin: EdgeInsets.only(
                     left: 20.0, right: 20.0, top: 10.0, bottom: 20.0),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey[600],
+                    color: Colors.grey[850],
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     boxShadow: [
                       BoxShadow(
