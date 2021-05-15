@@ -191,7 +191,8 @@ class _DaysClicked extends State<DaysClicked> {
                                                       itemTitle: itemName,
                                                       itemPrice: itemPrice,
                                                       releaseDate:
-                                                          itemReleaseDate)))
+                                                          itemReleaseDate,
+                                                      dayCheck: widget.day)))
                                     },
                                     child: Container(
                                       margin: EdgeInsets.only(

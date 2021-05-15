@@ -163,7 +163,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   bottom: 10.0),
                               height: 60.0,
                               decoration: BoxDecoration(
-                                  color: Colors.grey[800],
+                                  color: Colors.grey[850],
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20.0)),
                                   boxShadow: [
