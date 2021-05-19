@@ -411,7 +411,7 @@ class _WeeklyCalendarItem extends State<WeeklyCalendarItem> {
                             alignment: Alignment.topLeft,
                             child: RichText(
                               text: TextSpan(
-                                text: 'PRICE: ',
+                                text: 'RETAIL PRICE: ',
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 12.0,
