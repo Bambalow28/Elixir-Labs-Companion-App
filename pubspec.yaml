@@ -66,6 +66,7 @@ flutter:
   - assets/images/jordanss.png
   - assets/imageNotAvailable.png
   - assets/images/ashburn.jpg
+  - assets/images/darkStreets.jpg
 
   fonts:
         - family: Montserrat

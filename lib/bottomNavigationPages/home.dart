@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
           }
         } else {
           print(site.statusCode);
-          upcomingReleases();
+          // upcomingReleases();
         }
       });
     } catch (e) {
@@ -100,6 +100,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     super.dispose();
+    this.upcomingReleases();
     print('Disposed');
   }
 

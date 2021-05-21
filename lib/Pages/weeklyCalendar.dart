@@ -166,6 +166,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   'Monday',
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               )),
@@ -192,6 +193,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   'Tuesday',
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               )),
@@ -218,6 +220,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   'Wednesday',
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               )),
@@ -251,6 +254,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   'Thursday',
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               )),
@@ -277,6 +281,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   'Friday',
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               )),
@@ -303,6 +308,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                                   'Saturday',
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               )),
@@ -331,6 +337,7 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               'Sunday',
                               style: TextStyle(
                                   color: Colors.white,
+                                  fontSize: 16.0,
                                   fontWeight: FontWeight.bold),
                             ),
                           )),

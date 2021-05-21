@@ -199,9 +199,13 @@ class _DaysClicked extends State<DaysClicked> {
                                           left: 10.0, right: 10.0, top: 10.0),
                                       decoration: BoxDecoration(
                                         color: Colors.grey[800],
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/images/darkStreets.jpg'),
+                                            fit: BoxFit.cover),
                                         boxShadow: [
                                           BoxShadow(
-                                              color: Color.fromRGBO(0, 0, 0, 1)
+                                              color: Colors.black45
                                                   .withOpacity(0.5),
                                               spreadRadius: 2,
                                               blurRadius: 4),
