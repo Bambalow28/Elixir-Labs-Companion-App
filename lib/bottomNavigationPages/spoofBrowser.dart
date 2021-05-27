@@ -569,16 +569,17 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        height: 80.0,
-                        margin: EdgeInsets.only(
-                            top: 20.0, right: 20.0, bottom: 20.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          color: Colors.white,
-                        ),
-                        child: GestureDetector(
-                          onTap: () => {loginGmail()},
+                      child: GestureDetector(
+                        onTap: () => {loginGmail()},
+                        child: Container(
+                          height: 80.0,
+                          margin: EdgeInsets.only(
+                              top: 20.0, right: 20.0, bottom: 20.0),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            color: Colors.white,
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -634,7 +635,7 @@ class _SpoofBrowser extends State<SpoofBrowser> {
                           ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
                 SizedBox(

@@ -15,11 +15,33 @@ class _ReportIssue extends State<ReportIssue> {
   int navIndex;
   String appBarTitle = "Report Issue";
   String buttonText = 'Submit';
+  String status = '';
+  var discordName;
   TextEditingController issueName = TextEditingController();
   TextEditingController issueDescription = TextEditingController();
 
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
+
+  //Fetch User Data from Firebase
+  Future getProfileInfo() async {
+    await firestoreInstance
+        .collection("users")
+        .doc('682347192140169305')
+        .get()
+        .then((info) {
+      setState(() {
+        discordName = info.data()["discordName"];
+        print(discordName);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getProfileInfo();
+  }
 
   void navigationBarTapped(int index) {
     setState(() {
@@ -158,16 +180,24 @@ class _ReportIssue extends State<ReportIssue> {
                 ),
               ),
               Expanded(child: SizedBox()),
+              Container(
+                padding: EdgeInsets.only(bottom: 5.0),
+                child: Text(
+                  status,
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
               GestureDetector(
                 onTap: () => {
-                  setState(() {
-                    buttonText = 'Submitted';
-                  }),
                   firestoreInstance.collection("issues").add({
-                    "submittedBy": 'SUPREMO\$1533',
+                    "submittedBy": discordName,
                     "issueName": issueName.text,
                     "description": issueDescription.text
-                  }),
+                  }).then((value) => setState(() {
+                        buttonText = 'Issue Submitted';
+                        const oneSec = const Duration(seconds: 2);
+                        Timer(oneSec, () => buttonText = 'Submit');
+                      })),
                   issueName.clear(),
                   issueDescription.clear()
                 },

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/Options/settings.dart';
 import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';

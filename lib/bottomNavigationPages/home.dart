@@ -2,7 +2,6 @@ import 'dart:core';
 import 'package:elixirlabs_mobileapp/Options/drawer.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/news.dart';
 import 'package:flutter/material.dart';
-import 'package:elixirlabs_mobileapp/Options/settings.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert' as convert;
