@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 
 //View News Page Widget
 class AddNews extends StatefulWidget {
@@ -11,7 +10,6 @@ class AddNews extends StatefulWidget {
 //View News Widget State
 class _AddNews extends State<AddNews> {
   String appBarTitle = "Add News";
-  bool general = false;
 
   TextEditingController newsTitle = new TextEditingController();
   TextEditingController newsDescription = new TextEditingController();
@@ -93,11 +91,7 @@ class _AddNews extends State<AddNews> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => {
-                        setState(() {
-                          general = true;
-                        })
-                      },
+                      onTap: () => {print('Select Image')},
                       child: Container(
                           margin: EdgeInsets.only(
                               top: 15.0, left: 20.0, right: 20.0),
@@ -152,7 +146,7 @@ class _AddNews extends State<AddNews> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Push To All Users',
+                            'Publish',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
