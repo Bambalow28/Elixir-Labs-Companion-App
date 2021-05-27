@@ -159,7 +159,14 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               decoration: BoxDecoration(
                                   color: Colors.grey[850],
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black45.withOpacity(0.5),
+                                        spreadRadius: 2.0,
+                                        blurRadius: 2.0,
+                                        offset: Offset(0, 0))
+                                  ]),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -186,7 +193,14 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               decoration: BoxDecoration(
                                   color: Colors.grey[850],
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black45.withOpacity(0.5),
+                                        spreadRadius: 2.0,
+                                        blurRadius: 2.0,
+                                        offset: Offset(0, 0))
+                                  ]),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -213,7 +227,14 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               decoration: BoxDecoration(
                                   color: Colors.grey[850],
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black45.withOpacity(0.5),
+                                        spreadRadius: 2.0,
+                                        blurRadius: 2.0,
+                                        offset: Offset(0, 0))
+                                  ]),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -247,7 +268,14 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               decoration: BoxDecoration(
                                   color: Colors.grey[850],
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black45.withOpacity(0.5),
+                                        spreadRadius: 2.0,
+                                        blurRadius: 2.0,
+                                        offset: Offset(0, 0))
+                                  ]),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -274,7 +302,14 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               decoration: BoxDecoration(
                                   color: Colors.grey[850],
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black45.withOpacity(0.5),
+                                        spreadRadius: 2.0,
+                                        blurRadius: 2.0,
+                                        offset: Offset(0, 0))
+                                  ]),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -301,7 +336,14 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                               decoration: BoxDecoration(
                                   color: Colors.grey[850],
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black45.withOpacity(0.5),
+                                        spreadRadius: 2.0,
+                                        blurRadius: 2.0,
+                                        offset: Offset(0, 0))
+                                  ]),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -330,7 +372,14 @@ class _WeeklyCalendar extends State<WeeklyCalendar> {
                           decoration: BoxDecoration(
                               color: Colors.grey[850],
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0))),
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black45.withOpacity(0.5),
+                                    spreadRadius: 2.0,
+                                    blurRadius: 2.0,
+                                    offset: Offset(0, 0))
+                              ]),
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(

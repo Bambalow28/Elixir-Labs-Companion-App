@@ -12,6 +12,7 @@ class UpdateWeekly extends StatefulWidget {
 class _UpdateWeekly extends State<UpdateWeekly> {
   String appBarTitle = "Weekly Calendar";
   DateTime todayDate = DateTime.now();
+  TimeOfDay releaseTime = TimeOfDay.now();
   var releaseDate;
   var daySelected;
   List<String> daySelect = [
@@ -34,7 +35,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
   final firestoreInstance = FirebaseFirestore.instance;
 
   //Show DatePicker for Selecting Release Date
-  Future<Null> selectDate(BuildContext context) async {
+  Future<void> selectDate(BuildContext context) async {
     final DateTime selectedDate = await showDatePicker(
         context: context,
         initialDate: todayDate,
@@ -51,6 +52,25 @@ class _UpdateWeekly extends State<UpdateWeekly> {
         print(releaseDate);
       });
     }
+  }
+
+  //Show TimePicker for Selecting Link Release Time
+  Future<void> selectTime(BuildContext context) async {
+    final TimeOfDay selectedTime = await showTimePicker(
+        context: context,
+        initialTime: releaseTime,
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child,
+          );
+        });
+
+    if (selectedTime != null && selectedTime != releaseTime)
+      setState(() {
+        releaseTime = selectedTime;
+        print(releaseTime);
+      });
   }
 
   @override
@@ -245,7 +265,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                                           right: 10.0,
                                                           top: 10.0),
                                                       decoration: BoxDecoration(
-                                                        color: Colors.grey[800],
+                                                        color: Colors.grey[850],
                                                         boxShadow: [
                                                           BoxShadow(
                                                               color: Color
@@ -668,7 +688,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => {print('Add Time Picker')},
+                            onTap: () => {selectTime(context)},
                             child: Container(
                               width: 50.0,
                               height: 50.0,
@@ -755,8 +775,31 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                         width:
                                             MediaQuery.of(context).size.width,
                                         height: 100.0,
-                                        child: Stack(
+                                        child: Column(
                                           children: <Widget>[
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  top: 10.0,
+                                                  left: 12.0,
+                                                  right: 12.0),
+                                              child: Stack(
+                                                children: <Widget>[
+                                                  Container(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Store Name: ' +
+                                                          'ChampSports',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 16.0,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             Container(
                                               padding: EdgeInsets.only(
                                                   top: 5.0,
@@ -768,11 +811,34 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                                     alignment:
                                                         Alignment.topLeft,
                                                     child: Text(
-                                                      'Item Name: ' +
-                                                          'Jordan 1',
+                                                      'URL: ' +
+                                                          'https://www.chamsports.ca/fskjb342',
                                                       style: TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 16.0,
+                                                          fontSize: 12.0,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  top: 10.0,
+                                                  left: 12.0,
+                                                  right: 12.0),
+                                              child: Stack(
+                                                children: <Widget>[
+                                                  Container(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'RELEASE TIME: ' +
+                                                          '8:00AM',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 12.0,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                     ),
