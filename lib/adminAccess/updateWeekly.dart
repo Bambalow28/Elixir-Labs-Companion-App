@@ -759,7 +759,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                             right: 10.0,
                                             bottom: 10.0),
                                         decoration: BoxDecoration(
-                                          color: Colors.grey[500],
+                                          color: Colors.grey[850],
                                           boxShadow: [
                                             BoxShadow(
                                                 color:
@@ -776,76 +776,57 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                             MediaQuery.of(context).size.width,
                                         height: 100.0,
                                         child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             Container(
-                                              padding: EdgeInsets.only(
-                                                  top: 10.0,
-                                                  left: 12.0,
-                                                  right: 12.0),
-                                              child: Stack(
+                                              child: Column(
                                                 children: <Widget>[
                                                   Container(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'Store Name: ' +
-                                                          'ChampSports',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 16.0,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                    child: Container(
+                                                      child: Text(
+                                                        'Footlocker',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 20.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             Container(
-                                              padding: EdgeInsets.only(
-                                                  top: 5.0,
-                                                  left: 12.0,
-                                                  right: 12.0),
-                                              child: Stack(
-                                                children: <Widget>[
-                                                  Container(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'URL: ' +
-                                                          'https://www.chamsports.ca/fskjb342',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 12.0,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                ],
+                                              alignment: Alignment.center,
+                                              margin: EdgeInsets.only(top: 5.0),
+                                              child: Container(
+                                                child: Text(
+                                                  'https://www.footlocker.com/dgkjn42',
+                                                  style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 12.0,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
                                               ),
                                             ),
                                             Container(
-                                              padding: EdgeInsets.only(
-                                                  top: 10.0,
-                                                  left: 12.0,
-                                                  right: 12.0),
-                                              child: Stack(
-                                                children: <Widget>[
-                                                  Container(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'RELEASE TIME: ' +
-                                                          '8:00AM',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 12.0,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
+                                              margin: EdgeInsets.only(top: 5.0),
+                                              child: Container(
+                                                child: Container(
+                                                  child: Text(
+                                                    '12/28/2021 @ 8:00AM',
+                                                    style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
+                                            )
                                           ],
                                         ),
                                       ),

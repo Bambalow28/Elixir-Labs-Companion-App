@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/updateWeekly.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/pushNotifs.dart';
 import 'package:elixirlabs_mobileapp/adminAccess/addNews.dart';
+import 'package:elixirlabs_mobileapp/adminAccess/addSponsor.dart';
 import 'package:elixirlabs_mobileapp/Pages/routes.dart';
 
 //Admin Home Page Widget
@@ -220,7 +221,10 @@ class _AdminHome extends State<AdminHome> {
               ),
             ),
             GestureDetector(
-              onTap: () => {print('Sponsor Clicked')},
+              onTap: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddSponsor()))
+              },
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(
