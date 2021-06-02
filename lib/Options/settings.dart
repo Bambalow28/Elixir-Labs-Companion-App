@@ -11,6 +11,26 @@ class _UserSettings extends State<UserSettings> {
   int navIndex;
   String appBarTitle = 'Settings';
 
+  showAlert(BuildContext context) {
+    Widget okBtn = TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Text('Okay'));
+
+    AlertDialog alert = AlertDialog(
+      title: Text('Elixir Labs™'),
+      content: Text('All Rights Reserved.'),
+      actions: [okBtn],
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +42,7 @@ class _UserSettings extends State<UserSettings> {
           Padding(
             padding: EdgeInsets.only(top: 2.0, right: 15.0),
             child: GestureDetector(
-              onTap: () => {print('Property of Elixir Labs. 2021')},
+              onTap: () => {showAlert(context)},
               child: Icon(
                 Icons.help,
                 size: 27.0,
