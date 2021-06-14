@@ -24,6 +24,9 @@ class _UpdateWeekly extends State<UpdateWeekly> {
     'Saturday',
     'Sunday'
   ];
+  List<String> links = [];
+
+  //Input Field Variables
   TextEditingController itemName = new TextEditingController();
   TextEditingController itemPrice = new TextEditingController();
   TextEditingController linkURL = new TextEditingController();
@@ -31,6 +34,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
   TextEditingController highPrice = new TextEditingController();
   TextEditingController storeName = new TextEditingController();
   TextEditingController storeLink = new TextEditingController();
+
   //Create Firebase Instance
   final firestoreInstance = FirebaseFirestore.instance;
 
@@ -52,6 +56,11 @@ class _UpdateWeekly extends State<UpdateWeekly> {
         print(releaseDate);
       });
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   //Show TimePicker for Selecting Link Release Time
@@ -728,7 +737,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                                 BorderRadius.all(Radius.circular(10.0))),
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
-                          itemCount: 4,
+                          itemCount: links.length,
                           itemBuilder: (BuildContext context, int index) {
                             // String itemName = data[index]["name"];
                             // String itemImage = data[index]["image"];

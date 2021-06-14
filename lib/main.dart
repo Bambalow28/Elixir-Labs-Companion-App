@@ -49,6 +49,11 @@ class _SplashScreen extends State<SplashScreen>
         ModalRoute.withName("/LoginPage"));
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   //Initiate FlutterFire (Firebase)
   void initializeFire() async {
     try {

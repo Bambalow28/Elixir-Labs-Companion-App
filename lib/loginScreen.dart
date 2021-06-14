@@ -48,13 +48,13 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   SharedPreferences sharedPreferences;
 
   @override
-  void dispose() {
-    super.dispose();
+  void initState() {
+    super.initState();
   }
 
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    super.dispose();
   }
 
   navigateToHome() {
