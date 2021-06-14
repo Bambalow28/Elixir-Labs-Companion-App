@@ -198,11 +198,7 @@ class _DaysClicked extends State<DaysClicked> {
                                       margin: EdgeInsets.only(
                                           left: 10.0, right: 10.0, top: 10.0),
                                       decoration: BoxDecoration(
-                                        color: Colors.grey[800],
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/images/darkStreets.jpg'),
-                                            fit: BoxFit.cover),
+                                        color: Colors.grey[850],
                                         boxShadow: [
                                           BoxShadow(
                                               color: Colors.black45

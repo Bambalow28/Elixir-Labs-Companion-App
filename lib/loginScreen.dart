@@ -12,6 +12,7 @@ import 'package:visa/auth-data.dart';
 import 'package:visa/discord.dart';
 import 'package:visa/engine/visa.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 String baseUrl = "https://discord.com/api/oauth2/authorize";
 final clientID = '799140079494496276';
@@ -66,6 +67,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
   saveToDB() async {
     sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('userID', id);
+    await sharedPreferences.setBool('firstTimeLoggedIn', true);
     firestoreInstance.collection("users").doc(id).set({
       "userID": id,
       "discordName": discordName + '#' + discordDiscriminator,
@@ -106,6 +108,7 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
         }
         print('User Exists! Getting Info now..');
         await sharedPreferences.setBool('userLoggedIn', true);
+        await sharedPreferences.setBool('firstTimeLoggedIn', false);
         await sharedPreferences.setString('userID', id);
         navigateToHome();
       } else {
