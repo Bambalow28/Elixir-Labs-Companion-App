@@ -75,6 +75,7 @@ class _UpdateWeekly extends State<UpdateWeekly> {
           );
         });
 
+    //Check if Time Selected is NULL
     if (selectedTime != null && selectedTime != releaseTime)
       setState(() {
         releaseTime = selectedTime;
@@ -713,7 +714,13 @@ class _UpdateWeekly extends State<UpdateWeekly> {
                             width: 10.0,
                           ),
                           GestureDetector(
-                            onTap: () => {print('Add Link')},
+                            onTap: () => {
+                              links.add(storeName.text),
+                              if (storeName.text == null)
+                                {print('No Input Detected')}
+                              else if (links.length != null)
+                                {print(links.length)}
+                            },
                             child: Container(
                               width: 50.0,
                               height: 50.0,
