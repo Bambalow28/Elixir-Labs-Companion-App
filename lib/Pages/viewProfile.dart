@@ -419,6 +419,18 @@ class _ViewProfile extends State<ViewProfile> {
                     ),
                   ],
                 ),
+                GestureDetector(
+                  onTap: () => {print('Edit Card Info Clicked')},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      'Edit Card Info',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: SizedBox(),
                 ),

@@ -228,11 +228,11 @@ class _LoginState extends State<LoginPage> with SingleTickerProviderStateMixin {
                             : const Color.fromRGBO(18, 18, 18, 1.0),
                         setState(() {
                           checkPressed = !checkPressed;
-                          // navigateToHome();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => launchURL()));
+                          navigateToHome();
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => launchURL()));
                         })
                       },
                       child: Container(
